@@ -1,9 +1,21 @@
 "use client";
 import React from "react";
 import { ArrowDown, Star, Sparkles } from "lucide-react";
+import { usePalette } from "react-palette";
+
+// 🔧 SETTING: Ensure this image exists in your public folder
+const HERO_IMAGE = "/hero-product.png"; 
 
 export default function HeroSection() {
   
+  // 🎨 AUTOMATIC COLOR EXTRACTION
+  const { data } = usePalette(HERO_IMAGE);
+
+  // Default Fallback Colors
+  const bgColor = data.darkMuted || "#0f172a"; 
+  const accentColor = data.vibrant || "#3b82f6";
+  const textColor = data.lightVibrant || "#e2e8f0";
+
   const scrollToCatalog = () => {
     const catalog = document.getElementById("catalog-section");
     if (catalog) {
@@ -12,67 +24,96 @@ export default function HeroSection() {
   };
 
   return (
-    // ✅ Added 'border-y' to frame the poster nicely in Light Mode
-    <div className="relative bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 text-white overflow-hidden border-y border-gray-200 dark:border-gray-800 shadow-sm">
+    // ✅ OUTER WRAPPER: Gives the "Floating" look (smaller from wide sides)
+    <div className="w-full px-4 sm:px-6 py-6 bg-gray-50 dark:bg-gray-950 transition-colors">
       
-      {/* Abstract Background Pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      </div>
-
-      <div className="max-w-5xl mx-auto px-4 py-16 sm:py-24 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+      <div 
+        className="relative rounded-[2.5rem] overflow-hidden transition-all duration-1000 ease-in-out shadow-2xl group"
+        style={{ 
+          background: `linear-gradient(135deg, ${bgColor} 0%, #050505 100%)`,
+          // ✅ BORDER: Blends with the background (Translucent Accent)
+          border: `1px solid ${accentColor}40`, 
+          boxShadow: `0 20px 60px -15px ${bgColor}50`
+        }}
+      >
         
-        {/* LEFT: Text Content */}
-        <div className="text-center md:text-left max-w-lg">
-          <div className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-500/30 text-blue-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-6 animate-in fade-in slide-in-from-bottom-4">
-            <Sparkles size={12} /> New Stock Arrived
-          </div>
-          
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-            Upgrade Your <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Kitchen Today.
-            </span>
-          </h1>
-          
-          <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-            Premium stainless steel, durable plasticware, and chef-grade tools. 
-            <span className="block mt-2 text-white font-semibold">Wholesale prices for everyone.</span>
-          </p>
+        {/* Abstract "Horizontal Bottles" / Pill Shapes */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+          {/* Shape 1 */}
+          <div 
+            className="absolute top-10 right-[-20px] w-40 h-12 rounded-full -rotate-12 blur-sm transition-colors duration-1000" 
+            style={{ backgroundColor: accentColor }}
+          />
+          {/* Shape 2 */}
+          <div 
+            className="absolute bottom-10 left-10 w-64 h-16 rounded-full rotate-3 blur-md transition-colors duration-1000" 
+            style={{ backgroundColor: textColor, opacity: 0.3 }}
+          />
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        {/* Content Container */}
+        <div className="max-w-5xl mx-auto px-6 py-12 sm:py-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          
+          {/* LEFT: Text Content */}
+          <div className="text-center md:text-left max-w-lg">
+            <div 
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-6 border border-white/10 backdrop-blur-md shadow-sm"
+              style={{ color: textColor, backgroundColor: `${accentColor}20` }}
+            >
+              <Sparkles size={12} /> New Collection
+            </div>
+            
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-white drop-shadow-lg">
+              Kitchenware <br/>
+              <span 
+                  className="text-transparent bg-clip-text"
+                  style={{ 
+                      backgroundImage: `linear-gradient(to right, #ffffff, ${accentColor})` 
+                  }}
+              >
+                Reimagined.
+              </span>
+            </h1>
+            
+            <p className="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
+              Premium stainless steel & durable plasticware. 
+              <span className="block mt-1 font-semibold text-white opacity-90">Wholesale rates for your business.</span>
+            </p>
+
             <button 
               onClick={scrollToCatalog}
-              className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-50 transition-all shadow-xl hover:shadow-blue-500/20 hover:-translate-y-1"
+              className="px-8 py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-xl hover:scale-105 hover:shadow-2xl text-gray-900 active:scale-95"
+              style={{ backgroundColor: "white" }}
             >
-              View Full Catalog <ArrowDown size={18} />
-            </button>
-            <button className="px-8 py-4 rounded-full font-bold text-sm border border-white/20 hover:bg-white/10 transition-all text-white">
-              Contact Us
+              View Catalog <ArrowDown size={16} />
             </button>
           </div>
-        </div>
 
-        {/* RIGHT: The "Flaunt" Product Image */}
-        <div className="relative w-full max-w-md md:max-w-sm aspect-square flex items-center justify-center">
-          
-          {/* Glowing Circle behind product */}
-          <div className="absolute inset-4 bg-blue-500/20 rounded-full blur-2xl animate-pulse"></div>
-          
-          {/* The Product Image */}
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/3082/3082060.png" 
-            alt="Featured Product" 
-            className="relative z-10 w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-          />
+          {/* RIGHT: The Hero Image */}
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center mt-4 md:mt-0">
+            
+            {/* Glowing Backlight */}
+            <div 
+              className="absolute inset-0 rounded-full blur-[60px] animate-pulse opacity-40 transition-colors duration-1000"
+              style={{ backgroundColor: accentColor }}
+            ></div>
+            
+            {/* The Product Image */}
+            <img 
+              src={HERO_IMAGE} 
+              alt="Featured Product" 
+              className="relative z-10 w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 filter hover:brightness-110"
+              onError={(e) => e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/3082/3082060.png"}
+            />
 
-          {/* Floating Badge */}
-          <div className="absolute -bottom-4 -right-4 bg-yellow-500 text-black font-bold px-4 py-2 rounded-lg shadow-lg transform rotate-3 flex items-center gap-2">
-            <Star size={16} fill="black" /> Best Seller
+            {/* Badge */}
+            <div className="absolute -bottom-2 -right-2 bg-white/95 backdrop-blur text-black font-bold px-4 py-2 rounded-xl shadow-xl transform rotate-2 flex items-center gap-2 border border-gray-100/50 text-xs">
+              <Star size={14} className="text-yellow-500" fill="currentColor" /> 
+              Best Seller
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   );

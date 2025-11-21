@@ -12,6 +12,12 @@ const font = Outfit({
 export const metadata: Metadata = {
   title: "Nandan Traders | Wholesale Store",
   description: "Premium Wholesale in Hazaribagh",
+  // ✅ NEW: This sets the tab logo
+  icons: {
+    icon: '/logo.png', 
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({
