@@ -1,20 +1,17 @@
 "use client";
 import React from "react";
 import { ArrowDown, Star, Sparkles } from "lucide-react";
-import { usePalette } from "react-palette";
 
 // 🔧 SETTING: Ensure this image exists in your public folder
 const HERO_IMAGE = "/hero-product.png"; 
 
 export default function HeroSection() {
   
-  // 🎨 AUTOMATIC COLOR EXTRACTION
-  const { data } = usePalette(HERO_IMAGE);
-
-  // Default Fallback Colors
-  const bgColor = data.darkMuted || "#0f172a"; 
-  const accentColor = data.vibrant || "#3b82f6";
-  const textColor = data.lightVibrant || "#e2e8f0";
+  // 🎨 SAFE MODE COLORS (No Library Required)
+  // We use a premium Blue/Gold theme that works with everything
+  const bgColor = "#0f172a"; // Dark Slate
+  const accentColor = "#3b82f6"; // Blue
+  const textColor = "#e2e8f0"; // Light Gray
 
   const scrollToCatalog = () => {
     const catalog = document.getElementById("catalog-section");
@@ -24,30 +21,26 @@ export default function HeroSection() {
   };
 
   return (
-    // ✅ OUTER WRAPPER: Gives the "Floating" look (smaller from wide sides)
     <div className="w-full px-4 sm:px-6 py-6 bg-gray-50 dark:bg-gray-950 transition-colors">
       
       <div 
         className="relative rounded-[2.5rem] overflow-hidden transition-all duration-1000 ease-in-out shadow-2xl group"
         style={{ 
-          background: `linear-gradient(135deg, ${bgColor} 0%, #050505 100%)`,
-          // ✅ BORDER: Blends with the background (Translucent Accent)
+          background: `linear-gradient(135deg, ${bgColor} 0%, #000000 100%)`,
           border: `1px solid ${accentColor}40`, 
           boxShadow: `0 20px 60px -15px ${bgColor}50`
         }}
       >
         
-        {/* Abstract "Horizontal Bottles" / Pill Shapes */}
+        {/* Abstract Shapes */}
         <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-          {/* Shape 1 */}
           <div 
-            className="absolute top-10 right-[-20px] w-40 h-12 rounded-full -rotate-12 blur-sm transition-colors duration-1000" 
+            className="absolute top-10 right-[-20px] w-40 h-12 rounded-full -rotate-12 blur-sm" 
             style={{ backgroundColor: accentColor }}
           />
-          {/* Shape 2 */}
           <div 
-            className="absolute bottom-10 left-10 w-64 h-16 rounded-full rotate-3 blur-md transition-colors duration-1000" 
-            style={{ backgroundColor: textColor, opacity: 0.3 }}
+            className="absolute bottom-10 left-10 w-64 h-16 rounded-full rotate-3 blur-md" 
+            style={{ backgroundColor: "white", opacity: 0.1 }}
           />
         </div>
 
@@ -82,8 +75,7 @@ export default function HeroSection() {
 
             <button 
               onClick={scrollToCatalog}
-              className="px-8 py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-xl hover:scale-105 hover:shadow-2xl text-gray-900 active:scale-95"
-              style={{ backgroundColor: "white" }}
+              className="px-8 py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-xl hover:scale-105 hover:shadow-2xl text-gray-900 active:scale-95 bg-white"
             >
               View Catalog <ArrowDown size={16} />
             </button>
@@ -91,14 +83,11 @@ export default function HeroSection() {
 
           {/* RIGHT: The Hero Image */}
           <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center mt-4 md:mt-0">
-            
-            {/* Glowing Backlight */}
             <div 
-              className="absolute inset-0 rounded-full blur-[60px] animate-pulse opacity-40 transition-colors duration-1000"
+              className="absolute inset-0 rounded-full blur-[60px] animate-pulse opacity-40"
               style={{ backgroundColor: accentColor }}
             ></div>
             
-            {/* The Product Image */}
             <img 
               src={HERO_IMAGE} 
               alt="Featured Product" 
@@ -106,7 +95,6 @@ export default function HeroSection() {
               onError={(e) => e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/3082/3082060.png"}
             />
 
-            {/* Badge */}
             <div className="absolute -bottom-2 -right-2 bg-white/95 backdrop-blur text-black font-bold px-4 py-2 rounded-xl shadow-xl transform rotate-2 flex items-center gap-2 border border-gray-100/50 text-xs">
               <Star size={14} className="text-yellow-500" fill="currentColor" /> 
               Best Seller
