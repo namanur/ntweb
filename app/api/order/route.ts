@@ -15,6 +15,8 @@ const getErpClient = () => {
 
 export async function POST(req: Request) {
   try {
+    console.log("1. Order Received. Processing..."); // Debug Log
+
     const body = await req.json();
     const { cart, customer } = body;
 
@@ -28,6 +30,7 @@ export async function POST(req: Request) {
 
     // --- TRY CONNECTING TO ERPNEXT (Optional) ---
     try {
+      console.log("2. Attempting ERP Connection..."); // Debug Log
       const client = getErpClient();
       let customerName = "";
 
@@ -67,10 +70,11 @@ export async function POST(req: Request) {
 
       orderId = orderRes.data.data.name;
       erpStatus = "✅ Saved in ERPNext";
+      console.log("3. ERP Success. Order ID:", orderId); // Debug Log
 
     } catch (erpError) {
       console.warn("⚠️ ERPNext Connection Failed. Proceeding with Telegram only.");
-      // We intentionally IGNORE the error so the code continues below!
+      // console.error(erpError); // Uncomment to see full error if needed
     }
 
     // --- STEP 3: SEND TELEGRAM NOTIFICATION (Critical) ---
@@ -95,12 +99,21 @@ Status: ${erpStatus}
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
     
+    console.log("4. Checking Telegram Keys..."); // Debug Log
+    console.log("   - Bot Token:", botToken ? "Found" : "MISSING");
+    console.log("   - Chat ID:", chatId ? "Found" : "MISSING");
+
     if (botToken && chatId) {
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      console.log("5. Sending to Telegram...");
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: "Markdown" }),
       });
+      const tgData = await tgRes.json();
+      console.log("6. Telegram Response:", tgData);
+    } else {
+      console.error("❌ TELEGRAM KEYS MISSING IN VERCEL");
     }
 
     return NextResponse.json({ success: true, orderId });
