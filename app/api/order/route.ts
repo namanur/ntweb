@@ -9,7 +9,7 @@ const getErpClient = () => {
       Authorization: `token ${process.env.ERP_API_KEY}:${process.env.ERP_API_SECRET}`,
       "Content-Type": "application/json",
     },
-    timeout: 5000, // Fail fast if laptop is offline (5 seconds)
+    timeout: 3000, // Give up after 3 seconds if laptop is offline
   });
 };
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     }
 
     // --- DEFAULT STATE (Assume Offline) ---
-    let orderId = `WEB-${Date.now().toString().slice(-6)}`; // Generate a temporary ID
+    let orderId = `WEB-${Date.now().toString().slice(-6)}`; // Temporary ID
     let erpStatus = "❌ ERP Offline (Laptop not reachable)";
 
     // --- TRY CONNECTING TO ERPNEXT (Optional) ---
@@ -65,13 +65,12 @@ export async function POST(req: Request) {
         ...(customer.note ? { remarks: customer.note } : {})
       });
 
-      // If successful, update status
       orderId = orderRes.data.data.name;
       erpStatus = "✅ Saved in ERPNext";
 
     } catch (erpError) {
       console.warn("⚠️ ERPNext Connection Failed. Proceeding with Telegram only.");
-      // We silently ignore the ERP error and move to Telegram
+      // We intentionally IGNORE the error so the code continues below!
     }
 
     // --- STEP 3: SEND TELEGRAM NOTIFICATION (Critical) ---
@@ -90,7 +89,7 @@ ${customer.note ? `📝 *Note:* ${customer.note}` : ""}
 ${itemLines}
 
 💰 *Total: ₹${total}*
-status: ${erpStatus}
+Status: ${erpStatus}
 `;
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
