@@ -1,0 +1,58 @@
+[
+  {
+    "item_code": "1",
+    "item_name": "1",
+    "description": "1",
+    "stock_uom": "Nos",
+    "standard_rate": 0,
+    "item_group": "Products"
+  },
+  {
+    "item_code": "DAL-MASOOR-1KG",
+    "item_name": "Red Masoor Dal (1kg)",
+    "description": "Red Masoor Dal (1kg)",
+    "stock_uom": "Nos",
+    "standard_rate": 90,
+    "item_group": "All Item Groups"
+  },
+  {
+    "item_code": "OIL-SUNFLOWER-1L",
+    "item_name": "Fortune Sunflower Oil (1L)",
+    "description": "Fortune Sunflower Oil (1L)",
+    "stock_uom": "Nos",
+    "standard_rate": 145,
+    "item_group": "All Item Groups"
+  },
+  {
+    "item_code": "RICE-BASMATI-25",
+    "item_name": "Premium Basmati Rice (25kg)",
+    "description": "Premium Basmati Rice (25kg)",
+    "stock_uom": "Nos",
+    "standard_rate": 1250,
+    "item_group": "All Item Groups"
+  },
+  {
+    "item_code": "SALT-TATA-1KG",
+    "item_name": "Tata Salt (1kg)",
+    "description": "Tata Salt (1kg)",
+    "stock_uom": "Nos",
+    "standard_rate": 28,
+    "item_group": "All Item Groups"
+  },
+  {
+    "item_code": "SOAP-DETTOL-4",
+    "item_name": "Dettol Soap Original (4x75g)",
+    "description": "Dettol Soap Original (4x75g)",
+    "stock_uom": "Box",
+    "standard_rate": 160,
+    "item_group": "All Item Groups"
+  },
+  {
+    "item_code": "SPICE-CHILLI-500",
+    "item_name": "Everest Red Chilli Powder (500g)",
+    "description": "Everest Red Chilli Powder (500g)",
+    "stock_uom": "Nos",
+    "standard_rate": 220,
+    "item_group": "All Item Groups"
+  }
+]

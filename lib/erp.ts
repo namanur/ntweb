@@ -1,12 +1,5 @@
-import axios from 'axios';
-
-const erpClient = axios.create({
-  baseURL: process.env.ERP_NEXT_URL,
-  headers: {
-    'Authorization': `token ${process.env.ERP_API_KEY}:${process.env.ERP_API_SECRET}`,
-    'Content-Type': 'application/json',
-  },
-});
+import fs from 'fs';
+import path from 'path';
 
 export interface Product {
   item_code: string;
@@ -20,17 +13,22 @@ export interface Product {
 
 export const getProducts = async (): Promise<Product[]> => {
   try {
-    const response = await erpClient.get('/api/resource/Item', {
-      params: {
-        fields: '["item_code","item_name","description","stock_uom","standard_rate","item_group"]',
-        filters: '[["disabled","=",0]]', 
-        limit_page_length: 1000, // ✅ INCREASED LIMIT TO 1000 to catch all your products
-      },
-    });
+    // Define path to the JSON file
+    const filePath = path.join(process.cwd(), 'src/data/products.json');
+    
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+      console.warn("⚠️ products.json not found. Returning empty list.");
+      return [];
+    }
 
-    return response.data.data || []; 
+    // Read and parse the file
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const products = JSON.parse(fileContents);
+
+    return products;
   } catch (error) {
-    console.error("Error fetching products from ERPNext:", error);
+    console.error("❌ Error reading local product file:", error);
     return [];
   }
 };
