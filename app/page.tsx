@@ -3,6 +3,7 @@ import ProductGridClient from "@/components/ProductGridClient";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import AnnouncementBar from "@/components/AnnouncementBar";
+import HeroSection from "@/components/HeroSection"; // ✅ Import the new Safe Hero
 
 export const dynamic = 'force-dynamic';
 
@@ -33,12 +34,15 @@ export default async function Home() {
         </div>
       </header>
 
-      {/* 3. Main Content (Catalog only) */}
-      <main className="flex-grow w-full max-w-5xl mx-auto px-4 py-6">
+      {/* ✅ 3. HERO SECTION (Safe Version) */}
+      <HeroSection />
+
+      {/* 4. Main Content (Catalog) */}
+      <main id="catalog-section" className="flex-grow w-full max-w-5xl mx-auto px-4 py-6">
         <ProductGridClient products={products} />
       </main>
 
-      {/* 4. Footer */}
+      {/* 5. Footer */}
       <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 mt-auto">
         <Footer />
       </div>

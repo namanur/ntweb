@@ -7,10 +7,9 @@ const HERO_IMAGE = "/hero-product.png";
 
 export default function HeroSection() {
   
-  // 🎨 SAFE MODE COLORS (No Library Required)
-  // We use a premium Blue/Gold theme that works with everything
-  const bgColor = "#0f172a"; // Dark Slate
-  const accentColor = "#3b82f6"; // Blue
+  // 🎨 PREMIUM COLORS (Static & Safe)
+  const bgColor = "#0f172a"; // Dark Slate Blue
+  const accentColor = "#3b82f6"; // Bright Blue
   const textColor = "#e2e8f0"; // Light Gray
 
   const scrollToCatalog = () => {
@@ -24,7 +23,7 @@ export default function HeroSection() {
     <div className="w-full px-4 sm:px-6 py-6 bg-gray-50 dark:bg-gray-950 transition-colors">
       
       <div 
-        className="relative rounded-[2.5rem] overflow-hidden transition-all duration-1000 ease-in-out shadow-2xl group"
+        className="relative rounded-[2.5rem] overflow-hidden shadow-2xl group"
         style={{ 
           background: `linear-gradient(135deg, ${bgColor} 0%, #000000 100%)`,
           border: `1px solid ${accentColor}40`, 
@@ -83,11 +82,14 @@ export default function HeroSection() {
 
           {/* RIGHT: The Hero Image */}
           <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center mt-4 md:mt-0">
+            
+            {/* Glowing Backlight */}
             <div 
               className="absolute inset-0 rounded-full blur-[60px] animate-pulse opacity-40"
               style={{ backgroundColor: accentColor }}
             ></div>
             
+            {/* The Product Image */}
             <img 
               src={HERO_IMAGE} 
               alt="Featured Product" 
@@ -95,6 +97,7 @@ export default function HeroSection() {
               onError={(e) => e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/3082/3082060.png"}
             />
 
+            {/* Badge */}
             <div className="absolute -bottom-2 -right-2 bg-white/95 backdrop-blur text-black font-bold px-4 py-2 rounded-xl shadow-xl transform rotate-2 flex items-center gap-2 border border-gray-100/50 text-xs">
               <Star size={14} className="text-yellow-500" fill="currentColor" /> 
               Best Seller
