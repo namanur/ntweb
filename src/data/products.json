@@ -1,58 +1,106 @@
 [
   {
-    "item_code": "1",
-    "item_name": "1",
-    "description": "1",
-    "stock_uom": "Nos",
+    "item_code": "STOOL-18INCHFOLD",
+    "item_name": "18INCH FOLDING STOOL",
+    "description": "18INCH FOLDING STOOL",
+    "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Products"
+    "item_group": "Plastic kitchenware"
   },
   {
-    "item_code": "DAL-MASOOR-1KG",
-    "item_name": "Red Masoor Dal (1kg)",
-    "description": "Red Masoor Dal (1kg)",
-    "stock_uom": "Nos",
-    "standard_rate": 90,
-    "item_group": "All Item Groups"
+    "item_code": "CUTTER-2IN1VEG",
+    "item_name": "2 IN 1 VEG CUTTER",
+    "description": "2 IN 1 VEG CUTTER",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
   },
   {
-    "item_code": "OIL-SUNFLOWER-1L",
-    "item_name": "Fortune Sunflower Oil (1L)",
-    "description": "Fortune Sunflower Oil (1L)",
-    "stock_uom": "Nos",
-    "standard_rate": 145,
-    "item_group": "All Item Groups"
+    "item_code": "SET-2PCSDINING",
+    "item_name": "2PCS DINING SET",
+    "description": "2PCS DINING SET",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
   },
   {
-    "item_code": "RICE-BASMATI-25",
-    "item_name": "Premium Basmati Rice (25kg)",
-    "description": "Premium Basmati Rice (25kg)",
-    "stock_uom": "Nos",
-    "standard_rate": 1250,
-    "item_group": "All Item Groups"
+    "item_code": "CONTAINER-3PCSSQUARE",
+    "item_name": "3 PCS SQUARE STORAGE CONTAINER",
+    "description": "3 PCS SQUARE STORAGE CONTAINER",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
   },
   {
-    "item_code": "SALT-TATA-1KG",
-    "item_name": "Tata Salt (1kg)",
-    "description": "Tata Salt (1kg)",
-    "stock_uom": "Nos",
-    "standard_rate": 28,
-    "item_group": "All Item Groups"
+    "item_code": "CONTAINER-3PCSSTORAG",
+    "item_name": "3 PCS STORAGE CONTAINER",
+    "description": "3 PCS STORAGE CONTAINER",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
   },
   {
-    "item_code": "SOAP-DETTOL-4",
-    "item_name": "Dettol Soap Original (4x75g)",
-    "description": "Dettol Soap Original (4x75g)",
-    "stock_uom": "Box",
-    "standard_rate": 160,
-    "item_group": "All Item Groups"
+    "item_code": "RACK-3IN1DISH",
+    "item_name": "3IN1 DISH RACK",
+    "description": "3IN1 DISH RACK",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
   },
   {
-    "item_code": "SPICE-CHILLI-500",
-    "item_name": "Everest Red Chilli Powder (500g)",
-    "description": "Everest Red Chilli Powder (500g)",
-    "stock_uom": "Nos",
-    "standard_rate": 220,
-    "item_group": "All Item Groups"
+    "item_code": "DISPENSER-3IN1SOAP",
+    "item_name": "3IN1 SOAP DISPENSER",
+    "description": "3IN1 SOAP DISPENSER",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
+  },
+  {
+    "item_code": "SET-3PCSDINING",
+    "item_name": "3PCS DINING SET",
+    "description": "3PCS DINING SET",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
+  },
+  {
+    "item_code": "RANK-4LAYERSHOE",
+    "item_name": "4 LAYER SHOES RANK",
+    "description": "4 LAYER SHOES RANK",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
+  },
+  {
+    "item_code": "GRATER-4IN1SLICER",
+    "item_name": "4IN 1 SLICER & GRATER",
+    "description": "4IN 1 SLICER & GRATER",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
+  },
+  {
+    "item_code": "SQURE-4PCSDINING",
+    "item_name": "4PCS DINING SET SQURE",
+    "description": "4PCS DINING SET SQURE",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
+  },
+  {
+    "item_code": "RANK-5LAYERSHOE",
+    "item_name": "5 LAYER SHOES RANK",
+    "description": "5 LAYER SHOES RANK",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
+  },
+  {
+    "item_code": "SLICER-6IN1",
+    "item_name": "6 IN 1 SLICER",
+    "description": "6 IN 1 SLICER",
+    "stock_uom": "PCS",
+    "standard_rate": 0,
+    "item_group": "Plastic kitchenware"
   }
 ]
