@@ -4,8 +4,8 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-import { X, Minus, Plus, ShoppingBag, ChevronDown, ChevronLeft, ChevronRight, Filter } from "lucide-react";
-import Image from "next/image"; // Make sure Image is imported if used, though we use img tag for products mostly
+// ✅ FIXED: Added FileText to imports
+import { X, Minus, Plus, ShoppingBag, ChevronDown, ChevronLeft, ChevronRight, Filter, FileText } from "lucide-react";
 
 interface CartItem extends Product {
   qty: number;
@@ -36,8 +36,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
   
   const [currentPage, setCurrentPage] = useState(1);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  
-  // ✅ NEW: Product Detail Modal State
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [loading, setLoading] = useState(false);
@@ -124,7 +122,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
         ? prev.map(p => p.item_code === item.item_code ? { ...p, qty: p.qty + 1 } : p) 
         : [...prev, { ...item, qty: 1 }];
     });
-    // Close detail modal if open
     setSelectedProduct(null);
   };
 
@@ -196,7 +193,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
             key={p.item_code} 
             product={p} 
             onAdd={handleAdd} 
-            // ✅ CLICK HANDLER FOR MODAL
             onClick={() => setSelectedProduct(p)}
           />
         ))}
@@ -228,7 +224,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </div>
       )}
 
-      {/* ✅ PRODUCT DETAIL MODAL (POPUP) */}
+      {/* PRODUCT DETAIL MODAL */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/70 z-[70] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in">
           <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative animate-in zoom-in-95">
@@ -276,7 +272,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </div>
       )}
 
-      {/* CHECKOUT MODAL (Existing code...) */}
+      {/* CHECKOUT MODAL */}
       {isCheckoutOpen && (
         <div className="fixed inset-0 bg-black/60 z-[60] flex items-end sm:items-center justify-center p-4 backdrop-blur-sm">
           <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-2xl shadow-2xl flex flex-col max-h-[90vh] animate-in slide-in-from-bottom-10">
@@ -311,6 +307,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
                         <textarea placeholder="Delivery Address" rows={2} className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 text-sm" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
                         <input placeholder="GST Number (Optional)" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 text-sm" value={formData.gst} onChange={e => setFormData({...formData, gst: e.target.value})} />
                         <div className="relative">
+                        {/* ✅ FileText is used here */}
                         <FileText size={16} className="absolute top-3 left-3 text-gray-400" />
                         <textarea placeholder="Note (e.g., Call before coming)" rows={1} className="w-full pl-10 p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 text-sm" value={formData.note} onChange={e => setFormData({...formData, note: e.target.value})} />
                         </div>
