@@ -5,7 +5,7 @@ const path = require('path');
 const CSV_FILE_PATH = path.join(__dirname, '../products.csv');
 const OUTPUT_PATH = path.join(__dirname, '../src/data/products.json');
 
-// 🧠 AUTO-CATEGORIZATION LOGIC (Unchanged)
+// 🧠 AUTO-CATEGORIZATION LOGIC
 function getAutoCategory(name, originalGroup) {
     const n = name.toLowerCase();
 
@@ -36,7 +36,6 @@ function getBrand(name, originalBrand) {
     }
 
     // Check Tibros (Includes "Tibros" OR "TB")
-    // We check for "tb " with a space or "tb-" to avoid matching words like "fooTBall"
     if (n.includes('tibros') || b.includes('tibros') || n.includes('tb ') || n.startsWith('tb-') || n.startsWith('tb ')) {
         return "Tibros";
     }
@@ -46,7 +45,6 @@ function getBrand(name, originalBrand) {
         return "Sigma";
     }
 
-    // Default to original or "Other"
     return originalBrand && originalBrand.trim() !== "" ? originalBrand : "Other";
 }
 
@@ -82,18 +80,16 @@ function importCsv() {
     const lines = fileContent.split(/\r?\n/);
     const products = [];
 
-    // Skip header row (index 0)
     for (let i = 1; i < lines.length; i++) {
         const line = lines[i];
         if (!line.trim()) continue;
 
-        // Parse columns
         const cols = parseCSVLine(line);
         if (cols.length < 8) continue;
 
         const itemName = cols[1].replace(/^"|"$/g, '');
         const originalGroup = cols[2];
-        const originalBrand = cols[3]; // Column 3 is Brand in your CSV
+        const originalBrand = cols[3]; 
 
         products.push({
             item_code: cols[0],
@@ -102,13 +98,10 @@ function importCsv() {
             stock_uom: cols[4],
             standard_rate: parseFloat(cols[7]) || 0,
             item_group: getAutoCategory(itemName, originalGroup),
-            
-            // ✅ USE NEW BRAND LOGIC
             brand: getBrand(itemName, originalBrand)
         });
     }
 
-    // Save to products.json
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(products, null, 2));
     
     console.log(`✅ Success! Imported ${products.length} items.`);
