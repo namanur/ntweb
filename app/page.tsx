@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { getProducts } from "@/lib/erp";
 import ProductGridClient from "@/components/ProductGridClient";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 import AnnouncementBar from "@/components/AnnouncementBar";
-import HeroSection from "@/components/HeroSection"; // ✅ Import the new Safe Hero
+// import HeroSection from "@/components/HeroSection"; // ❌ Remove or Comment out old hero
+import Header from "@/components/Header";
+import MustHaveSlider from "@/components/MustHaveSlider"; // ✅ Import new Slider
 
 export const dynamic = 'force-dynamic';
 
@@ -16,30 +18,23 @@ export default async function Home() {
       {/* 1. Top Ticker */}
       <AnnouncementBar />
 
-      {/* 2. Sticky Header */}
-      <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur border-b border-gray-200 dark:border-gray-800 h-16 flex-none transition-colors">
-        <div className="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img 
-              src="/logo.png" 
-              alt="Logo" 
-              className="h-10 w-auto object-contain dark:invert dark:brightness-0"
-            />
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="font-bold text-lg tracking-tight uppercase">Nandan Traders</span>
-              <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">Wholesale</span>
-            </div>
-          </div>
-          <ThemeToggle />
-        </div>
-      </header>
+      {/* 2. Header */}
+      <Suspense fallback={<div className="h-16 bg-white border-b" />}>
+        <Header />
+      </Suspense>
 
-      {/* ✅ 3. HERO SECTION (Safe Version) */}
-      <HeroSection />
+      {/* 3. ✅ NEW MUST HAVE SLIDER (Replaces Hero) */}
+      <MustHaveSlider />
 
       {/* 4. Main Content (Catalog) */}
       <main id="catalog-section" className="flex-grow w-full max-w-5xl mx-auto px-4 py-6">
-        <ProductGridClient products={products} />
+        <div className="mb-6">
+           <h3 className="text-xl font-bold text-gray-900 dark:text-white">Explore All Products</h3>
+           <p className="text-gray-500 text-sm">Find the best deals on wholesale kitchenware.</p>
+        </div>
+        <Suspense fallback={<div className="text-center py-20">Loading products...</div>}>
+          <ProductGridClient products={products} />
+        </Suspense>
       </main>
 
       {/* 5. Footer */}

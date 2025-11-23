@@ -7,20 +7,25 @@ import { Plus } from 'lucide-react';
 interface ProductCardProps {
   product: Product;
   onAdd: (item: Product) => void;
+  onClick?: () => void; // ✅ Added optional click handler
 }
 
-export default function ProductCard({ product, onAdd }: ProductCardProps) {
+export default function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
   const [imgSrc, setImgSrc] = useState(`/images/${product.item_code}.jpg`);
 
   return (
-    <div className="flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+    <div 
+      // ✅ Added onClick to the main container
+      onClick={onClick}
+      className="flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full cursor-pointer group"
+    >
       
       {/* IMAGE */}
-      <div className="h-36 sm:h-48 w-full p-4 bg-white flex items-center justify-center border-b border-gray-100 dark:border-gray-800">
+      <div className="h-36 sm:h-48 w-full p-4 bg-white flex items-center justify-center border-b border-gray-100 dark:border-gray-800 relative">
         <img 
           src={imgSrc} 
           alt={product.item_name}
-          className="max-h-full max-w-full object-contain"
+          className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
           onError={() => setImgSrc("https://placehold.co/400x400/png?text=No+Image")}
         />
       </div>
@@ -45,7 +50,7 @@ export default function ProductCard({ product, onAdd }: ProductCardProps) {
 
           <button 
             onClick={(e) => {
-              e.stopPropagation(); // Prevents accidental clicks on card
+              e.stopPropagation(); // Prevents opening the modal when clicking Add
               onAdd(product);
             }}
             className="bg-blue-600 hover:bg-blue-700 text-white h-9 w-9 rounded-lg flex items-center justify-center shadow-sm active:scale-95 transition-transform"

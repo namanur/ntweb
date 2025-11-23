@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MapPin, Phone, Mail, ShieldCheck, Facebook, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, ShieldCheck, Facebook, Instagram, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Contact Info (From Card) */}
+          {/* Column 2: Contact Info */}
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h3>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
@@ -40,8 +40,11 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Phone size={18} className="shrink-0" />
                 <div className="flex flex-col">
-                  <a href="tel:9431394095" className="hover:text-blue-600 transition">94313-94095</a>
-                  <a href="tel:6204188728" className="hover:text-blue-600 transition">62041-88728</a>
+                  {/* ✅ WhatsApp Link Added */}
+                  <a href="https://wa.me/919431394095" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-green-600 transition font-medium">
+                     94313-94095 <span className="text-xs bg-green-100 text-green-700 px-1.5 rounded">WhatsApp</span>
+                  </a>
+                  <a href="tel:6204188728" className="hover:text-blue-600 transition">62041-88728 (Call)</a>
                 </div>
               </li>
               <li className="flex items-center gap-3">
@@ -57,12 +60,14 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Customer Service</h3>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <li><a href="#" className="hover:text-blue-600 dark:hover:text-blue-400">About Us</a></li>
-              <li><a href="#" className="hover:text-blue-600 dark:hover:text-blue-400">Terms & Conditions</a></li>
-              <li><a href="#" className="hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</a></li>
+              <li><a href="/about" className="hover:text-blue-600 dark:hover:text-blue-400">About Us</a></li>
+              <li><a href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400">Terms & Conditions</a></li>
+              <li><a href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</a></li>
             </ul>
             <div className="mt-6 flex gap-4">
-              {/* Social Placeholders */}
+              <a href="https://wa.me/919431394095" className="p-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400 hover:scale-110 transition">
+                <MessageCircle size={20} />
+              </a>
               <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400">
                 <Facebook size={20} />
               </div>
@@ -73,7 +78,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-xs text-gray-400">
           <p>&copy; {new Date().getFullYear()} Nandan Traders. All rights reserved.</p>
         </div>

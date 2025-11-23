@@ -4,31 +4,26 @@ import path from 'path';
 export interface Product {
   item_code: string;
   item_name: string;
-  description?: string;
+  description: string;
   stock_uom: string;
   standard_rate: number;
-  actual_qty?: number;
-  item_group: string; 
+  item_group: string;
+  brand?: string; // ✅ Added optional Brand field
 }
 
-export const getProducts = async (): Promise<Product[]> => {
+export async function getProducts(): Promise<Product[]> {
   try {
-    // Define path to the JSON file
+    // Define path to the local JSON file
     const filePath = path.join(process.cwd(), 'src/data/products.json');
     
-    // Check if file exists
-    if (!fs.existsSync(filePath)) {
-      console.warn("⚠️ products.json not found. Returning empty list.");
-      return [];
-    }
-
     // Read and parse the file
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const products = JSON.parse(fileContents);
-
-    return products;
+    if (fs.existsSync(filePath)) {
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      return JSON.parse(fileContent);
+    }
   } catch (error) {
-    console.error("❌ Error reading local product file:", error);
-    return [];
+    console.error("Error reading local products file:", error);
   }
-};
+
+  return [];
+}
