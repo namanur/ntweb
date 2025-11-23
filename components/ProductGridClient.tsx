@@ -4,8 +4,8 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-// ✅ FIXED: Added FileText to imports
-import { X, Minus, Plus, ShoppingBag, ChevronDown, ChevronLeft, ChevronRight, Filter, FileText } from "lucide-react";
+// ✅ FIXED: Added FileText and ChevronUp back to imports
+import { X, Minus, Plus, ShoppingBag, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Filter, FileText } from "lucide-react";
 
 interface CartItem extends Product {
   qty: number;
