@@ -9,28 +9,28 @@ const SLIDES = [
     id: 1,
     tag: "Best Seller",
     title: "Premium Tiffin Box",
-    description: "Keep your food warm and fresh for hours. Made with high-grade insulated plastic and stainless steel interiors. Perfect for office and school.",
+    description: "Keep your food warm and fresh for hours. Made with high-grade insulated plastic and stainless steel interiors.",
     image: "/hero-product.png", 
-    bgColor: "bg-orange-50 dark:bg-orange-950/30",
-    textColor: "text-orange-600",
+    bgColor: "bg-zinc-100 dark:bg-zinc-900",
+    textColor: "text-black dark:text-white",
   },
   {
     id: 2,
     tag: "New Arrival",
     title: "MaxFresh Steel Bottle",
-    description: "The ultimate hydration companion. Vacuum insulated technology keeps water cold for 24 hours and hot for 18 hours. Leak-proof design.",
+    description: "The ultimate hydration companion. Vacuum insulated technology keeps water cold for 24 hours.",
     image: "/brands/maxfresh.png", 
-    bgColor: "bg-blue-50 dark:bg-blue-950/30",
-    textColor: "text-blue-600",
+    bgColor: "bg-zinc-100 dark:bg-zinc-900",
+    textColor: "text-black dark:text-white",
   },
   {
     id: 3,
     tag: "Kitchen Essential",
     title: "Turbo Vegetable Chopper",
-    description: "Save time in the kitchen! Chop onions, tomatoes, and nuts in seconds with our heavy-duty blade system. A must-have for every home.",
+    description: "Save time in the kitchen! Chop onions, tomatoes, and nuts in seconds with our heavy-duty blade system.",
     image: "/brands/sigma.png", 
-    bgColor: "bg-green-50 dark:bg-green-950/30",
-    textColor: "text-green-600",
+    bgColor: "bg-zinc-100 dark:bg-zinc-900",
+    textColor: "text-black dark:text-white",
   },
 ];
 
@@ -48,56 +48,55 @@ export default function MustHaveSlider() {
   const prevSlide = () => setCurrent(current === 0 ? SLIDES.length - 1 : current - 1);
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 py-6">
-      {/* ✅ FIX: Added min-h-[500px] for mobile so content isn't cut off */}
-      <div className="relative rounded-3xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-800 min-h-[500px] md:min-h-0 md:aspect-[21/9]">
+    <div className="w-full max-w-6xl mx-auto px-4 py-6">
+      {/* ✅ UPDATED: rounded-3xl */}
+      <div className="relative rounded-3xl overflow-hidden border border-border min-h-[500px] md:min-h-0 md:aspect-[21/9] shadow-2xl dark:shadow-none">
         
         <div 
-          className="flex transition-transform duration-500 ease-out h-full"
+          className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] h-full"
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
           {SLIDES.map((slide) => (
             <div key={slide.id} className={`w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-between p-8 md:p-16 h-full ${slide.bgColor}`}>
               
-              {/* Text Content */}
               <div className="flex-1 space-y-4 text-center md:text-left z-10 order-2 md:order-1">
-                <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 ${slide.textColor} shadow-sm`}>
+                <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-current/20 backdrop-blur-md ${slide.textColor}`}>
                   <Star size={12} fill="currentColor" /> {slide.tag}
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight">
+                <h2 className={`text-4xl md:text-6xl font-black ${slide.textColor} tracking-tight drop-shadow-sm`}>
                   {slide.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-lg mx-auto md:mx-0 leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-lg max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
                   {slide.description}
                 </p>
               </div>
 
-              {/* Image - ✅ FIX: Adjusted height and margin for mobile */}
-              <div className="flex-1 flex justify-center items-center relative w-full h-48 md:h-full mb-6 md:mb-0 md:mt-0 order-1 md:order-2">
+              <div className="flex-1 flex justify-center items-center relative w-full h-48 md:h-full mb-6 md:mb-0 order-1 md:order-2">
                  <Image 
                    src={slide.image} 
                    alt={slide.title} 
                    width={400} 
                    height={400}
-                   className="object-contain drop-shadow-2xl max-h-full"
+                   className="object-contain max-h-full drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                  />
               </div>
             </div>
           ))}
         </div>
 
-        <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-black/50 hover:bg-white shadow-lg backdrop-blur-sm transition-all z-20">
-          <ChevronLeft size={24} />
+        <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/80 hover:bg-background border border-border transition-all z-20 backdrop-blur-md shadow-lg">
+          <ChevronLeft size={22} className="text-foreground" />
         </button>
-        <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-black/50 hover:bg-white shadow-lg backdrop-blur-sm transition-all z-20">
-          <ChevronRight size={24} />
+        <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/80 hover:bg-background border border-border transition-all z-20 backdrop-blur-md shadow-lg">
+          <ChevronRight size={22} className="text-foreground" />
         </button>
 
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {SLIDES.map((_, idx) => (
-            <div 
+            <button
               key={idx}
-              className={`h-2 rounded-full transition-all duration-300 ${current === idx ? "w-8 bg-gray-900 dark:bg-white" : "w-2 bg-gray-400/50"}`}
+              onClick={() => setCurrent(idx)}
+              className={`h-2 rounded-full transition-all duration-300 ${current === idx ? "w-8 bg-foreground" : "w-2 bg-foreground/20 hover:bg-foreground/40"}`}
             />
           ))}
         </div>

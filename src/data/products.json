@@ -6,7 +6,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CUTTER-2IN1VEG",
@@ -15,7 +18,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-2PCSDINING",
@@ -24,7 +30,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CONTAINER-3PCSSQUARE",
@@ -33,7 +42,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CONTAINER-3PCSSTORAG",
@@ -42,7 +54,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "RACK-3IN1DISH",
@@ -51,7 +66,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "DISPENSER-3IN1SOAP",
@@ -60,7 +78,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-3PCSDINING",
@@ -69,7 +90,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "RANK-4LAYERSHOE",
@@ -78,7 +102,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "GRATER-4IN1SLICER",
@@ -87,7 +114,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SQURE-4PCSDINING",
@@ -96,7 +126,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "RANK-5LAYERSHOE",
@@ -105,7 +138,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SLICER-6IN1",
@@ -114,7 +150,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "RANK-6LAYERSHOE",
@@ -123,7 +162,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CHOPPER-650MLPUSH",
@@ -132,7 +174,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAVY-700MLPUSHC",
@@ -141,7 +186,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-99KNIFE",
@@ -150,7 +198,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-AK47",
@@ -159,7 +210,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-ANJARKNIFE",
@@ -168,7 +222,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "REGULAR-ANJARKNIFE",
@@ -177,7 +234,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CUTTER-APPLE",
@@ -186,7 +246,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACK-APPLECUTTE",
@@ -195,7 +258,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-BIGBFULL",
@@ -204,7 +270,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-BIGNG",
@@ -213,7 +282,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BRUSH-BIGSPATULA",
@@ -222,7 +294,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KRIVA-BLACKLIGHT",
@@ -231,7 +306,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTLE-BLACKPRINT",
@@ -240,7 +318,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SWISSW-BOTTLE02",
@@ -249,7 +330,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-BOTTLE03SP",
@@ -258,7 +342,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACKING-BOTTLE1100",
@@ -267,7 +354,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2808002000ML-BOTTLE3PCS",
@@ -276,7 +366,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "800ML-BOTTLEBABY",
@@ -285,7 +378,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "COBRA-BOTTLE",
@@ -294,7 +390,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CONCAVE-BOTTLE",
@@ -303,7 +402,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NEK-BOTTLEDUBA",
@@ -312,7 +414,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FORSTI-BOTTLE",
@@ -321,7 +426,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTLE-BOTTLEGLAS",
@@ -330,7 +438,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "B-BOTTLEGROU",
@@ -339,7 +450,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "H2O-BOTTLE",
@@ -348,7 +462,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1200ML-BOTTLEKOHI",
@@ -357,7 +474,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-BOTTLELINE",
@@ -366,7 +486,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NEK-BOTTLENEXO",
@@ -375,7 +498,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NEK-BOTTLENEXO-002",
@@ -384,7 +510,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NEK-BOTTLEPARI",
@@ -393,7 +522,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2200ML-BOTTLEPARI",
@@ -402,7 +534,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "900ML-BOTTLESSSI",
@@ -411,7 +546,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "700ML-BOTTLESLIM",
@@ -420,7 +558,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "500ML-BOTTLESLIM",
@@ -429,7 +570,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PREMIUM-BOTTLESS",
@@ -438,7 +582,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STEEL-BOTTLESTAI",
@@ -447,7 +594,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NEK-BOTTLETOKY",
@@ -456,7 +606,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BLACK-BREADCUTTE",
@@ -465,7 +618,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SPECIAL-BREADKNIFE",
@@ -474,7 +630,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-CAKEKNIFE",
@@ -483,7 +642,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-CAMERALENS",
@@ -492,7 +654,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-CANDY",
@@ -501,7 +666,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TRAY-CELEBRATIO",
@@ -510,7 +678,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-CELTRON",
@@ -519,7 +690,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "D034-CHEESEANDV",
@@ -528,7 +702,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-CHEESEGRAT",
@@ -537,7 +714,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "310G-CHILLYCUTT",
@@ -546,7 +726,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAVY-CHOPPEREAS",
@@ -555,7 +738,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LARGE-CHOPPINGBO",
@@ -564,7 +750,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MEDIUM-CHOPPINGBO",
@@ -573,7 +762,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SMALL-CHOPPINGBO",
@@ -582,7 +774,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "15MM-CHOPPINGBO",
@@ -591,7 +786,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "670GM-CHOPPINGBO",
@@ -600,7 +798,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "950GM-CHOPPINGBO",
@@ -609,7 +810,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LARGE-CHOPPINGBO-002",
@@ -618,7 +822,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MEDIUM-CHOPPINGBO-002",
@@ -627,7 +834,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-CHOPPINGBO",
@@ -636,7 +846,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MID-CHOPPINGBO",
@@ -645,7 +858,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "GLASS-CLEAR",
@@ -654,7 +870,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-COCONUTOPE",
@@ -663,7 +882,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MINI-COCONUTOPE",
@@ -672,7 +894,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-COFFEE",
@@ -681,7 +906,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ML-CONTAINERF",
@@ -690,7 +918,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTLE-COOLANDCOO",
@@ -699,7 +930,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-CORNCUTTER",
@@ -708,7 +942,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-CRESTADRYF",
@@ -717,7 +954,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-CRYSTALDIA",
@@ -726,7 +966,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "8-DCCUTEKNIF",
@@ -735,7 +978,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "9-DCCUTEKNIF",
@@ -744,7 +990,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-DC3PCSKNIF",
@@ -753,7 +1002,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAD-DEER",
@@ -762,7 +1014,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAINER-DELUXETEA",
@@ -771,7 +1026,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CONTAINER-DIAMOND",
@@ -780,7 +1038,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LOOSE-DILLIGHTER",
@@ -789,7 +1050,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-DISHRACK",
@@ -798,7 +1062,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MEDIUM-DISHRACK",
@@ -807,7 +1074,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SMALL-DISHRACKST",
@@ -816,7 +1086,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "127-DOORGUARD",
@@ -825,7 +1098,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-DRYFRUIT",
@@ -834,7 +1110,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CUTTER-DRYFRUIT",
@@ -843,7 +1122,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SLICER-DRYFRUIT",
@@ -852,7 +1134,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-DUBBLEDECK",
@@ -861,7 +1146,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1616-DUSTERCLEA",
@@ -870,7 +1158,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "DOZEN-DUSTPANPLA",
@@ -879,7 +1170,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-EXCELLENTP",
@@ -888,7 +1182,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEELER-EXCELLENTP",
@@ -897,7 +1194,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-EXPRESS",
@@ -906,7 +1206,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-FIGHTERKNI",
@@ -915,7 +1218,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-FIGO",
@@ -924,7 +1230,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "12INCH-FOLDINGSTO",
@@ -933,7 +1242,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TROLLEY-GAS",
@@ -942,7 +1254,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAVY-GASTROLLYS",
@@ -951,7 +1266,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "REGULAR-GASTROLLYS",
@@ -960,7 +1278,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LOTUS-GLASSSTAND",
@@ -969,7 +1290,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "GLASS-GLASSSTAND",
@@ -978,7 +1302,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MAKER-GUJIYA",
@@ -987,7 +1314,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1500ML-GYMSHAKERB",
@@ -996,7 +1326,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "700ML-GYMSHAKERB",
@@ -1005,7 +1338,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-HAPPYTIME",
@@ -1014,7 +1350,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-HEAVYLIGHT",
@@ -1023,7 +1362,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ROUND-HOTMATBIG",
@@ -1032,7 +1374,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ROUND-HOTMATMID",
@@ -1041,7 +1386,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-ICECANDYMA",
@@ -1050,7 +1398,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ROUND-ICECANDY",
@@ -1059,7 +1410,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SQUARE-ICETRAYSIL",
@@ -1068,7 +1422,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ORANGE-JUICER",
@@ -1077,7 +1434,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SQUARE-JUICERSSJA",
@@ -1086,7 +1446,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ROUND-JUICERSSJA",
@@ -1095,7 +1458,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "GLASS-JUICY",
@@ -1104,7 +1470,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BLENDER-JUMBO",
@@ -1113,7 +1482,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAND-JUMBOKEY",
@@ -1122,7 +1494,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HOUSE-KEY",
@@ -1131,7 +1506,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LAZAR-KNIFEAPPLE",
@@ -1140,7 +1518,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-KNIFEAPPLE",
@@ -1149,7 +1530,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-KNIFECHEF",
@@ -1158,7 +1542,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "INCH-KNIFEHEAVY",
@@ -1167,7 +1554,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "INCH-KNIFEHEAVY-002",
@@ -1176,7 +1566,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-KNIFEWOODE",
@@ -1185,7 +1578,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE21-KNIFE21",
@@ -1194,7 +1590,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE786-KNIFE786",
@@ -1203,7 +1602,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACK-KULFIMAKER",
@@ -1212,7 +1614,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MASHER-LSHAPE",
@@ -1221,7 +1626,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BLACK-LEMONSQUEE",
@@ -1230,7 +1638,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SILVER-LEMONSQUEE",
@@ -1239,7 +1650,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "W-LEMONSQUEE",
@@ -1248,7 +1662,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "VATKI-LEMONSQUEE",
@@ -1257,7 +1674,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAVY-LEMONSQUEE",
@@ -1266,7 +1686,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "GRIP-LIGHTER12A",
@@ -1275,7 +1698,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACK-LIGHTERBLA",
@@ -1284,7 +1710,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-LIGHTER",
@@ -1293,7 +1722,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "COMPARTMENTS-LUNCHBOX3",
@@ -1302,7 +1734,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CLASSIC-LUNCHBOX",
@@ -1311,7 +1746,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "POLYPACK-LUNCHBOXDE",
@@ -1320,7 +1758,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACK-LUNCHBOXDI",
@@ -1329,7 +1770,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "EASY-LUNCHBOX",
@@ -1338,7 +1782,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FROGGY-LUNCHBOX",
@@ -1347,7 +1794,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEALTHY-LUNCHBOXKI",
@@ -1356,7 +1806,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACK-LUNCHBOXKI",
@@ -1365,7 +1818,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TRASNPARENT-LUNCHBOXLO",
@@ -1374,7 +1830,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LOCKET-LUNCHBOX",
@@ -1383,7 +1842,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LOCKETBEST-LUNCHBOXPR",
@@ -1392,7 +1854,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HV-LUNCHBOXSS",
@@ -1401,7 +1866,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ROYAL-LUNCHBOXSS",
@@ -1410,7 +1878,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PREXO-LUNCHBOXSS",
@@ -1419,7 +1890,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "DABI-LUNCHBOXSS",
@@ -1428,7 +1902,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-LUNCHBOXSS",
@@ -1437,7 +1914,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PACK-LUNCHBOXSQ",
@@ -1446,7 +1926,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-LUNCHBOXST",
@@ -1455,7 +1938,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-LUNCHBOXTE",
@@ -1464,7 +1950,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TOKYO-LUNCHBOX",
@@ -1473,7 +1962,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-LUNCHEXKID",
@@ -1482,7 +1974,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-MAGICMASAL",
@@ -1491,7 +1986,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ATLANTIC-MASALADRYF",
@@ -1500,7 +1998,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "REVOLVING-MASALABOX3",
@@ -1509,7 +2010,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SP-MASALABOXC",
@@ -1518,7 +2022,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KING-MASALABOX",
@@ -1527,7 +2034,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FIRST-MASALABOXS",
@@ -1536,7 +2046,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MINI-MASALABOXS",
@@ -1545,7 +2058,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SHAGUN-MASALABOX",
@@ -1554,7 +2070,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KING-MASALABOXS",
@@ -1563,7 +2082,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "JK-MASHERPOLY",
@@ -1572,7 +2094,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "JK-MASHERROUN",
@@ -1581,7 +2106,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HANDLE-MASHERSS",
@@ -1590,7 +2118,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-MASHER",
@@ -1599,7 +2130,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAVY-MASHERSSUL",
@@ -1608,7 +2142,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HANDLE-MASHERWOOD",
@@ -1617,7 +2154,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAND-MATKA",
@@ -1626,7 +2166,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "POT-MATKASTAND",
@@ -1635,7 +2178,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PREMIUM-MATKASTAND",
@@ -1644,7 +2190,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-MATKASTAND",
@@ -1653,7 +2202,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SMALL-MATKASTAND",
@@ -1662,7 +2214,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SQUARE-MATKASTAND",
@@ -1671,7 +2226,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2500ML-MAXFRESHHO",
@@ -1680,7 +2238,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "20000ML-MAXFRESHHO",
@@ -1689,7 +2250,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "4000ML-MAXFRESHHO",
@@ -1698,7 +2262,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-MAXFRESHMU",
@@ -1707,7 +2274,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "10L-MAXFRESHSS",
@@ -1716,7 +2286,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "24CM-MAXFRESHTR",
@@ -1725,7 +2298,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1000-MAXFRESHVA",
@@ -1734,7 +2310,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "750ML-MAXFRESHWA",
@@ -1743,7 +2322,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO8-MAXFRESHEX",
@@ -1752,7 +2334,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2000ML-MAXFRESHHO",
@@ -1761,7 +2346,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "3000ML-MAXFRESHHO",
@@ -1770,7 +2358,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "5000ML-MAXFRESHHO",
@@ -1779,7 +2370,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTOM-MAXFRESHID",
@@ -1788,7 +2382,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "200ML-MAXFRESHSS",
@@ -1797,7 +2394,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "250ML-MAXFRESHSS",
@@ -1806,7 +2406,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LID-MAXFRESHSS",
@@ -1815,7 +2418,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2TIER-MAXFRESHST",
@@ -1824,7 +2430,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "G-MAXFRESHTR",
@@ -1833,7 +2442,10 @@
     "stock_uom": "KG",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "15CUP-MAXFRESHTR",
@@ -1842,7 +2454,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "600ML-MAXFRESHUL",
@@ -1851,7 +2466,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO6-MAXFRESHWI",
@@ -1860,7 +2478,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO7-MAXFRESHWI",
@@ -1869,7 +2490,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAND-MINIMOBILE",
@@ -1878,7 +2502,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAND-MOBILEOK",
@@ -1887,7 +2514,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG181-MORNINGCOF",
@@ -1896,7 +2526,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-MUGCHAISTE",
@@ -1905,7 +2538,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FIRST-MUGVOLVO10",
@@ -1914,7 +2550,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MILKY-MUGVOLVO10",
@@ -1923,7 +2562,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MILKY-MUGVOLVO75",
@@ -1932,7 +2574,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-MULTIPURPO",
@@ -1941,7 +2586,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NENO-NENOJUICER",
@@ -1950,7 +2598,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NICER-NICERDICER",
@@ -1959,7 +2610,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "8INCH240MM-OILBRUSHSI",
@@ -1968,7 +2622,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1000ML-OILDISPENS",
@@ -1977,7 +2634,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "500ML-OILDISPENS",
@@ -1986,7 +2646,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SPATULA-OIL",
@@ -1995,7 +2658,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLATE-OWLSHAPE",
@@ -2004,7 +2670,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-OWLSHAPEPL",
@@ -2013,7 +2682,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "B029-PEELERCLAS",
@@ -2022,7 +2694,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "COLORFUL-PEELER",
@@ -2031,7 +2706,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MASHER-PIPE",
@@ -2040,7 +2718,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "REGULAR-PIZZACUTTE",
@@ -2049,7 +2730,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-PLASTICLEM",
@@ -2058,7 +2742,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BELLAN-POLPATSTEE",
@@ -2067,7 +2754,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-POPCOFFEE",
@@ -2076,7 +2766,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CUTTER-POTATO",
@@ -2085,7 +2778,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BLADES-POTATOCUTT",
@@ -2094,7 +2790,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "JUMBO-POWERFREEH",
@@ -2103,7 +2802,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "Z010-POWERFREEH",
@@ -2112,7 +2814,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-PREMIUMMAS",
@@ -2121,7 +2826,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1000ML-PUSHCHOPPE",
@@ -2130,7 +2838,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KING-PUSHCHOPPE",
@@ -2139,7 +2850,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "800ML-PUSHCHOPPE",
@@ -2148,7 +2862,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1000ML-QUICKCHOPP",
@@ -2157,7 +2874,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "450ML-QUICKCHOPP",
@@ -2166,7 +2886,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "600ML-REALPUSHCH",
@@ -2175,7 +2898,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-RINGPEELER",
@@ -2184,7 +2910,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BIG-ROASTSTAND",
@@ -2193,7 +2922,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SMALL-ROASTSTAND",
@@ -2202,7 +2934,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TRAY-ROTATION",
@@ -2211,7 +2946,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ONE-ROUNDALLIN",
@@ -2220,7 +2958,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-ROUNDMASAL",
@@ -2229,7 +2970,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MAKER-ROYALICECA",
@@ -2238,7 +2982,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO1-SSCLIP",
@@ -2247,7 +2994,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO6-SSCLIP",
@@ -2256,7 +3006,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "851GM-SSKHALBATT",
@@ -2265,7 +3018,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO03-SSKHALBATT",
@@ -2274,7 +3030,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1311GM-SSKHALBATT",
@@ -2283,7 +3042,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-SSSLICER2I",
@@ -2292,7 +3054,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SERRATED",
@@ -2301,7 +3066,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO08-SEVSANCHAD",
@@ -2310,7 +3078,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO09-SEVSANCHAD",
@@ -2319,7 +3090,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO10-SEVSANCHAD",
@@ -2328,7 +3102,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-SIMPLEDESI",
@@ -2337,7 +3114,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHGTER-SIMPOLO",
@@ -2346,7 +3126,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LIGHTER-SMALLNG",
@@ -2355,7 +3138,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SPATULA-SMALL",
@@ -2364,7 +3150,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HEAVY-SMARTGASTR",
@@ -2373,7 +3162,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KHATLA-SOAPCASEBI",
@@ -2382,7 +3174,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-SOLOKNIFE",
@@ -2391,7 +3186,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTLE-SPRAY",
@@ -2400,7 +3198,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "DELUX-SPRINGRAWA",
@@ -2409,7 +3210,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SUPRIMO-SPRINGRAWA",
@@ -2418,7 +3222,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ONE-SQUAREALLI",
@@ -2427,7 +3234,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTLE-SQUARE",
@@ -2436,7 +3246,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-SQUAREMASA",
@@ -2445,7 +3258,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-SQUAREWITH",
@@ -2454,7 +3270,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "01-SSJALIROUN",
@@ -2463,7 +3282,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEELER-SS",
@@ -2472,7 +3294,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SSPIPEPOIN",
@@ -2481,7 +3306,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CUTTER-SSPIZZA",
@@ -2490,7 +3318,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SSPLAIN",
@@ -2499,7 +3330,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LOOSE-STEELLEMON",
@@ -2508,7 +3342,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "160G-STEELLEMON",
@@ -2517,7 +3354,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "180G-STEELLEMON",
@@ -2526,7 +3366,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "270G-STEELLEMON",
@@ -2535,7 +3378,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO3-STEELSTRAI",
@@ -2544,7 +3390,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PREXO-STEELOSSLU",
@@ -2553,7 +3402,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LUNCH-SUMO2LAYER",
@@ -2562,7 +3414,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEELER-SUMO",
@@ -2571,7 +3426,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SUPER",
@@ -2580,7 +3438,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-TBSTONEWAR",
@@ -2589,7 +3450,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-TBSTONEWAR-002",
@@ -2598,7 +3462,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-TBSTONEWAR-003",
@@ -2607,7 +3474,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-TBSTONEWAR",
@@ -2616,7 +3486,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TONE-TBSTONEWAR",
@@ -2625,7 +3498,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-TBSTONEWAR-002",
@@ -2634,7 +3510,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Crockery",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-TBPERFECTB",
@@ -2643,7 +3522,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Crockery",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TBPREMIUMG",
@@ -2652,7 +3534,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-TBSTONEWAR-004",
@@ -2661,7 +3546,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "S6-TBSTONEWAR",
@@ -2670,7 +3558,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCLAVA-TBVINTAGEM",
@@ -2679,7 +3570,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO2-TEAMESHSTR",
@@ -2688,7 +3582,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NET-TEASTRAINE",
@@ -2697,7 +3594,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NET-TEASTRAINE-002",
@@ -2706,7 +3606,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "ULTRA-TEASTRAINE",
@@ -2715,7 +3618,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "HOUSE-TEDDY",
@@ -2724,7 +3630,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSASTE",
@@ -2733,7 +3642,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSASTE-002",
@@ -2742,7 +3654,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSCERA",
@@ -2751,7 +3666,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TREE-TIBROSCERM",
@@ -2760,7 +3678,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSETHI",
@@ -2769,7 +3690,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "315235-TIBROSETHN",
@@ -2778,7 +3702,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2518-TIBROSETHN",
@@ -2787,7 +3714,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "315235-TIBROSFUNK",
@@ -2796,7 +3726,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Crockery",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "315235-TIBROSMATT",
@@ -2805,7 +3738,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Crockery",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2518-TIBROSMATT",
@@ -2814,7 +3750,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Crockery",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TRAY-TIBROSMUGW",
@@ -2823,7 +3762,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSPEAR",
@@ -2832,7 +3774,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSSMAR",
@@ -2841,7 +3786,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-TIBROSTBMU",
@@ -2850,7 +3798,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-TIBROSTBMU-002",
@@ -2859,7 +3810,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-TIBROSTBNE",
@@ -2868,7 +3822,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSTBST",
@@ -2877,7 +3834,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSTBST-002",
@@ -2886,7 +3846,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "1PCS-TIBROSTBST",
@@ -2895,7 +3858,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUGBLACK-TIBROSTBAR",
@@ -2904,7 +3870,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MUG-TIBROSTBSP",
@@ -2913,7 +3882,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PCS-TIBROSURMI",
@@ -2922,7 +3894,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CONE-TIBROSTBMU",
@@ -2931,7 +3906,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "28CL-TIBROSTBPR",
@@ -2940,7 +3918,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Crockery",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "JAVA-TIBROSTBPR",
@@ -2949,7 +3930,10 @@
     "stock_uom": "BOX",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Tibros"
+    "brand": "Tibros",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TIFFIN-TIFFINBOXM",
@@ -2958,7 +3942,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "11-TIFFINBOXM",
@@ -2967,7 +3954,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LOCK-TONGKITCHE",
@@ -2976,7 +3966,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "135G-TONGSSNO3",
@@ -2985,7 +3978,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "GLASS-UNBREAKABL",
@@ -2994,7 +3990,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-VOLVOKNIFE",
@@ -3003,7 +4002,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAND-WALLMOUNTA",
@@ -3012,7 +4014,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STAND-WASHINGMAC",
@@ -3021,7 +4026,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BLACK-WELCOMETRA",
@@ -3030,7 +4038,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "WHITE-WELCOMETRA",
@@ -3039,7 +4050,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "INCH-WHISKFULLS",
@@ -3048,7 +4062,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "INCH-WHISKFULLS-002",
@@ -3057,7 +4074,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "8-WHISKPLAST",
@@ -3066,7 +4086,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "10-WHISKPLAST",
@@ -3075,7 +4098,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO2-WHISKPLAST",
@@ -3084,7 +4110,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "9-WHISKSTEEL",
@@ -3093,7 +4122,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "9-WHISKERPLA",
@@ -3102,7 +4134,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-WOODENCHOP",
@@ -3111,7 +4146,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "MASHER-WOODEN",
@@ -3120,7 +4158,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CHOPPING-WOODENMDF",
@@ -3129,7 +4170,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TALWAR-WOODEN",
@@ -3138,7 +4182,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SS-WOODENTEMP",
@@ -3147,7 +4194,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEELER-X",
@@ -3156,7 +4206,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-XVEGETABLE",
@@ -3165,7 +4218,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PLAIN-ZEBRAKNIFE",
@@ -3174,7 +4230,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PILLAR-ZEBRA",
@@ -3183,7 +4242,10 @@
     "stock_uom": "PCS",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "250ML-MAXFRESHSS-002",
@@ -3192,7 +4254,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO6-MAXFRESHSS",
@@ -3201,7 +4266,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO7-MAXFRESHSS",
@@ -3210,7 +4278,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Storage",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "G-MAXFRESHTR-002",
@@ -3219,7 +4290,10 @@
     "stock_uom": "kg",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "26CM-MAXFRESHTR",
@@ -3228,7 +4302,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BASKET-FRUIT",
@@ -3237,7 +4314,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LID-MAXFRESHSS-002",
@@ -3246,7 +4326,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "2LTR-MAXFRESHTR",
@@ -3255,7 +4338,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LTR-MAXFRESHTR",
@@ -3264,7 +4350,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CM-MAXFRESHTR",
@@ -3273,7 +4362,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CM-MAXFRESHTR-002",
@@ -3282,7 +4374,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FIRST-ATTASTRAIN",
@@ -3291,7 +4386,10 @@
     "stock_uom": "DZ",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SEMI-ATTASTRAIN",
@@ -3300,7 +4398,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FIRST-ATTASTRAIN-002",
@@ -3309,7 +4410,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FIRST-HOOKATTABI",
@@ -3318,7 +4422,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "COLOUR-HOOKATTABI",
@@ -3327,7 +4434,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CLIP-BLACK",
@@ -3336,7 +4446,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SECOND-ATTASTRAIN",
@@ -3345,7 +4458,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CLIP-SEMISINGLE",
@@ -3354,7 +4470,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "FIRST-CLIPDOUBLE",
@@ -3363,7 +4482,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SEMI-CLIPDOUBLE",
@@ -3372,7 +4494,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "LONG-CLIP",
@@ -3381,7 +4506,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO4-MSPURIPRES",
@@ -3390,7 +4518,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "NO6-MSPURIPRES",
@@ -3399,7 +4530,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "645G-SSKHALBATT",
@@ -3408,7 +4542,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "134KG-SSKHALBATT",
@@ -3417,7 +4554,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "STEEL-PURIPRESS",
@@ -3426,7 +4566,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Other"
+    "brand": "Other",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "POT-SIGMAOILBR",
@@ -3435,7 +4578,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEELER-SIGMASWIFT",
@@ -3444,7 +4590,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "TOMATO-SIGMAABS",
@@ -3453,7 +4602,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SIGMA5PIEC",
@@ -3462,7 +4614,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BLENDER-SIGMAHAND",
@@ -3471,7 +4626,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Chopper",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEEELR-SIGMASUMO",
@@ -3480,7 +4638,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "OPENER-SIGMACOCON",
@@ -3489,7 +4650,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-SIGMASLEEK",
@@ -3498,7 +4662,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-SIGMASILIC",
@@ -3507,7 +4674,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-SIGMASLEEK-002",
@@ -3516,7 +4686,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SIGMAMGPEE",
@@ -3525,7 +4698,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNIFE-SIGMAMGPLA",
@@ -3534,7 +4710,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNFIE-SIGMAMGTOM",
@@ -3543,7 +4722,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "PEELER-SIGMASLEEK",
@@ -3552,7 +4734,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNFIE-SIGMASLEEK",
@@ -3561,7 +4746,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "KNFIE-SIGMASLEEK-002",
@@ -3570,7 +4758,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOX-SIGMAUNIVE",
@@ -3579,7 +4770,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "BOTTLE-SIGMAOILDI",
@@ -3588,7 +4782,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Bottle",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "CARD-SIGMA5PIEC",
@@ -3597,7 +4794,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "INCH-SIGMASILIC",
@@ -3606,7 +4806,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "SET-SIGMAMGKNI",
@@ -3615,7 +4818,10 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   },
   {
     "item_code": "9-SIGMAWHISK",
@@ -3624,6 +4830,9 @@
     "stock_uom": "Pack",
     "standard_rate": 0,
     "item_group": "Plastic Kitchenware",
-    "brand": "Sigma"
+    "brand": "Sigma",
+    "in_stock": true,
+    "stock_qty": 10,
+    "threshold": 2
   }
 ]

@@ -4,21 +4,16 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-// ✅ FIXED: Added FileText and ChevronUp back to imports
-import { X, Minus, Plus, ShoppingBag, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Filter, FileText } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Filter, FileText, Check, Layers, Trash2, MapPin, PlusCircle, ArrowRight } from "lucide-react";
 
 interface CartItem extends Product {
   qty: number;
 }
 
-const PRIORITY_CATEGORIES = [
-  "Lunch Box", "Bottle", "Chopper", "Knife & Cutter", "Storage", "Cups & Mugs", "Kitchen Organizers"
-];
-
 const BRANDS = [
-  { name: "MaxFresh", logo: "/brands/maxfresh.png", color: "bg-red-50 text-red-600 border-red-200" },
-  { name: "Tibros", logo: "/brands/tibros.png", color: "bg-blue-50 text-blue-600 border-blue-200" },
-  { name: "Sigma", logo: "/brands/sigma.png", color: "bg-green-50 text-green-600 border-green-200" },
+  { name: "MaxFresh", logo: "/brands/maxfresh.png" },
+  { name: "Tibros", logo: "/brands/tibros.png" },
+  { name: "Sigma", logo: "/brands/sigma.png" },
 ];
 
 const ITEMS_PER_PAGE = 25; 
@@ -32,18 +27,26 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   
   const [currentPage, setCurrentPage] = useState(1);
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
+  const [showAddressLine2, setShowAddressLine2] = useState(false);
   
   const moreDetailsRef = useRef<HTMLDivElement>(null);
   const gridTopRef = useRef<HTMLDivElement>(null); 
-  const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", note: "" });
+  const [formData, setFormData] = useState({ 
+    name: "", 
+    phone: "", 
+    gst: "", 
+    address: "", 
+    addressLine2: "", 
+    note: "" 
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem("nandan_customer_details");
@@ -73,6 +76,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
     replace(`${pathname}?${params.toString()}`);
     setSelectedBrand("All");
     setSelectedCategory("All");
+    setIsCategoryOpen(false);
   };
 
   const productsInBrand = useMemo(() => {
@@ -82,11 +86,8 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
   const availableCategories = useMemo(() => {
     const groups = productsInBrand.map(p => p.item_group || "Other");
-    return ["All", ...Array.from(new Set(groups))];
+    return ["All", ...Array.from(new Set(groups)).sort()];
   }, [productsInBrand]);
-
-  const visibleCategories = availableCategories.filter(c => c === "All" || PRIORITY_CATEGORIES.some(pc => c.toLowerCase().includes(pc.toLowerCase())));
-  const dropdownCategories = availableCategories.filter(c => !visibleCategories.includes(c));
 
   const finalDisplayedProducts = useMemo(() => {
     const cleanSearch = searchQuery.trim().toLowerCase();
@@ -131,16 +132,29 @@ export default function ProductGridClient({ products = [] }: { products: Product
     ).filter(i => i.qty > 0));
   };
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (/^\d*$/.test(val) && val.length <= 10) {
+      setFormData({ ...formData, phone: val });
+    }
+  };
+
   const submitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    
+    const finalData = {
+        ...formData,
+        address: showAddressLine2 ? `${formData.address}, ${formData.addressLine2}` : formData.address
+    };
+
     try {
-      localStorage.setItem("nandan_customer_details", JSON.stringify(formData));
+      localStorage.setItem("nandan_customer_details", JSON.stringify(finalData));
       const res = await fetch('/api/order', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ cart, customer: formData })
+        body: JSON.stringify({ cart, customer: finalData })
       });
-      if (res.ok) { alert("✅ Order Placed!"); setCart([]); setIsCheckoutOpen(false); }
+      if (res.ok) { alert("✅ Order Placed!"); setCart([]); setIsCartOpen(false); setShowMoreDetails(false); }
       else { alert("❌ Failed to place order."); }
     } catch { alert("❌ Connection Error"); } finally { setLoading(false); }
   };
@@ -151,43 +165,65 @@ export default function ProductGridClient({ products = [] }: { products: Product
   return (
     <div className="w-full" ref={gridTopRef}>
       
+      {isCategoryOpen && (
+        <div className="fixed inset-0 z-40 bg-transparent" onClick={() => setIsCategoryOpen(false)} />
+      )}
+
       {/* STICKY FILTER BAR */}
-      <div className="sticky top-16 z-40 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur py-2 -mx-4 px-4 mb-4 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+      <div className="sticky top-14 z-40 bg-background/95 backdrop-blur-xl py-3 -mx-4 px-4 mb-6 border-b border-border shadow-sm">
         {searchQuery.trim().length === 0 ? (
-            <>
-                <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 mb-1 justify-start md:justify-center animate-in fade-in">
-                    <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-5 py-1.5 rounded-xl font-bold text-xs border transition-all ${selectedBrand === "All" ? "bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black" : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300"}`}>All Brands</button>
+            <div className="flex flex-col gap-3 relative z-50">
+                
+                {/* 1. BRANDS - BUBBLE SCROLL */}
+                <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                    <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-5 py-2 rounded-full font-bold text-xs border transition-all ${selectedBrand === "All" ? "bg-foreground text-background border-foreground shadow-md" : "bg-card text-muted-foreground border-border hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-foreground"}`}>All Brands</button>
                     {BRANDS.map((brand) => (
-                    <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-4 py-1.5 rounded-xl font-bold text-xs border transition-all ${selectedBrand === brand.name ? `ring-2 ring-offset-2 ring-blue-500 ${brand.color}` : "bg-white text-gray-600 border-gray-200 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300"}`}>
-                        <div className="w-4 h-4 bg-current rounded-full opacity-20 hidden sm:block"></div>{brand.name}
+                    <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-5 py-2 rounded-full font-bold text-xs border transition-all ${selectedBrand === brand.name ? `ring-2 ring-offset-2 ring-foreground bg-foreground text-background border-foreground` : "bg-card text-muted-foreground border-border grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800"}`}>
+                        {brand.name}
                     </button>))}
                 </div>
-                <div className="flex-1 w-full overflow-hidden animate-in fade-in">
-                    <div className="flex gap-2 overflow-x-auto no-scrollbar w-full items-center">
-                        {visibleCategories.map((cat) => (
-                        <button key={cat} onClick={() => { setSelectedCategory(cat); setIsDropdownOpen(false); }} className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all border ${selectedCategory === cat ? "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800" : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300"}`}>{cat}</button>))}
-                        {dropdownCategories.length > 0 && (
-                        <div className="relative border-l border-gray-300 dark:border-gray-700 pl-2 ml-auto flex-shrink-0">
-                            <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 whitespace-nowrap hover:bg-gray-200">More <ChevronDown size={14} /></button>
-                            {isDropdownOpen && (
-                            <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2 z-50 max-h-60 overflow-y-auto">
-                                {dropdownCategories.map((cat) => (
-                                <button key={cat} onClick={() => { setSelectedCategory(cat); setIsDropdownOpen(false); }} className="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200">{cat}</button>))}
-                            </div>)}
-                        </div>)}
-                    </div>
+
+                {/* 2. CATEGORY - SOLID GREY DROPDOWN */}
+                <div className="relative w-full sm:w-auto">
+                    <button 
+                        onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                        className={`flex items-center justify-between w-full sm:w-auto gap-3 px-5 py-2.5 rounded-2xl font-bold text-xs border transition-all ${selectedCategory !== 'All' ? 'bg-zinc-800 text-white border-zinc-700 dark:bg-zinc-100 dark:text-black dark:border-zinc-300' : 'bg-zinc-100 dark:bg-zinc-900 text-foreground border-border hover:bg-zinc-200 dark:hover:bg-zinc-800'}`}
+                    >
+                        <div className="flex items-center gap-2">
+                            <Layers size={14} className={selectedCategory !== 'All' ? 'opacity-100' : 'opacity-50'} />
+                            {selectedCategory === 'All' ? 'Filter by Category' : selectedCategory}
+                        </div>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {isCategoryOpen && (
+                        <div className="absolute top-full left-0 mt-2 w-full sm:w-72 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-3xl shadow-xl p-2 animate-in zoom-in-95 origin-top-left max-h-80 overflow-y-auto z-50">
+                            <button onClick={() => { setSelectedCategory('All'); setIsCategoryOpen(false); }} className="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors flex items-center justify-between text-foreground">
+                                All Categories
+                                {selectedCategory === 'All' && <Check size={16} />}
+                            </button>
+                            <div className="h-px bg-border/50 my-1 mx-2"></div>
+                            {availableCategories.filter(c => c !== 'All').map(cat => (
+                                <button key={cat} onClick={() => { setSelectedCategory(cat); setIsCategoryOpen(false); }} className="w-full text-left px-4 py-3 rounded-2xl text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors flex items-center justify-between group text-muted-foreground hover:text-foreground">
+                                    {cat}
+                                    {selectedCategory === cat && <Check size={16} className="text-foreground" />}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            </>
+
+            </div>
         ) : (
             <div className="flex items-center justify-between w-full text-sm px-2">
-                <div className="text-gray-500">Searching results for <span className="font-bold text-gray-900 dark:text-white">"{searchQuery}"</span></div>
-                <button onClick={clearSearch} className="text-xs font-bold text-blue-600 hover:underline">Clear Search</button>
+                <div className="text-muted-foreground">Searching results for <span className="font-bold text-foreground">"{searchQuery}"</span></div>
+                <button onClick={clearSearch} className="text-xs font-bold text-primary hover:underline bg-zinc-200 dark:bg-zinc-800 px-3 py-1 rounded-full">Clear Search</button>
             </div>
         )}
       </div>
 
       {/* PRODUCT GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full pb-8 min-h-[50vh]">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full pb-8 min-h-[50vh]">
         {displayedProducts.map(p => (
           <ProductCard 
             key={p.item_code} 
@@ -197,72 +233,83 @@ export default function ProductGridClient({ products = [] }: { products: Product
           />
         ))}
         {displayedProducts.length === 0 && (
-          <div className="col-span-full text-center py-20 text-gray-400">
+          <div className="col-span-full text-center py-20 text-muted-foreground">
              <Filter className="mx-auto mb-2 opacity-50" size={32} />
              <p>No items found.</p>
-             <button onClick={clearSearch} className="text-blue-600 text-sm underline mt-2">Clear Search</button>
+             <button onClick={clearSearch} className="text-primary text-sm underline mt-2 font-bold">Clear Search</button>
           </div>
         )}
       </div>
 
       {/* PAGINATION */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-4 pb-24 pt-4 border-t border-gray-100 dark:border-gray-800">
-          <button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1} className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 disabled:opacity-30"><ChevronLeft size={20} /></button>
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Page <span className="text-gray-900 dark:text-white font-bold">{currentPage}</span> of {totalPages}</span>
-          <button onClick={() => changePage(currentPage + 1)} disabled={currentPage === totalPages} className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 disabled:opacity-30"><ChevronRight size={20} /></button>
+        <div className="flex justify-center items-center gap-4 pb-24 pt-8 border-t border-border">
+          <button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1} className="p-3 rounded-full bg-card border border-border disabled:opacity-30 hover:bg-secondary hover:scale-110 transition-all"><ChevronLeft size={20} /></button>
+          <span className="text-sm font-medium text-muted-foreground bg-secondary/50 px-4 py-1 rounded-full">Page <span className="text-foreground font-bold">{currentPage}</span> of {totalPages}</span>
+          <button onClick={() => changePage(currentPage + 1)} disabled={currentPage === totalPages} className="p-3 rounded-full bg-card border border-border disabled:opacity-30 hover:bg-secondary hover:scale-110 transition-all"><ChevronRight size={20} /></button>
         </div>
       )}
 
       {/* FLOATING CART BUTTON */}
-      {totalItems > 0 && !isCheckoutOpen && (
-        <div className="fixed bottom-6 left-4 right-4 z-50 flex justify-center">
-          <button onClick={() => setIsCheckoutOpen(true)} className="bg-blue-600 text-white w-full max-w-md px-6 py-4 rounded-xl shadow-2xl font-bold flex items-center justify-between hover:scale-[1.02] transition-transform active:scale-95">
-            <div className="flex flex-col text-left leading-none gap-1"><span className="text-xs font-medium opacity-90">{totalItems} ITEMS</span><span className="text-lg">₹{totalPrice}</span></div>
-            <div className="flex items-center gap-2 text-sm">View Cart <ShoppingBag size={18} /></div>
+      {totalItems > 0 && !isCartOpen && (
+        <div className="fixed bottom-8 left-4 right-4 z-50 flex justify-center md:hidden">
+          <button onClick={() => setIsCartOpen(true)} className="bg-foreground text-background w-full max-w-md px-6 py-4 rounded-2xl shadow-2xl font-bold flex items-center justify-between hover:scale-[1.03] transition-transform active:scale-95 border border-border/50 backdrop-blur-md">
+            <div className="flex flex-col text-left leading-none gap-1"><span className="text-[10px] font-bold opacity-70 tracking-widest uppercase">Cart ({totalItems})</span><span className="text-xl">₹{totalPrice.toLocaleString()}</span></div>
+            <div className="flex items-center gap-2 text-sm uppercase tracking-wide bg-background/20 px-3 py-1.5 rounded-full">View <ShoppingBag size={16} /></div>
           </button>
         </div>
       )}
 
+      {/* DESKTOP/TABLET TOGGLE */}
+      {!isCartOpen && totalItems > 0 && (
+        <button 
+            onClick={() => setIsCartOpen(true)}
+            className="hidden md:flex fixed top-24 left-0 z-40 bg-foreground text-background p-3 rounded-r-xl shadow-xl hover:pl-4 transition-all items-center gap-2 font-bold text-sm"
+        >
+            <ShoppingBag size={20} />
+            <span className="writing-mode-vertical">Cart ({totalItems})</span>
+        </button>
+      )}
+
       {/* PRODUCT DETAIL MODAL */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/70 z-[70] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative animate-in zoom-in-95">
+        <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border/50">
             <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-3 right-3 z-10 bg-gray-100 dark:bg-gray-800 p-2 rounded-full hover:bg-gray-200 transition-colors"
+                className="absolute top-4 right-4 z-10 bg-black/10 dark:bg-white/10 p-2 rounded-full hover:bg-black/20 dark:hover:bg-white/20 transition-colors backdrop-blur-sm"
             >
                 <X size={20} />
             </button>
 
-            <div className="p-6 bg-white flex justify-center items-center h-64 border-b border-gray-100 dark:border-gray-800">
+            <div className="p-8 bg-card flex justify-center items-center h-72 border-b border-border/50">
                  <img 
                     src={`/images/${selectedProduct.item_code}.jpg`} 
                     alt={selectedProduct.item_name}
-                    className="max-h-full max-w-full object-contain"
+                    className="max-h-full max-w-full object-contain mix-blend-multiply dark:mix-blend-normal drop-shadow-xl"
                     onError={(e) => (e.currentTarget.src = "https://placehold.co/600x600/png?text=No+Image")}
                  />
             </div>
             
             <div className="p-6">
-                <div className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
+                <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-3">
                     {selectedProduct.brand || "Nandan Traders"}
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                <h2 className="text-2xl font-bold text-foreground mb-3 leading-tight">
                     {selectedProduct.item_name}
                 </h2>
-                <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium">
                     {selectedProduct.description}
                 </p>
 
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 p-4 bg-secondary/30 rounded-2xl">
                     <div>
-                        <div className="text-sm text-gray-400">Price</div>
-                        <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{selectedProduct.standard_rate}</div>
+                        <div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
+                        <div className="text-3xl font-black text-foreground">₹{selectedProduct.standard_rate}</div>
                     </div>
                     <button 
                         onClick={() => handleAdd(selectedProduct)}
-                        className="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                        className="flex-1 bg-foreground text-background py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg"
                     >
                         <Plus size={20} /> Add to Cart
                     </button>
@@ -272,54 +319,193 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </div>
       )}
 
-      {/* CHECKOUT MODAL */}
-      {isCheckoutOpen && (
-        <div className="fixed inset-0 bg-black/60 z-[60] flex items-end sm:items-center justify-center p-4 backdrop-blur-sm">
-          <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-2xl shadow-2xl flex flex-col max-h-[90vh] animate-in slide-in-from-bottom-10">
-            <div className="flex justify-between p-4 border-b dark:border-gray-800 bg-white dark:bg-gray-900 rounded-t-2xl z-10">
-              <h2 className="font-bold text-lg">Your Cart</h2>
-              <button onClick={() => setIsCheckoutOpen(false)}><X /></button>
-            </div>
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 dark:bg-gray-950/50">
-              {cart.map(item => (
-                <div key={item.item_code} className="flex justify-between items-center bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                  <div>
-                    <div className="font-medium text-sm">{item.item_name}</div>
-                    <div className="text-xs text-blue-600">₹{item.standard_rate * item.qty}</div>
-                  </div>
-                  <div className="flex items-center gap-3 bg-gray-100 dark:bg-gray-700 rounded px-2 py-1">
-                    <button onClick={() => updateQty(item.item_code, -1)}><Minus size={14}/></button>
-                    <span className="text-sm font-bold w-4 text-center">{item.qty}</span>
-                    <button onClick={() => updateQty(item.item_code, 1)}><Plus size={14}/></button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="p-4 border-t dark:border-gray-800 bg-white dark:bg-gray-900 rounded-b-2xl shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
-              <form onSubmit={submitOrder} className="space-y-3">
-                <input required placeholder="Your Name" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                <input required placeholder="Phone Number" type="tel" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
-                {!showMoreDetails && (<button type="button" onClick={() => setShowMoreDetails(true)} className="text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1 hover:underline py-2 w-full">Add Address, GST & Notes <ChevronDown size={14}/></button>)}
-                {showMoreDetails && (
-                  <div className="space-y-1">
-                    <div className="text-xs font-bold text-gray-400 pb-1 uppercase tracking-wide">Additional Details</div>
-                    <div ref={moreDetailsRef} className="space-y-3 animate-in fade-in slide-in-from-top-2">
-                        <textarea placeholder="Delivery Address" rows={2} className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 text-sm" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
-                        <input placeholder="GST Number (Optional)" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 text-sm" value={formData.gst} onChange={e => setFormData({...formData, gst: e.target.value})} />
-                        <div className="relative">
-                        {/* ✅ FileText is used here */}
-                        <FileText size={16} className="absolute top-3 left-3 text-gray-400" />
-                        <textarea placeholder="Note (e.g., Call before coming)" rows={1} className="w-full pl-10 p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500 text-sm" value={formData.note} onChange={e => setFormData({...formData, note: e.target.value})} />
-                        </div>
+      {/* LEFT SIDE CART DRAWER */}
+      {isCartOpen && (
+        <>
+            <div 
+                className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" 
+                onClick={() => setIsCartOpen(false)}
+            />
+            
+            <div className="fixed top-0 left-0 h-full w-full sm:w-[450px] bg-card shadow-2xl z-[61] border-r border-border transform transition-transform duration-300 animate-in slide-in-from-left overflow-hidden flex flex-col">
+                
+                {/* 1. Header (Fixed) */}
+                <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none h-[10%] min-h-[70px]">
+                    <div>
+                        <h2 className="text-2xl font-black uppercase tracking-tight text-foreground">Cart</h2>
+                        <p className="text-xs text-muted-foreground font-medium mt-1">{totalItems} items selected</p>
                     </div>
-                    <button type="button" onClick={() => setShowMoreDetails(false)} className="text-xs font-bold text-gray-500 flex items-center justify-center gap-1 hover:text-gray-700 dark:hover:text-gray-300 py-3 w-full"><ChevronUp size={14}/> Hide Details</button>
-                  </div>
-                )}
-                <button type="submit" disabled={loading} className="w-full bg-blue-600 text-white p-3.5 rounded-xl font-bold shadow-lg mt-2 hover:bg-blue-700 transition-colors">{loading ? "Sending..." : "Place Order"}</button>
-              </form>
+                    <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors">
+                        <X size={24} className="text-foreground" />
+                    </button>
+                </div>
+
+                {/* 2. Cart Items (70% Height - Grows to fill available) */}
+                <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-zinc-50 dark:bg-black/40 h-[60%]">
+                    {cart.map(item => (
+                        <div key={item.item_code} className="flex gap-4 p-4 bg-card rounded-2xl border border-border/50 items-start group shadow-sm">
+                            <div className="flex-1">
+                                <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
+                                <h4 className="font-bold text-sm text-foreground leading-snug">{item.item_name}</h4>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate}</span>
+                                    <span className="text-xs text-muted-foreground">x {item.qty}</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col items-end gap-3">
+                                <span className="font-black text-lg">₹{(item.standard_rate * item.qty).toLocaleString()}</span>
+                                <div className="flex items-center gap-1 bg-secondary rounded-lg border border-border p-1">
+                                    <button onClick={() => updateQty(item.item_code, -1)} className="p-1 hover:bg-background rounded-md"><Minus size={14}/></button>
+                                    <span className="w-6 text-center text-xs font-bold">{item.qty}</span>
+                                    <button onClick={() => updateQty(item.item_code, 1)} className="p-1 hover:bg-background rounded-md"><Plus size={14}/></button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                    {cart.length === 0 && (
+                        <div className="flex flex-col items-center justify-center h-full text-muted-foreground opacity-50">
+                            <ShoppingBag size={64} strokeWidth={1} className="mb-4" />
+                            <p className="text-lg font-medium">Your cart is empty</p>
+                            <button onClick={() => setIsCartOpen(false)} className="mt-4 text-sm font-bold text-foreground underline">Start Shopping</button>
+                        </div>
+                    )}
+                </div>
+
+                {/* 3. Footer / Checkout Form (Fixed Container for structure) */}
+                <div 
+                    className={`
+                        border-t border-border bg-card transition-all duration-300 ease-in-out flex flex-col relative
+                        ${showMoreDetails ? 'h-full absolute inset-0 z-50' : 'flex-none h-[30%] min-h-[240px]'}
+                    `}
+                >
+                    {/* Header for Expanded View */}
+                    {showMoreDetails && (
+                        <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none">
+                            <h3 className="font-bold text-lg flex items-center gap-2"><FileText size={18}/> Order Details</h3>
+                            <button onClick={() => setShowMoreDetails(false)} className="text-xs font-bold bg-secondary px-3 py-1.5 rounded-full hover:bg-secondary/80 flex items-center gap-1">
+                                <ChevronDown size={14}/> Minimize
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Main Form Container - Using Flex Column */}
+                    <form onSubmit={submitOrder} className="flex flex-col h-full overflow-hidden">
+                        
+                        {/* SCROLLABLE INPUT AREA (Flex-1) */}
+                        <div className="flex-1 overflow-y-auto p-5 pb-0">
+                            
+                            {/* Total (Only show if not expanded to save space, or keep top) */}
+                            {!showMoreDetails && (
+                                <div className="flex justify-between items-end mb-4 pb-4 border-b border-border border-dashed flex-none">
+                                    <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Total Pay</span>
+                                    <span className="text-3xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span>
+                                </div>
+                            )}
+
+                            <div className="space-y-3 pb-4">
+                                {/* Basic Fields */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    <input 
+                                        required 
+                                        placeholder="Your Name" 
+                                        className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium transition-all" 
+                                        value={formData.name} 
+                                        onChange={e => setFormData({...formData, name: e.target.value})} 
+                                    />
+                                    <input 
+                                        required 
+                                        placeholder="Phone (10 digits)" 
+                                        type="tel" 
+                                        className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium transition-all" 
+                                        value={formData.phone} 
+                                        onChange={handlePhoneChange} 
+                                    />
+                                </div>
+
+                                {/* Expand Button (Only in collapsed state) */}
+                                {!showMoreDetails && (
+                                    <button type="button" onClick={() => setShowMoreDetails(true)} className="w-full py-3 text-xs font-bold text-muted-foreground hover:text-foreground flex items-center justify-center gap-2 border border-dashed border-border rounded-xl hover:bg-secondary/50 transition-all">
+                                        <PlusCircle size={14}/> Add Address & GST
+                                    </button>
+                                )}
+
+                                {/* Expanded Fields */}
+                                {showMoreDetails && (
+                                    <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4">
+                                        
+                                        {/* Total inside expanded view */}
+                                        <div className="flex justify-between items-center py-2 bg-secondary/20 px-3 rounded-lg">
+                                            <span className="text-xs font-bold text-muted-foreground uppercase">Cart Total</span>
+                                            <span className="text-xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span>
+                                        </div>
+
+                                        {/* GST */}
+                                        <div>
+                                            <label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">GST Number (Optional)</label>
+                                            <input 
+                                                placeholder="Ex: 22AAAAA0000A1Z5" 
+                                                className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium" 
+                                                value={formData.gst} 
+                                                onChange={e => setFormData({...formData, gst: e.target.value})} 
+                                            />
+                                        </div>
+
+                                        {/* ADDRESS SECTION */}
+                                        <div>
+                                            <label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block flex justify-between">
+                                                Address
+                                                <button type="button" onClick={() => setShowAddressLine2(!showAddressLine2)} className="text-primary hover:underline flex items-center gap-1 text-[10px]">
+                                                    <PlusCircle size={10}/> Add Line 2
+                                                </button>
+                                            </label>
+                                            <div className="space-y-2">
+                                                <textarea 
+                                                    placeholder="Street, Building, Area..." 
+                                                    rows={2} 
+                                                    className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium resize-none" 
+                                                    value={formData.address} 
+                                                    onChange={e => setFormData({...formData, address: e.target.value})} 
+                                                />
+                                                {showAddressLine2 && (
+                                                    <input 
+                                                        placeholder="Landmark / City / Pincode" 
+                                                        className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium animate-in fade-in slide-in-from-top-1" 
+                                                        value={formData.addressLine2} 
+                                                        onChange={e => setFormData({...formData, addressLine2: e.target.value})} 
+                                                    />
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* NOTES */}
+                                        <div>
+                                            <label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">Order Notes</label>
+                                            <textarea 
+                                                placeholder="Special instructions..." 
+                                                rows={2} 
+                                                className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium resize-none" 
+                                                value={formData.note} 
+                                                onChange={e => setFormData({...formData, note: e.target.value})} 
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* FIXED BOTTOM BUTTON AREA (Flex-None) */}
+                        <div className="p-5 border-t border-border bg-card flex-none pb-8 sm:pb-6">
+                            <button type="submit" disabled={loading || cart.length === 0} className="w-full bg-foreground text-background py-4 rounded-xl font-black text-lg shadow-xl hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-between px-6">
+                                <span>{loading ? "Processing..." : "Confirm Order"}</span>
+                                <div className="flex items-center gap-2">
+                                    <ArrowRight size={20} />
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-        </div>
+        </>
       )}
     </div>
   );
