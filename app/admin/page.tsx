@@ -4,21 +4,20 @@ import { Product, Order } from '@/lib/erp';
 import Image from 'next/image';
 import { 
   LayoutDashboard, Package, ShoppingCart, Server, Database, LogOut, Save, X, Edit3, 
-  CheckCircle2, XCircle, RefreshCw, Search, Upload, Image as ImageIcon, Clock, Truck, 
-  CheckSquare, Play, FileText, AlertTriangle
+  CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Image as ImageIcon, Clock, Truck, 
+  Play, FileText
 } from 'lucide-react';
+import { logoutAction } from '@/app/login/actions'; // Using the Server Action for logout
 
+// ✅ RESTORED COMPONENT
 const NavButton = ({ active, onClick, icon, label }: any) => (
     <button onClick={onClick} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all ${active ? 'bg-white text-black shadow-lg shadow-white/10' : 'text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200'}`}>
         {icon} {label}
     </button>
 );
 
-// --- MAIN COMPONENT (FIXED: Using direct export default function) ---
-
 export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
+  // Auth state removed (handled by middleware now)
   const [activeTab, setActiveTab] = useState("orders");
   const [loading, setLoading] = useState(false);
   
@@ -32,21 +31,12 @@ export default function AdminPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
+  // Load data immediately on mount
   useEffect(() => {
-    if (isAuthenticated) {
-        if (activeTab === 'orders') fetchOrders();
-        if (activeTab === 'products') fetchData();
-    }
-  }, [isAuthenticated, activeTab]);
-
-  const handleLogin = () => {
-    if (password === "admin123") { 
-      setIsAuthenticated(true);
-      fetchOrders();
-    } else {
-      alert("Invalid Password");
-    }
-  };
+    fetchOrders();
+    // Pre-fetch products too so they are ready when tab switches
+    fetchData();
+  }, []);
 
   const runSystemTest = async (target: 'telegram' | 'erp') => {
       setTestStatus(prev => ({ ...prev, [target]: "Running..." }));
@@ -125,7 +115,7 @@ export default function AdminPage() {
     formData.append("file", selectedFile);
     formData.append("item_code", editingItem.item_code);
     try {
-      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      const res = await fetch("/api/products/update", { method: "POST", body: formData }); // Note: Ensure this matches your upload route
       if (res.ok) {
         alert("✅ Uploaded!");
         const img = document.getElementById("preview-img") as HTMLImageElement;
@@ -136,21 +126,6 @@ export default function AdminPage() {
       }
     } catch (e) { alert("Error"); } finally { setUploading(false); }
   };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white p-4 font-sans">
-        <div className="w-full max-w-sm p-8 bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl">
-          <div className="mb-8 text-center flex flex-col items-center">
-            <div className="relative w-20 h-20 mb-4"><Image src="/logo.png" alt="Admin Logo" fill className="object-contain invert brightness-0" /></div>
-            <h1 className="text-xl font-bold uppercase tracking-widest text-zinc-400">Admin Access</h1>
-          </div>
-          <input type="password" placeholder="Passkey" className="w-full p-4 mb-4 bg-black rounded-xl border border-zinc-800 focus:border-white focus:ring-0 outline-none transition-all text-center text-white placeholder:text-zinc-700 font-mono" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleLogin()} />
-          <button onClick={handleLogin} className="w-full bg-white text-black font-bold p-4 rounded-xl hover:bg-zinc-200 transition-colors">Unlock Dashboard</button>
-        </div>
-      </div>
-    );
-  }
 
   const filteredProducts = products.filter(p => (p.item_name || "").toLowerCase().includes(search.toLowerCase()) || (p.item_code || "").toLowerCase().includes(search.toLowerCase()));
 
@@ -163,7 +138,7 @@ export default function AdminPage() {
           <NavButton active={activeTab === 'products'} onClick={() => setActiveTab("products")} icon={<Package size={20} />} label="Inventory" />
           <NavButton active={activeTab === 'dashboard'} onClick={() => setActiveTab("dashboard")} icon={<LayoutDashboard size={20} />} label="System Health" />
         </nav>
-        <button onClick={() => setIsAuthenticated(false)} className="mt-auto flex items-center gap-3 px-4 py-3 text-sm font-bold text-zinc-500 hover:text-red-500 transition-colors"><LogOut size={18} /> Sign Out</button>
+        <button onClick={() => logoutAction()} className="mt-auto flex items-center gap-3 px-4 py-3 text-sm font-bold text-zinc-500 hover:text-red-500 transition-colors"><LogOut size={18} /> Sign Out</button>
       </aside>
 
       <main className="flex-1 p-4 md:p-8 overflow-y-auto h-screen">
