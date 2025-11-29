@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createSalesOrder } from "@/lib/erp";
 
 export async function POST(req: Request) {
   try {
@@ -9,53 +10,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
 
-    // 1. Generate a Simple Web ID
-    const orderId = `WEB-${Date.now().toString().slice(-6)}`;
+    // Send to ERPNext
+    const erpOrder = await createSalesOrder(cart, customer);
 
-    // 2. Calculate Total
-    const total = cart.reduce((sum: number, item: any) => sum + (item.standard_rate * item.qty), 0);
+    return NextResponse.json({ 
+      success: true, 
+      orderId: erpOrder.name,
+      message: "Order synced to ERPNext"
+    });
     
-    // 3. Format Item List
-    const itemLines = cart.map((item: any) => `• ${item.item_name} (x${item.qty})`).join("\n");
-
-    // 4. Format Customer Details
-    const addressLine = customer.address ? `\n📍 *Addr:* ${customer.address}` : "";
-    const gstLine = customer.gst ? `\n🏢 *GST:* ${customer.gst}` : "";
-    const noteLine = customer.note ? `\n📝 *Note:* ${customer.note}` : "";
-
-    // 5. Construct the Message
-    const message = `
-📦 *NEW ORDER: ${orderId}*
-------------------
-👤 *Name:* ${customer.name}
-📞 *Phone:* ${customer.phone}
-${addressLine}${gstLine}${noteLine}
-
-🛒 *Items:*
-${itemLines}
-
-💰 *Total: ₹${total}*
-(Pending Manual Bill 📝)
-`;
-
-    // 6. Send to Telegram
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
-    
-    if (botToken && chatId) {
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: "Markdown" }),
-      });
-    } else {
-      console.error("❌ Telegram Keys Missing in Vercel");
-    }
-
-    return NextResponse.json({ success: true, orderId });
-    
-  } catch (error) {
-    console.error("Order Error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  } catch (error: any) {
+    console.error("Order API Error:", error);
+    return NextResponse.json({ error: "Failed to place order" }, { status: 500 });
   }
 }
