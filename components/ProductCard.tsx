@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Product } from '@/lib/erp';
 import { Plus } from 'lucide-react';
 
@@ -11,12 +11,24 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
-  const [imgSrc, setImgSrc] = useState(`/images/${product.item_code}.jpg`);
+  // Construct image URL:
+  // If product has a version, append it to force refresh. 
+  // If no version (manual paste), just use the item code.
+  const getImageUrl = () => {
+    const baseUrl = `/images/${product.item_code}.jpg`;
+    return product.imageVersion ? `${baseUrl}?v=${product.imageVersion}` : baseUrl;
+  };
+
+  const [imgSrc, setImgSrc] = useState(getImageUrl());
+
+  // Watch for updates to the product object (e.g. after upload)
+  useEffect(() => {
+    setImgSrc(getImageUrl());
+  }, [product]);
 
   return (
     <div 
       onClick={onClick}
-      // ✅ UPDATED: rounded-3xl for iPhone look
       className="group flex flex-col bg-card border border-border/50 rounded-3xl cursor-pointer 
                  transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] 
                  hover:scale-[1.02] hover:-translate-y-1
