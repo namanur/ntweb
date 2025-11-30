@@ -103,9 +103,30 @@ export default function AdminPage() {
   const handleSaveItem = async () => { 
       if (!editingItem) return;
       try {
-          const res = await fetch('/api/products/update', { method: 'POST', body: JSON.stringify({ item_code: editingItem.item_code, ...editForm }) });
-          if (res.ok) { alert("Updated!"); setProducts(prev => prev.map(p => p.item_code === editingItem.item_code ? { ...p, ...editForm } as Product : p)); setEditingItem(null); }
-      } catch (e) {}
+          const res = await fetch('/api/products/update', { 
+              method: 'POST', 
+              headers: {
+                  'Content-Type': 'application/json', // <--- This line was missing!
+              },
+              body: JSON.stringify({ 
+                  item_code: editingItem.item_code, 
+                  ...editForm 
+              }) 
+          });
+          
+          if (res.ok) { 
+              alert("Updated Successfully!"); 
+              // Update the local state to reflect changes instantly
+              setProducts(prev => prev.map(p => 
+                  p.item_code === editingItem.item_code ? { ...p, ...editForm } as Product : p
+              )); 
+              setEditingItem(null); 
+          } else {
+              alert("Failed to save changes.");
+          }
+      } catch (e) {
+          alert("Network Error");
+      }
   };
 
   const handleImageUpload = async () => {

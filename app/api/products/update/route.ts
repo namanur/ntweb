@@ -2,44 +2,68 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { writeFile } from "fs/promises";
-import { updateProductLocal } from "@/lib/erp"; // Import the update function
+import { updateProductLocal } from "@/lib/erp"; 
 import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
   try {
-    const formData = await req.formData();
-    const file = formData.get("file") as File;
-    const itemCode = formData.get("item_code") as string;
+    const contentType = req.headers.get("content-type") || "";
 
-    if (!file || !itemCode) {
-      return NextResponse.json({ error: "File and Item Code required" }, { status: 400 });
+    // 1. HANDLE DATA UPDATES (JSON)
+    // This runs when you click "Save Changes"
+    if (contentType.includes("application/json")) {
+        const body = await req.json();
+        const { item_code, ...updates } = body;
+
+        if (!item_code) {
+            return NextResponse.json({ error: "Item Code required" }, { status: 400 });
+        }
+
+        // Update the local JSON database
+        await updateProductLocal(item_code, updates);
+        
+        // Refresh the cache so changes show up immediately
+        revalidatePath('/');
+        
+        return NextResponse.json({ success: true, message: "Product updated successfully" });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    
-    // 1. FORCE RENAME TO SKU: Save as [ItemCode].jpg in public/images
-    const filename = `${itemCode}.jpg`;
-    const uploadDir = path.join(process.cwd(), "public/images");
-    const filePath = path.join(uploadDir, filename);
+    // 2. HANDLE IMAGE UPLOADS (FormData)
+    // This runs when you click "Upload Now"
+    if (contentType.includes("multipart/form-data")) {
+        const formData = await req.formData();
+        const file = formData.get("file") as File;
+        const itemCode = formData.get("item_code") as string;
 
-    // Ensure directory exists
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+        if (!file || !itemCode) {
+          return NextResponse.json({ error: "File and Item Code required" }, { status: 400 });
+        }
+
+        const buffer = Buffer.from(await file.arrayBuffer());
+        
+        // Force rename to [ItemCode].jpg
+        const filename = `${itemCode}.jpg`;
+        const uploadDir = path.join(process.cwd(), "public/images");
+        const filePath = path.join(uploadDir, filename);
+
+        if (!fs.existsSync(uploadDir)) {
+          fs.mkdirSync(uploadDir, { recursive: true });
+        }
+
+        await writeFile(filePath, buffer);
+
+        // Update database with new image version to force refresh
+        await updateProductLocal(itemCode, { imageVersion: Date.now() });
+
+        revalidatePath('/');
+
+        return NextResponse.json({ success: true, message: `Uploaded ${filename}` });
     }
 
-    // Write file to disk (Overwrites if exists)
-    await writeFile(filePath, buffer);
+    return NextResponse.json({ error: "Unsupported Content-Type" }, { status: 400 });
 
-    // 2. UPDATE DATABASE: Set imageVersion to current timestamp
-    // This tells the frontend "Hey, I have a new image!"
-    await updateProductLocal(itemCode, { imageVersion: Date.now() });
-
-    // 3. CLEAR CACHE: Tell Next.js to refresh the data
-    revalidatePath('/');
-
-    return NextResponse.json({ success: true, message: `Uploaded ${filename}` });
   } catch (error: any) {
-    console.error("Upload Error:", error);
+    console.error("Update Error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
