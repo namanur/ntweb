@@ -1,9 +1,9 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, Menu, X, ShieldCheck, MapPin, Phone, Mail, FileText, Info } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { Suspense } from "react";
-import Image from "next/image"; // Import Image component
+import { Suspense, useState } from "react";
+import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 
 function SearchInput() {
@@ -19,12 +19,12 @@ function SearchInput() {
   };
 
   return (
-    <div className="flex-1 max-w-md relative mx-4">
-      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
+    <div className="flex-1 max-w-md relative mx-2 sm:mx-4">
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
       <input 
         type="text"
-        placeholder="Search items..."
-        className="w-full pl-11 p-2.5 rounded-2xl border border-border bg-secondary/50 text-sm focus:border-foreground focus:bg-background focus:ring-0 outline-none transition-all placeholder:text-muted-foreground font-medium"
+        placeholder="Search..."
+        className="w-full pl-9 p-2.5 rounded-xl border border-border bg-secondary/50 text-sm focus:border-foreground focus:bg-background focus:ring-0 outline-none transition-all placeholder:text-muted-foreground font-medium"
         defaultValue={searchParams.get("q")?.toString()}
         onChange={(e) => handleSearch(e.target.value)}
       />
@@ -33,26 +33,26 @@ function SearchInput() {
 }
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border h-16 flex-none transition-all">
-        <div className="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+    // ✅ CHANGED: Fully Opaque Background (bg-background) for better visibility
+    <header className="sticky top-0 z-50 bg-background border-b border-border h-16 flex-none transition-all shadow-sm">
+        <div className="w-full h-full flex items-center justify-between px-3 sm:px-4">
           
-          {/* Brand Logo Section */}
-          <div className="flex items-center gap-3 group cursor-pointer">
-            
-            {/* LOGO IMAGE CONTAINER */}
-            <div className="relative h-12 w-12 group-hover:rotate-12 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+          {/* Brand Logo */}
+          <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer shrink-0" onClick={() => window.location.href='/'}>
+            <div className="relative h-10 w-10 sm:h-12 sm:w-12 group-hover:rotate-12 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
               <Image 
-                src="/logo.png"  // Ensure your file is named logo.png or logo.jpg in public/
-                alt="Nandan Traders"
+                src="/logo.png"
+                alt="Nandan"
                 fill
-                className="object-contain dark:invert filter" // The Magic: Inverts colors in dark mode
+                className="object-contain dark:invert filter"
                 priority
               />
             </div>
-
             <span className="hidden sm:block font-black text-sm tracking-widest uppercase text-foreground">
-              Nandan Traders
+              Nandan
             </span>
           </div>
 
@@ -62,10 +62,98 @@ export default function Header() {
           </Suspense>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="hidden sm:block">
+               <ThemeToggle />
+            </div>
+            
+            {/* ✅ CHANGED: Solid Background for Hamburger Menu */}
+            <button 
+              onClick={() => setIsMenuOpen(true)}
+              className="p-2.5 rounded-xl bg-zinc-100 text-black dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-sm active:scale-95"
+              aria-label="Open Menu"
+            >
+              <Menu size={20} strokeWidth={2.5} />
+            </button>
           </div>
         </div>
+
+        {/* --- MENU DRAWER --- */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-[100]">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            
+            {/* Drawer */}
+            <div className="absolute top-0 right-0 h-full w-[85vw] sm:w-[350px] bg-background border-l border-border shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+              
+              <div className="flex justify-between items-center p-5 border-b border-border">
+                <div className="flex items-center gap-3">
+                   <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg">
+                      <ThemeToggle />
+                   </div>
+                   <span className="font-bold text-sm">Appearance</span>
+                </div>
+                <button onClick={() => setIsMenuOpen(false)} className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-full hover:bg-zinc-200 transition-colors">
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="p-5 space-y-2">
+                <a href="/about" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/30 hover:bg-secondary font-bold text-sm transition-all">
+                  <div className="p-2 bg-background rounded-full shadow-sm"><Info size={18} /></div> About Us
+                </a>
+                <a href="/terms" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/30 hover:bg-secondary font-bold text-sm transition-all">
+                  <div className="p-2 bg-background rounded-full shadow-sm"><FileText size={18} /></div> Terms & Conditions
+                </a>
+                <a href="/privacy" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/30 hover:bg-secondary font-bold text-sm transition-all">
+                  <div className="p-2 bg-background rounded-full shadow-sm"><ShieldCheck size={18} /></div> Privacy Policy
+                </a>
+              </nav>
+
+              {/* Footer Info */}
+              <div className="mt-auto p-6 bg-secondary/20 border-t border-border">
+                
+                {/* Brand */}
+                <div className="mb-6">
+                  <h3 className="font-black text-xl text-foreground uppercase tracking-tight mb-1">Nandan Traders</h3>
+                  <p className="text-sm font-medium text-muted-foreground">Proprietor: Ram Nandan Mishra</p>
+                  <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-background border border-border rounded-lg text-xs font-mono font-bold text-foreground shadow-sm">
+                    <ShieldCheck size={12} className="text-green-600" /> GST: 20AIIPM2082N1Z7
+                  </div>
+                </div>
+
+                {/* Contact */}
+                <div className="space-y-4 text-sm">
+                  <div className="flex items-start gap-3">
+                    <MapPin size={18} className="shrink-0 mt-0.5 text-muted-foreground" />
+                    <span className="leading-snug text-muted-foreground">Khapriyawan, Barkagaon Road,<br/>Hazaribagh, Jharkhand - 825302</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone size={18} className="shrink-0 text-muted-foreground" />
+                    <div className="flex flex-col gap-1">
+                      <a href="https://wa.me/919431394095" className="font-bold text-green-600 hover:underline">WhatsApp: 94313-94095</a>
+                      <a href="tel:6204188728" className="text-foreground hover:underline">Call: 62041-88728</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Mail size={18} className="shrink-0 text-muted-foreground" />
+                    <a href="mailto:nandantrader1963@gmail.com" className="text-foreground hover:underline break-all">nandantrader1963@gmail.com</a>
+                  </div>
+                </div>
+
+                <div className="text-center text-[10px] pt-8 opacity-40 font-medium uppercase tracking-widest">
+                  © {new Date().getFullYear()} Nandan Traders
+                </div>
+              </div>
+
+            </div>
+          </div>
+        )}
     </header>
   );
 }
