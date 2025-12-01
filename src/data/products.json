@@ -17,18 +17,26 @@
     "item_name": "2 IN 1 VEG CUTTER",
     "description": "2 IN 1 VEG CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 37,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "imageVersion": 1764569022308,
+    "stock_qty": 80,
+    "threshold": 2,
+    "in_stock": true
   },
   {
     "item_code": "SET-2PCSDINING",
     "item_name": "2PCS DINING SET",
     "description": "2PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 60,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "imageVersion": 1764573054574,
+    "stock_qty": 60,
+    "threshold": 2,
+    "in_stock": true
   },
   {
     "item_code": "CONTAINER-3PCSSQUARE",
@@ -1682,27 +1690,39 @@
     "item_name": "MaxFresh Hot Pot Jet 2500ml",
     "description": "Hot Pot Jet",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 605,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "stock_qty": 20,
+    "threshold": 2,
+    "in_stock": true,
+    "imageVersion": 1764572404945
   },
   {
     "item_code": "20000ML-MAXFRESHHO",
     "item_name": "MaxFresh Hot Pot Solitaire 20000ml",
     "description": "Hot Pot Solitaire",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 2800,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "stock_qty": 4,
+    "threshold": 2,
+    "in_stock": true,
+    "imageVersion": 1764572143051
   },
   {
     "item_code": "4000ML-MAXFRESHHO",
     "item_name": "MaxFresh Hot Pot Solitaire 4000ml",
     "description": "Hot Pot Solitaire",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 605,
     "item_group": "Steelware",
-    "brand": "MaxFresh"
+    "brand": "MaxFresh",
+    "imageVersion": 1764572344580,
+    "stock_qty": 18,
+    "threshold": 2,
+    "in_stock": true
   },
   {
     "item_code": "SET-MAXFRESHMU",
