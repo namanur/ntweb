@@ -5,45 +5,59 @@ const path = require('path');
 const CSV_FILE_PATH = path.join(__dirname, '../products.csv');
 const OUTPUT_PATH = path.join(__dirname, '../src/data/products.json');
 
-// 🧠 AUTO-CATEGORIZATION LOGIC
+// 🧠 IMPROVED CATEGORIZATION LOGIC
 function getAutoCategory(name, originalGroup) {
     const n = name.toLowerCase();
 
-    if (n.includes('lunch') || n.includes('tiffin') || n.includes('box')) return "Lunch Box";
-    if (n.includes('bottle') || n.includes('flask') || n.includes('sipper')) return "Bottle";
-    if (n.includes('knife') || n.includes('cutter') || n.includes('peeler') || n.includes('slicer') || n.includes('grater')) return "Knife & Cutter";
-    if (n.includes('chopper') || n.includes('blender') || n.includes('beater')) return "Chopper";
-    if (n.includes('mug') || n.includes('cup') || n.includes('glass')) return "Cups & Mugs";
-    if (n.includes('masala') || n.includes('container') || n.includes('jar') || n.includes('storage')) return "Storage";
-    if (n.includes('tray') || n.includes('plate') || n.includes('dining')) return "Dining & Serving";
-    if (n.includes('stand') || n.includes('rack') || n.includes('holder')) return "Kitchen Organizers";
-    if (n.includes('lighter') || n.includes('gas')) return "Gas Accessories";
-    if (n.includes('stool')) return "Household";
+    // 1. LUNCH BOXES (Strict)
+    // Only if it explicitly says lunch or tiffin
+    if (n.includes('lunch') || n.includes('tiffin')) return "Lunch Box";
 
+    // 2. BOTTLES (High Priority)
+    // Catches "Bottle (Box Packing)" before it gets caught by "Box"
+    if (n.includes('bottle') || n.includes('flask') || n.includes('sipper') || n.includes('jug')) return "Bottle";
+
+    // 3. CUTTING TOOLS
+    if (n.includes('knife') || n.includes('cutter') || n.includes('peeler') || n.includes('slicer') || n.includes('grater') || n.includes('scissors')) return "Knife & Cutter";
+
+    // 4. CHOPPERS
+    if (n.includes('chopper') || n.includes('blender') || n.includes('beater')) return "Chopper";
+
+    // 5. DRINKWARE
+    if (n.includes('mug') || n.includes('cup') || n.includes('glass') || n.includes('tea')) return "Cups & Mugs";
+
+    // 6. DINING
+    if (n.includes('tray') || n.includes('plate') || n.includes('dining') || n.includes('bowl') || n.includes('dinner')) return "Dining & Serving";
+
+    // 7. STORAGE & BOXES (The "Other Boxes" category)
+    // Catches Masala Box, Candy Box, Containers, Jars
+    if (n.includes('masala') || n.includes('container') || n.includes('jar') || n.includes('storage') || n.includes('canister') || n.includes('basket')) return "Storage & Boxes";
+    
+    // 8. CATCH-ALL FOR "BOX"
+    // If it hasn't matched Lunch or Bottle yet, but has "Box", it likely belongs in Storage (e.g. "Candy Box", "Jewellery Box")
+    if (n.includes('box') && !n.includes('packing')) return "Storage & Boxes";
+
+    // 9. HOUSEHOLD / ORGANIZERS
+    if (n.includes('stand') || n.includes('rack') || n.includes('holder') || n.includes('hook')) return "Kitchen Organizers";
+    if (n.includes('stool') || n.includes('patla') || n.includes('chair') || n.includes('mat')) return "Household";
+
+    // 10. GAS
+    if (n.includes('lighter') || n.includes('gas') || n.includes('trolley')) return "Gas Accessories";
+
+    // Fallback to original group if specific match fails
     if (originalGroup === "Plastic kitchenware") return "General Kitchenware";
     
-    return originalGroup;
+    return originalGroup || "General";
 }
 
-// 🏷️ NEW BRAND DETECTION LOGIC
+// 🏷️ BRAND DETECTION LOGIC
 function getBrand(name, originalBrand) {
     const n = name.toLowerCase();
     const b = (originalBrand || "").toLowerCase();
 
-    // Check MaxFresh
-    if (n.includes('maxfresh') || b.includes('maxfresh')) {
-        return "MaxFresh";
-    }
-
-    // Check Tibros (Includes "Tibros" OR "TB")
-    if (n.includes('tibros') || b.includes('tibros') || n.includes('tb ') || n.startsWith('tb-') || n.startsWith('tb ')) {
-        return "Tibros";
-    }
-
-    // Check Sigma
-    if (n.includes('sigma') || b.includes('sigma')) {
-        return "Sigma";
-    }
+    if (n.includes('maxfresh') || b.includes('maxfresh')) return "MaxFresh";
+    if (n.includes('tibros') || b.includes('tibros') || n.includes('tb ') || n.startsWith('tb-')) return "Tibros";
+    if (n.includes('sigma') || b.includes('sigma')) return "Sigma";
 
     return originalBrand && originalBrand.trim() !== "" ? originalBrand : "Other";
 }

@@ -1,60 +1,73 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
-import { ShoppingBag, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import Header from "./Header";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-zinc-950 text-white p-6 relative overflow-hidden font-sans">
+    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
       
-      {/* Background Watermark */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
-         <div className="relative w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] animate-pulse">
-            <Image src="/logo.png" alt="Bg" fill className="object-contain invert" priority />
-         </div>
-      </div>
+      {/* ✅ SAME HEADER AS MAIN SITE */}
+      <Suspense fallback={<div className="h-16 bg-background" />}>
+        <Header />
+      </Suspense>
 
-      <div className="max-w-md w-full text-center z-10 space-y-8 animate-in fade-in zoom-in-95 duration-700">
+      <div className="flex-grow flex flex-col items-center justify-center p-6 relative overflow-hidden">
         
-        {/* Logo */}
-        <div className="relative w-32 h-32 mx-auto mb-6 bg-white/5 rounded-full p-6 border border-white/10 shadow-2xl backdrop-blur-md">
-          <Image src="/logo.png" alt="Nandan Traders" fill className="object-contain invert p-2" />
+        {/* Background Watermark */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center">
+           <div className="relative w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw]">
+              <Image src="/logo.png" alt="Bg" fill className="object-contain dark:invert" />
+           </div>
         </div>
 
-        {/* Text */}
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-white drop-shadow-lg">
-            Nandan Traders
-          </h1>
-          <p className="text-zinc-400 text-lg font-medium leading-relaxed">
-            Authorized Wholesale Distributor for <br/>
-            <span className="text-white">MaxFresh, Tibros & Sigma</span>
-          </p>
-        </div>
+        <div className="max-w-md w-full text-center z-10 space-y-8 animate-in fade-in zoom-in-95 duration-700">
+          
+          {/* Logo & Title */}
+          <div className="space-y-6">
+            <div className="relative w-28 h-28 mx-auto bg-background/50 rounded-full p-4 border border-border shadow-2xl backdrop-blur-xl">
+              <Image src="/logo.png" alt="Nandan Traders" fill className="object-contain dark:invert p-4" />
+            </div>
+            
+            <div>
+              <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-foreground drop-shadow-sm">
+                Nandan Traders
+              </h1>
+              <p className="text-muted-foreground text-sm mt-3 font-medium tracking-wide">
+                Authorized Wholesale Distributor
+                <span className="block text-xs mt-1 opacity-70">MaxFresh • Tibros • Sigma</span>
+              </p>
+            </div>
+          </div>
 
-        {/* Buttons */}
-        <div className="flex flex-col gap-4 pt-6">
-          <a 
-            href="https://catalog.nandantrader.in"
-            className="w-full bg-white text-black py-4 rounded-xl font-bold text-lg hover:scale-105 hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 shadow-xl hover:shadow-white/20"
-          >
-            <ShoppingBag size={22} /> View Wholesale Catalog
-          </a>
+          {/* Buttons Section */}
+          <div className="flex flex-col gap-5 pt-4 items-center w-full">
+            
+            {/* Primary Action: Visit Catalog */}
+            <a 
+              href="https://catalog.nandantrader.in"
+              className="w-full bg-foreground text-background py-4 rounded-2xl font-black text-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl"
+            >
+              Visit Us / पधारें <ArrowRight size={22} strokeWidth={2.5} />
+            </a>
 
-          <a 
-            href="https://wa.me/919431394095" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:scale-105 hover:bg-[#20b857] transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-green-500/20"
-          >
-            <MessageCircle size={22} /> Chat on WhatsApp
-          </a>
-        </div>
+            {/* Secondary Action: WhatsApp (Smaller) */}
+            <a 
+              href="https://wa.me/919431394095" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-bold text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400 transition-colors bg-green-50 dark:bg-green-900/20 px-4 py-2 rounded-full border border-green-200 dark:border-green-800"
+            >
+              <MessageCircle size={16} /> Need Help? Chat on WhatsApp
+            </a>
 
-        {/* Footer */}
-        <div className="pt-16 text-zinc-600 text-[10px] uppercase tracking-widest">
-          <p>Khapriyawan, Barkagaon Road, Hazaribagh</p>
-          <p className="mt-1">© {new Date().getFullYear()} Nandan Traders</p>
+          </div>
+
+          {/* Footer Note */}
+          <div className="pt-12 text-muted-foreground/40 text-[10px] uppercase tracking-widest font-bold">
+            <p>Hazaribagh, Jharkhand</p>
+          </div>
         </div>
       </div>
     </div>

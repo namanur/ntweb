@@ -4,39 +4,27 @@
     "item_name": "18INCH FOLDING STOOL",
     "description": "18INCH FOLDING STOOL",
     "stock_uom": "PCS",
-    "standard_rate": 349,
+    "standard_rate": 0,
     "item_group": "Household",
-    "brand": "Raj Enterprises",
-    "imageVersion": 1764475680867,
-    "stock_qty": 10,
-    "threshold": 2,
-    "in_stock": true
+    "brand": "Raj Enterprises"
   },
   {
     "item_code": "CUTTER-2IN1VEG",
     "item_name": "2 IN 1 VEG CUTTER",
     "description": "2 IN 1 VEG CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 37,
+    "standard_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises",
-    "imageVersion": 1764569022308,
-    "stock_qty": 80,
-    "threshold": 2,
-    "in_stock": true
+    "brand": "Raj Enterprises"
   },
   {
     "item_code": "SET-2PCSDINING",
     "item_name": "2PCS DINING SET",
     "description": "2PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 60,
+    "standard_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises",
-    "imageVersion": 1764573054574,
-    "stock_qty": 60,
-    "threshold": 2,
-    "in_stock": true
+    "brand": "Raj Enterprises"
   },
   {
     "item_code": "CONTAINER-3PCSSQUARE",
@@ -44,7 +32,7 @@
     "description": "3 PCS SQUARE STORAGE CONTAINER",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -53,7 +41,7 @@
     "description": "3 PCS STORAGE CONTAINER",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -278,7 +266,7 @@
     "description": "Bottle 1100ml (Box Packing)",
     "stock_uom": "BOX",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
   {
@@ -377,7 +365,7 @@
     "description": "Bottle Line Diamond Cap Bottle 1000ml (3pcs Box)",
     "stock_uom": "BOX",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
   {
@@ -512,7 +500,7 @@
     "description": "CANDY BOX",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -701,7 +689,7 @@
     "description": "Container Feel Fresh 1200 Ml",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -728,7 +716,7 @@
     "description": "CRESTA DRY FRUIT BOX",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -782,7 +770,7 @@
     "description": "DELUXE TEA STAINER",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
   {
@@ -791,7 +779,7 @@
     "description": "DIAMOND CONTAINER",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -845,7 +833,7 @@
     "description": "DRY FRUIT BOX",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1043,7 +1031,7 @@
     "description": "Hot Mat Big Round",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Household",
     "brand": "Raj Enterprises"
   },
   {
@@ -1052,7 +1040,7 @@
     "description": "Hot Mat mid Round",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Household",
     "brand": "Raj Enterprises"
   },
   {
@@ -1223,7 +1211,7 @@
     "description": "Kulfi Maker [Box Pack]",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1295,7 +1283,7 @@
     "description": "Lighter Black EAGLE 12mm (Box pack)",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1502,7 +1490,7 @@
     "description": "MAGIC MASALA BOX",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1511,7 +1499,7 @@
     "description": "MASALA & DRYFRUIT Atlantic",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1520,7 +1508,7 @@
     "description": "Masala Box 360 Revolving",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1529,7 +1517,7 @@
     "description": "Masala Box Color 7 CupWith Spoons (S.P.)",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
   {
@@ -1538,7 +1526,7 @@
     "description": "Masala Box King",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1547,7 +1535,7 @@
     "description": "MASALA BOX SEQ. FIRST",
     "stock_uom": "DZ",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1556,7 +1544,7 @@
     "description": "MASALA BOX SEQ. mini",
     "stock_uom": "DZ",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1565,7 +1553,7 @@
     "description": "Masala Box SHAGUN",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1574,7 +1562,7 @@
     "description": "Masala Box Super King",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -1690,39 +1678,27 @@
     "item_name": "MaxFresh Hot Pot Jet 2500ml",
     "description": "Hot Pot Jet",
     "stock_uom": "PCS",
-    "standard_rate": 605,
+    "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh",
-    "stock_qty": 20,
-    "threshold": 2,
-    "in_stock": true,
-    "imageVersion": 1764572404945
+    "brand": "MaxFresh"
   },
   {
     "item_code": "20000ML-MAXFRESHHO",
     "item_name": "MaxFresh Hot Pot Solitaire 20000ml",
     "description": "Hot Pot Solitaire",
     "stock_uom": "PCS",
-    "standard_rate": 2800,
+    "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh",
-    "stock_qty": 4,
-    "threshold": 2,
-    "in_stock": true,
-    "imageVersion": 1764572143051
+    "brand": "MaxFresh"
   },
   {
     "item_code": "4000ML-MAXFRESHHO",
     "item_name": "MaxFresh Hot Pot Solitaire 4000ml",
     "description": "Hot Pot Solitaire",
     "stock_uom": "PCS",
-    "standard_rate": 605,
+    "standard_rate": 0,
     "item_group": "Steelware",
-    "brand": "MaxFresh",
-    "imageVersion": 1764572344580,
-    "stock_qty": 18,
-    "threshold": 2,
-    "in_stock": true
+    "brand": "MaxFresh"
   },
   {
     "item_code": "SET-MAXFRESHMU",
@@ -1739,7 +1715,7 @@
     "description": "SS Tea Jar",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
   },
   {
@@ -1775,7 +1751,7 @@
     "description": "EXTRA DEEP SEE THRU MASALA DABBA",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
   },
   {
@@ -1883,7 +1859,7 @@
     "description": "WIRE RECTANGLE MASALA DABBA",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
   },
   {
@@ -1892,7 +1868,7 @@
     "description": "WIRE ROUND MASALA DABBA",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
   },
   {
@@ -2144,7 +2120,7 @@
     "description": "PREMIUM MASALA BOX",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -2252,7 +2228,7 @@
     "description": "ROUND MASALA BOX",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -2468,7 +2444,7 @@
     "description": "SQUARE MASALA BOX",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
   {
@@ -2711,7 +2687,7 @@
     "description": "TEA MESH STRAINER NO.2",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
   {
@@ -2720,7 +2696,7 @@
     "description": "Tea Strainer No.3 Plastic (double Net)",
     "stock_uom": "DZ",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
   {
@@ -2729,7 +2705,7 @@
     "description": "Tea Strainer NO.3 White (double Net)",
     "stock_uom": "DZ",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
   {
@@ -2738,7 +2714,7 @@
     "description": "Tea Strainer S.S. ULTRA",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
   {
@@ -2828,7 +2804,7 @@
     "description": "TIBROS Matt series- Canvas (M) 31.5*23.5",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Crockery",
+    "item_group": "Household",
     "brand": "Tibros"
   },
   {
@@ -2837,7 +2813,7 @@
     "description": "TIBROS Matt series- Canvas (S) 25*18",
     "stock_uom": "PCS",
     "standard_rate": 0,
-    "item_group": "Crockery",
+    "item_group": "Household",
     "brand": "Tibros"
   },
   {
@@ -3026,7 +3002,7 @@
     "description": "VOLVO KNIFE BOX PACK (PLAIN)",
     "stock_uom": "DZ",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
   {
@@ -3224,7 +3200,7 @@
     "description": "S S MASALA DABBA SEE THRU",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
   },
   {
@@ -3233,7 +3209,7 @@
     "description": "S S MASALA DABBA SEE THRU",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Storage",
+    "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
   },
   {
@@ -3260,7 +3236,7 @@
     "description": "fruit basket",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Steelware",
+    "item_group": "Storage & Boxes",
     "brand": "Other"
   },
   {
@@ -3341,7 +3317,7 @@
     "description": "HOOK ATTA BIG FIRST",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Kitchen Organizers",
     "brand": "Other"
   },
   {
@@ -3350,7 +3326,7 @@
     "description": "HOOK ATTA BIG COLOUR",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "item_group": "Kitchen Organizers",
     "brand": "Other"
   },
   {
@@ -3476,7 +3452,7 @@
     "description": "Abs tomato",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Plastic Kitchenware",
+    "item_group": "Household",
     "brand": "Sigma"
   },
   {
@@ -3566,7 +3542,7 @@
     "description": "MG TOMATO KNFIE",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Plastic Kitchenware",
+    "item_group": "Household",
     "brand": "Sigma"
   },
   {
@@ -3593,7 +3569,7 @@
     "description": "SLEEK TOMATO KNFIE",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Plastic Kitchenware",
+    "item_group": "Household",
     "brand": "Sigma"
   },
   {
@@ -3602,7 +3578,7 @@
     "description": "UNIVERSAL MASALA BOX",
     "stock_uom": "Pack",
     "standard_rate": 0,
-    "item_group": "Lunch Box",
+    "item_group": "Storage & Boxes",
     "brand": "Sigma"
   },
   {
