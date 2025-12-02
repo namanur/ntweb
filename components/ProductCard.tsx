@@ -2,19 +2,27 @@
 
 import React, { useState, useEffect } from 'react';
 import { Product } from '@/lib/erp';
-import { Plus, Ban } from 'lucide-react'; // Added Ban icon for out of stock
+import { Plus } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
-  onAdd: (item: Product) => void;
+  cartQty?: number; 
+  onAdd: (item: Product, qty: number) => void;
   onClick?: () => void;
 }
 
-export default function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
-  // Logic: Check stock status. Default to true if undefined (safety fallback)
-  const isOutOfStock = product.in_stock === false;
+export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: ProductCardProps) {
+  // ✅ LOGIC: If in cart, default is 1. If not, default is 6.
+  const isInCart = cartQty > 0;
+  const minQty = isInCart ? 1 : 6;
+  
+  const [qty, setQty] = useState(minQty);
 
-  // Construct image URL:
+  // ✅ AUTO-UPDATE: When it enters cart, switch input to 1 immediately
+  useEffect(() => {
+    setQty(isInCart ? 1 : 6); // Fixed typo here
+  }, [isInCart]);
+
   const getImageUrl = () => {
     const baseUrl = `/images/${product.item_code}.jpg`;
     return product.imageVersion ? `${baseUrl}?v=${product.imageVersion}` : baseUrl;
@@ -26,17 +34,18 @@ export default function ProductCard({ product, onAdd, onClick }: ProductCardProp
     setImgSrc(getImageUrl());
   }, [product]);
 
+  // Calculate Discounted Price
+  const discountPrice = product.standard_rate * 0.975; 
+
   return (
     <div 
-      onClick={isOutOfStock ? undefined : onClick} // Optional: Disable card click if out of stock
-      className={`group flex flex-col bg-card border border-border/50 rounded-3xl cursor-pointer 
+      onClick={onClick}
+      className={`group flex flex-col bg-card border rounded-3xl cursor-pointer 
                  transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] 
+                 hover:scale-[1.02] hover:-translate-y-1
                  shadow-[0_4px_20px_-12px_rgba(0,0,0,0.1)]
-                 dark:shadow-[0_4px_20px_-12px_rgba(255,255,255,0.05)]
-                 ${isOutOfStock 
-                   ? 'opacity-60 grayscale-[0.8] hover:opacity-100 hover:grayscale-0' 
-                   : 'hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.1)]'
-                 }`}
+                 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.2)]
+                 ${isInCart ? 'border-primary/50 ring-1 ring-primary/20' : 'border-border/50'}`}
     >
       {/* HEADER: ID & Brand */}
       <div className="flex justify-between items-start p-4 pb-0">
@@ -51,22 +60,13 @@ export default function ProductCard({ product, onAdd, onClick }: ProductCardProp
       </div>
 
       {/* IMAGE */}
-      <div className="relative w-full aspect-square p-5 flex items-center justify-center bg-transparent">
+      <div className="w-full aspect-square p-5 flex items-center justify-center bg-transparent">
         <img 
           src={imgSrc} 
           alt={product.item_name}
           className="max-h-full max-w-full object-contain mix-blend-multiply dark:mix-blend-normal opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
           onError={() => setImgSrc("https://placehold.co/400x400/png?text=No+Image")}
         />
-        
-        {/* OUT OF STOCK OVERLAY */}
-        {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background/10 backdrop-blur-[1px] z-10">
-            <span className="px-3 py-1 bg-destructive/90 text-destructive-foreground text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
-              Out of Stock
-            </span>
-          </div>
-        )}
       </div>
 
       {/* FOOTER */}
@@ -75,32 +75,42 @@ export default function ProductCard({ product, onAdd, onClick }: ProductCardProp
           {product.item_name}
         </h3>
         
-        <div className="mt-3 flex items-center justify-between">
+        {/* Bulk Price Badge */}
+        <div className="mt-2 text-[10px] font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded w-fit">
+           Buy 24+ @ ₹{discountPrice.toFixed(2)}
+        </div>
+
+        <div className="mt-3 flex items-center justify-between gap-2">
           <div className="flex flex-col">
-            <span className="text-[10px] text-muted-foreground uppercase font-semibold">Price</span>
+            <span className="text-[10px] text-muted-foreground uppercase font-semibold">Wholesale</span>
             <span className="text-base font-black text-foreground tracking-tight">
               ₹{product.standard_rate.toLocaleString()}
             </span>
           </div>
 
-          <button 
-            disabled={isOutOfStock}
-            onClick={(e) => {
-              e.stopPropagation();
-              onAdd(product);
-            }}
-            className={`h-9 w-9 flex items-center justify-center rounded-full transition-all shadow-lg
-              ${isOutOfStock 
-                ? 'bg-muted text-muted-foreground cursor-not-allowed shadow-none' 
-                : 'bg-primary text-primary-foreground hover:scale-110 active:scale-95'
-              }`}
-          >
-            {isOutOfStock ? (
-              <Ban size={16} strokeWidth={2} /> 
-            ) : (
-              <Plus size={18} strokeWidth={2.5} />
-            )}
-          </button>
+          {/* CONTROLS */}
+          <div className="flex items-center gap-1">
+            {/* Input Field */}
+            <input 
+              type="number"
+              min={minQty}
+              value={qty}
+              onClick={(e) => e.stopPropagation()} 
+              onChange={(e) => setQty(Math.max(minQty, parseInt(e.target.value) || minQty))}
+              className={`w-12 h-9 rounded-l-lg border bg-background text-center text-xs font-bold focus:outline-none focus:border-primary transition-colors ${isInCart ? 'border-primary text-primary' : 'border-border'}`}
+            />
+            
+            {/* Add Button */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                onAdd(product, qty);
+              }}
+              className="h-9 px-3 flex items-center justify-center rounded-r-lg bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95 transition-all shadow-sm"
+            >
+              <Plus size={16} strokeWidth={3} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

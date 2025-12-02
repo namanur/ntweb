@@ -16,24 +16,14 @@ const BRANDS = [
   { name: "Sigma", logo: "/brands/sigma.png" },
 ];
 
-// --- 🏆 PRIORITY CATEGORIES (Order matters!) ---
-// These will appear FIRST in filters and on the page.
 const CATEGORY_PRIORITY = ["Bottle", "Lunch Box", "Steelware", "Crockery"];
 
 const sortCategories = (a: string, b: string) => {
   const idxA = CATEGORY_PRIORITY.indexOf(a);
   const idxB = CATEGORY_PRIORITY.indexOf(b);
-
-  // If both are in priority list, sort by index
   if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-  
-  // If only A is priority, it comes first
   if (idxA !== -1) return -1;
-  
-  // If only B is priority, it comes first
   if (idxB !== -1) return 1;
-
-  // Otherwise, sort alphabetically
   return a.localeCompare(b);
 };
 
@@ -95,7 +85,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [showAddressLine2, setShowAddressLine2] = useState(false);
   
-  // --- INFINITE SCROLL STATE ---
   const [visibleCategoriesCount, setVisibleCategoriesCount] = useState(2);
   const [visibleItemsCount, setVisibleItemsCount] = useState(20); 
   const loaderRef = useRef<HTMLDivElement>(null);
@@ -139,11 +128,9 @@ export default function ProductGridClient({ products = [] }: { products: Product
     return products.filter(p => p.brand === selectedBrand);
   }, [products, selectedBrand]);
 
-  // ✅ SORTED CATEGORIES: Uses the custom Priority sort
   const availableCategories = useMemo(() => {
     const groups = productsInBrand.map(p => p.item_group || "Other");
-    const uniqueGroups = Array.from(new Set(groups));
-    return ["All", ...uniqueGroups.sort(sortCategories)];
+    return ["All", ...Array.from(new Set(groups)).sort(sortCategories)];
   }, [productsInBrand]);
 
   const filteredProducts = useMemo(() => {
@@ -162,7 +149,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
     }
   }, [searchQuery, products, productsInBrand, selectedCategory]);
 
-  // ✅ SORTED GROUPS: Groups on page also follow the priority
   const groupedProducts = useMemo(() => {
     if (selectedCategory !== "All" || searchQuery.trim().length > 0) return null; 
 
@@ -194,21 +180,33 @@ export default function ProductGridClient({ products = [] }: { products: Product
     return () => observer.disconnect();
   }, [groupedProducts]);
 
+  // ✅ HELPER: Get quantity of item in cart
+  const getCartQty = (itemCode: string) => cart.find(i => i.item_code === itemCode)?.qty || 0;
 
-  const handleAdd = (item: Product) => {
+  // ✅ MOQ LOGIC: If item in cart, add what's requested. If not, min 6.
+  const handleAdd = (item: Product, customQty?: number) => {
     setCart(prev => {
       const exists = prev.find(p => p.item_code === item.item_code);
+      // If it exists, add customQty (or 1 if from modal button default). 
+      // If NOT exists, add customQty (or 6 if from modal button default).
+      const defaultAdd = exists ? 1 : 6;
+      const qtyToAdd = customQty || defaultAdd;
+
       return exists 
-        ? prev.map(p => p.item_code === item.item_code ? { ...p, qty: p.qty + 1 } : p) 
-        : [...prev, { ...item, qty: 1 }];
+        ? prev.map(p => p.item_code === item.item_code ? { ...p, qty: p.qty + qtyToAdd } : p) 
+        : [...prev, { ...item, qty: qtyToAdd }]; 
     });
     setSelectedProduct(null);
   };
 
   const updateQty = (code: string, delta: number) => {
-    setCart(prev => prev.map(item => 
-      item.item_code === code ? { ...item, qty: Math.max(0, item.qty + delta) } : item
-    ).filter(i => i.qty > 0));
+    setCart(prev => prev.map(item => {
+        if (item.item_code !== code) return item;
+        
+        const newQty = item.qty + delta;
+        if (newQty < 6) return { ...item, qty: 0 }; 
+        return { ...item, qty: newQty };
+    }).filter(i => i.qty > 0));
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -231,7 +229,10 @@ export default function ProductGridClient({ products = [] }: { products: Product
   };
 
   const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-  const totalPrice = cart.reduce((sum, i) => sum + (i.standard_rate * i.qty), 0);
+  const totalPrice = cart.reduce((sum, i) => {
+      const rate = i.qty > 24 ? i.standard_rate * 0.975 : i.standard_rate;
+      return sum + (rate * i.qty);
+  }, 0);
 
   return (
     <div className="w-full" ref={gridTopRef}>
@@ -278,7 +279,13 @@ export default function ProductGridClient({ products = [] }: { products: Product
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                             {group.items.map(p => (
-                                <ProductCard key={p.item_code} product={p} onAdd={handleAdd} onClick={() => setSelectedProduct(p)} />
+                                <ProductCard 
+                                    key={p.item_code} 
+                                    product={p} 
+                                    cartQty={getCartQty(p.item_code)} // ✅ Pass Cart Qty
+                                    onAdd={handleAdd} 
+                                    onClick={() => setSelectedProduct(p)} 
+                                />
                             ))}
                         </div>
                     </div>
@@ -288,7 +295,13 @@ export default function ProductGridClient({ products = [] }: { products: Product
             /* VIEW 2: FLAT LIST */
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {filteredProducts.slice(0, visibleItemsCount).map(p => (
-                    <ProductCard key={p.item_code} product={p} onAdd={handleAdd} onClick={() => setSelectedProduct(p)} />
+                    <ProductCard 
+                        key={p.item_code} 
+                        product={p} 
+                        cartQty={getCartQty(p.item_code)} // ✅ Pass Cart Qty
+                        onAdd={handleAdd} 
+                        onClick={() => setSelectedProduct(p)} 
+                    />
                 ))}
             </div>
         )}
@@ -331,6 +344,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </button>
       )}
 
+      {/* PRODUCT MODAL */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border/50 flex flex-col max-h-[90vh]">
@@ -342,15 +356,29 @@ export default function ProductGridClient({ products = [] }: { products: Product
                 <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-3">{selectedProduct.brand || "Nandan Traders"}</div>
                 <h2 className="text-xl font-bold text-foreground mb-3 leading-tight">{selectedProduct.item_name}</h2>
                 <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium">{selectedProduct.description}</p>
+                
+                <div className="mb-4 text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-3 rounded-xl border border-green-100 dark:border-green-800">
+                    💡 <strong>Wholesale Deal:</strong> Buy 24 or more to get 2.5% discount!
+                </div>
+
                 <div className="flex items-center justify-between gap-4 p-4 bg-secondary/30 rounded-2xl mt-auto">
                     <div><div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div><div className="text-3xl font-black text-foreground">₹{selectedProduct.standard_rate}</div></div>
-                    <button onClick={() => handleAdd(selectedProduct)} className="flex-1 bg-foreground text-background py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg"><Plus size={20} /> Add to Cart</button>
+                    
+                    {/* ✅ SMART BUTTON in Modal */}
+                    <button 
+                        onClick={() => handleAdd(selectedProduct)} 
+                        className="flex-1 bg-foreground text-background py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg"
+                    >
+                        <Plus size={20} /> 
+                        {getCartQty(selectedProduct.item_code) > 0 ? "Add +1" : "Add 6 (Min)"}
+                    </button>
                 </div>
             </div>
           </div>
         </div>
       )}
 
+      {/* CART DRAWER */}
       {isCartOpen && (
         <>
             <div className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
@@ -365,10 +393,16 @@ export default function ProductGridClient({ products = [] }: { products: Product
                             <div className="flex-1">
                                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
-                                <div className="flex items-center gap-2 mt-2"><span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate}</span><span className="text-xs text-muted-foreground">x {item.qty}</span></div>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate}</span>
+                                    <span className="text-xs text-muted-foreground">x {item.qty}</span>
+                                    {item.qty > 24 && <span className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded ml-auto">2.5% OFF</span>}
+                                </div>
                             </div>
                             <div className="flex flex-col items-end gap-2">
-                                <span className="font-black text-base">₹{(item.standard_rate * item.qty).toLocaleString()}</span>
+                                <span className="font-black text-base">₹{(
+                                    (item.qty > 24 ? item.standard_rate * 0.975 : item.standard_rate) * item.qty
+                                ).toLocaleString()}</span>
                                 <div className="flex items-center gap-1 bg-secondary rounded-lg border border-border p-1"><button onClick={() => updateQty(item.item_code, -1)} className="p-1 hover:bg-background rounded-md"><Minus size={14}/></button><span className="w-6 text-center text-xs font-bold">{item.qty}</span><button onClick={() => updateQty(item.item_code, 1)} className="p-1 hover:bg-background rounded-md"><Plus size={14}/></button></div>
                             </div>
                         </div>

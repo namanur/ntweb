@@ -3,6 +3,10 @@ const { execSync } = require('child_process');
 console.log("\x1b[36m%s\x1b[0m", "🚀 Starting Catalog Deployment...");
 
 try {
+    // 0. NEW: Run the CSV Import Script First!
+    console.log("🔄 Importing data from products.csv...");
+    execSync('node scripts/import_csv.js', { stdio: 'inherit' });
+
     // 1. Add new products and images to Git staging area
     console.log("📸 Staging local data (products.json & images)...");
     execSync('git add src/data/products.json public/images');

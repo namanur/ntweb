@@ -4,9 +4,12 @@
     "item_name": "18INCH FOLDING STOOL",
     "description": "18INCH FOLDING STOOL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 350,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Raj Enterprises",
+    "stock_qty": 100,
+    "threshold": 2,
+    "in_stock": true
   },
   {
     "item_code": "CUTTER-2IN1VEG",
