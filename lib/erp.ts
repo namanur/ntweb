@@ -20,14 +20,15 @@ export interface Product {
   item_code: string;
   item_name: string;
   item_group: string;
-  standard_rate: number;
+  standard_rate: number;   // Public Price (CSV + 7%)
+  wholesale_rate?: number; // Original CSV Price (For future VIP Login)
   brand?: string;
   description?: string;
   stock_uom?: string;
   imageVersion?: number;
   in_stock?: boolean;
-  stock_qty?: number; // <--- ADDED
-  threshold?: number; // <--- ADDED
+  stock_qty?: number;
+  threshold?: number;
 }
 
 export interface OrderItem {
@@ -69,7 +70,7 @@ export async function getProducts(): Promise<Product[]> {
   return [];
 }
 
-// 2. UPDATE PRODUCT (Adjusted for stock fields and auto-OOS logic)
+// 2. UPDATE PRODUCT
 export async function updateProductLocal(itemCode: string, updates: Partial<Product>) {
     try {
         const filePath = path.join(process.cwd(), 'src/data/products.json');
@@ -80,11 +81,9 @@ export async function updateProductLocal(itemCode: string, updates: Partial<Prod
             const updatedProducts = products.map(p => {
                 if (p.item_code === itemCode) {
                     const updated = { ...p, ...updates };
-                    // Ensure numerical fields are parsed as numbers
                     if (updates.stock_qty !== undefined) updated.stock_qty = Number(updates.stock_qty);
                     if (updates.threshold !== undefined) updated.threshold = Number(updates.threshold);
                     
-                    // Auto-OOS logic (Mark out of stock if stock_qty is 0 or less)
                     if (updated.stock_qty !== undefined && updated.stock_qty <= 0) {
                         updated.in_stock = false;
                     }
@@ -144,7 +143,7 @@ export async function saveOrderLocal(order: Order) {
   }
 }
 
-// 5. UPDATE ORDER STATUS (Fixed: Explicit Error on missing file)
+// 5. UPDATE ORDER STATUS
 export async function updateOrderStatus(orderId: string, status: Order["status"]) {
   try {
     const filePath = path.join(process.cwd(), 'src/data/orders.json');
@@ -243,7 +242,7 @@ export async function createSalesOrder(items: OrderItem[], customerData: any) {
 
     const orderData = {
       customer: customerId,
-      company_address: companyAddressName, // Uses the resolved address
+      company_address: companyAddressName,
       docstatus: 0, 
       transaction_date: new Date().toISOString().split('T')[0],
       delivery_date: dateStr,
@@ -259,7 +258,6 @@ export async function createSalesOrder(items: OrderItem[], customerData: any) {
     return response.data.data;
 
   } catch (error: any) {
-    // UPDATED: Use the specific validation error message from Frappe
     const frappeError = error.response?.data?.exc_type === 'ValidationError' 
         ? error.response.data.exception.split('ValidationError: ')[1]
         : error.response?.data?.message || error.message;
@@ -271,7 +269,7 @@ export async function createSalesOrder(items: OrderItem[], customerData: any) {
   }
 }
 
-// 9. DEDUCT INVENTORY ON ORDER (NEW Function)
+// 9. DEDUCT INVENTORY ON ORDER
 export async function deductInventory(items: OrderItem[]) {
     try {
         const filePath = path.join(process.cwd(), 'src/data/products.json');
@@ -287,7 +285,6 @@ export async function deductInventory(items: OrderItem[]) {
                 const newQty = Math.max(0, p.stock_qty - deductionQty);
                 p.stock_qty = newQty;
                 
-                // Auto Mark OOS if deduction takes it to or below zero
                 if (newQty <= 0) {
                     p.in_stock = false;
                 }
