@@ -1,17 +1,11 @@
 "use client";
 import React from "react";
-import { ArrowDown, Star, Sparkles } from "lucide-react";
+// ✅ FIXED: Added 'Check' to imports
+import { ArrowDown, Zap, Star, Check } from "lucide-react";
 
-// 🔧 SETTING: Ensure this image exists in your public folder
-const HERO_IMAGE = "/hero-product.png"; 
+const HERO_IMAGE = "/hero-product.png"; // Replace this with a .gif for motion!
 
 export default function HeroSection() {
-  
-  // 🎨 PREMIUM COLORS (Static & Safe)
-  const bgColor = "#0f172a"; // Dark Slate Blue
-  const accentColor = "#3b82f6"; // Bright Blue
-  const textColor = "#e2e8f0"; // Light Gray
-
   const scrollToCatalog = () => {
     const catalog = document.getElementById("catalog-section");
     if (catalog) {
@@ -20,88 +14,71 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 py-6 bg-gray-50 dark:bg-gray-950 transition-colors">
+    <div className="w-full px-3 sm:px-6 py-4 sm:py-6 bg-background transition-colors">
       
       <div 
-        className="relative rounded-[2.5rem] overflow-hidden shadow-2xl group"
+        className="relative rounded-[2.5rem] overflow-hidden shadow-2xl group min-h-[400px] flex items-center"
         style={{ 
-          background: `linear-gradient(135deg, ${bgColor} 0%, #000000 100%)`,
-          border: `1px solid ${accentColor}40`, 
-          boxShadow: `0 20px 60px -15px ${bgColor}50`
+          background: `radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)`,
         }}
       >
         
-        {/* Abstract Shapes */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-          <div 
-            className="absolute top-10 right-[-20px] w-40 h-12 rounded-full -rotate-12 blur-sm" 
-            style={{ backgroundColor: accentColor }}
-          />
-          <div 
-            className="absolute bottom-10 left-10 w-64 h-16 rounded-full rotate-3 blur-md" 
-            style={{ backgroundColor: "white", opacity: 0.1 }}
-          />
+        {/* Background Effects */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[url('/watermark.svg')] opacity-10 rotate-12 animate-pulse"></div>
         </div>
 
-        {/* Content Container */}
-        <div className="max-w-5xl mx-auto px-6 py-12 sm:py-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="max-w-6xl mx-auto px-6 py-8 relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           
           {/* LEFT: Text Content */}
-          <div className="text-center md:text-left max-w-lg">
-            <div 
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-6 border border-white/10 backdrop-blur-md shadow-sm"
-              style={{ color: textColor, backgroundColor: `${accentColor}20` }}
-            >
-              <Sparkles size={12} /> New Collection
+          <div className="text-center md:text-left order-2 md:order-1">
+            
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.2)] animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <Zap size={14} fill="currentColor" /> Just Launched
             </div>
             
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-white drop-shadow-lg">
-              Kitchenware <br/>
-              <span 
-                  className="text-transparent bg-clip-text"
-                  style={{ 
-                      backgroundImage: `linear-gradient(to right, #ffffff, ${accentColor})` 
-                  }}
-              >
-                Reimagined.
+            <h1 className="text-4xl sm:text-6xl font-black tracking-tighter leading-[0.9] mb-6 text-white drop-shadow-2xl animate-in fade-in slide-in-from-bottom-6 duration-1000">
+              The Ultimate <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                Lunch Box.
               </span>
             </h1>
             
-            <p className="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
-              Premium stainless steel & durable plasticware. 
-              <span className="block mt-1 font-semibold text-white opacity-90">Wholesale rates for your business.</span>
+            <p className="text-zinc-400 text-sm sm:text-base mb-8 leading-relaxed max-w-md mx-auto md:mx-0 font-medium animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
+              Keep your food 100% fresh & hot. Leak-proof technology with premium stainless steel inner. 
             </p>
 
             <button 
               onClick={scrollToCatalog}
-              className="px-8 py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-xl hover:scale-105 hover:shadow-2xl text-gray-900 active:scale-95 bg-white"
+              className="px-8 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] text-black active:scale-95 bg-white mx-auto md:mx-0 animate-in zoom-in duration-500 delay-200"
             >
-              View Catalog <ArrowDown size={16} />
+              Shop Now <ArrowDown size={16} />
             </button>
           </div>
 
-          {/* RIGHT: The Hero Image */}
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center mt-4 md:mt-0">
+          {/* RIGHT: Product Showcase */}
+          <div className="relative order-1 md:order-2 flex justify-center h-[300px] md:h-[450px]">
             
-            {/* Glowing Backlight */}
-            <div 
-              className="absolute inset-0 rounded-full blur-[60px] animate-pulse opacity-40"
-              style={{ backgroundColor: accentColor }}
-            ></div>
+            {/* Glow Behind Product */}
+            <div className="absolute inset-0 bg-blue-500/20 blur-[80px] rounded-full scale-75 animate-pulse"></div>
             
-            {/* The Product Image */}
+            {/* Product Image / GIF */}
             <img 
               src={HERO_IMAGE} 
-              alt="Featured Product" 
-              className="relative z-10 w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 filter hover:brightness-110"
-              onError={(e) => e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/3082/3082060.png"}
+              alt="New Lunchbox" 
+              className="relative z-10 w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform duration-700 ease-out"
             />
 
-            {/* Badge */}
-            <div className="absolute -bottom-2 -right-2 bg-white/95 backdrop-blur text-black font-bold px-4 py-2 rounded-xl shadow-xl transform rotate-2 flex items-center gap-2 border border-gray-100/50 text-xs">
-              <Star size={14} className="text-yellow-500" fill="currentColor" /> 
-              Best Seller
+            {/* Floating Review Badge */}
+            <div className="absolute bottom-10 right-4 sm:right-10 bg-white/10 backdrop-blur-xl border border-white/20 p-3 rounded-2xl flex gap-3 items-center animate-bounce duration-[3000ms]">
+                <div className="bg-green-500 rounded-full p-1.5"><Check size={12} className="text-white" strokeWidth={4} /></div>
+                <div className="text-left">
+                    <div className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider">Durability</div>
+                    <div className="text-xs font-bold text-white">5 Star Rated</div>
+                </div>
             </div>
+
           </div>
 
         </div>

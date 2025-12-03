@@ -4,7 +4,8 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-import { X, Minus, Plus, ShoppingBag, Check, Trash2, MapPin, PlusCircle, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp } from "lucide-react";
+// ✅ FIXED: Added 'PlusCircle' to imports
+import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle } from "lucide-react";
 
 interface CartItem extends Product {
   qty: number;
@@ -92,8 +93,10 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const moreDetailsRef = useRef<HTMLDivElement>(null);
   const gridTopRef = useRef<HTMLDivElement>(null); 
 
-  // --- SCROLL TO TOP STATE ---
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // --- STATE FOR EXPANDED SECTIONS ---
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const [formData, setFormData] = useState({ 
     name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" 
@@ -196,15 +199,11 @@ export default function ProductGridClient({ products = [] }: { products: Product
     return () => observer.disconnect();
   }, [groupedProducts]);
 
-  // ✅ HELPER: Get quantity of item in cart
   const getCartQty = (itemCode: string) => cart.find(i => i.item_code === itemCode)?.qty || 0;
 
-  // ✅ MOQ LOGIC: If item in cart, add what's requested. If not, min 6.
   const handleAdd = (item: Product, customQty?: number) => {
     setCart(prev => {
       const exists = prev.find(p => p.item_code === item.item_code);
-      // If it exists, add customQty (or 1 if from modal button default). 
-      // If NOT exists, add customQty (or 6 if from modal button default).
       const defaultAdd = exists ? 1 : 6;
       const qtyToAdd = customQty || defaultAdd;
 
@@ -218,7 +217,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const updateQty = (code: string, delta: number) => {
     setCart(prev => prev.map(item => {
         if (item.item_code !== code) return item;
-        
         const newQty = item.qty + delta;
         if (newQty < 6) return { ...item, qty: 0 }; 
         return { ...item, qty: newQty };
@@ -230,6 +228,13 @@ export default function ProductGridClient({ products = [] }: { products: Product
     if (/^\d*$/.test(val) && val.length <= 10) {
       setFormData({ ...formData, phone: val });
     }
+  };
+
+  const toggleSection = (sectionName: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionName]: !prev[sectionName]
+    }));
   };
 
   const submitOrder = async (e: React.FormEvent) => {
@@ -249,6 +254,9 @@ export default function ProductGridClient({ products = [] }: { products: Product
       const rate = i.qty > 24 ? i.standard_rate * 0.975 : i.standard_rate;
       return sum + (rate * i.qty);
   }, 0);
+
+  // Constants
+  const SECTION_LIMIT = 20;
 
   return (
     <div className="w-full" ref={gridTopRef}>
@@ -283,38 +291,60 @@ export default function ProductGridClient({ products = [] }: { products: Product
       {/* --- CONTENT AREA --- */}
       <div className="min-h-[50vh] pb-20">
         
-        {/* VIEW 1: GROUPED BY CATEGORY */}
         {groupedProducts ? (
-            <div className="space-y-8">
-                {groupedProducts.slice(0, visibleCategoriesCount).map((group) => (
-                    <div key={group.name} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        <div className="flex items-center gap-4 mb-4 sticky top-[140px] z-10 bg-background/95 backdrop-blur-sm py-2">
-                            <h2 className="text-xl font-black uppercase tracking-tight text-foreground">{group.name}</h2>
-                            <div className="h-px bg-border flex-1"></div>
-                            <span className="text-[10px] font-bold text-muted-foreground bg-secondary px-2 py-1 rounded-md">{group.items.length} Items</span>
+            <div className="space-y-12"> 
+                {groupedProducts.slice(0, visibleCategoriesCount).map((group) => {
+                    const isExpanded = expandedSections[group.name] || false;
+                    const itemsToShow = isExpanded ? group.items : group.items.slice(0, SECTION_LIMIT);
+                    const remainingCount = group.items.length - SECTION_LIMIT;
+                    const hasMore = group.items.length > SECTION_LIMIT;
+
+                    return (
+                        <div key={group.name} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                            
+                            {/* 🔥 SECTION HEADER 🔥 */}
+                            <div className="flex justify-center mb-8 sticky top-[135px] z-10 pointer-events-none">
+                                <div className="bg-foreground text-background px-8 py-3 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-3">
+                                    <h2 className="text-2xl font-black uppercase tracking-tight">{group.name}</h2>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-background/30"></span>
+                                    <span className="text-xs font-bold text-background/70">{group.items.length} Items</span>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                                {itemsToShow.map(p => (
+                                    <ProductCard 
+                                        key={p.item_code} 
+                                        product={p} 
+                                        cartQty={getCartQty(p.item_code)}
+                                        onAdd={handleAdd} 
+                                        onClick={() => setSelectedProduct(p)} 
+                                    />
+                                ))}
+                            </div>
+
+                            {/* 🔥 SHOW MORE BUTTON 🔥 */}
+                            {hasMore && !isExpanded && (
+                                <div className="mt-8 flex justify-center">
+                                    <button 
+                                        onClick={() => toggleSection(group.name)}
+                                        className="bg-secondary hover:bg-zinc-200 dark:hover:bg-zinc-700 text-foreground border border-border px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm flex items-center gap-3 transition-all transform hover:scale-105 shadow-lg active:scale-95"
+                                    >
+                                        Show All {group.name} <span className="bg-foreground text-background text-[10px] px-2 py-0.5 rounded-full font-bold">+{remainingCount}</span> <ChevronDown size={16} />
+                                    </button>
+                                </div>
+                            )}
                         </div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                            {group.items.map(p => (
-                                <ProductCard 
-                                    key={p.item_code} 
-                                    product={p} 
-                                    cartQty={getCartQty(p.item_code)} // ✅ Pass Cart Qty
-                                    onAdd={handleAdd} 
-                                    onClick={() => setSelectedProduct(p)} 
-                                />
-                            ))}
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         ) : (
-            /* VIEW 2: FLAT LIST */
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {filteredProducts.slice(0, visibleItemsCount).map(p => (
                     <ProductCard 
                         key={p.item_code} 
                         product={p} 
-                        cartQty={getCartQty(p.item_code)} // ✅ Pass Cart Qty
+                        cartQty={getCartQty(p.item_code)}
                         onAdd={handleAdd} 
                         onClick={() => setSelectedProduct(p)} 
                     />
@@ -322,7 +352,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
             </div>
         )}
 
-        {/* LOADING SENTINEL */}
         <div ref={loaderRef} className="w-full py-12 flex justify-center items-center">
             {((groupedProducts && visibleCategoriesCount < groupedProducts.length) || 
               (!groupedProducts && visibleItemsCount < filteredProducts.length)) ? (
@@ -344,7 +373,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
         )}
       </div>
 
-      {/* --- FLOATING CART BUTTON --- */}
       {totalItems > 0 && !isCartOpen && (
         <div className="fixed bottom-6 left-4 right-4 z-50 flex justify-center md:hidden">
           <button onClick={() => setIsCartOpen(true)} className="bg-foreground text-background w-full max-w-md px-6 py-4 rounded-2xl shadow-2xl font-bold flex items-center justify-between hover:scale-[1.03] transition-transform active:scale-95 border border-border/50 backdrop-blur-md">
@@ -360,7 +388,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </button>
       )}
 
-      {/* --- SCROLL TO TOP BUTTON --- */}
       {showScrollTop && (
         <button 
           onClick={scrollToTop} 
@@ -371,7 +398,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </button>
       )}
 
-      {/* PRODUCT MODAL */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border/50 flex flex-col max-h-[90vh]">
@@ -383,22 +409,17 @@ export default function ProductGridClient({ products = [] }: { products: Product
                 <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-3">{selectedProduct.brand || "Nandan Traders"}</div>
                 <h2 className="text-xl font-bold text-foreground mb-3 leading-tight">{selectedProduct.item_name}</h2>
                 <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium">{selectedProduct.description}</p>
-                
                 <div className="mb-4 text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-3 rounded-xl border border-green-100 dark:border-green-800">
                     💡 <strong>Wholesale Deal:</strong> Buy 24 or more to get 2.5% discount!
                 </div>
-
                 <div className="flex items-center justify-between gap-4 p-4 bg-secondary/30 rounded-2xl mt-auto">
                     <div>
                       <div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
                       <div className="text-3xl font-black text-foreground">
                         ₹{selectedProduct.standard_rate}
-                        {/* ✨ UPDATED: Added Unit here */}
                         {selectedProduct.stock_uom && <span className="text-lg text-muted-foreground font-medium"> / {selectedProduct.stock_uom}</span>}
                       </div>
                     </div>
-                    
-                    {/* ✅ SMART BUTTON in Modal */}
                     <button 
                         onClick={() => handleAdd(selectedProduct)} 
                         className="flex-1 bg-foreground text-background py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg"
@@ -412,7 +433,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </div>
       )}
 
-      {/* CART DRAWER */}
       {isCartOpen && (
         <>
             <div className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
@@ -428,7 +448,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
                                 <div className="flex items-center gap-2 mt-2">
-                                    {/* ✨ UPDATED: Added Unit here */}
                                     <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">
                                       ₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}
                                     </span>
