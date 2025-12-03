@@ -20,7 +20,7 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
 
   // ✅ AUTO-UPDATE: When it enters cart, switch input to 1 immediately
   useEffect(() => {
-    setQty(isInCart ? 1 : 6); // Fixed typo here
+    setQty(isInCart ? 1 : 6); 
   }, [isInCart]);
 
   const getImageUrl = () => {
@@ -83,8 +83,10 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
         <div className="mt-3 flex items-center justify-between gap-2">
           <div className="flex flex-col">
             <span className="text-[10px] text-muted-foreground uppercase font-semibold">Wholesale</span>
-            <span className="text-base font-black text-foreground tracking-tight">
+            <span className="text-base font-black text-foreground tracking-tight flex items-baseline gap-1">
               ₹{product.standard_rate.toLocaleString()}
+              {/* ✨ ADDED UOM HERE */}
+              {product.stock_uom && <span className="text-[10px] font-medium text-muted-foreground">/ {product.stock_uom}</span>}
             </span>
           </div>
 

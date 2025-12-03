@@ -4,7 +4,7 @@
     "item_name": "18INCH FOLDING STOOL",
     "description": "18INCH FOLDING STOOL",
     "stock_uom": "PCS",
-    "standard_rate": 400,
+    "standard_rate": 260,
     "item_group": "Household",
     "brand": "Raj Enterprises"
   },
@@ -13,7 +13,7 @@
     "item_name": "2 IN 1 VEG CUTTER",
     "description": "2 IN 1 VEG CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 39,
+    "standard_rate": 36,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -22,7 +22,7 @@
     "item_name": "2PCS DINING SET",
     "description": "2PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 50,
+    "standard_rate": 49.5,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -31,7 +31,7 @@
     "item_name": "3 PCS SQUARE STORAGE CONTAINER",
     "description": "3 PCS SQUARE STORAGE CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 140,
+    "standard_rate": 116.2,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -40,7 +40,7 @@
     "item_name": "3 PCS STORAGE CONTAINER",
     "description": "3 PCS STORAGE CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 140,
+    "standard_rate": 130.5,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -49,7 +49,7 @@
     "item_name": "3IN1 DISH RACK",
     "description": "3IN1 DISH RACK",
     "stock_uom": "PCS",
-    "standard_rate": 170,
+    "standard_rate": 158.3,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -58,7 +58,7 @@
     "item_name": "3IN1 SOAP DISPENSER",
     "description": "3IN1 SOAP DISPENSER",
     "stock_uom": "PCS",
-    "standard_rate": 70,
+    "standard_rate": 111.5,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -67,7 +67,7 @@
     "item_name": "3PCS DINING SET",
     "description": "3PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 90,
+    "standard_rate": 65.3,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -76,7 +76,7 @@
     "item_name": "4 LAYER SHOES RACK",
     "description": "4 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 200,
+    "standard_rate": 206.7,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -85,7 +85,7 @@
     "item_name": "4IN 1 SLICER & GRATER",
     "description": "4IN 1 SLICER & GRATER",
     "stock_uom": "PCS",
-    "standard_rate": 65,
+    "standard_rate": 65.47,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -94,7 +94,7 @@
     "item_name": "4PCS DINING SET SQURE",
     "description": "4PCS DINING SET SQURE",
     "stock_uom": "PCS",
-    "standard_rate": 130,
+    "standard_rate": 93.5,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -103,7 +103,7 @@
     "item_name": "5 LAYER SHOES RANK",
     "description": "5 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 249,
+    "standard_rate": 244.44,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -112,7 +112,7 @@
     "item_name": "6 IN 1 SLICER",
     "description": "6 IN 1 SLICER",
     "stock_uom": "PCS",
-    "standard_rate": 60,
+    "standard_rate": 70,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -121,7 +121,7 @@
     "item_name": "6 LAYER SHOES RANK",
     "description": "6 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 300,
+    "standard_rate": 275,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -130,7 +130,7 @@
     "item_name": "650ML PUSH CHOPPER",
     "description": "650ML PUSH CHOPPER",
     "stock_uom": "PCS",
-    "standard_rate": 110,
+    "standard_rate": 80,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -139,7 +139,7 @@
     "item_name": "700ML PUSH CHOPPER heavy",
     "description": "700ML PUSH CHOPPER heavy",
     "stock_uom": "PCS",
-    "standard_rate": 40,
+    "standard_rate": 110.58,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -184,7 +184,7 @@
     "item_name": "APPLE CUTTER",
     "description": "APPLE CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 21.77,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -193,7 +193,7 @@
     "item_name": "Apple Cutter S.S. - [Blister Pack]",
     "description": "Apple Cutter S.S. - [Blister Pack]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 52.26,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -220,7 +220,7 @@
     "item_name": "BIG SPATULA & BRUSH",
     "description": "BIG SPATULA & BRUSH",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 33.4,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -238,7 +238,7 @@
     "item_name": "BLACK PRINT WATER BOTTLE",
     "description": "BLACK PRINT WATER BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42.09,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -256,7 +256,7 @@
     "item_name": "Bottle 03 Sparkle (3Pcs Set)",
     "description": "Bottle 03 Sparkle (3Pcs Set)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 143.7,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -265,7 +265,7 @@
     "item_name": "Bottle 1100ml (Box Packing)",
     "description": "Bottle 1100ml (Box Packing)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 108.6,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -319,7 +319,7 @@
     "item_name": "BOTTLE FORSTI",
     "description": "BOTTLE FORSTI",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 34.84,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -337,7 +337,7 @@
     "item_name": "Bottle Ground (3pcs Set) [B]",
     "description": "Bottle Ground (3pcs Set) [B]",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 161.11,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -364,7 +364,7 @@
     "item_name": "Bottle Line Diamond Cap Bottle 1000ml (3pcs Box)",
     "description": "Bottle Line Diamond Cap Bottle 1000ml (3pcs Box)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 130.62,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -409,7 +409,7 @@
     "item_name": "Bottle S.S. Sipper Cap Multi Utility - 900ML",
     "description": "Bottle S.S. Sipper Cap Multi Utility - 900ML",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 140.4,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -436,7 +436,7 @@
     "item_name": "BOTTLE SS PREMIUM",
     "description": "BOTTLE SS PREMIUM",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 152.39,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -445,7 +445,7 @@
     "item_name": "BOTTLE STAINLESS STEEL",
     "description": "BOTTLE STAINLESS STEEL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 123.37,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -472,7 +472,7 @@
     "item_name": "Bread Knife Special",
     "description": "Bread Knife Special",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 53.7,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -490,7 +490,7 @@
     "item_name": "CAMERA LENS COFFEE MUG",
     "description": "CAMERA LENS COFFEE MUG",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 142.59,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -499,7 +499,7 @@
     "item_name": "CANDY BOX",
     "description": "CANDY BOX",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 83,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -508,7 +508,7 @@
     "item_name": "CELEBRATION TRAY",
     "description": "CELEBRATION TRAY",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 246.5,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -535,7 +535,7 @@
     "item_name": "Cheese Grater SS",
     "description": "Cheese Grater SS",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 7.25,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -544,7 +544,7 @@
     "item_name": "Chilly Cutter S.S. Heavy 310g",
     "description": "Chilly Cutter S.S. Heavy 310g",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 130.62,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -553,7 +553,7 @@
     "item_name": "Chopper Easy 700ml Heavy",
     "description": "Chopper Easy 700ml Heavy",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 94.35,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -562,7 +562,7 @@
     "item_name": "CHOPPING BOARD COLOR LARGE",
     "description": "CHOPPING BOARD COLOR LARGE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 99.25,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -571,7 +571,7 @@
     "item_name": "CHOPPING BOARD COLOR MEDIUM",
     "description": "CHOPPING BOARD COLOR MEDIUM",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 81,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -589,7 +589,7 @@
     "item_name": "Chopping Board LARGE Plastic 15mm",
     "description": "Chopping Board LARGE Plastic 15mm",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 413.65,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -616,7 +616,7 @@
     "item_name": "Chopping Board WHITE LARGE",
     "description": "Chopping Board WHITE LARGE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 148.04,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -652,7 +652,7 @@
     "item_name": "CLEAR GLASS",
     "description": "CLEAR GLASS",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 92.88,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -661,7 +661,7 @@
     "item_name": "COCONUT OPENER BIG",
     "description": "COCONUT OPENER BIG",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 32,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -670,7 +670,7 @@
     "item_name": "COCONUT OPENER MINI",
     "description": "COCONUT OPENER MINI",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 30,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -679,7 +679,7 @@
     "item_name": "coffee mug",
     "description": "coffee mug",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 66.93,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -697,7 +697,7 @@
     "item_name": "COOL AND COOL BOTTLE",
     "description": "COOL AND COOL BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 108.7,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -715,7 +715,7 @@
     "item_name": "CRESTA DRY FRUIT BOX",
     "description": "CRESTA DRY FRUIT BOX",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 116.5,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -724,7 +724,7 @@
     "item_name": "Crystal Diamond Bottle 06 (3pcs Set)",
     "description": "Crystal Diamond Bottle 06 (3pcs Set)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 145.5,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -733,7 +733,7 @@
     "item_name": "D.C Cute Knife 8",
     "description": "D.C Cute Knife 8",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 26.12,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -742,7 +742,7 @@
     "item_name": "D.C Cute Knife 9",
     "description": "D.C Cute Knife 9",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 30.5,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -751,7 +751,7 @@
     "item_name": "D.C. 3pcs Knife Set",
     "description": "D.C. 3pcs Knife Set",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 68.2,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -760,7 +760,7 @@
     "item_name": "DEER HEAD",
     "description": "DEER HEAD",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 30,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -769,7 +769,7 @@
     "item_name": "DELUXE TEA STAINER",
     "description": "DELUXE TEA STAINER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -778,7 +778,7 @@
     "item_name": "DIAMOND CONTAINER",
     "description": "DIAMOND CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 90,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -823,7 +823,7 @@
     "item_name": "DOOR GUARD (127)",
     "description": "DOOR GUARD (127)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 17.46,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -832,7 +832,7 @@
     "item_name": "DRY FRUIT BOX",
     "description": "DRY FRUIT BOX",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 58.5,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -841,7 +841,7 @@
     "item_name": "DRY FRUIT CUTTER",
     "description": "DRY FRUIT CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 47,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -859,7 +859,7 @@
     "item_name": "DUBBLE DECKER LUNCH BOX",
     "description": "DUBBLE DECKER LUNCH BOX",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 114,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -868,7 +868,7 @@
     "item_name": "Duster Cleaning Kitchen/ Floor 16*16",
     "description": "Duster Cleaning Kitchen/ Floor 16*16",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 50.79,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -877,7 +877,7 @@
     "item_name": "Dustpan Plastic BIG Size (paan) 1 Dozen",
     "description": "Dustpan Plastic BIG Size (paan) 1 Dozen",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 177.08,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -886,7 +886,7 @@
     "item_name": "Excellent Peeling Knife",
     "description": "Excellent Peeling Knife",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 101.65,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -895,7 +895,7 @@
     "item_name": "Excellent Peeling Peeler",
     "description": "Excellent Peeling Peeler",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 101.6,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -904,7 +904,7 @@
     "item_name": "EXPRESS LIGHTER",
     "description": "EXPRESS LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 37.83,
     "item_group": "Gas Accessories",
     "brand": "Raj Enterprises"
   },
@@ -922,7 +922,7 @@
     "item_name": "FIGO LIGHTER",
     "description": "FIGO LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 82.73,
     "item_group": "Gas Accessories",
     "brand": "Raj Enterprises"
   },
@@ -931,7 +931,7 @@
     "item_name": "FOLDING STOOL 12INCH",
     "description": "FOLDING STOOL 12INCH",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 195,
     "item_group": "Household",
     "brand": "Raj Enterprises"
   },
@@ -985,7 +985,7 @@
     "item_name": "GUJIYA MAKER",
     "description": "GUJIYA MAKER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 61,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -994,7 +994,7 @@
     "item_name": "Gym Shaker Bottle 1500ml",
     "description": "Gym Shaker Bottle 1500ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 82.74,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -1003,7 +1003,7 @@
     "item_name": "Gym Shaker Bottle With Ball 700ml",
     "description": "Gym Shaker Bottle With Ball 700ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 55.16,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -1012,7 +1012,7 @@
     "item_name": "HAPPY TIME MUG",
     "description": "HAPPY TIME MUG",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 116.12,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -1021,7 +1021,7 @@
     "item_name": "HEAVY LIGHTER WITH KNIFE",
     "description": "HEAVY LIGHTER WITH KNIFE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 34.8,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1048,7 +1048,7 @@
     "item_name": "Ice Candy Maker [6pcs Set]",
     "description": "Ice Candy Maker [6pcs Set]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 68.7,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1057,7 +1057,7 @@
     "item_name": "Ice Candy Round",
     "description": "Ice Candy Round",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 53.7,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1102,7 +1102,7 @@
     "item_name": "JUICY GLASS",
     "description": "JUICY GLASS",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 92.88,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -1120,7 +1120,7 @@
     "item_name": "JUMBO KEY STAND",
     "description": "JUMBO KEY STAND",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 91.3,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -1129,7 +1129,7 @@
     "item_name": "KEY HOUSE",
     "description": "KEY HOUSE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 92.88,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1138,7 +1138,7 @@
     "item_name": "Knife Apple Lazar",
     "description": "Knife Apple Lazar",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 30.47,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1147,7 +1147,7 @@
     "item_name": "Knife Apple Plain",
     "description": "Knife Apple Plain",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 30.5,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1156,7 +1156,7 @@
     "item_name": "Knife Chef Big",
     "description": "Knife Chef Big",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 140.7,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1183,7 +1183,7 @@
     "item_name": "Knife Wooden Handle (12 pcs)",
     "description": "Knife Wooden Handle (12 pcs)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 50.79,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1192,7 +1192,7 @@
     "item_name": "Knife-21",
     "description": "Knife-21",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 161.5,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1201,7 +1201,7 @@
     "item_name": "Knife-786",
     "description": "Knife-786",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 100.2,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -1210,7 +1210,7 @@
     "item_name": "Kulfi Maker [Box Pack]",
     "description": "Kulfi Maker [Box Pack]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 59.51,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1219,7 +1219,7 @@
     "item_name": "L Shape Masher",
     "description": "L Shape Masher",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 71.11,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1228,7 +1228,7 @@
     "item_name": "LEMON SQUEEZER ALMUNIUM BLACK",
     "description": "LEMON SQUEEZER ALMUNIUM BLACK",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 130.6,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1237,7 +1237,7 @@
     "item_name": "LEMON SQUEEZER ALUMINIUM SILVER",
     "description": "LEMON SQUEEZER ALUMINIUM SILVER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 130.62,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1246,7 +1246,7 @@
     "item_name": "Lemon Squeezer Aluminum (W)",
     "description": "Lemon Squeezer Aluminum (W)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 111.75,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1264,7 +1264,7 @@
     "item_name": "Lemon Squeezer SS Heavy",
     "description": "Lemon Squeezer SS Heavy",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 87.08,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1273,7 +1273,7 @@
     "item_name": "Lighter 12 Aani / 1 Feet plastic grip",
     "description": "Lighter 12 Aani / 1 Feet plastic grip",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 52.26,
     "item_group": "Gas Accessories",
     "brand": "Raj Enterprises"
   },
@@ -1282,7 +1282,7 @@
     "item_name": "Lighter Black EAGLE 12mm (Box pack)",
     "description": "Lighter Black EAGLE 12mm (Box pack)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 38.29,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1291,7 +1291,7 @@
     "item_name": "Lighter S.S",
     "description": "Lighter S.S",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 34.84,
     "item_group": "Gas Accessories",
     "brand": "Raj Enterprises"
   },
@@ -1300,7 +1300,7 @@
     "item_name": "Lunch Box 3 Compartments",
     "description": "Lunch Box 3 Compartments",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 442,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1309,7 +1309,7 @@
     "item_name": "LUNCH BOX CLASSIc",
     "description": "LUNCH BOX CLASSIc",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 68,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1318,7 +1318,7 @@
     "item_name": "Lunch Box Delicious (Polypack)",
     "description": "Lunch Box Delicious (Polypack)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 81.6,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1327,7 +1327,7 @@
     "item_name": "Lunch Box Divine(Plain) (Box Pack)",
     "description": "Lunch Box Divine(Plain) (Box Pack)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 62.4,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1336,7 +1336,7 @@
     "item_name": "LUNCH BOX EASY",
     "description": "LUNCH BOX EASY",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42.09,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1345,7 +1345,7 @@
     "item_name": "Lunch Box Froggy",
     "description": "Lunch Box Froggy",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 116.12,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1354,7 +1354,7 @@
     "item_name": "Lunch Box Kids Healthy",
     "description": "Lunch Box Kids Healthy",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 100.4,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1363,7 +1363,7 @@
     "item_name": "Lunch Box Kids Printed(Box Pack)",
     "description": "Lunch Box Kids Printed(Box Pack)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 65.3,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1372,7 +1372,7 @@
     "item_name": "LUNCH BOX LOCK & LOCK TRASNPARENT",
     "description": "LUNCH BOX LOCK & LOCK TRASNPARENT",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 65.3,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1381,7 +1381,7 @@
     "item_name": "Lunch Box Locket",
     "description": "Lunch Box Locket",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 58.4,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1390,7 +1390,7 @@
     "item_name": "Lunch Box Printed With locket(Best)",
     "description": "Lunch Box Printed With locket(Best)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 63.8,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1417,7 +1417,7 @@
     "item_name": "Lunch Box S.S. Flipto  (Prexo)",
     "description": "Lunch Box S.S. Flipto  (Prexo)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 420,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1444,7 +1444,7 @@
     "item_name": "Lunch Box Square 2 Deck  Printed Locket (Poly Pack)",
     "description": "Lunch Box Square 2 Deck  Printed Locket (Poly Pack)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 75.4,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1471,7 +1471,7 @@
     "item_name": "LUNCH BOX TOKYO",
     "description": "LUNCH BOX TOKYO",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 111.3,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1480,7 +1480,7 @@
     "item_name": "LUNCHEX Kids Lunch Box",
     "description": "LUNCHEX Kids Lunch Box",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 79.83,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -1489,7 +1489,7 @@
     "item_name": "MAGIC MASALA BOX",
     "description": "MAGIC MASALA BOX",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 66.94,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1498,7 +1498,7 @@
     "item_name": "MASALA & DRYFRUIT Atlantic",
     "description": "MASALA & DRYFRUIT Atlantic",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 84.18,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1525,7 +1525,7 @@
     "item_name": "Masala Box King",
     "description": "Masala Box King",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 65.31,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1534,7 +1534,7 @@
     "item_name": "MASALA BOX SEQ. FIRST",
     "description": "MASALA BOX SEQ. FIRST",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 333.4,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1543,7 +1543,7 @@
     "item_name": "MASALA BOX SEQ. mini",
     "description": "MASALA BOX SEQ. mini",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 139.34,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1552,7 +1552,7 @@
     "item_name": "Masala Box SHAGUN",
     "description": "Masala Box SHAGUN",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 126.27,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1561,7 +1561,7 @@
     "item_name": "Masala Box Super King",
     "description": "Masala Box Super King",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 79.83,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -1570,7 +1570,7 @@
     "item_name": "Masher Polygon (J.K)",
     "description": "Masher Polygon (J.K)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 162.56,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1588,7 +1588,7 @@
     "item_name": "Masher S.S Handle",
     "description": "Masher S.S Handle",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 91.43,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1597,7 +1597,7 @@
     "item_name": "MASHER S.S.",
     "description": "MASHER S.S.",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 79.83,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1615,7 +1615,7 @@
     "item_name": "Masher Wooden Handle",
     "description": "Masher Wooden Handle",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 63.86,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1624,7 +1624,7 @@
     "item_name": "MATKA STAND",
     "description": "MATKA STAND",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 26.12,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -1633,7 +1633,7 @@
     "item_name": "Matka Stand [Pot]",
     "description": "Matka Stand [Pot]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 53.71,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -1876,7 +1876,7 @@
     "item_name": "Mini Mobile Stand",
     "description": "Mini Mobile Stand",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 0.654,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -1885,7 +1885,7 @@
     "item_name": "Mobile Ok Stand",
     "description": "Mobile Ok Stand",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 16.7,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -1903,7 +1903,7 @@
     "item_name": "Mug Chai Steel Cup [6pcs Set]",
     "description": "Mug Chai Steel Cup [6pcs Set]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 264.16,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -1912,7 +1912,7 @@
     "item_name": "MUG VOLVO 1000 ML FIRST",
     "description": "MUG VOLVO 1000 ML FIRST",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 127.7,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -1921,7 +1921,7 @@
     "item_name": "MUG VOLVO 1000 ML MILKY",
     "description": "MUG VOLVO 1000 ML MILKY",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 101.6,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -1930,7 +1930,7 @@
     "item_name": "MUG VOLVO 750 ML MILKY",
     "description": "MUG VOLVO 750 ML MILKY",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 87.08,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -1957,7 +1957,7 @@
     "item_name": "NICER DICER 12 IN 1",
     "description": "NICER DICER 12 IN 1",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 305,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1966,7 +1966,7 @@
     "item_name": "Oil Brush Silicone [Length 8Inch(240mm)]",
     "description": "Oil Brush Silicone [Length 8Inch(240mm)]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 17.4,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1975,7 +1975,7 @@
     "item_name": "OIL DISPENSER 1000ML",
     "description": "OIL DISPENSER 1000ML",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 53.4,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -1984,7 +1984,7 @@
     "item_name": "Oil Dispenser Bottle 500ml",
     "description": "Oil Dispenser Bottle 500ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42.09,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -1993,7 +1993,7 @@
     "item_name": "OIL SPATULA",
     "description": "OIL SPATULA",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 13.1,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2011,7 +2011,7 @@
     "item_name": "OWL SHAPE PLATE (6 PIC SET)",
     "description": "OWL SHAPE PLATE (6 PIC SET)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 91.6,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -2020,7 +2020,7 @@
     "item_name": "Peeler Classic B029",
     "description": "Peeler Classic B029",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 37.8,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2029,7 +2029,7 @@
     "item_name": "Peeler Colorful",
     "description": "Peeler Colorful",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 75.4,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2038,7 +2038,7 @@
     "item_name": "PIPE MASHER",
     "description": "PIPE MASHER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 31.94,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2065,7 +2065,7 @@
     "item_name": "Polpat Steel Base With bellan",
     "description": "Polpat Steel Base With bellan",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 203.2,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2074,7 +2074,7 @@
     "item_name": "POP COFFEE MUG",
     "description": "POP COFFEE MUG",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 78,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -2083,7 +2083,7 @@
     "item_name": "POTATO CUTTER",
     "description": "POTATO CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 150,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2101,7 +2101,7 @@
     "item_name": "Power Free Hand Beater - jumbo",
     "description": "Power Free Hand Beater - jumbo",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 94.35,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -2110,7 +2110,7 @@
     "item_name": "Power Free Hand Beater -Z010",
     "description": "Power Free Hand Beater -Z010",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 50.79,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -2119,7 +2119,7 @@
     "item_name": "PREMIUM MASALA BOX",
     "description": "PREMIUM MASALA BOX",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 104.5,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -2128,7 +2128,7 @@
     "item_name": "PUSH CHOPPER 1000ML",
     "description": "PUSH CHOPPER 1000ML",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 137.89,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -2155,7 +2155,7 @@
     "item_name": "QUICK CHOPPER 1000ML",
     "description": "QUICK CHOPPER 1000ML",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 90,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -2164,7 +2164,7 @@
     "item_name": "Quick Chopper 450ml",
     "description": "Quick Chopper 450ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 89.98,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -2173,7 +2173,7 @@
     "item_name": "REAL PUSH CHOOPER 600ML",
     "description": "REAL PUSH CHOOPER 600ML",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 96,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2182,7 +2182,7 @@
     "item_name": "Ring Peeler SS-12 pcs",
     "description": "Ring Peeler SS-12 pcs",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 72.58,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2209,7 +2209,7 @@
     "item_name": "ROTATION TRAY",
     "description": "ROTATION TRAY",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 61.11,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -2218,7 +2218,7 @@
     "item_name": "ROUND ALL IN ONE",
     "description": "ROUND ALL IN ONE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 56.6,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2227,7 +2227,7 @@
     "item_name": "ROUND MASALA BOX",
     "description": "ROUND MASALA BOX",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 59,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -2281,7 +2281,7 @@
     "item_name": "S.S. Khalbatta No.04 1311gm",
     "description": "S.S. Khalbatta No.04 1311gm",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 306.25,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2299,7 +2299,7 @@
     "item_name": "Serrated Knife",
     "description": "Serrated Knife",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 243.8,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2335,7 +2335,7 @@
     "item_name": "Simple Design Bottle 15 [3pcs Set]",
     "description": "Simple Design Bottle 15 [3pcs Set]",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 159.6,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -2362,7 +2362,7 @@
     "item_name": "SMALL SPATULA",
     "description": "SMALL SPATULA",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 10.2,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2371,7 +2371,7 @@
     "item_name": "SMART GAS TROLLEY HEAVY",
     "description": "SMART GAS TROLLEY HEAVY",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 86,
     "item_group": "Gas Accessories",
     "brand": "Raj Enterprises"
   },
@@ -2380,7 +2380,7 @@
     "item_name": "SOAP CASE BIG KHATLA",
     "description": "SOAP CASE BIG KHATLA",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 139.34,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2407,7 +2407,7 @@
     "item_name": "Spring Rawai S.S delux",
     "description": "Spring Rawai S.S delux",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 46.44,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2416,7 +2416,7 @@
     "item_name": "Spring Rawai S.S SUPRIMO",
     "description": "Spring Rawai S.S SUPRIMO",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 31.94,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2425,7 +2425,7 @@
     "item_name": "SQUARE ALL IN ONE",
     "description": "SQUARE ALL IN ONE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 56.7,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2434,7 +2434,7 @@
     "item_name": "SQUARE BOTTLE",
     "description": "SQUARE BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42.09,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -2443,7 +2443,7 @@
     "item_name": "SQUARE MASALA BOX",
     "description": "SQUARE MASALA BOX",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 58.2,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -2452,7 +2452,7 @@
     "item_name": "Square With SS Cap Bottle 01 (3pcs Set)",
     "description": "Square With SS Cap Bottle 01 (3pcs Set)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 143,
     "item_group": "Bottle",
     "brand": "Raj Enterprises"
   },
@@ -2461,7 +2461,7 @@
     "item_name": "SS JALIROUND JUICER (01)",
     "description": "SS JALIROUND JUICER (01)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 186.24,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2470,7 +2470,7 @@
     "item_name": "SS PEELER",
     "description": "SS PEELER",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 107.4,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2488,7 +2488,7 @@
     "item_name": "SS PIZZA CUTTER",
     "description": "SS PIZZA CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 47,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2497,7 +2497,7 @@
     "item_name": "SS plain Knife",
     "description": "SS plain Knife",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 107.4,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2551,7 +2551,7 @@
     "item_name": "Steelo S.S. Lunch Box  (Prexo)",
     "description": "Steelo S.S. Lunch Box  (Prexo)",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 401.5,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -2560,7 +2560,7 @@
     "item_name": "SUMO 2 LAYER STEEL LUNCH",
     "description": "SUMO 2 LAYER STEEL LUNCH",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 202.3,
     "item_group": "Lunch Box",
     "brand": "Raj Enterprises"
   },
@@ -2569,7 +2569,7 @@
     "item_name": "Sumo Peeler",
     "description": "Sumo Peeler",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 52.2,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2578,7 +2578,7 @@
     "item_name": "SUPER KNIFE",
     "description": "SUPER KNIFE",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 52.26,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -2686,7 +2686,7 @@
     "item_name": "TEA MESH STRAINER NO.2",
     "description": "TEA MESH STRAINER NO.2",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 50.79,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -2713,7 +2713,7 @@
     "item_name": "Tea Strainer S.S. ULTRA",
     "description": "Tea Strainer S.S. ULTRA",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 60.92,
     "item_group": "Cups & Mugs",
     "brand": "Raj Enterprises"
   },
@@ -2722,7 +2722,7 @@
     "item_name": "TEDDY HOUSE",
     "description": "TEDDY HOUSE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 69.9,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -2749,7 +2749,7 @@
     "item_name": "Tibros Ceramic Refresh MUG Set of 6 pcs",
     "description": "Tibros Ceramic Refresh MUG Set of 6 pcs",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 124.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2758,7 +2758,7 @@
     "item_name": "TIBROS- Cermic MUG TREE COLOR TREE",
     "description": "TIBROS- Cermic MUG TREE COLOR TREE",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 254.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2821,7 +2821,7 @@
     "item_name": "TIBROS- MUG WITH TRAY",
     "description": "TIBROS- MUG WITH TRAY",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 176.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2848,7 +2848,7 @@
     "item_name": "TIBROS TB Mug - Studio Series - small 4 pcs set",
     "description": "TIBROS TB Mug - Studio Series - small 4 pcs set",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 128.83059,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2857,7 +2857,7 @@
     "item_name": "TIBROS TB Mug - Studio Series - small 6pcs set",
     "description": "TIBROS TB Mug - Studio Series - small 6pcs set",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 156,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2866,7 +2866,7 @@
     "item_name": "TIBROS Tb- New Gold Line Mug 6pcs set",
     "description": "TIBROS Tb- New Gold Line Mug 6pcs set",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 169,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2875,7 +2875,7 @@
     "item_name": "TIBROS TB Stoneware 1110 Mug - 1 Pcs",
     "description": "TIBROS TB Stoneware 1110 Mug - 1 Pcs",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 59.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2884,7 +2884,7 @@
     "item_name": "TIBROS TB Stoneware 1110 Sparkle Mug -1 Pcs",
     "description": "TIBROS TB Stoneware 1110 Sparkle Mug -1 Pcs",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 59.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2893,7 +2893,7 @@
     "item_name": "TIBROS TB Stoneware 1143 Mug 1pcs",
     "description": "TIBROS TB Stoneware 1143 Mug 1pcs",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 70.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2902,7 +2902,7 @@
     "item_name": "TIBROS Tb-Arabica Mug-Black",
     "description": "TIBROS Tb-Arabica Mug-Black",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 122.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2911,7 +2911,7 @@
     "item_name": "TIBROS Tb-Splash Series Mug",
     "description": "TIBROS Tb-Splash Series Mug",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 117.06471,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2929,7 +2929,7 @@
     "item_name": "TIBROS-TB- MUG CONE",
     "description": "TIBROS-TB- MUG CONE",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 122.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2938,7 +2938,7 @@
     "item_name": "TIBROS-TB- Procelain 28CL",
     "description": "TIBROS-TB- Procelain 28CL",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 108.68,
     "item_group": "Crockery",
     "brand": "Tibros"
   },
@@ -2947,7 +2947,7 @@
     "item_name": "TIBROS-TB- Procelain Mug Java",
     "description": "TIBROS-TB- Procelain Mug Java",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 122.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
   },
@@ -2983,7 +2983,7 @@
     "item_name": "Tong S.S. No.3 (135g)",
     "description": "Tong S.S. No.3 (135g)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42.09,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -3010,7 +3010,7 @@
     "item_name": "WALL MOUNTAIN STAND",
     "description": "WALL MOUNTAIN STAND",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 95,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -3019,7 +3019,7 @@
     "item_name": "WASHING MACHINE STAND",
     "description": "WASHING MACHINE STAND",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -3028,7 +3028,7 @@
     "item_name": "WELCOME TRAY SET BLACK",
     "description": "WELCOME TRAY SET BLACK",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 174,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -3037,7 +3037,7 @@
     "item_name": "WELCOME TRAY SET WHITE",
     "description": "WELCOME TRAY SET WHITE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 163,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -3046,7 +3046,7 @@
     "item_name": "Whisk Full S.S. No.2 ( 10 inch)",
     "description": "Whisk Full S.S. No.2 ( 10 inch)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 39.19,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -3055,7 +3055,7 @@
     "item_name": "Whisk Full S.S. No.3 (11 inch)",
     "description": "Whisk Full S.S. No.3 (11 inch)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 43.54,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -3082,7 +3082,7 @@
     "item_name": "Whisk Plastic Handle No.2",
     "description": "Whisk Plastic Handle No.2",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 40.64,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -3118,7 +3118,7 @@
     "item_name": "WOODEN MASHER",
     "description": "WOODEN MASHER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 33.4,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -3127,7 +3127,7 @@
     "item_name": "Wooden MDF Chopping",
     "description": "Wooden MDF Chopping",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 123.27,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -3154,7 +3154,7 @@
     "item_name": "X peeler",
     "description": "X peeler",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 72.58,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -3163,7 +3163,7 @@
     "item_name": "X- Vegetable Knife",
     "description": "X- Vegetable Knife",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 72.58,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -3172,7 +3172,7 @@
     "item_name": "ZEBRA KNIFE (PLAIN)",
     "description": "ZEBRA KNIFE (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 89.98,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },

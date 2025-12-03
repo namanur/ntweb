@@ -389,7 +389,14 @@ export default function ProductGridClient({ products = [] }: { products: Product
                 </div>
 
                 <div className="flex items-center justify-between gap-4 p-4 bg-secondary/30 rounded-2xl mt-auto">
-                    <div><div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div><div className="text-3xl font-black text-foreground">₹{selectedProduct.standard_rate}</div></div>
+                    <div>
+                      <div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
+                      <div className="text-3xl font-black text-foreground">
+                        ₹{selectedProduct.standard_rate}
+                        {/* ✨ UPDATED: Added Unit here */}
+                        {selectedProduct.stock_uom && <span className="text-lg text-muted-foreground font-medium"> / {selectedProduct.stock_uom}</span>}
+                      </div>
+                    </div>
                     
                     {/* ✅ SMART BUTTON in Modal */}
                     <button 
@@ -421,7 +428,10 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate}</span>
+                                    {/* ✨ UPDATED: Added Unit here */}
+                                    <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">
+                                      ₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}
+                                    </span>
                                     <span className="text-xs text-muted-foreground">x {item.qty}</span>
                                     {item.qty > 24 && <span className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded ml-auto">2.5% OFF</span>}
                                 </div>
