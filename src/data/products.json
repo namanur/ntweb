@@ -4,7 +4,7 @@
     "item_name": "18INCH FOLDING STOOL",
     "description": "18INCH FOLDING STOOL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 400,
     "item_group": "Household",
     "brand": "Raj Enterprises"
   },
@@ -13,7 +13,7 @@
     "item_name": "2 IN 1 VEG CUTTER",
     "description": "2 IN 1 VEG CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 39,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -22,7 +22,7 @@
     "item_name": "2PCS DINING SET",
     "description": "2PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 50,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -31,7 +31,7 @@
     "item_name": "3 PCS SQUARE STORAGE CONTAINER",
     "description": "3 PCS SQUARE STORAGE CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 140,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -40,7 +40,7 @@
     "item_name": "3 PCS STORAGE CONTAINER",
     "description": "3 PCS STORAGE CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 140,
     "item_group": "Storage & Boxes",
     "brand": "Raj Enterprises"
   },
@@ -49,7 +49,7 @@
     "item_name": "3IN1 DISH RACK",
     "description": "3IN1 DISH RACK",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 170,
     "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
@@ -58,7 +58,7 @@
     "item_name": "3IN1 SOAP DISPENSER",
     "description": "3IN1 SOAP DISPENSER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 70,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -67,17 +67,17 @@
     "item_name": "3PCS DINING SET",
     "description": "3PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 90,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
   {
     "item_code": "RANK-4LAYERSHOE",
-    "item_name": "4 LAYER SHOES RANK",
+    "item_name": "4 LAYER SHOES RACK",
     "description": "4 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 0,
-    "item_group": "General Kitchenware",
+    "standard_rate": 200,
+    "item_group": "Kitchen Organizers",
     "brand": "Raj Enterprises"
   },
   {
@@ -85,7 +85,7 @@
     "item_name": "4IN 1 SLICER & GRATER",
     "description": "4IN 1 SLICER & GRATER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 65,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -94,7 +94,7 @@
     "item_name": "4PCS DINING SET SQURE",
     "description": "4PCS DINING SET SQURE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 130,
     "item_group": "Dining & Serving",
     "brand": "Raj Enterprises"
   },
@@ -103,7 +103,7 @@
     "item_name": "5 LAYER SHOES RANK",
     "description": "5 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 249,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -112,7 +112,7 @@
     "item_name": "6 IN 1 SLICER",
     "description": "6 IN 1 SLICER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 60,
     "item_group": "Knife & Cutter",
     "brand": "Raj Enterprises"
   },
@@ -121,7 +121,7 @@
     "item_name": "6 LAYER SHOES RANK",
     "description": "6 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 300,
     "item_group": "General Kitchenware",
     "brand": "Raj Enterprises"
   },
@@ -130,7 +130,7 @@
     "item_name": "650ML PUSH CHOPPER",
     "description": "650ML PUSH CHOPPER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 110,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },
@@ -139,7 +139,7 @@
     "item_name": "700ML PUSH CHOPPER heavy",
     "description": "700ML PUSH CHOPPER heavy",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 40,
     "item_group": "Chopper",
     "brand": "Raj Enterprises"
   },

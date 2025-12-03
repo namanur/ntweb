@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-import { X, Minus, Plus, ShoppingBag, Check, Trash2, MapPin, PlusCircle, ArrowRight, Filter, Loader2, ChevronDown } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, Check, Trash2, MapPin, PlusCircle, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp } from "lucide-react";
 
 interface CartItem extends Product {
   qty: number;
@@ -92,6 +92,9 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const moreDetailsRef = useRef<HTMLDivElement>(null);
   const gridTopRef = useRef<HTMLDivElement>(null); 
 
+  // --- SCROLL TO TOP STATE ---
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
   const [formData, setFormData] = useState({ 
     name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" 
   });
@@ -108,6 +111,19 @@ export default function ProductGridClient({ products = [] }: { products: Product
       }, 100);
     }
   }, [showMoreDetails]);
+
+  // --- SCROLL DETECTION ---
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     setVisibleCategoriesCount(2);
@@ -341,6 +357,17 @@ export default function ProductGridClient({ products = [] }: { products: Product
       {!isCartOpen && totalItems > 0 && (
         <button onClick={() => setIsCartOpen(true)} className="hidden md:flex fixed top-24 left-0 z-40 bg-foreground text-background p-3 rounded-r-xl shadow-xl hover:pl-4 transition-all items-center gap-2 font-bold text-sm">
             <ShoppingBag size={20} /> <span className="writing-mode-vertical">Cart ({totalItems})</span>
+        </button>
+      )}
+
+      {/* --- SCROLL TO TOP BUTTON --- */}
+      {showScrollTop && (
+        <button 
+          onClick={scrollToTop} 
+          className="fixed bottom-24 right-4 z-40 bg-foreground text-background p-3 rounded-full shadow-xl hover:scale-110 transition-all border border-border/50 backdrop-blur-sm md:bottom-8 animate-in fade-in zoom-in"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={20} strokeWidth={2.5} />
         </button>
       )}
 
