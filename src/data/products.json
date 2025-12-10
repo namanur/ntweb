@@ -7,7 +7,7 @@
     "standard_rate": 279,
     "wholesale_rate": 260,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CUTTER-2IN1VEG",
@@ -17,7 +17,7 @@
     "standard_rate": 39,
     "wholesale_rate": 36,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-2PCSDINING",
@@ -27,7 +27,7 @@
     "standard_rate": 53,
     "wholesale_rate": 49.5,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CONTAINER-3PCSSQUARE",
@@ -37,7 +37,7 @@
     "standard_rate": 125,
     "wholesale_rate": 116.2,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CONTAINER-3PCSSTORAG",
@@ -47,7 +47,7 @@
     "standard_rate": 140,
     "wholesale_rate": 130.5,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "RACK-3IN1DISH",
@@ -57,7 +57,7 @@
     "standard_rate": 170,
     "wholesale_rate": 158.3,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "DISPENSER-3IN1SOAP",
@@ -67,7 +67,7 @@
     "standard_rate": 120,
     "wholesale_rate": 111.5,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-3PCSDINING",
@@ -77,7 +77,7 @@
     "standard_rate": 70,
     "wholesale_rate": 65.3,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "RANK-4LAYERSHOE",
@@ -87,7 +87,7 @@
     "standard_rate": 222,
     "wholesale_rate": 206.7,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "GRATER-4IN1SLICER",
@@ -97,7 +97,7 @@
     "standard_rate": 71,
     "wholesale_rate": 65.47,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SQURE-4PCSDINING",
@@ -107,7 +107,7 @@
     "standard_rate": 101,
     "wholesale_rate": 93.5,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "RANK-5LAYERSHOE",
@@ -117,7 +117,7 @@
     "standard_rate": 262,
     "wholesale_rate": 244.44,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SLICER-6IN1",
@@ -127,7 +127,7 @@
     "standard_rate": 75,
     "wholesale_rate": 70,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "RANK-6LAYERSHOE",
@@ -137,7 +137,7 @@
     "standard_rate": 295,
     "wholesale_rate": 275,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CHOPPER-650MLPUSH",
@@ -147,7 +147,7 @@
     "standard_rate": 86,
     "wholesale_rate": 80,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAVY-700MLPUSHC",
@@ -157,7 +157,7 @@
     "standard_rate": 119,
     "wholesale_rate": 110.58,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-99KNIFE",
@@ -167,7 +167,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-AK47",
@@ -177,7 +177,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-ANJARKNIFE",
@@ -187,7 +187,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "REGULAR-ANJARKNIFE",
@@ -197,7 +197,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CUTTER-APPLE",
@@ -207,7 +207,7 @@
     "standard_rate": 24,
     "wholesale_rate": 21.77,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACK-APPLECUTTE",
@@ -217,7 +217,7 @@
     "standard_rate": 56,
     "wholesale_rate": 52.26,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-BIGBFULL",
@@ -227,7 +227,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-BIGNG",
@@ -237,7 +237,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BRUSH-BIGSPATULA",
@@ -247,7 +247,7 @@
     "standard_rate": 36,
     "wholesale_rate": 33.4,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KRIVA-BLACKLIGHT",
@@ -257,7 +257,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOTTLE-BLACKPRINT",
@@ -267,7 +267,7 @@
     "standard_rate": 46,
     "wholesale_rate": 42.09,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SWISSW-BOTTLE02",
@@ -277,7 +277,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-BOTTLE03SP",
@@ -287,7 +287,7 @@
     "standard_rate": 154,
     "wholesale_rate": 143.7,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACKING-BOTTLE1100",
@@ -297,7 +297,7 @@
     "standard_rate": 117,
     "wholesale_rate": 108.6,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "2808002000ML-BOTTLE3PCS",
@@ -307,7 +307,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "800ML-BOTTLEBABY",
@@ -317,7 +317,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "COBRA-BOTTLE",
@@ -327,7 +327,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CONCAVE-BOTTLE",
@@ -337,7 +337,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NEK-BOTTLEDUBA",
@@ -347,7 +347,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "FORSTI-BOTTLE",
@@ -357,7 +357,7 @@
     "standard_rate": 38,
     "wholesale_rate": 34.84,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOTTLE-BOTTLEGLAS",
@@ -367,7 +367,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "B-BOTTLEGROU",
@@ -377,7 +377,7 @@
     "standard_rate": 173,
     "wholesale_rate": 161.11,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "H2O-BOTTLE",
@@ -387,7 +387,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1200ML-BOTTLEKOHI",
@@ -397,7 +397,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-BOTTLELINE",
@@ -407,7 +407,7 @@
     "standard_rate": 140,
     "wholesale_rate": 130.62,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NEK-BOTTLENEXO",
@@ -417,7 +417,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NEK-BOTTLENEXO-002",
@@ -427,7 +427,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NEK-BOTTLEPARI",
@@ -437,7 +437,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "2200ML-BOTTLEPARI",
@@ -447,7 +447,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "900ML-BOTTLESSSI",
@@ -457,7 +457,7 @@
     "standard_rate": 151,
     "wholesale_rate": 140.4,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "700ML-BOTTLESLIM",
@@ -467,7 +467,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "500ML-BOTTLESLIM",
@@ -477,7 +477,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PREMIUM-BOTTLESS",
@@ -487,7 +487,7 @@
     "standard_rate": 164,
     "wholesale_rate": 152.39,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STEEL-BOTTLESTAI",
@@ -497,7 +497,7 @@
     "standard_rate": 133,
     "wholesale_rate": 123.37,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NEK-BOTTLETOKY",
@@ -507,7 +507,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BLACK-BREADCUTTE",
@@ -517,7 +517,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SPECIAL-BREADKNIFE",
@@ -527,7 +527,7 @@
     "standard_rate": 58,
     "wholesale_rate": 53.7,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-CAKEKNIFE",
@@ -537,7 +537,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MUG-CAMERALENS",
@@ -547,7 +547,7 @@
     "standard_rate": 153,
     "wholesale_rate": 142.59,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-CANDY",
@@ -557,7 +557,7 @@
     "standard_rate": 89,
     "wholesale_rate": 83,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "TRAY-CELEBRATIO",
@@ -567,7 +567,7 @@
     "standard_rate": 264,
     "wholesale_rate": 246.5,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-CELTRON",
@@ -577,7 +577,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "D034-CHEESEANDV",
@@ -587,7 +587,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-CHEESEGRAT",
@@ -597,7 +597,7 @@
     "standard_rate": 8,
     "wholesale_rate": 7.25,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "310G-CHILLYCUTT",
@@ -607,7 +607,7 @@
     "standard_rate": 140,
     "wholesale_rate": 130.62,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAVY-CHOPPEREAS",
@@ -617,7 +617,7 @@
     "standard_rate": 101,
     "wholesale_rate": 94.35,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LARGE-CHOPPINGBO",
@@ -627,7 +627,7 @@
     "standard_rate": 107,
     "wholesale_rate": 99.25,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MEDIUM-CHOPPINGBO",
@@ -637,7 +637,7 @@
     "standard_rate": 87,
     "wholesale_rate": 81,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SMALL-CHOPPINGBO",
@@ -647,7 +647,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "15MM-CHOPPINGBO",
@@ -657,7 +657,7 @@
     "standard_rate": 443,
     "wholesale_rate": 413.65,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "670GM-CHOPPINGBO",
@@ -667,7 +667,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "950GM-CHOPPINGBO",
@@ -677,7 +677,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LARGE-CHOPPINGBO-002",
@@ -687,7 +687,7 @@
     "standard_rate": 159,
     "wholesale_rate": 148.04,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MEDIUM-CHOPPINGBO-002",
@@ -697,7 +697,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-CHOPPINGBO",
@@ -707,7 +707,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MID-CHOPPINGBO",
@@ -717,7 +717,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "GLASS-CLEAR",
@@ -727,7 +727,7 @@
     "standard_rate": 100,
     "wholesale_rate": 92.88,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-COCONUTOPE",
@@ -737,7 +737,7 @@
     "standard_rate": 35,
     "wholesale_rate": 32,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MINI-COCONUTOPE",
@@ -747,7 +747,7 @@
     "standard_rate": 33,
     "wholesale_rate": 30,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MUG-COFFEE",
@@ -757,7 +757,7 @@
     "standard_rate": 72,
     "wholesale_rate": 66.93,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ML-CONTAINERF",
@@ -767,7 +767,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOTTLE-COOLANDCOO",
@@ -777,7 +777,7 @@
     "standard_rate": 117,
     "wholesale_rate": 108.7,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-CORNCUTTER",
@@ -787,7 +787,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-CRESTADRYF",
@@ -797,7 +797,7 @@
     "standard_rate": 125,
     "wholesale_rate": 116.5,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-CRYSTALDIA",
@@ -807,7 +807,7 @@
     "standard_rate": 156,
     "wholesale_rate": 145.5,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "8-DCCUTEKNIF",
@@ -817,7 +817,7 @@
     "standard_rate": 28,
     "wholesale_rate": 26.12,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "9-DCCUTEKNIF",
@@ -827,7 +827,7 @@
     "standard_rate": 33,
     "wholesale_rate": 30.5,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-DC3PCSKNIF",
@@ -837,7 +837,7 @@
     "standard_rate": 73,
     "wholesale_rate": 68.2,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAD-DEER",
@@ -847,7 +847,7 @@
     "standard_rate": 33,
     "wholesale_rate": 30,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STAINER-DELUXETEA",
@@ -857,7 +857,7 @@
     "standard_rate": 45,
     "wholesale_rate": 42,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CONTAINER-DIAMOND",
@@ -867,7 +867,7 @@
     "standard_rate": 97,
     "wholesale_rate": 90,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LOOSE-DILLIGHTER",
@@ -877,7 +877,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-DISHRACK",
@@ -887,7 +887,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MEDIUM-DISHRACK",
@@ -897,7 +897,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SMALL-DISHRACKST",
@@ -907,7 +907,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "127-DOORGUARD",
@@ -917,7 +917,7 @@
     "standard_rate": 19,
     "wholesale_rate": 17.46,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-DRYFRUIT",
@@ -927,7 +927,7 @@
     "standard_rate": 63,
     "wholesale_rate": 58.5,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CUTTER-DRYFRUIT",
@@ -937,7 +937,7 @@
     "standard_rate": 51,
     "wholesale_rate": 47,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SLICER-DRYFRUIT",
@@ -947,7 +947,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-DUBBLEDECK",
@@ -957,7 +957,7 @@
     "standard_rate": 122,
     "wholesale_rate": 114,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1616-DUSTERCLEA",
@@ -967,7 +967,7 @@
     "standard_rate": 55,
     "wholesale_rate": 50.79,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "DOZEN-DUSTPANPLA",
@@ -977,7 +977,7 @@
     "standard_rate": 190,
     "wholesale_rate": 177.08,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-EXCELLENTP",
@@ -987,7 +987,7 @@
     "standard_rate": 109,
     "wholesale_rate": 101.65,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PEELER-EXCELLENTP",
@@ -997,7 +997,7 @@
     "standard_rate": 109,
     "wholesale_rate": 101.6,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-EXPRESS",
@@ -1007,7 +1007,7 @@
     "standard_rate": 41,
     "wholesale_rate": 37.83,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-FIGHTERKNI",
@@ -1017,7 +1017,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-FIGO",
@@ -1027,7 +1027,7 @@
     "standard_rate": 89,
     "wholesale_rate": 82.73,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "12INCH-FOLDINGSTO",
@@ -1037,7 +1037,7 @@
     "standard_rate": 209,
     "wholesale_rate": 195,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "TROLLEY-GAS",
@@ -1047,7 +1047,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAVY-GASTROLLYS",
@@ -1057,7 +1057,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "REGULAR-GASTROLLYS",
@@ -1067,7 +1067,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LOTUS-GLASSSTAND",
@@ -1077,7 +1077,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "GLASS-GLASSSTAND",
@@ -1087,7 +1087,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MAKER-GUJIYA",
@@ -1097,7 +1097,7 @@
     "standard_rate": 66,
     "wholesale_rate": 61,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1500ML-GYMSHAKERB",
@@ -1107,7 +1107,7 @@
     "standard_rate": 89,
     "wholesale_rate": 82.74,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "700ML-GYMSHAKERB",
@@ -1117,7 +1117,7 @@
     "standard_rate": 60,
     "wholesale_rate": 55.16,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MUG-HAPPYTIME",
@@ -1127,7 +1127,7 @@
     "standard_rate": 125,
     "wholesale_rate": 116.12,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-HEAVYLIGHT",
@@ -1137,7 +1137,7 @@
     "standard_rate": 38,
     "wholesale_rate": 34.8,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ROUND-HOTMATBIG",
@@ -1147,7 +1147,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ROUND-HOTMATMID",
@@ -1157,7 +1157,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Household",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-ICECANDYMA",
@@ -1167,7 +1167,7 @@
     "standard_rate": 74,
     "wholesale_rate": 68.7,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ROUND-ICECANDY",
@@ -1177,7 +1177,7 @@
     "standard_rate": 58,
     "wholesale_rate": 53.7,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SQUARE-ICETRAYSIL",
@@ -1187,7 +1187,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ORANGE-JUICER",
@@ -1197,7 +1197,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SQUARE-JUICERSSJA",
@@ -1207,7 +1207,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ROUND-JUICERSSJA",
@@ -1217,7 +1217,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "GLASS-JUICY",
@@ -1227,7 +1227,7 @@
     "standard_rate": 100,
     "wholesale_rate": 92.88,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BLENDER-JUMBO",
@@ -1237,7 +1237,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STAND-JUMBOKEY",
@@ -1247,7 +1247,7 @@
     "standard_rate": 98,
     "wholesale_rate": 91.3,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HOUSE-KEY",
@@ -1257,7 +1257,7 @@
     "standard_rate": 100,
     "wholesale_rate": 92.88,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LAZAR-KNIFEAPPLE",
@@ -1267,7 +1267,7 @@
     "standard_rate": 33,
     "wholesale_rate": 30.47,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-KNIFEAPPLE",
@@ -1277,7 +1277,7 @@
     "standard_rate": 33,
     "wholesale_rate": 30.5,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-KNIFECHEF",
@@ -1287,7 +1287,7 @@
     "standard_rate": 151,
     "wholesale_rate": 140.7,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "INCH-KNIFEHEAVY",
@@ -1297,7 +1297,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "INCH-KNIFEHEAVY-002",
@@ -1307,7 +1307,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PCS-KNIFEWOODE",
@@ -1317,7 +1317,7 @@
     "standard_rate": 55,
     "wholesale_rate": 50.79,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE21-KNIFE21",
@@ -1327,7 +1327,7 @@
     "standard_rate": 173,
     "wholesale_rate": 161.5,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE786-KNIFE786",
@@ -1337,7 +1337,7 @@
     "standard_rate": 108,
     "wholesale_rate": 100.2,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACK-KULFIMAKER",
@@ -1347,7 +1347,7 @@
     "standard_rate": 64,
     "wholesale_rate": 59.51,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MASHER-LSHAPE",
@@ -1357,7 +1357,7 @@
     "standard_rate": 77,
     "wholesale_rate": 71.11,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BLACK-LEMONSQUEE",
@@ -1367,7 +1367,7 @@
     "standard_rate": 140,
     "wholesale_rate": 130.6,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SILVER-LEMONSQUEE",
@@ -1377,7 +1377,7 @@
     "standard_rate": 140,
     "wholesale_rate": 130.62,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "W-LEMONSQUEE",
@@ -1387,7 +1387,7 @@
     "standard_rate": 120,
     "wholesale_rate": 111.75,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "VATKI-LEMONSQUEE",
@@ -1397,7 +1397,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAVY-LEMONSQUEE",
@@ -1407,7 +1407,7 @@
     "standard_rate": 94,
     "wholesale_rate": 87.08,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "GRIP-LIGHTER12A",
@@ -1417,7 +1417,7 @@
     "standard_rate": 56,
     "wholesale_rate": 52.26,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACK-LIGHTERBLA",
@@ -1427,7 +1427,7 @@
     "standard_rate": 41,
     "wholesale_rate": 38.29,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-LIGHTER",
@@ -1437,7 +1437,7 @@
     "standard_rate": 38,
     "wholesale_rate": 34.84,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "COMPARTMENTS-LUNCHBOX3",
@@ -1447,7 +1447,7 @@
     "standard_rate": 473,
     "wholesale_rate": 442,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CLASSIC-LUNCHBOX",
@@ -1457,7 +1457,7 @@
     "standard_rate": 73,
     "wholesale_rate": 68,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "POLYPACK-LUNCHBOXDE",
@@ -1467,7 +1467,7 @@
     "standard_rate": 88,
     "wholesale_rate": 81.6,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACK-LUNCHBOXDI",
@@ -1477,7 +1477,7 @@
     "standard_rate": 67,
     "wholesale_rate": 62.4,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "EASY-LUNCHBOX",
@@ -1487,7 +1487,7 @@
     "standard_rate": 46,
     "wholesale_rate": 42.09,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "FROGGY-LUNCHBOX",
@@ -1497,7 +1497,7 @@
     "standard_rate": 125,
     "wholesale_rate": 116.12,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEALTHY-LUNCHBOXKI",
@@ -1507,7 +1507,7 @@
     "standard_rate": 108,
     "wholesale_rate": 100.4,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACK-LUNCHBOXKI",
@@ -1517,7 +1517,7 @@
     "standard_rate": 70,
     "wholesale_rate": 65.3,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "TRASNPARENT-LUNCHBOXLO",
@@ -1527,7 +1527,7 @@
     "standard_rate": 70,
     "wholesale_rate": 65.3,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LOCKET-LUNCHBOX",
@@ -1537,7 +1537,7 @@
     "standard_rate": 63,
     "wholesale_rate": 58.4,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LOCKETBEST-LUNCHBOXPR",
@@ -1547,7 +1547,7 @@
     "standard_rate": 69,
     "wholesale_rate": 63.8,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HV-LUNCHBOXSS",
@@ -1557,7 +1557,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ROYAL-LUNCHBOXSS",
@@ -1567,7 +1567,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PREXO-LUNCHBOXSS",
@@ -1577,7 +1577,7 @@
     "standard_rate": 450,
     "wholesale_rate": 420,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "DABI-LUNCHBOXSS",
@@ -1587,7 +1587,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-LUNCHBOXSS",
@@ -1597,7 +1597,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PACK-LUNCHBOXSQ",
@@ -1607,7 +1607,7 @@
     "standard_rate": 81,
     "wholesale_rate": 75.4,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-LUNCHBOXST",
@@ -1617,7 +1617,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-LUNCHBOXTE",
@@ -1627,7 +1627,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "TOKYO-LUNCHBOX",
@@ -1637,7 +1637,7 @@
     "standard_rate": 120,
     "wholesale_rate": 111.3,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-LUNCHEXKID",
@@ -1647,7 +1647,7 @@
     "standard_rate": 86,
     "wholesale_rate": 79.83,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-MAGICMASAL",
@@ -1657,7 +1657,7 @@
     "standard_rate": 72,
     "wholesale_rate": 66.94,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ATLANTIC-MASALADRYF",
@@ -1667,7 +1667,7 @@
     "standard_rate": 91,
     "wholesale_rate": 84.18,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "REVOLVING-MASALABOX3",
@@ -1677,7 +1677,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SP-MASALABOXC",
@@ -1687,7 +1687,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KING-MASALABOX",
@@ -1697,7 +1697,7 @@
     "standard_rate": 70,
     "wholesale_rate": 65.31,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "FIRST-MASALABOXS",
@@ -1707,7 +1707,7 @@
     "standard_rate": 357,
     "wholesale_rate": 333.4,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MINI-MASALABOXS",
@@ -1717,7 +1717,7 @@
     "standard_rate": 150,
     "wholesale_rate": 139.34,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SHAGUN-MASALABOX",
@@ -1727,7 +1727,7 @@
     "standard_rate": 136,
     "wholesale_rate": 126.27,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KING-MASALABOXS",
@@ -1737,7 +1737,7 @@
     "standard_rate": 86,
     "wholesale_rate": 79.83,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "JK-MASHERPOLY",
@@ -1747,7 +1747,7 @@
     "standard_rate": 174,
     "wholesale_rate": 162.56,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "JK-MASHERROUN",
@@ -1757,7 +1757,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HANDLE-MASHERSS",
@@ -1767,7 +1767,7 @@
     "standard_rate": 98,
     "wholesale_rate": 91.43,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-MASHER",
@@ -1777,7 +1777,7 @@
     "standard_rate": 86,
     "wholesale_rate": 79.83,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAVY-MASHERSSUL",
@@ -1787,7 +1787,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HANDLE-MASHERWOOD",
@@ -1797,7 +1797,7 @@
     "standard_rate": 69,
     "wholesale_rate": 63.86,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STAND-MATKA",
@@ -1807,7 +1807,7 @@
     "standard_rate": 28,
     "wholesale_rate": 26.12,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "POT-MATKASTAND",
@@ -1817,7 +1817,7 @@
     "standard_rate": 58,
     "wholesale_rate": 53.71,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PREMIUM-MATKASTAND",
@@ -1827,7 +1827,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-MATKASTAND",
@@ -1837,7 +1837,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SMALL-MATKASTAND",
@@ -1847,7 +1847,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SQUARE-MATKASTAND",
@@ -1857,7 +1857,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "2500ML-MAXFRESHHO",
@@ -2087,7 +2087,7 @@
     "standard_rate": 1,
     "wholesale_rate": 0.654,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STAND-MOBILEOK",
@@ -2097,7 +2097,7 @@
     "standard_rate": 18,
     "wholesale_rate": 16.7,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MUG181-MORNINGCOF",
@@ -2107,7 +2107,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-MUGCHAISTE",
@@ -2117,7 +2117,7 @@
     "standard_rate": 283,
     "wholesale_rate": 264.16,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "FIRST-MUGVOLVO10",
@@ -2127,7 +2127,7 @@
     "standard_rate": 137,
     "wholesale_rate": 127.7,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MILKY-MUGVOLVO10",
@@ -2137,7 +2137,7 @@
     "standard_rate": 109,
     "wholesale_rate": 101.6,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MILKY-MUGVOLVO75",
@@ -2147,7 +2147,7 @@
     "standard_rate": 94,
     "wholesale_rate": 87.08,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-MULTIPURPO",
@@ -2157,7 +2157,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NENO-NENOJUICER",
@@ -2167,7 +2167,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NICER-NICERDICER",
@@ -2177,7 +2177,7 @@
     "standard_rate": 327,
     "wholesale_rate": 305,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "8INCH240MM-OILBRUSHSI",
@@ -2187,7 +2187,7 @@
     "standard_rate": 19,
     "wholesale_rate": 17.4,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1000ML-OILDISPENS",
@@ -2197,7 +2197,7 @@
     "standard_rate": 58,
     "wholesale_rate": 53.4,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "500ML-OILDISPENS",
@@ -2207,7 +2207,7 @@
     "standard_rate": 46,
     "wholesale_rate": 42.09,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SPATULA-OIL",
@@ -2217,7 +2217,7 @@
     "standard_rate": 15,
     "wholesale_rate": 13.1,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLATE-OWLSHAPE",
@@ -2227,7 +2227,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-OWLSHAPEPL",
@@ -2237,7 +2237,7 @@
     "standard_rate": 99,
     "wholesale_rate": 91.6,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "B029-PEELERCLAS",
@@ -2247,7 +2247,7 @@
     "standard_rate": 41,
     "wholesale_rate": 37.8,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "COLORFUL-PEELER",
@@ -2257,7 +2257,7 @@
     "standard_rate": 81,
     "wholesale_rate": 75.4,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MASHER-PIPE",
@@ -2267,7 +2267,7 @@
     "standard_rate": 35,
     "wholesale_rate": 31.94,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "REGULAR-PIZZACUTTE",
@@ -2277,7 +2277,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-PLASTICLEM",
@@ -2287,7 +2287,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BELLAN-POLPATSTEE",
@@ -2297,7 +2297,7 @@
     "standard_rate": 218,
     "wholesale_rate": 203.2,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MUG-POPCOFFEE",
@@ -2307,7 +2307,7 @@
     "standard_rate": 84,
     "wholesale_rate": 78,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CUTTER-POTATO",
@@ -2317,7 +2317,7 @@
     "standard_rate": 161,
     "wholesale_rate": 150,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BLADES-POTATOCUTT",
@@ -2327,7 +2327,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "JUMBO-POWERFREEH",
@@ -2337,7 +2337,7 @@
     "standard_rate": 101,
     "wholesale_rate": 94.35,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "Z010-POWERFREEH",
@@ -2347,7 +2347,7 @@
     "standard_rate": 55,
     "wholesale_rate": 50.79,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-PREMIUMMAS",
@@ -2357,7 +2357,7 @@
     "standard_rate": 112,
     "wholesale_rate": 104.5,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1000ML-PUSHCHOPPE",
@@ -2367,7 +2367,7 @@
     "standard_rate": 148,
     "wholesale_rate": 137.89,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KING-PUSHCHOPPE",
@@ -2377,7 +2377,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "800ML-PUSHCHOPPE",
@@ -2387,7 +2387,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1000ML-QUICKCHOPP",
@@ -2397,7 +2397,7 @@
     "standard_rate": 97,
     "wholesale_rate": 90,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "450ML-QUICKCHOPP",
@@ -2407,7 +2407,7 @@
     "standard_rate": 97,
     "wholesale_rate": 89.98,
     "item_group": "Chopper",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "600ML-REALPUSHCH",
@@ -2417,7 +2417,7 @@
     "standard_rate": 103,
     "wholesale_rate": 96,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PCS-RINGPEELER",
@@ -2427,7 +2427,7 @@
     "standard_rate": 78,
     "wholesale_rate": 72.58,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-ROASTSTAND",
@@ -2437,7 +2437,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SMALL-ROASTSTAND",
@@ -2447,7 +2447,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "TRAY-ROTATION",
@@ -2457,7 +2457,7 @@
     "standard_rate": 66,
     "wholesale_rate": 61.11,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ONE-ROUNDALLIN",
@@ -2467,7 +2467,7 @@
     "standard_rate": 61,
     "wholesale_rate": 56.6,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-ROUNDMASAL",
@@ -2477,7 +2477,7 @@
     "standard_rate": 64,
     "wholesale_rate": 59,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MAKER-ROYALICECA",
@@ -2487,7 +2487,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO1-SSCLIP",
@@ -2497,7 +2497,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO6-SSCLIP",
@@ -2507,7 +2507,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "851GM-SSKHALBATT",
@@ -2517,7 +2517,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO03-SSKHALBATT",
@@ -2527,7 +2527,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "1311GM-SSKHALBATT",
@@ -2537,7 +2537,7 @@
     "standard_rate": 328,
     "wholesale_rate": 306.25,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-SSSLICER2I",
@@ -2547,7 +2547,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-SERRATED",
@@ -2557,7 +2557,7 @@
     "standard_rate": 261,
     "wholesale_rate": 243.8,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO08-SEVSANCHAD",
@@ -2567,7 +2567,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO09-SEVSANCHAD",
@@ -2577,7 +2577,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO10-SEVSANCHAD",
@@ -2587,7 +2587,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-SIMPLEDESI",
@@ -2597,7 +2597,7 @@
     "standard_rate": 171,
     "wholesale_rate": 159.6,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHGTER-SIMPOLO",
@@ -2607,7 +2607,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-SMALLNG",
@@ -2617,7 +2617,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SPATULA-SMALL",
@@ -2627,7 +2627,7 @@
     "standard_rate": 11,
     "wholesale_rate": 10.2,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HEAVY-SMARTGASTR",
@@ -2637,7 +2637,7 @@
     "standard_rate": 93,
     "wholesale_rate": 86,
     "item_group": "Gas Accessories",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KHATLA-SOAPCASEBI",
@@ -2647,7 +2647,7 @@
     "standard_rate": 150,
     "wholesale_rate": 139.34,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-SOLOKNIFE",
@@ -2657,7 +2657,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOTTLE-SPRAY",
@@ -2667,7 +2667,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "DELUX-SPRINGRAWA",
@@ -2677,7 +2677,7 @@
     "standard_rate": 50,
     "wholesale_rate": 46.44,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SUPRIMO-SPRINGRAWA",
@@ -2687,7 +2687,7 @@
     "standard_rate": 35,
     "wholesale_rate": 31.94,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ONE-SQUAREALLI",
@@ -2697,7 +2697,7 @@
     "standard_rate": 61,
     "wholesale_rate": 56.7,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOTTLE-SQUARE",
@@ -2707,7 +2707,7 @@
     "standard_rate": 46,
     "wholesale_rate": 42.09,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BOX-SQUAREMASA",
@@ -2717,7 +2717,7 @@
     "standard_rate": 63,
     "wholesale_rate": 58.2,
     "item_group": "Storage & Boxes",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SET-SQUAREWITH",
@@ -2727,7 +2727,7 @@
     "standard_rate": 154,
     "wholesale_rate": 143,
     "item_group": "Bottle",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "01-SSJALIROUN",
@@ -2737,7 +2737,7 @@
     "standard_rate": 200,
     "wholesale_rate": 186.24,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PEELER-SS",
@@ -2747,7 +2747,7 @@
     "standard_rate": 115,
     "wholesale_rate": 107.4,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-SSPIPEPOIN",
@@ -2757,7 +2757,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CUTTER-SSPIZZA",
@@ -2767,7 +2767,7 @@
     "standard_rate": 51,
     "wholesale_rate": 47,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-SSPLAIN",
@@ -2777,7 +2777,7 @@
     "standard_rate": 115,
     "wholesale_rate": 107.4,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LOOSE-STEELLEMON",
@@ -2787,7 +2787,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "160G-STEELLEMON",
@@ -2797,7 +2797,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "180G-STEELLEMON",
@@ -2807,7 +2807,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "270G-STEELLEMON",
@@ -2817,7 +2817,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO3-STEELSTRAI",
@@ -2827,7 +2827,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PREXO-STEELOSSLU",
@@ -2837,7 +2837,7 @@
     "standard_rate": 430,
     "wholesale_rate": 401.5,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LUNCH-SUMO2LAYER",
@@ -2847,7 +2847,7 @@
     "standard_rate": 217,
     "wholesale_rate": 202.3,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PEELER-SUMO",
@@ -2857,7 +2857,7 @@
     "standard_rate": 56,
     "wholesale_rate": 52.2,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-SUPER",
@@ -2867,7 +2867,7 @@
     "standard_rate": 56,
     "wholesale_rate": 52.26,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MUG-TBSTONEWAR",
@@ -2987,7 +2987,7 @@
     "standard_rate": 55,
     "wholesale_rate": 50.79,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NET-TEASTRAINE",
@@ -2997,7 +2997,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NET-TEASTRAINE-002",
@@ -3007,7 +3007,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "ULTRA-TEASTRAINE",
@@ -3017,7 +3017,7 @@
     "standard_rate": 66,
     "wholesale_rate": 60.92,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "HOUSE-TEDDY",
@@ -3027,7 +3027,7 @@
     "standard_rate": 75,
     "wholesale_rate": 69.9,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PCS-TIBROSASTE",
@@ -3287,7 +3287,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "11-TIFFINBOXM",
@@ -3297,7 +3297,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "LOCK-TONGKITCHE",
@@ -3307,7 +3307,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "135G-TONGSSNO3",
@@ -3317,7 +3317,7 @@
     "standard_rate": 46,
     "wholesale_rate": 42.09,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "GLASS-UNBREAKABL",
@@ -3327,7 +3327,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-VOLVOKNIFE",
@@ -3337,7 +3337,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STAND-WALLMOUNTA",
@@ -3347,7 +3347,7 @@
     "standard_rate": 102,
     "wholesale_rate": 95,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "STAND-WASHINGMAC",
@@ -3357,7 +3357,7 @@
     "standard_rate": 45,
     "wholesale_rate": 42,
     "item_group": "Kitchen Organizers",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "BLACK-WELCOMETRA",
@@ -3367,7 +3367,7 @@
     "standard_rate": 187,
     "wholesale_rate": 174,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "WHITE-WELCOMETRA",
@@ -3377,7 +3377,7 @@
     "standard_rate": 175,
     "wholesale_rate": 163,
     "item_group": "Dining & Serving",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "INCH-WHISKFULLS",
@@ -3387,7 +3387,7 @@
     "standard_rate": 42,
     "wholesale_rate": 39.19,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "INCH-WHISKFULLS-002",
@@ -3397,7 +3397,7 @@
     "standard_rate": 47,
     "wholesale_rate": 43.54,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "8-WHISKPLAST",
@@ -3407,7 +3407,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "10-WHISKPLAST",
@@ -3417,7 +3417,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "NO2-WHISKPLAST",
@@ -3427,7 +3427,7 @@
     "standard_rate": 44,
     "wholesale_rate": 40.64,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "9-WHISKSTEEL",
@@ -3437,7 +3437,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "9-WHISKERPLA",
@@ -3447,7 +3447,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-WOODENCHOP",
@@ -3457,7 +3457,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "MASHER-WOODEN",
@@ -3467,7 +3467,7 @@
     "standard_rate": 36,
     "wholesale_rate": 33.4,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "CHOPPING-WOODENMDF",
@@ -3477,7 +3477,7 @@
     "standard_rate": 132,
     "wholesale_rate": 123.27,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "TALWAR-WOODEN",
@@ -3487,7 +3487,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "SS-WOODENTEMP",
@@ -3497,7 +3497,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PEELER-X",
@@ -3507,7 +3507,7 @@
     "standard_rate": 78,
     "wholesale_rate": 72.58,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "KNIFE-XVEGETABLE",
@@ -3517,7 +3517,7 @@
     "standard_rate": 78,
     "wholesale_rate": 72.58,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PLAIN-ZEBRAKNIFE",
@@ -3527,7 +3527,7 @@
     "standard_rate": 97,
     "wholesale_rate": 89.98,
     "item_group": "Knife & Cutter",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "PILLAR-ZEBRA",
@@ -3537,7 +3537,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
-    "brand": "Raj Enterprises"
+    "brand": "Generic"
   },
   {
     "item_code": "250ML-MAXFRESHSS-002",
