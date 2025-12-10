@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { logoutAction } from '@/app/login/actions'; 
 
+// --- Nav Button Component ---
 const NavButton = ({ active, onClick, icon, label }: any) => (
     <button onClick={onClick} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all ${active ? 'bg-white text-black shadow-lg shadow-white/10' : 'text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200'}`}>
         {icon} {label}
@@ -162,7 +163,6 @@ export default function AdminPage() {
       // 4. Sort
       if (sortConfig) {
           result.sort((a, b) => {
-              // Handle optional/string/number types safely
               const aVal = a[sortConfig.key] ?? "";
               const bVal = b[sortConfig.key] ?? "";
               
@@ -226,8 +226,8 @@ export default function AdminPage() {
                                     <h3 className="text-lg font-bold text-white">{order.id}</h3>
                                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${order.status === 'Pending' ? 'bg-yellow-900/30 text-yellow-500' : order.status === 'Out for Delivery' ? 'bg-purple-900/30 text-purple-500' : 'bg-green-900/30 text-green-500'}`}>{order.status}</span>
                                     {order.erp_synced ? 
-                                        <span className="flex items-center gap-1 text-[10px] text-green-500 bg-green-900/10 px-2 py-0.5 rounded border border-green-900/30"><CheckCircle2 size={10}/> ERP Synced</span> : 
-                                        <span className="flex items-center gap-1 text-[10px] text-red-500 bg-red-900/10 px-2 py-0.5 rounded border border-red-900/30 cursor-help" title="Sync Failed. Try Retry."><AlertTriangle size={10}/> ERP Failed</span>
+                                        <span className="flex items-center gap-1 text-[10px] text-green-500 bg-green-900/10 px-2 py-0.5 rounded border border-green-900/30"><CheckCircle2 size={10}/> Synced</span> : 
+                                        <span className="flex items-center gap-1 text-[10px] text-red-500 bg-red-900/10 px-2 py-0.5 rounded border border-red-900/30 cursor-help" title="Sync Failed."><AlertTriangle size={10}/> Failed</span>
                                     }
                                 </div>
                                 <div className="text-xs text-zinc-400 mt-2 space-y-1">
@@ -265,16 +265,12 @@ export default function AdminPage() {
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-white transition-colors" size={20} />
                     <input placeholder="Search inventory..." className="w-full pl-12 p-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl outline-none focus:border-zinc-600 focus:bg-zinc-900 transition-all text-white placeholder:text-zinc-600" value={search} onChange={e => setSearch(e.target.value)} />
                 </div>
-                
-                {/* Brand Filter */}
                 <div className="relative">
                      <select value={filterBrand} onChange={(e) => setFilterBrand(e.target.value)} className="w-full appearance-none p-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl outline-none focus:border-zinc-600 text-white cursor-pointer hover:bg-zinc-900 transition-colors">
                         {uniqueBrands.map(b => <option key={b} value={b}>{b}</option>)}
                      </select>
                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 pointer-events-none" size={16} />
                 </div>
-
-                {/* Stock Filter */}
                 <div className="relative">
                      <select value={filterStock} onChange={(e) => setFilterStock(e.target.value)} className="w-full appearance-none p-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl outline-none focus:border-zinc-600 text-white cursor-pointer hover:bg-zinc-900 transition-colors">
                         <option value="All">All Status</option>
@@ -313,30 +309,123 @@ export default function AdminPage() {
         )}
       </main>
 
-      {/* EDIT MODAL */}
+      {/* ✅ REARRANGED EDIT MODAL */}
       {editingItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
               <div className="bg-zinc-900 w-full max-w-2xl rounded-3xl border border-zinc-800 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-                  <div className="p-6 border-b border-zinc-800 flex justify-between items-center"><h2 className="text-xl font-black uppercase tracking-wide">Edit Item</h2><button onClick={() => setEditingItem(null)} className="p-2 hover:bg-zinc-800 rounded-full transition-colors"><X size={20}/></button></div>
-                  <div className="p-6 overflow-y-auto space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="md:col-span-2"><label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Availability</label><div className="flex gap-2"><button onClick={() => setEditForm({ ...editForm, in_stock: true })} className={`flex-1 py-3 rounded-xl font-bold text-xs transition-colors border ${editForm.in_stock !== false ? 'bg-green-900/30 text-green-400 border-green-900' : 'bg-black border-zinc-800 text-zinc-500 hover:bg-zinc-900'}`}>In Stock</button><button onClick={() => setEditForm({ ...editForm, in_stock: false })} className={`flex-1 py-3 rounded-xl font-bold text-xs transition-colors border ${editForm.in_stock === false ? 'bg-red-900/30 text-red-400 border-red-900' : 'bg-black border-zinc-800 text-zinc-500 hover:bg-zinc-900'}`}>Out of Stock</button></div></div>
-                          
-                          <div><label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Stock Quantity</label><input type="number" min="0" className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors font-mono" value={editForm.stock_qty !== undefined ? editForm.stock_qty : ""} onChange={e => setEditForm({...editForm, stock_qty: e.target.value === "" ? 0 : parseFloat(e.target.value)})} /></div>
-                          <div><label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Low Stock Threshold</label><input type="number" min="0" className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors font-mono" value={editForm.threshold !== undefined ? editForm.threshold : ""} onChange={e => setEditForm({...editForm, threshold: e.target.value === "" ? 0 : parseFloat(e.target.value)})} /></div>
-                          
-                          <div><label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Item Name</label><input className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors" value={editForm.item_name || ""} onChange={e => setEditForm({...editForm, item_name: e.target.value})} /></div>
-                          <div><label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Standard Rate (₹)</label><input type="number" className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors font-mono" value={editForm.standard_rate !== undefined ? editForm.standard_rate : ""} onChange={e => setEditForm({...editForm, standard_rate: e.target.value === "" ? 0 : parseFloat(e.target.value)})} /></div>
-                          
-                          <div className="md:col-span-2"><label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Description</label><textarea rows={3} className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors resize-none" value={editForm.description || ""} onChange={e => setEditForm({...editForm, description: e.target.value})} /></div>
-                          
-                          <div className="md:col-span-2 p-5 bg-zinc-950 rounded-2xl border border-zinc-900 flex gap-5 items-center"><div className="h-24 w-24 bg-white/5 rounded-xl flex items-center justify-center overflow-hidden border border-zinc-800 relative group"><img id="preview-img" src={`/images/${editForm.item_code}.jpg`} alt="Preview" className="h-full w-full object-contain" onError={(e) => e.currentTarget.src = "https://placehold.co/100/18181b/ffffff?text=No+Img"} /></div><div className="flex-1"><label className="text-xs font-bold text-zinc-500 uppercase block mb-3">Product Image</label><div className="flex gap-3 items-center"><label className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2"><ImageIcon size={14} /> {selectedFile ? selectedFile.name.slice(0, 15) + "..." : "Select File"}<input type="file" accept="image/jpeg, image/png" className="hidden" onChange={(e) => setSelectedFile(e.target.files?.[0] || null)} /></label>{selectedFile && <button onClick={handleImageUpload} disabled={uploading} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2 disabled:opacity-50">{uploading ? <RefreshCw className="animate-spin" size={14}/> : <Upload size={14} />}{uploading ? "Uploading..." : "Upload Now"}</button>}</div></div></div>
-                      </div>
+                  
+                  {/* HEADER */}
+                  <div className="p-6 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
+                    <h2 className="text-xl font-black uppercase tracking-wide">Edit Item</h2>
+                    <button onClick={() => setEditingItem(null)} className="p-2 hover:bg-zinc-800 rounded-full transition-colors"><X size={20}/></button>
                   </div>
+                  
+                  {/* FORM BODY */}
+                  <div className="p-6 overflow-y-auto space-y-6">
+                      
+                      {/* 1. ITEM NAME (TOP, FULL WIDTH) */}
+                      <div>
+                        <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Item Name</label>
+                        <input 
+                          className="w-full p-4 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors text-lg font-bold" 
+                          value={editForm.item_name || ""} 
+                          onChange={e => setEditForm({...editForm, item_name: e.target.value})} 
+                        />
+                      </div>
+
+                      {/* 2. GRID ROW (Price, Stock, Threshold, Status) */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        
+                        {/* Price */}
+                        <div>
+                          <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Price (₹)</label>
+                          <input 
+                            type="number" 
+                            className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors font-mono font-bold" 
+                            value={editForm.standard_rate !== undefined ? editForm.standard_rate : ""} 
+                            onChange={e => setEditForm({...editForm, standard_rate: e.target.value === "" ? 0 : parseFloat(e.target.value)})} 
+                          />
+                        </div>
+
+                        {/* Stock Qty */}
+                        <div>
+                          <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Stock Qty</label>
+                          <input 
+                            type="number" 
+                            min="0" 
+                            className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors font-mono" 
+                            value={editForm.stock_qty !== undefined ? editForm.stock_qty : ""} 
+                            onChange={e => setEditForm({...editForm, stock_qty: e.target.value === "" ? 0 : parseFloat(e.target.value)})} 
+                          />
+                        </div>
+
+                        {/* Threshold */}
+                        <div>
+                          <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Threshold</label>
+                          <input 
+                            type="number" 
+                            min="0" 
+                            className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors font-mono" 
+                            value={editForm.threshold !== undefined ? editForm.threshold : ""} 
+                            onChange={e => setEditForm({...editForm, threshold: e.target.value === "" ? 0 : parseFloat(e.target.value)})} 
+                          />
+                        </div>
+
+                        {/* Status (Compact Dropdown) */}
+                        <div>
+                           <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Status</label>
+                           <div className="relative">
+                             <select 
+                                value={editForm.in_stock === false ? "OOS" : "In Stock"} 
+                                onChange={(e) => setEditForm({ ...editForm, in_stock: e.target.value === "In Stock" })}
+                                className={`w-full appearance-none p-3 border rounded-xl outline-none font-bold text-xs cursor-pointer ${editForm.in_stock === false ? 'bg-red-900/20 border-red-900 text-red-500' : 'bg-green-900/20 border-green-900 text-green-500'}`}
+                             >
+                                <option value="In Stock">In Stock</option>
+                                <option value="OOS">Out of Stock</option>
+                             </select>
+                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" size={14}/>
+                           </div>
+                        </div>
+
+                      </div>
+                      
+                      {/* 3. DESCRIPTION */}
+                      <div>
+                        <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Description</label>
+                        <textarea 
+                          rows={3} 
+                          className="w-full p-3 bg-black border border-zinc-800 rounded-xl focus:border-white outline-none transition-colors resize-none" 
+                          value={editForm.description || ""} 
+                          onChange={e => setEditForm({...editForm, description: e.target.value})} 
+                        />
+                      </div>
+                      
+                      {/* 4. IMAGE UPLOAD (BOTTOM) */}
+                      <div className="p-5 bg-zinc-950 rounded-2xl border border-zinc-900 flex gap-5 items-center">
+                        <div className="h-24 w-24 bg-white/5 rounded-xl flex items-center justify-center overflow-hidden border border-zinc-800 relative group">
+                          <img id="preview-img" src={`/images/${editForm.item_code}.jpg`} alt="Preview" className="h-full w-full object-contain" onError={(e) => e.currentTarget.src = "https://placehold.co/100/18181b/ffffff?text=No+Img"} />
+                        </div>
+                        <div className="flex-1">
+                          <label className="text-xs font-bold text-zinc-500 uppercase block mb-3">Product Image</label>
+                          <div className="flex gap-3 items-center">
+                            <label className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2">
+                              <ImageIcon size={14} /> 
+                              {selectedFile ? selectedFile.name.slice(0, 15) + "..." : "Select File"}
+                              <input type="file" accept="image/jpeg, image/png" className="hidden" onChange={(e) => setSelectedFile(e.target.files?.[0] || null)} />
+                            </label>
+                            {selectedFile && <button onClick={handleImageUpload} disabled={uploading} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2 disabled:opacity-50">{uploading ? <RefreshCw className="animate-spin" size={14}/> : <Upload size={14} />}{uploading ? "..." : "Upload"}</button>}
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+
+                  {/* FOOTER */}
                   <div className="p-6 border-t border-zinc-800 bg-zinc-900/50 flex justify-end gap-3">
                       <button onClick={() => setEditingItem(null)} className="px-6 py-3 rounded-xl font-bold text-sm hover:bg-zinc-800 transition-colors">Cancel</button>
                       <button onClick={handleSaveItem} className="px-6 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-zinc-200 transition-colors flex items-center gap-2"><Save size={16} /> Save Changes</button>
                   </div>
+
               </div>
           </div>
       )}
