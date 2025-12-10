@@ -12,13 +12,11 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: ProductCardProps) {
-  // ✅ LOGIC: If in cart, default is 1. If not, default is 6.
   const isInCart = cartQty > 0;
   const minQty = isInCart ? 1 : 6;
   
   const [qty, setQty] = useState(minQty);
 
-  // ✅ AUTO-UPDATE: When it enters cart, switch input to 1 immediately
   useEffect(() => {
     setQty(isInCart ? 1 : 6); 
   }, [isInCart]);
@@ -34,8 +32,11 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
     setImgSrc(getImageUrl());
   }, [product]);
 
-  // Calculate Discounted Price
   const discountPrice = product.standard_rate * 0.975; 
+
+  // ✅ FIX: Robust check for "Generic" (case-insensitive, trimmed)
+  const brandName = product.brand?.trim();
+  const showBrand = brandName && brandName.toLowerCase() !== "generic";
 
   return (
     <div 
@@ -52,9 +53,10 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
         <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider truncate max-w-[70%] transition-colors group-hover:text-foreground">
           {product.item_code}
         </span>
-        {product.brand && (
+        {/* Only render if valid AND not generic */}
+        {showBrand && (
           <span className="text-[10px] font-bold border border-border/50 px-2 py-0.5 rounded-full text-foreground/80 shrink-0 bg-background/50 backdrop-blur-md">
-            {product.brand}
+            {brandName}
           </span>
         )}
       </div>
@@ -75,7 +77,6 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
           {product.item_name}
         </h3>
         
-        {/* Bulk Price Badge */}
         <div className="mt-2 text-[10px] font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded w-fit">
            Buy 24+ @ ₹{discountPrice.toFixed(2)}
         </div>
@@ -85,14 +86,11 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
             <span className="text-[10px] text-muted-foreground uppercase font-semibold">Wholesale</span>
             <span className="text-base font-black text-foreground tracking-tight flex items-baseline gap-1">
               ₹{product.standard_rate.toLocaleString()}
-              {/* ✨ ADDED UOM HERE */}
               {product.stock_uom && <span className="text-[10px] font-medium text-muted-foreground">/ {product.stock_uom}</span>}
             </span>
           </div>
 
-          {/* CONTROLS */}
           <div className="flex items-center gap-1">
-            {/* Input Field */}
             <input 
               type="number"
               min={minQty}
@@ -102,7 +100,6 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
               className={`w-12 h-9 rounded-l-lg border bg-background text-center text-xs font-bold focus:outline-none focus:border-primary transition-colors ${isInCart ? 'border-primary text-primary' : 'border-border'}`}
             />
             
-            {/* Add Button */}
             <button 
               onClick={(e) => {
                 e.stopPropagation();
