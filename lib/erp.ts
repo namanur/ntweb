@@ -20,8 +20,8 @@ export interface Product {
   item_code: string;
   item_name: string;
   item_group: string;
-  standard_rate: number;   // Public Price (CSV + 7%)
-  wholesale_rate?: number; // Original CSV Price (For future VIP Login)
+  standard_rate: number;   
+  wholesale_rate?: number; 
   brand?: string;
   description?: string;
   stock_uom?: string;
@@ -29,6 +29,7 @@ export interface Product {
   in_stock?: boolean;
   stock_qty?: number;
   threshold?: number;
+  images?: string[]; // ✅ NEW: Support for multiple image filenames
 }
 
 export interface OrderItem {

@@ -5,11 +5,10 @@ import Image from 'next/image';
 import { 
   LayoutDashboard, Package, ShoppingCart, Server, Database, LogOut, Save, X, Edit3, 
   CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Image as ImageIcon, Clock, Truck, 
-  Play, FileText, ArrowUpDown, ChevronDown, Filter
+  Play, FileText, ArrowUpDown, ChevronDown, Filter, Layers
 } from 'lucide-react';
 import { logoutAction } from '@/app/login/actions'; 
 
-// --- Nav Button Component ---
 const NavButton = ({ active, onClick, icon, label }: any) => (
     <button onClick={onClick} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all ${active ? 'bg-white text-black shadow-lg shadow-white/10' : 'text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200'}`}>
         {icon} {label}
@@ -25,19 +24,20 @@ export default function AdminPage() {
   const [search, setSearch] = useState("");
   const [testStatus, setTestStatus] = useState({ telegram: "Idle", erp: "Idle" });
 
-  // --- FILTER & SORT STATE ---
   const [filterBrand, setFilterBrand] = useState("All");
   const [filterStock, setFilterStock] = useState("All");
   const [sortConfig, setSortConfig] = useState<{ key: keyof Product; direction: 'asc' | 'desc' } | null>(null);
 
   const [editingItem, setEditingItem] = useState<Product | null>(null);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  
+  // ✅ CHANGED: State to hold MULTIPLE files
+  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     fetchOrders();
-    fetchData(); // Load products for filters
+    fetchData(); 
   }, []);
 
   const runSystemTest = async (target: 'telegram' | 'erp') => {
@@ -96,7 +96,7 @@ export default function AdminPage() {
           threshold: product.threshold !== undefined ? product.threshold : 2, 
           in_stock: product.in_stock !== undefined ? product.in_stock : true 
       }); 
-      setSelectedFile(null); 
+      setSelectedFiles(null); 
   };
   
   const handleSaveItem = async () => { 
@@ -116,24 +116,31 @@ export default function AdminPage() {
       } catch (e) { alert("Network Error"); }
   };
 
+  // ✅ UPDATED: Handle Multiple Image Upload
   const handleImageUpload = async () => {
-    if (!selectedFile || !editingItem?.item_code) return;
+    if (!selectedFiles || selectedFiles.length === 0 || !editingItem?.item_code) return;
     setUploading(true);
+    
     const formData = new FormData();
-    formData.append("file", selectedFile);
     formData.append("item_code", editingItem.item_code);
+    
+    // Append all selected files
+    for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append("file", selectedFiles[i]);
+    }
+
     try {
       const res = await fetch("/api/products/update", { method: "POST", body: formData });
       if (res.ok) {
-        alert("✅ Uploaded!");
+        alert("✅ Uploaded " + selectedFiles.length + " images!");
         const img = document.getElementById("preview-img") as HTMLImageElement;
+        // Refresh preview for main image
         if(img) img.src = `/images/${editingItem.item_code}.jpg?t=${new Date().getTime()}`;
-        setSelectedFile(null);
+        setSelectedFiles(null);
       } else { alert("Upload Failed"); }
     } catch (e) { alert("Error"); } finally { setUploading(false); }
   };
 
-  // --- DATA PROCESSING (MEMOIZED) ---
   const uniqueBrands = useMemo(() => {
       const brands = new Set(products.map(p => p.brand || "Generic"));
       return ["All", ...Array.from(brands).sort()];
@@ -142,25 +149,21 @@ export default function AdminPage() {
   const processedProducts = useMemo(() => {
       let result = [...products];
 
-      // 1. Search
       if (search) {
           const s = search.toLowerCase();
           result = result.filter(p => (p.item_name || "").toLowerCase().includes(s) || (p.item_code || "").toLowerCase().includes(s));
       }
 
-      // 2. Filter Brand
       if (filterBrand !== "All") {
           result = result.filter(p => (p.brand || "Generic") === filterBrand);
       }
 
-      // 3. Filter Stock
       if (filterStock === "In Stock") {
           result = result.filter(p => p.in_stock !== false);
       } else if (filterStock === "Out of Stock") {
           result = result.filter(p => p.in_stock === false);
       }
 
-      // 4. Sort
       if (sortConfig) {
           result.sort((a, b) => {
               const aVal = a[sortConfig.key] ?? "";
@@ -201,7 +204,6 @@ export default function AdminPage() {
           <button onClick={() => { if(activeTab === 'orders') fetchOrders(); else fetchData(); }} disabled={loading} className="p-3 bg-zinc-900 border border-zinc-800 rounded-full hover:bg-zinc-800 transition-all active:scale-95 disabled:opacity-50"><RefreshCw size={20} className={loading ? "animate-spin" : ""} /></button>
         </div>
 
-        {/* DASHBOARD */}
         {activeTab === 'dashboard' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-6 border border-zinc-800 rounded-3xl bg-zinc-900/30">
@@ -215,7 +217,6 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* ORDERS VIEW */}
         {activeTab === 'orders' && (
             <div className="space-y-4">
                 {orders.length === 0 ? <div className="text-center py-20 text-zinc-500">No orders received yet.</div> : orders.map(order => (
@@ -255,11 +256,9 @@ export default function AdminPage() {
             </div>
         )}
 
-        {/* PRODUCTS VIEW */}
         {activeTab === 'products' && (
           <div className="space-y-4">
             
-            {/* FILTERS TOOLBAR */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                  <div className="relative group md:col-span-2">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-white transition-colors" size={20} />
@@ -309,21 +308,18 @@ export default function AdminPage() {
         )}
       </main>
 
-      {/* ✅ REARRANGED EDIT MODAL */}
       {editingItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
               <div className="bg-zinc-900 w-full max-w-2xl rounded-3xl border border-zinc-800 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
                   
-                  {/* HEADER */}
                   <div className="p-6 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
                     <h2 className="text-xl font-black uppercase tracking-wide">Edit Item</h2>
                     <button onClick={() => setEditingItem(null)} className="p-2 hover:bg-zinc-800 rounded-full transition-colors"><X size={20}/></button>
                   </div>
                   
-                  {/* FORM BODY */}
                   <div className="p-6 overflow-y-auto space-y-6">
                       
-                      {/* 1. ITEM NAME (TOP, FULL WIDTH) */}
+                      {/* 1. ITEM NAME */}
                       <div>
                         <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Item Name</label>
                         <input 
@@ -333,10 +329,9 @@ export default function AdminPage() {
                         />
                       </div>
 
-                      {/* 2. GRID ROW (Price, Stock, Threshold, Status) */}
+                      {/* 2. GRID ROW */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         
-                        {/* Price */}
                         <div>
                           <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Price (₹)</label>
                           <input 
@@ -347,7 +342,6 @@ export default function AdminPage() {
                           />
                         </div>
 
-                        {/* Stock Qty */}
                         <div>
                           <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Stock Qty</label>
                           <input 
@@ -359,7 +353,6 @@ export default function AdminPage() {
                           />
                         </div>
 
-                        {/* Threshold */}
                         <div>
                           <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Threshold</label>
                           <input 
@@ -371,20 +364,20 @@ export default function AdminPage() {
                           />
                         </div>
 
-                        {/* Status (Compact Dropdown) */}
+                        {/* ✅ TOGGLE SWITCH FOR STATUS */}
                         <div>
                            <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Status</label>
-                           <div className="relative">
-                             <select 
-                                value={editForm.in_stock === false ? "OOS" : "In Stock"} 
-                                onChange={(e) => setEditForm({ ...editForm, in_stock: e.target.value === "In Stock" })}
-                                className={`w-full appearance-none p-3 border rounded-xl outline-none font-bold text-xs cursor-pointer ${editForm.in_stock === false ? 'bg-red-900/20 border-red-900 text-red-500' : 'bg-green-900/20 border-green-900 text-green-500'}`}
-                             >
-                                <option value="In Stock">In Stock</option>
-                                <option value="OOS">Out of Stock</option>
-                             </select>
-                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" size={14}/>
-                           </div>
+                           <button
+                             onClick={() => setEditForm({ ...editForm, in_stock: !editForm.in_stock })}
+                             className={`w-full h-[50px] rounded-xl flex items-center px-2 transition-all duration-300 border ${editForm.in_stock ? 'bg-green-900/30 border-green-900' : 'bg-red-900/20 border-red-900'}`}
+                           >
+                              <div className="flex items-center gap-3 w-full">
+                                  <div className={`w-6 h-6 rounded-full shadow-md transition-all duration-300 flex items-center justify-center ${editForm.in_stock ? 'bg-green-500 translate-x-full' : 'bg-red-500 translate-x-0'}`}></div>
+                                  <span className={`text-xs font-bold flex-1 text-center ${editForm.in_stock ? 'text-green-500' : 'text-red-500'}`}>
+                                      {editForm.in_stock ? "In Stock" : "OOS"}
+                                  </span>
+                              </div>
+                           </button>
                         </div>
 
                       </div>
@@ -400,21 +393,23 @@ export default function AdminPage() {
                         />
                       </div>
                       
-                      {/* 4. IMAGE UPLOAD (BOTTOM) */}
+                      {/* 4. MULTI-IMAGE UPLOAD */}
                       <div className="p-5 bg-zinc-950 rounded-2xl border border-zinc-900 flex gap-5 items-center">
                         <div className="h-24 w-24 bg-white/5 rounded-xl flex items-center justify-center overflow-hidden border border-zinc-800 relative group">
                           <img id="preview-img" src={`/images/${editForm.item_code}.jpg`} alt="Preview" className="h-full w-full object-contain" onError={(e) => e.currentTarget.src = "https://placehold.co/100/18181b/ffffff?text=No+Img"} />
                         </div>
                         <div className="flex-1">
-                          <label className="text-xs font-bold text-zinc-500 uppercase block mb-3">Product Image</label>
+                          <label className="text-xs font-bold text-zinc-500 uppercase block mb-3">Product Images</label>
                           <div className="flex gap-3 items-center">
                             <label className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2">
-                              <ImageIcon size={14} /> 
-                              {selectedFile ? selectedFile.name.slice(0, 15) + "..." : "Select File"}
-                              <input type="file" accept="image/jpeg, image/png" className="hidden" onChange={(e) => setSelectedFile(e.target.files?.[0] || null)} />
+                              <Layers size={14} /> 
+                              {selectedFiles && selectedFiles.length > 0 ? `${selectedFiles.length} Files Selected` : "Select Photos"}
+                              {/* ✅ ALLOW MULTIPLE FILES */}
+                              <input type="file" multiple accept="image/jpeg, image/png" className="hidden" onChange={(e) => setSelectedFiles(e.target.files)} />
                             </label>
-                            {selectedFile && <button onClick={handleImageUpload} disabled={uploading} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2 disabled:opacity-50">{uploading ? <RefreshCw className="animate-spin" size={14}/> : <Upload size={14} />}{uploading ? "..." : "Upload"}</button>}
+                            {selectedFiles && <button onClick={handleImageUpload} disabled={uploading} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2 disabled:opacity-50">{uploading ? <RefreshCw className="animate-spin" size={14}/> : <Upload size={14} />}{uploading ? "..." : "Upload All"}</button>}
                           </div>
+                          <p className="text-[10px] text-zinc-600 mt-2">Uploading will overwrite the main image with the first selected file.</p>
                         </div>
                       </div>
 
