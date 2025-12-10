@@ -34,9 +34,13 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
 
   const discountPrice = product.standard_rate * 0.975; 
 
-  // ✅ FIX: Robust check for "Generic" (case-insensitive, trimmed)
-  const brandName = product.brand?.trim();
-  const showBrand = brandName && brandName.toLowerCase() !== "generic";
+  // ✅ ROBUST BRAND CHECK
+  // 1. Ensure brand exists
+  // 2. Convert to lowercase
+  // 3. Trim whitespace
+  // 4. Check if it equals "generic"
+  const cleanBrand = (product.brand || "").toLowerCase().trim();
+  const showBrand = cleanBrand.length > 0 && cleanBrand !== "generic";
 
   return (
     <div 
@@ -53,10 +57,11 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
         <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider truncate max-w-[70%] transition-colors group-hover:text-foreground">
           {product.item_code}
         </span>
+        
         {/* Only render if valid AND not generic */}
         {showBrand && (
           <span className="text-[10px] font-bold border border-border/50 px-2 py-0.5 rounded-full text-foreground/80 shrink-0 bg-background/50 backdrop-blur-md">
-            {brandName}
+            {product.brand}
           </span>
         )}
       </div>

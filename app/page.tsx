@@ -4,7 +4,7 @@ import ProductGridClient from "@/components/ProductGridClient";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
 import MustHaveSlider from "@/components/MustHaveSlider";
-import LandingPage from "@/components/LandingPage"; 
+import IntroOverlay from "@/components/IntroOverlay"; // ✅ NEW
 
 export const dynamic = 'force-dynamic';
 
@@ -14,13 +14,6 @@ interface HomeProps {
 
 export default async function Home(props: HomeProps) {
   
-  // 1. CHECK MODE
-  const isLandingMode = process.env.NEXT_PUBLIC_SITE_MODE === 'landing';
-
-  if (isLandingMode) {
-    return <LandingPage />;
-  }
-
   // 2. CHECK SEARCH STATE
   const searchParams = await props.searchParams;
   const searchQuery = searchParams?.q?.toString() || "";
@@ -30,8 +23,15 @@ export default async function Home(props: HomeProps) {
   const products = await getProducts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
+    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans relative">
       
+      {/* ✅ INTRO OVERLAY (Client Component) 
+          - Shows on first visit
+          - Dismisses on scroll
+          - Persists dismissal via sessionStorage
+      */}
+      <IntroOverlay />
+
       {/* Hide Announcement on Search */}
       {!hasSearch && <AnnouncementBar />}
       
@@ -55,10 +55,6 @@ export default async function Home(props: HomeProps) {
           <ProductGridClient products={products} />
         </Suspense>
       </main>
-      
-      {/* NOTE: Footer removed from Homepage as requested. 
-         Footer details are now inside the Header's Hamburger Menu.
-      */}
     </div>
   );
 }
