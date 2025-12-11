@@ -29,7 +29,8 @@ export interface Product {
   in_stock?: boolean;
   stock_qty?: number;
   threshold?: number;
-  images?: string[]; // ✅ NEW: Support for multiple image filenames
+  images?: string[]; 
+  is_hot?: boolean; // ✅ NEW: Support for Hot/New items
 }
 
 export interface OrderItem {

@@ -4,8 +4,8 @@ import { Product, Order } from '@/lib/erp';
 import Image from 'next/image';
 import { 
   LayoutDashboard, Package, ShoppingCart, Server, Database, LogOut, Save, X, Edit3, 
-  CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Image as ImageIcon, Clock, Truck, 
-  Play, FileText, ArrowUpDown, ChevronDown, Filter, Layers
+  CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Layers, Play, FileText, ArrowUpDown, ChevronDown, 
+  AlertCircle, Flame, Clock, Truck // ✅ ADDED Clock & Truck
 } from 'lucide-react';
 import { logoutAction } from '@/app/login/actions'; 
 
@@ -31,7 +31,6 @@ export default function AdminPage() {
   const [editingItem, setEditingItem] = useState<Product | null>(null);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
   
-  // ✅ CHANGED: State to hold MULTIPLE files
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [uploading, setUploading] = useState(false);
 
@@ -39,6 +38,17 @@ export default function AdminPage() {
     fetchOrders();
     fetchData(); 
   }, []);
+
+  // ✅ Dashboard Stats Calculation
+  const stats = useMemo(() => {
+    const total = products.length;
+    const inStock = products.filter(p => p.in_stock !== false).length;
+    const outOfStock = products.filter(p => p.in_stock === false).length;
+    const priceWarning = products.filter(p => p.standard_rate < 2).length;
+    const hotItems = products.filter(p => p.is_hot).length;
+
+    return { total, inStock, outOfStock, priceWarning, hotItems };
+  }, [products]);
 
   const runSystemTest = async (target: 'telegram' | 'erp') => {
       setTestStatus(prev => ({ ...prev, [target]: "Running..." }));
@@ -94,7 +104,8 @@ export default function AdminPage() {
           ...product,
           stock_qty: product.stock_qty !== undefined ? product.stock_qty : 0, 
           threshold: product.threshold !== undefined ? product.threshold : 2, 
-          in_stock: product.in_stock !== undefined ? product.in_stock : true 
+          in_stock: product.in_stock !== undefined ? product.in_stock : true,
+          is_hot: product.is_hot || false
       }); 
       setSelectedFiles(null); 
   };
@@ -116,7 +127,6 @@ export default function AdminPage() {
       } catch (e) { alert("Network Error"); }
   };
 
-  // ✅ UPDATED: Handle Multiple Image Upload
   const handleImageUpload = async () => {
     if (!selectedFiles || selectedFiles.length === 0 || !editingItem?.item_code) return;
     setUploading(true);
@@ -124,7 +134,6 @@ export default function AdminPage() {
     const formData = new FormData();
     formData.append("item_code", editingItem.item_code);
     
-    // Append all selected files
     for (let i = 0; i < selectedFiles.length; i++) {
         formData.append("file", selectedFiles[i]);
     }
@@ -134,7 +143,6 @@ export default function AdminPage() {
       if (res.ok) {
         alert("✅ Uploaded " + selectedFiles.length + " images!");
         const img = document.getElementById("preview-img") as HTMLImageElement;
-        // Refresh preview for main image
         if(img) img.src = `/images/${editingItem.item_code}.jpg?t=${new Date().getTime()}`;
         setSelectedFiles(null);
       } else { alert("Upload Failed"); }
@@ -205,14 +213,60 @@ export default function AdminPage() {
         </div>
 
         {activeTab === 'dashboard' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 border border-zinc-800 rounded-3xl bg-zinc-900/30">
-                <div className="flex items-center justify-between mb-4"><span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Telegram Bot</span><div className="p-2 bg-blue-900/20 text-blue-400 rounded-lg"><Server size={20} /></div></div>
-                <div className="flex flex-col gap-3"><div className="text-xs text-zinc-500 font-mono bg-black p-3 rounded-lg border border-zinc-800 break-words">{testStatus.telegram}</div><button onClick={() => runSystemTest('telegram')} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-colors"><Play size={14} /> Send Test Alert</button></div>
+          <div className="space-y-6">
+            
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div className={`p-5 rounded-2xl border ${stats.priceWarning > 0 ? 'bg-red-900/20 border-red-800' : 'bg-zinc-900/30 border-zinc-800'}`}>
+                    <div className="flex items-center gap-2 mb-2">
+                        <AlertCircle size={16} className={stats.priceWarning > 0 ? "text-red-500" : "text-zinc-500"} />
+                        <span className="text-xs font-bold uppercase text-zinc-500">Fix Price</span>
+                    </div>
+                    <div className="text-3xl font-black">{stats.priceWarning}</div>
+                    <div className="text-[10px] text-zinc-500 mt-1">Items &lt; ₹2.00</div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+                    <div className="flex items-center gap-2 mb-2">
+                        <CheckCircle2 size={16} className="text-green-500" />
+                        <span className="text-xs font-bold uppercase text-zinc-500">In Stock</span>
+                    </div>
+                    <div className="text-3xl font-black">{stats.inStock}</div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+                    <div className="flex items-center gap-2 mb-2">
+                        <AlertTriangle size={16} className="text-orange-500" />
+                        <span className="text-xs font-bold uppercase text-zinc-500">No Stock</span>
+                    </div>
+                    <div className="text-3xl font-black">{stats.outOfStock}</div>
+                </div>
+
+                 <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+                    <div className="flex items-center gap-2 mb-2">
+                        <Flame size={16} className="text-purple-500" />
+                        <span className="text-xs font-bold uppercase text-zinc-500">New / Hot</span>
+                    </div>
+                    <div className="text-3xl font-black">{stats.hotItems}</div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+                    <div className="flex items-center gap-2 mb-2">
+                        <Package size={16} className="text-blue-500" />
+                        <span className="text-xs font-bold uppercase text-zinc-500">Total</span>
+                    </div>
+                    <div className="text-3xl font-black">{stats.total}</div>
+                </div>
             </div>
-            <div className="p-6 border border-zinc-800 rounded-3xl bg-zinc-900/30">
-                <div className="flex items-center justify-between mb-4"><span className="text-xs font-bold text-orange-400 uppercase tracking-wider">ERPNext Link</span><div className="p-2 bg-orange-900/20 text-orange-400 rounded-lg"><Database size={20} /></div></div>
-                <div className="flex flex-col gap-3"><div className="text-xs text-zinc-500 font-mono bg-black p-3 rounded-lg border border-zinc-800 break-words">{testStatus.erp}</div><button onClick={() => runSystemTest('erp')} className="w-full py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-colors"><RefreshCw size={14} /> Test Connection</button></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 border border-zinc-800 rounded-3xl bg-zinc-900/30">
+                    <div className="flex items-center justify-between mb-4"><span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Telegram Bot</span><div className="p-2 bg-blue-900/20 text-blue-400 rounded-lg"><Server size={20} /></div></div>
+                    <div className="flex flex-col gap-3"><div className="text-xs text-zinc-500 font-mono bg-black p-3 rounded-lg border border-zinc-800 break-words">{testStatus.telegram}</div><button onClick={() => runSystemTest('telegram')} className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-colors"><Play size={14} /> Send Test Alert</button></div>
+                </div>
+                <div className="p-6 border border-zinc-800 rounded-3xl bg-zinc-900/30">
+                    <div className="flex items-center justify-between mb-4"><span className="text-xs font-bold text-orange-400 uppercase tracking-wider">ERPNext Link</span><div className="p-2 bg-orange-900/20 text-orange-400 rounded-lg"><Database size={20} /></div></div>
+                    <div className="flex flex-col gap-3"><div className="text-xs text-zinc-500 font-mono bg-black p-3 rounded-lg border border-zinc-800 break-words">{testStatus.erp}</div><button onClick={() => runSystemTest('erp')} className="w-full py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition-colors"><RefreshCw size={14} /> Test Connection</button></div>
+                </div>
             </div>
           </div>
         )}
@@ -319,7 +373,6 @@ export default function AdminPage() {
                   
                   <div className="p-6 overflow-y-auto space-y-6">
                       
-                      {/* 1. ITEM NAME */}
                       <div>
                         <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Item Name</label>
                         <input 
@@ -329,7 +382,6 @@ export default function AdminPage() {
                         />
                       </div>
 
-                      {/* 2. GRID ROW */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         
                         <div>
@@ -364,7 +416,6 @@ export default function AdminPage() {
                           />
                         </div>
 
-                        {/* ✅ TOGGLE SWITCH FOR STATUS */}
                         <div>
                            <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Status</label>
                            <button
@@ -382,7 +433,24 @@ export default function AdminPage() {
 
                       </div>
                       
-                      {/* 3. DESCRIPTION */}
+                      <div className="p-4 bg-zinc-950 rounded-2xl border border-zinc-900 flex items-center justify-between">
+                         <div className="flex items-center gap-3">
+                            <div className={`p-2 rounded-lg ${editForm.is_hot ? 'bg-orange-900/20 text-orange-500' : 'bg-zinc-800 text-zinc-500'}`}>
+                                <Flame size={20} />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-sm">Mark as New / Hot</h3>
+                                <p className="text-[10px] text-zinc-500">Shows in the scrolling list on home page</p>
+                            </div>
+                         </div>
+                         <button 
+                             onClick={() => setEditForm({ ...editForm, is_hot: !editForm.is_hot })}
+                             className={`w-12 h-6 rounded-full transition-colors relative ${editForm.is_hot ? 'bg-orange-500' : 'bg-zinc-700'}`}
+                         >
+                            <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${editForm.is_hot ? 'translate-x-6' : 'translate-x-0'}`} />
+                         </button>
+                      </div>
+
                       <div>
                         <label className="text-xs font-bold text-zinc-500 uppercase block mb-2">Description</label>
                         <textarea 
@@ -393,7 +461,6 @@ export default function AdminPage() {
                         />
                       </div>
                       
-                      {/* 4. MULTI-IMAGE UPLOAD */}
                       <div className="p-5 bg-zinc-950 rounded-2xl border border-zinc-900 flex gap-5 items-center">
                         <div className="h-24 w-24 bg-white/5 rounded-xl flex items-center justify-center overflow-hidden border border-zinc-800 relative group">
                           <img id="preview-img" src={`/images/${editForm.item_code}.jpg`} alt="Preview" className="h-full w-full object-contain" onError={(e) => e.currentTarget.src = "https://placehold.co/100/18181b/ffffff?text=No+Img"} />
@@ -404,7 +471,6 @@ export default function AdminPage() {
                             <label className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2">
                               <Layers size={14} /> 
                               {selectedFiles && selectedFiles.length > 0 ? `${selectedFiles.length} Files Selected` : "Select Photos"}
-                              {/* ✅ ALLOW MULTIPLE FILES */}
                               <input type="file" multiple accept="image/jpeg, image/png" className="hidden" onChange={(e) => setSelectedFiles(e.target.files)} />
                             </label>
                             {selectedFiles && <button onClick={handleImageUpload} disabled={uploading} className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors flex items-center gap-2 disabled:opacity-50">{uploading ? <RefreshCw className="animate-spin" size={14}/> : <Upload size={14} />}{uploading ? "..." : "Upload All"}</button>}
@@ -415,7 +481,6 @@ export default function AdminPage() {
 
                   </div>
 
-                  {/* FOOTER */}
                   <div className="p-6 border-t border-zinc-800 bg-zinc-900/50 flex justify-end gap-3">
                       <button onClick={() => setEditingItem(null)} className="px-6 py-3 rounded-xl font-bold text-sm hover:bg-zinc-800 transition-colors">Cancel</button>
                       <button onClick={handleSaveItem} className="px-6 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-zinc-200 transition-colors flex items-center gap-2"><Save size={16} /> Save Changes</button>

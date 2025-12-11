@@ -4,7 +4,8 @@ import ProductGridClient from "@/components/ProductGridClient";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
 import MustHaveSlider from "@/components/MustHaveSlider";
-import IntroOverlay from "@/components/IntroOverlay"; // ✅ NEW
+import IntroOverlay from "@/components/IntroOverlay"; 
+import HotDeals from "@/components/HotDeals"; // ✅ IMPORT
 
 export const dynamic = 'force-dynamic';
 
@@ -25,11 +26,7 @@ export default async function Home(props: HomeProps) {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground font-sans relative">
       
-      {/* ✅ INTRO OVERLAY (Client Component) 
-          - Shows on first visit
-          - Dismisses on scroll
-          - Persists dismissal via sessionStorage
-      */}
+      {/* ✅ INTRO OVERLAY (Client Component) */}
       <IntroOverlay />
 
       {/* Hide Announcement on Search */}
@@ -44,6 +41,9 @@ export default async function Home(props: HomeProps) {
 
       <main id="catalog-section" className="flex-grow w-full max-w-6xl mx-auto px-4 py-4">
         
+        {/* ✅ NEW: Hot Deals Section (Only show if not searching) */}
+        {!hasSearch && <HotDeals products={products} />}
+
         {!hasSearch && (
           <div className="mb-6">
              <h3 className="text-xl font-bold text-foreground">Explore All Products</h3>
