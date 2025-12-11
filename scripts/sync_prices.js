@@ -12,27 +12,45 @@ const TRANSPORT_RATE = 0.08; // 8%
 const GST_RATE = 0.18;       // 18%
 const MARKUP_RATE = 0.25;    // 25%
 
-// HELPER: Clean text for fuzzy matching
-function normalize(str) {
-    if (!str) return "";
+// 🧠 TOKENIZER: Breaks names into meaningful keywords
+function getTokens(str) {
+    if (!str) return [];
     let s = str.toString().toLowerCase();
-    s = s.replace(/maxfresh|max fresh|tibros|sigma/g, ''); // Remove Brands
-    s = s.replace(/with\s+glass\s+lid/g, ' '); 
-    s = s.replace(/with\s+lid/g, ' ');         
-    s = s.replace(/stainless\s+steel/g, ' '); 
-    s = s.replace(/\b(s\.s\.|ss)\b/g, ' '); 
-    s = s.replace('rank', 'rack'); 
-    s = s.replace(/(\d+)(ml|g|kg|l)\b/g, '$1'); 
-    return s.replace(/[^a-z0-9]/g, ''); 
+    
+    // 1. Remove Brands (Focus on product identity)
+    s = s.replace(/maxfresh|max fresh|tibros|sigma|tb\-|tb\s/g, ''); 
+    
+    // 2. Separate numbers (e.g., "1000ml" -> "1000 ml")
+    s = s.replace(/([0-9]+)([a-zA-Z]+)/g, '$1 $2');
+    s = s.replace(/([a-zA-Z]+)([0-9]+)/g, '$1 $2');
+
+    // 3. Remove Special Chars (keep spaces)
+    s = s.replace(/[^a-z0-9\s]/g, ' ');
+
+    // 4. Split and Filter Stop Words
+    // These words add noise to the match (e.g., "with lid" matches everything)
+    const ignore = new Set(['with', 'lid', 'glass', 'steel', 'ss', 'ml', 'g', 'kg', 'ltr', 'pcs', 'set', 'of', 'color', 'colour', 'no', 'number', 'in', 'mm', 'cm']);
+    
+    return s.split(/\s+/).filter(t => t.length > 0 && !ignore.has(t));
 }
 
-function normalizeSorted(str) {
-    if (!str) return "";
-    let s = str.toString().toLowerCase();
-    s = s.replace(/maxfresh|max fresh|tibros|sigma/g, ''); 
-    s = s.replace(/with\s+glass\s+lid/g, ' '); 
-    s = s.replace(/with\s+lid/g, ' ');         
-    return s.replace(/[^a-z0-9 ]/g, '').split(/\s+/).sort().join('');
+// 🔍 SCORING ALGORITHM
+// Returns a score from 0 to 1 (1 = Perfect Match)
+function calculateScore(productName, csvName) {
+    const tokensP = getTokens(productName);
+    const tokensC = getTokens(csvName);
+
+    if (tokensP.length === 0 || tokensC.length === 0) return 0;
+
+    // Count how many tokens from Product exist in CSV
+    let matches = 0;
+    tokensP.forEach(tp => {
+        if (tokensC.includes(tp)) matches++;
+    });
+
+    // Score = (Matches / Total Product Tokens)
+    // We prioritize checking if the Product is a "Subset" of the CSV entry
+    return matches / tokensP.length;
 }
 
 function cleanPrice(priceStr) {
@@ -41,7 +59,7 @@ function cleanPrice(priceStr) {
 }
 
 async function syncPrices() {
-    console.log("🚀 Starting Master Price Sync (v7 - Auto Calc)...");
+    console.log("🚀 Starting Smart Price Sync (Scoring Logic)...");
 
     if (!fs.existsSync(PRODUCTS_PATH) || !fs.existsSync(ITEM_CSV_PATH)) {
         console.error("❌ Error: Missing Product or CSV file.");
@@ -58,20 +76,11 @@ async function syncPrices() {
         priceMap = JSON.parse(fs.readFileSync(MAP_PATH, 'utf-8'));
     }
 
-    // 2. Create CSV Lookup Maps
-    const costMap = new Map();
-    const sortedCostMap = new Map();
-    const rawNameMap = new Map(); 
-
-    items.forEach(row => {
-        const name = row['Item Name'];
-        const purchaseRate = cleanPrice(row['Purchase Rate']);
-        if (name) {
-            rawNameMap.set(name, purchaseRate);
-            costMap.set(normalize(name), purchaseRate);
-            sortedCostMap.set(normalizeSorted(name), purchaseRate);
-        }
-    });
+    // 2. Build Searchable CSV List
+    const csvItems = items.map(row => ({
+        name: row['Item Name'],
+        rate: cleanPrice(row['Purchase Rate'] || row['Rate'])
+    })).filter(i => i.name && i.rate > 0);
 
     // 3. Process Items
     let updated = 0;
@@ -81,53 +90,73 @@ async function syncPrices() {
     const updatedProducts = products.map(p => {
         const itemName = p.item_name;
         let buyingPrice = -1;
+        let matchMethod = "";
 
-        // PRIORITY 1: Manual Override (Final Sell Price)
+        // PRIORITY 1: Manual Fixed Price
         if (priceMap.fixed_prices && priceMap.fixed_prices[itemName]) {
             p.standard_rate = priceMap.fixed_prices[itemName];
             updated++;
             return p;
         }
 
-        // PRIORITY 2: Manual Buying Price (Run Logic)
+        // PRIORITY 2: Manual Buying Price
         if (priceMap.manual_buy_prices && priceMap.manual_buy_prices[itemName]) {
             buyingPrice = priceMap.manual_buy_prices[itemName];
+            matchMethod = "Manual";
         }
 
-        // PRIORITY 3: Map from CSV
+        // PRIORITY 3: Explicit Name Mapping
         if (buyingPrice === -1 && priceMap.csv_name_map && priceMap.csv_name_map[itemName]) {
             const mappedName = priceMap.csv_name_map[itemName];
-            if (rawNameMap.has(mappedName)) {
-                buyingPrice = rawNameMap.get(mappedName);
+            const found = csvItems.find(i => i.name === mappedName);
+            if (found) {
+                buyingPrice = found.rate;
+                matchMethod = "Map";
             }
         }
 
-        // PRIORITY 4: Auto-Match from CSV
+        // PRIORITY 4: Smart Scoring Match
         if (buyingPrice === -1) {
-            const key = normalize(itemName);
-            const sortedKey = normalizeSorted(itemName);
+            let bestMatch = null;
+            let bestScore = 0;
 
-            if (costMap.has(key)) {
-                buyingPrice = costMap.get(key);
-            } else if (sortedCostMap.has(sortedKey)) {
-                buyingPrice = sortedCostMap.get(sortedKey);
+            csvItems.forEach(csvItem => {
+                const score = calculateScore(itemName, csvItem.name);
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = csvItem;
+                }
+            });
+
+            // Threshold: 0.8 means 80% of the words in the Product Name must exist in the CSV Name
+            // e.g. "Vacuum Flask 1000" (tokens: vacuum, flask, 1000)
+            // vs "Vacuum Flask 1000ml Red" (tokens: vacuum, flask, 1000, red) -> 3/3 match = Score 1.0
+            if (bestScore >= 0.75 && bestMatch) {
+                buyingPrice = bestMatch.rate;
+                matchMethod = `Smart (${(bestScore*100).toFixed(0)}%)`;
+                // Optional: Log tricky matches to verify
+                // if (bestScore < 1.0) console.log(`   🔸 Fuzzy: "${itemName}" -> "${bestMatch.name}"`);
             }
         }
 
-        // 4. Calculate Final Price (Only if we have a buying price)
+        // 4. Calculate Final Price
         if (buyingPrice > 0) {
             const landedCost = buyingPrice * (1 + TRANSPORT_RATE);
             const costWithTax = landedCost * (1 + GST_RATE);
             let finalSellingPrice = costWithTax * (1 + MARKUP_RATE);
             finalSellingPrice = Math.ceil(finalSellingPrice);
 
+            // Update if price is different or was 0
             if (p.standard_rate !== finalSellingPrice) {
                 p.standard_rate = finalSellingPrice;
                 updated++;
             }
         } else {
-            missing++;
-            missingList.push(itemName);
+            // Only count as missing if price is still 0
+            if (!p.standard_rate || p.standard_rate === 0) {
+                missing++;
+                missingList.push(itemName);
+            }
         }
         return p;
     });
@@ -142,8 +171,9 @@ async function syncPrices() {
     console.log(`-----------------------------------`);
 
     if (missing > 0) {
-        fs.writeFileSync(path.join(__dirname, '../missing_items.txt'), missingList.join("\n"));
-        console.log(`\n👉 Missing items list saved to: missing_items.txt`);
+        const missingPath = path.join(__dirname, '../missing_items.txt');
+        fs.writeFileSync(missingPath, missingList.join("\n"));
+        console.log(`👉 Missing list saved to: ${missingPath}`);
     }
 }
 

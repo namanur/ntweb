@@ -4,8 +4,8 @@ import { Product, Order } from '@/lib/erp';
 import Image from 'next/image';
 import { 
   LayoutDashboard, Package, ShoppingCart, Server, Database, LogOut, Save, X, Edit3, 
-  CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Layers, Play, FileText, ArrowUpDown, ChevronDown, 
-  AlertCircle, Flame, Clock, Truck // ✅ ADDED Clock & Truck
+  CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Layers, Play, FileText, ArrowUpDown, 
+  ChevronDown, AlertCircle, Flame, Clock, Truck, ChevronLeft, ChevronRight 
 } from 'lucide-react';
 import { logoutAction } from '@/app/login/actions'; 
 
@@ -16,7 +16,7 @@ const NavButton = ({ active, onClick, icon, label }: any) => (
 );
 
 export default function AdminPage() {
-  const [activeTab, setActiveTab] = useState("orders");
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [loading, setLoading] = useState(false);
   
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,6 +27,10 @@ export default function AdminPage() {
   const [filterBrand, setFilterBrand] = useState("All");
   const [filterStock, setFilterStock] = useState("All");
   const [sortConfig, setSortConfig] = useState<{ key: keyof Product; direction: 'asc' | 'desc' } | null>(null);
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 50;
 
   const [editingItem, setEditingItem] = useState<Product | null>(null);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
@@ -39,12 +43,17 @@ export default function AdminPage() {
     fetchData(); 
   }, []);
 
-  // ✅ Dashboard Stats Calculation
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, filterBrand, filterStock]);
+
   const stats = useMemo(() => {
     const total = products.length;
     const inStock = products.filter(p => p.in_stock !== false).length;
     const outOfStock = products.filter(p => p.in_stock === false).length;
-    const priceWarning = products.filter(p => p.standard_rate < 2).length;
+    // Items with 0 price or very low price are warnings
+    const priceWarning = products.filter(p => !p.standard_rate || p.standard_rate < 2).length;
     const hotItems = products.filter(p => p.is_hot).length;
 
     return { total, inStock, outOfStock, priceWarning, hotItems };
@@ -79,14 +88,12 @@ export default function AdminPage() {
 
   const handleOrderAction = async (action: string, orderId: string) => {
     if(action !== 'mark_out_for_delivery' && !confirm("Confirm action?")) return;
-    
     setLoading(true);
     try {
         const res = await fetch('/api/admin/order-action', {
             method: 'POST',
             body: JSON.stringify({ action, orderId })
         });
-        
         const data = await res.json();
         if(res.ok) {
             if(action !== 'mark_out_for_delivery') alert("Success: " + data.message);
@@ -118,7 +125,6 @@ export default function AdminPage() {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ item_code: editingItem.item_code, ...editForm }) 
           });
-          
           if (res.ok) { 
               alert("Updated Successfully!"); 
               setProducts(prev => prev.map(p => p.item_code === editingItem.item_code ? { ...p, ...editForm } as Product : p)); 
@@ -130,14 +136,11 @@ export default function AdminPage() {
   const handleImageUpload = async () => {
     if (!selectedFiles || selectedFiles.length === 0 || !editingItem?.item_code) return;
     setUploading(true);
-    
     const formData = new FormData();
     formData.append("item_code", editingItem.item_code);
-    
     for (let i = 0; i < selectedFiles.length; i++) {
         formData.append("file", selectedFiles[i]);
     }
-
     try {
       const res = await fetch("/api/products/update", { method: "POST", body: formData });
       if (res.ok) {
@@ -156,35 +159,37 @@ export default function AdminPage() {
 
   const processedProducts = useMemo(() => {
       let result = [...products];
-
       if (search) {
           const s = search.toLowerCase();
           result = result.filter(p => (p.item_name || "").toLowerCase().includes(s) || (p.item_code || "").toLowerCase().includes(s));
       }
-
       if (filterBrand !== "All") {
           result = result.filter(p => (p.brand || "Generic") === filterBrand);
       }
-
       if (filterStock === "In Stock") {
           result = result.filter(p => p.in_stock !== false);
       } else if (filterStock === "Out of Stock") {
           result = result.filter(p => p.in_stock === false);
       }
-
       if (sortConfig) {
           result.sort((a, b) => {
               const aVal = a[sortConfig.key] ?? "";
               const bVal = b[sortConfig.key] ?? "";
-              
               if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
               if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
               return 0;
           });
       }
-
       return result;
   }, [products, search, filterBrand, filterStock, sortConfig]);
+
+  // PAGINATION LOGIC
+  const paginatedData = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return processedProducts.slice(startIndex, startIndex + itemsPerPage);
+  }, [processedProducts, currentPage]);
+
+  const totalPages = Math.ceil(processedProducts.length / itemsPerPage);
 
   const requestSort = (key: keyof Product) => {
       let direction: 'asc' | 'desc' = 'asc';
@@ -199,9 +204,9 @@ export default function AdminPage() {
       <aside className="w-72 border-r border-zinc-900 p-6 flex flex-col hidden md:flex sticky top-0 h-screen bg-black">
         <div className="flex items-center gap-3 mb-12 px-2"><div className="relative w-10 h-10"><Image src="/logo.png" alt="Admin Logo" fill className="object-contain invert brightness-0" /></div><span className="font-bold text-lg tracking-wide">COMMAND</span></div>
         <nav className="space-y-1 flex-1">
+          <NavButton active={activeTab === 'dashboard'} onClick={() => setActiveTab("dashboard")} icon={<LayoutDashboard size={20} />} label="System Health" />
           <NavButton active={activeTab === 'orders'} onClick={() => setActiveTab("orders")} icon={<ShoppingCart size={20} />} label="Order Management" />
           <NavButton active={activeTab === 'products'} onClick={() => setActiveTab("products")} icon={<Package size={20} />} label="Inventory" />
-          <NavButton active={activeTab === 'dashboard'} onClick={() => setActiveTab("dashboard")} icon={<LayoutDashboard size={20} />} label="System Health" />
         </nav>
         <button onClick={() => logoutAction()} className="mt-auto flex items-center gap-3 px-4 py-3 text-sm font-bold text-zinc-500 hover:text-red-500 transition-colors"><LogOut size={18} /> Sign Out</button>
       </aside>
@@ -214,7 +219,6 @@ export default function AdminPage() {
 
         {activeTab === 'dashboard' && (
           <div className="space-y-6">
-            
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div className={`p-5 rounded-2xl border ${stats.priceWarning > 0 ? 'bg-red-900/20 border-red-800' : 'bg-zinc-900/30 border-zinc-800'}`}>
                     <div className="flex items-center gap-2 mb-2">
@@ -224,7 +228,6 @@ export default function AdminPage() {
                     <div className="text-3xl font-black">{stats.priceWarning}</div>
                     <div className="text-[10px] text-zinc-500 mt-1">Items &lt; ₹2.00</div>
                 </div>
-
                 <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
                     <div className="flex items-center gap-2 mb-2">
                         <CheckCircle2 size={16} className="text-green-500" />
@@ -232,7 +235,6 @@ export default function AdminPage() {
                     </div>
                     <div className="text-3xl font-black">{stats.inStock}</div>
                 </div>
-
                 <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
                     <div className="flex items-center gap-2 mb-2">
                         <AlertTriangle size={16} className="text-orange-500" />
@@ -240,7 +242,6 @@ export default function AdminPage() {
                     </div>
                     <div className="text-3xl font-black">{stats.outOfStock}</div>
                 </div>
-
                  <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
                     <div className="flex items-center gap-2 mb-2">
                         <Flame size={16} className="text-purple-500" />
@@ -248,7 +249,6 @@ export default function AdminPage() {
                     </div>
                     <div className="text-3xl font-black">{stats.hotItems}</div>
                 </div>
-
                 <div className="p-5 rounded-2xl bg-zinc-900/30 border border-zinc-800">
                     <div className="flex items-center gap-2 mb-2">
                         <Package size={16} className="text-blue-500" />
@@ -346,22 +346,46 @@ export default function AdminPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-zinc-800/50">
-                            {processedProducts.slice(0, 50).map(p => (
+                            {paginatedData.map(p => (
                                 <tr key={p.item_code} className="hover:bg-zinc-900/50 transition-colors group">
                                     <td className="p-5"><div className="font-bold text-sm text-zinc-200">{p.item_name}</div><div className="font-mono text-[10px] text-zinc-600 mt-1">{p.item_code}</div></td>
                                     <td className="p-5"><span className="text-xs font-medium bg-zinc-900 border border-zinc-800 px-2 py-1 rounded-md text-zinc-400">{p.brand}</span>{p.in_stock === false && <span className="ml-2 text-[10px] font-bold bg-red-900/50 text-red-300 border border-red-800 px-1.5 py-0.5 rounded">OOS</span>}</td>
-                                    <td className="p-5 text-right font-mono font-bold text-zinc-300">₹{p.standard_rate}</td>
+                                    <td className="p-5 text-right font-mono font-bold text-zinc-300">
+                                      {p.standard_rate && p.standard_rate > 0 ? `₹${p.standard_rate}` : <span className="text-red-500 flex items-center justify-end gap-1"><AlertCircle size={12}/> ₹0</span>}
+                                    </td>
                                     <td className="p-5 text-center"><button onClick={() => openEditModal(p)} className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-all flex items-center gap-2 mx-auto text-xs font-bold"><Edit3 size={14} /> Edit</button></td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+                
+                {/* PAGINATION CONTROLS */}
+                {totalPages > 1 && (
+                    <div className="p-4 border-t border-zinc-800 flex justify-between items-center bg-zinc-900/20">
+                        <button 
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage(p => p - 1)}
+                            className="p-2 px-4 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-xs font-bold transition-all"
+                        >
+                            <ChevronLeft size={16} /> Prev
+                        </button>
+                        <span className="text-xs font-mono text-zinc-500">Page {currentPage} of {totalPages}</span>
+                        <button 
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage(p => p + 1)}
+                            className="p-2 px-4 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-xs font-bold transition-all"
+                        >
+                            Next <ChevronRight size={16} />
+                        </button>
+                    </div>
+                )}
             </div>
           </div>
         )}
       </main>
 
+      {/* Edit Modal (Keeping existing logic) */}
       {editingItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
               <div className="bg-zinc-900 w-full max-w-2xl rounded-3xl border border-zinc-800 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
