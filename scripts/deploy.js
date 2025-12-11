@@ -1,47 +1,47 @@
 const { execSync } = require('child_process');
 
-console.log("\x1b[36m%s\x1b[0m", "🚀 Starting Full Deployment...");
+// Helper to run shell commands and show their output in the terminal
+const run = (command) => {
+    try {
+        execSync(command, { stdio: 'inherit' });
+    } catch (e) {
+        // We allow 'git commit' to fail if there are no changes to commit
+        if (command.startsWith('git commit')) {
+            console.log("   (No new changes to commit, proceeding...)");
+            return;
+        }
+        throw e;
+    }
+};
+
+console.log("\x1b[36m%s\x1b[0m", "🚀 Starting One-Click Deployment...");
 
 try {
-    // 0. Import CSV (Resets catalog to base state)
-    try {
-        console.log("🔄 Step 1: Importing data from products.csv...");
-        execSync('node scripts/import_csv.js', { stdio: 'inherit' });
-    } catch (e) {
-        console.log("⚠️ CSV Import skipped. Proceeding...");
-    }
+    // STEP 1: Sync Data from CSV
+    // This ensures that if you updated products.csv, the JSON is regenerated immediately.
+    console.log("\n🔄 1. Syncing Product Data...");
+    run('node scripts/import_csv.js');
 
-    // 1. Sync Prices (Calculates formulas & applies manual prices) -> THIS WAS MISSING
-    try {
-        console.log("💰 Step 2: Calculating Prices & Margins...");
-        execSync('node scripts/sync_prices.js', { stdio: 'inherit' });
-    } catch (e) {
-        console.error("❌ Price Sync Failed! Stopping deployment to prevent bad data.");
-        process.exit(1); // Stop everything if prices fail
-    }
+    // STEP 2: Stage All Changes
+    // "git add ." catches new files (images), modified files (code), and deletions.
+    console.log("\n📸 2. Staging all changes (Code, Images, Data)...");
+    run('git add .');
 
-    // 2. Add ALL changes (Code + Data + Images)
-    console.log("📸 Step 3: Staging all changes...");
-    execSync('git add .');
+    // STEP 3: Commit
+    // Automatically adds the current date and time to the commit message.
+    const date = new Date().toLocaleString();
+    console.log(`\n💾 3. Committing snapshot: "Auto Update ${date}"...`);
+    run(`git commit -m "Auto Update: ${date}"`);
 
-    // 3. Commit changes
-    const date = new Date().toISOString().split('T')[0];
-    console.log("💾 Step 4: Committing snapshot...");
-    
-    try {
-        execSync(`git commit -m "Site Update: ${date}"`);
-    } catch (e) {
-        console.log("  - No new changes to commit. Proceeding to push...");
-    }
+    // STEP 4: Push
+    console.log("\n☁️ 4. Pushing to GitHub...");
+    run('git push origin main');
 
-    // 4. Push to GitHub
-    console.log("☁️ Step 5: Pushing to Cloud...");
-    execSync('git push origin main');
-
-    console.log("\x1b[32m%s\x1b[0m", "✅ Deployment Triggered!");
-    console.log("   - Your site will update in ~2 minutes.");
+    console.log("\n\x1b[32m%s\x1b[0m", "✅ SUCCESS! Your site is updating.");
+    console.log("   It should be live in ~2 minutes.");
 
 } catch (error) {
-    console.error("\x1b[31m%s\x1b[0m", "❌ Deployment Failed:");
+    console.error("\n\x1b[31m%s\x1b[0m", "❌ Deployment Failed:");
     console.error(error.message);
+    process.exit(1);
 }
