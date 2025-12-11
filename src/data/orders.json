@@ -165,5 +165,42 @@
     "status": "Delivered",
     "date": "2025-11-30T03:51:17.569Z",
     "erp_synced": true
+  },
+  {
+    "id": "ORD-598310",
+    "customer": {
+      "name": "naman",
+      "phone": "9999999999",
+      "address": "hazaribagh",
+      "gst": "20AIIPM2082N1Z7",
+      "notes": "None"
+    },
+    "items": [
+      {
+        "item_code": "COBRA-BOTTLE",
+        "item_name": "bottle cobra",
+        "qty": 18,
+        "rate": 34,
+        "original_rate": 34
+      },
+      {
+        "item_code": "800ML-BOTTLEBABY",
+        "item_name": "Bottle Baby Doll 800ml",
+        "qty": 9,
+        "rate": 110,
+        "original_rate": 110
+      },
+      {
+        "item_code": "2808002000ML-BOTTLE3PCS",
+        "item_name": "Bottle 3pcs Set (280-800-2000ml)",
+        "qty": 7,
+        "rate": 263,
+        "original_rate": 263
+      }
+    ],
+    "total": 3443,
+    "status": "Pending",
+    "date": "2025-12-11T14:49:58.310Z",
+    "erp_synced": true
   }
 ]

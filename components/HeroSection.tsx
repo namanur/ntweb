@@ -1,86 +1,64 @@
 "use client";
 import React from "react";
-// ✅ FIXED: Added 'Check' to imports
-import { ArrowDown, Zap, Star, Check } from "lucide-react";
-
-const HERO_IMAGE = "/hero-product.png"; // Replace this with a .gif for motion!
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function HeroSection() {
   const scrollToCatalog = () => {
-    const catalog = document.getElementById("catalog-section");
-    if (catalog) {
-      catalog.scrollIntoView({ behavior: "smooth" });
+    const grid = document.getElementById("product-grid-start");
+    if (grid) {
+      grid.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
-    <div className="w-full px-3 sm:px-6 py-4 sm:py-6 bg-background transition-colors">
-      
+    <div className="w-full px-4 pt-4 pb-2">
       <div 
-        className="relative rounded-[2.5rem] overflow-hidden shadow-2xl group min-h-[400px] flex items-center"
-        style={{ 
-          background: `radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)`,
-        }}
+        className="relative w-full rounded-[1.5rem] overflow-hidden bg-gradient-to-r from-red-50 to-white dark:from-red-950/20 dark:to-zinc-900 border border-red-100 dark:border-red-900/30 py-8 px-6 flex items-center justify-between shadow-sm"
       >
-        
-        {/* Background Effects */}
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[url('/watermark.svg')] opacity-10 rotate-12 animate-pulse"></div>
-        </div>
+        {/* Soft Glow */}
+        <div className="absolute left-[-10%] top-[-50%] w-[40%] h-[200%] bg-red-500/5 blur-[80px] rounded-full pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto px-6 py-8 relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-end justify-between w-full gap-6">
           
-          {/* LEFT: Text Content */}
-          <div className="text-center md:text-left order-2 md:order-1">
+          {/* Left: Brand & Product Name */}
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
             
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.2)] animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <Zap size={14} fill="currentColor" /> Just Launched
-            </div>
-            
-            <h1 className="text-4xl sm:text-6xl font-black tracking-tighter leading-[0.9] mb-6 text-white drop-shadow-2xl animate-in fade-in slide-in-from-bottom-6 duration-1000">
-              The Ultimate <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                Lunch Box.
-              </span>
-            </h1>
-            
-            <p className="text-zinc-400 text-sm sm:text-base mb-8 leading-relaxed max-w-md mx-auto md:mx-0 font-medium animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
-              Keep your food 100% fresh & hot. Leak-proof technology with premium stainless steel inner. 
-            </p>
-
-            <button 
-              onClick={scrollToCatalog}
-              className="px-8 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] text-black active:scale-95 bg-white mx-auto md:mx-0 animate-in zoom-in duration-500 delay-200"
-            >
-              Shop Now <ArrowDown size={16} />
-            </button>
-          </div>
-
-          {/* RIGHT: Product Showcase */}
-          <div className="relative order-1 md:order-2 flex justify-center h-[300px] md:h-[450px]">
-            
-            {/* Glow Behind Product */}
-            <div className="absolute inset-0 bg-blue-500/20 blur-[80px] rounded-full scale-75 animate-pulse"></div>
-            
-            {/* Product Image / GIF */}
+            {/* LOGO SECTION */}
+            {/* ⚠️ NOTE: Upload your logo to public/brands/anjali.png */}
             <img 
-              src={HERO_IMAGE} 
-              alt="New Lunchbox" 
-              className="relative z-10 w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform duration-700 ease-out"
+              src="/brands/anjali.png" 
+              alt="Anjali Kitchenware" 
+              className="h-8 sm:h-10 object-contain mb-1"
+              onError={(e) => {
+                // Fallback if image is missing
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+              }}
             />
+            {/* Fallback Text Logo */}
+            <span className="hidden text-xl font-black tracking-tighter text-red-600 uppercase">Anjali</span>
 
-            {/* Floating Review Badge */}
-            <div className="absolute bottom-10 right-4 sm:right-10 bg-white/10 backdrop-blur-xl border border-white/20 p-3 rounded-2xl flex gap-3 items-center animate-bounce duration-[3000ms]">
-                <div className="bg-green-500 rounded-full p-1.5"><Check size={12} className="text-white" strokeWidth={4} /></div>
-                <div className="text-left">
-                    <div className="text-[10px] text-zinc-300 uppercase font-bold tracking-wider">Durability</div>
-                    <div className="text-xs font-bold text-white">5 Star Rated</div>
-                </div>
+            <div className="flex items-baseline gap-3">
+              <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-zinc-900 dark:text-white leading-none">
+                Pressure Cooker
+              </h1>
+              <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
+                New Launch
+              </span>
             </div>
-
+            
+            <p className="text-xs sm:text-sm text-zinc-500 font-medium max-w-sm">
+               Experience the legacy of 50 years. Safety meets perfection.
+            </p>
           </div>
 
+          {/* Right: Action */}
+          <button 
+            onClick={scrollToCatalog}
+            className="group flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md hover:bg-red-700 hover:shadow-lg active:scale-95 transition-all"
+          >
+            Shop Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
     </div>

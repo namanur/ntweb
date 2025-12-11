@@ -4,20 +4,21 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-// ✅ FIXED: Added 'PlusCircle' to imports
-import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle } from "lucide-react";
+import HeroSection from "./HeroSection"; 
+import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle, Search } from "lucide-react";
 
 interface CartItem extends Product {
   qty: number;
 }
 
 const BRANDS = [
+  { name: "Anjali", logo: "/brands/anjali.png" }, // Added Logo Path
   { name: "MaxFresh", logo: "/brands/maxfresh.png" },
   { name: "Tibros", logo: "/brands/tibros.png" },
   { name: "Sigma", logo: "/brands/sigma.png" },
 ];
 
-const CATEGORY_PRIORITY = ["Bottle", "Lunch Box", "Steelware", "Crockery"];
+const CATEGORY_PRIORITY = ["Pressure Cooker", "Bottle", "Lunch Box", "Steelware", "Crockery"];
 
 const sortCategories = (a: string, b: string) => {
   const idxA = CATEGORY_PRIORITY.indexOf(a);
@@ -72,7 +73,9 @@ const fuzzyMatch = (text: string, search: string) => {
 export default function ProductGridClient({ products = [] }: { products: Product[] }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get("q") || "";
+  const initialQ = searchParams.get("q") || "";
+  const [searchQuery, setSearchQuery] = useState(initialQ); 
+
   const pathname = usePathname();
   const { replace } = useRouter();
 
@@ -94,13 +97,36 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const gridTopRef = useRef<HTMLDivElement>(null); 
 
   const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // --- STATE FOR EXPANDED SECTIONS ---
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const [formData, setFormData] = useState({ 
     name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" 
   });
+
+  // Sync URL to state
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q !== null && q !== searchQuery) {
+      setSearchQuery(q);
+    }
+  }, [searchParams]);
+
+  // Sync state to URL (debounced)
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    if (searchQuery) {
+      params.set("q", searchQuery);
+    } else {
+      params.delete("q");
+    }
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [searchQuery]);
+
+  // 🔥 HERO VISIBILITY LOGIC
+  const isHeroVisible = 
+    searchQuery.trim() === "" && 
+    selectedBrand === "All" && 
+    selectedCategory === "All";
 
   useEffect(() => {
     const saved = localStorage.getItem("nandan_customer_details");
@@ -115,7 +141,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
     }
   }, [showMoreDetails]);
 
-  // --- SCROLL DETECTION ---
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
@@ -135,11 +160,10 @@ export default function ProductGridClient({ products = [] }: { products: Product
   }, [selectedBrand, searchQuery, selectedCategory]);
 
   const clearSearch = () => {
-    const params = new URLSearchParams(searchParams);
-    params.delete("q");
-    replace(`${pathname}?${params.toString()}`);
+    setSearchQuery("");
     setSelectedBrand("All");
     setSelectedCategory("All");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const productsInBrand = useMemo(() => {
@@ -255,37 +279,63 @@ export default function ProductGridClient({ products = [] }: { products: Product
       return sum + (rate * i.qty);
   }, 0);
 
-  // Constants
   const SECTION_LIMIT = 20;
 
   return (
     <div className="w-full" ref={gridTopRef}>
       
-      {/* FILTER BAR */}
-      <div className="sticky top-16 z-30 bg-background border-b border-border shadow-sm py-3 -mx-4 px-4 mb-4">
-        {searchQuery.trim().length === 0 ? (
-            <div className="flex flex-col gap-3">
-                <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-                    <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-5 py-2.5 rounded-full font-bold text-xs border transition-all ${selectedBrand === "All" ? "bg-foreground text-background border-foreground shadow-md" : "bg-secondary text-muted-foreground border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800"}`}>All Brands</button>
-                    {BRANDS.map((brand) => (
-                    <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-xs border transition-all ${selectedBrand === brand.name ? `bg-foreground text-background border-foreground shadow-md` : "bg-secondary text-muted-foreground border-transparent grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800"}`}>
-                        {brand.name}
-                    </button>))}
-                </div>
-                <div className="flex gap-2 overflow-x-auto no-scrollbar items-center">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider shrink-0 mr-1">Filter:</span>
-                    <button onClick={() => setSelectedCategory('All')} className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all border ${selectedCategory === 'All' ? 'bg-zinc-800 text-white border-zinc-800 dark:bg-white dark:text-black' : 'bg-transparent border-border text-muted-foreground hover:bg-secondary'}`}>All</button>
-                    {availableCategories.filter(c => c !== 'All').map(cat => (
-                        <button key={cat} onClick={() => setSelectedCategory(cat)} className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-medium transition-all border ${selectedCategory === cat ? 'bg-zinc-800 text-white border-zinc-800 dark:bg-white dark:text-black' : 'bg-transparent border-border text-muted-foreground hover:bg-secondary'}`}>{cat}</button>
-                    ))}
-                </div>
-            </div>
-        ) : (
-            <div className="flex items-center justify-between w-full text-sm">
-                <div className="text-muted-foreground">Results for <span className="font-bold text-foreground">"{searchQuery}"</span></div>
-                <button onClick={clearSearch} className="text-xs font-bold text-primary hover:underline bg-secondary px-3 py-1.5 rounded-full">Clear Search</button>
-            </div>
-        )}
+      {/* 🚀 ANIMATED HERO SECTION */}
+      <div 
+        className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${
+          isHeroVisible ? 'max-h-[300px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'
+        }`}
+      >
+        <HeroSection />
+      </div>
+
+      {/* 🚀 PLUSH FILTER BAR */}
+      <div 
+         id="product-grid-start"
+         className="sticky top-[68px] z-30 bg-background/80 backdrop-blur-md border-b border-border/50 py-4 -mx-4 px-4 mb-6 transition-all"
+      >
+         <div className="flex flex-col gap-4">
+             {/* Search Input */}
+             <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
+                <input 
+                  type="text" 
+                  placeholder="Search products..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-secondary/50 rounded-2xl text-sm font-medium border border-transparent focus:bg-background focus:border-primary/50 focus:outline-none transition-all placeholder:text-muted-foreground/70"
+                />
+                {searchQuery && (
+                  <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-zinc-200 rounded-full">
+                    <X size={14} className="text-muted-foreground" />
+                  </button>
+                )}
+             </div>
+
+             {/* Filter Chips */}
+             {searchQuery.trim().length === 0 && (
+              <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-1">
+                  <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                      <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-4 py-2 rounded-xl font-bold text-xs border transition-all ${selectedBrand === "All" ? "bg-foreground text-background border-foreground shadow-md" : "bg-card text-muted-foreground border-border/50 hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}>All Brands</button>
+                      {BRANDS.map((brand) => (
+                      <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs border transition-all ${selectedBrand === brand.name ? `bg-foreground text-background border-foreground shadow-md` : "bg-card text-muted-foreground border-border/50 hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}>
+                          {brand.name}
+                      </button>))}
+                  </div>
+                  <div className="flex gap-2 overflow-x-auto no-scrollbar items-center">
+                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider shrink-0 mr-1">Cat:</span>
+                      <button onClick={() => setSelectedCategory('All')} className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all border ${selectedCategory === 'All' ? 'bg-zinc-800 text-white border-zinc-800 dark:bg-white dark:text-black' : 'bg-transparent border-border text-muted-foreground hover:bg-secondary'}`}>All</button>
+                      {availableCategories.filter(c => c !== 'All').map(cat => (
+                          <button key={cat} onClick={() => setSelectedCategory(cat)} className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all border ${selectedCategory === cat ? 'bg-zinc-800 text-white border-zinc-800 dark:bg-white dark:text-black' : 'bg-transparent border-border text-muted-foreground hover:bg-secondary'}`}>{cat}</button>
+                      ))}
+                  </div>
+              </div>
+             )}
+         </div>
       </div>
 
       {/* --- CONTENT AREA --- */}
@@ -303,15 +353,15 @@ export default function ProductGridClient({ products = [] }: { products: Product
                         <div key={group.name} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                             
                             {/* 🔥 SECTION HEADER 🔥 */}
-                            <div className="flex justify-center mb-8 sticky top-[135px] z-10 pointer-events-none">
-                                <div className="bg-foreground text-background px-8 py-3 rounded-2xl shadow-xl backdrop-blur-md flex items-center gap-3">
-                                    <h2 className="text-2xl font-black uppercase tracking-tight">{group.name}</h2>
-                                    <span className="w-1.5 h-1.5 rounded-full bg-background/30"></span>
-                                    <span className="text-xs font-bold text-background/70">{group.items.length} Items</span>
+                            <div className="flex justify-center mb-8 sticky top-[180px] z-10 pointer-events-none">
+                                <div className="bg-foreground text-background px-6 py-2.5 rounded-full shadow-2xl backdrop-blur-md flex items-center gap-3 border border-white/10">
+                                    <h2 className="text-sm font-black uppercase tracking-widest">{group.name}</h2>
+                                    <span className="w-1 h-1 rounded-full bg-background/50"></span>
+                                    <span className="text-[10px] font-bold text-background/70">{group.items.length}</span>
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                                 {itemsToShow.map(p => (
                                     <ProductCard 
                                         key={p.item_code} 
@@ -328,9 +378,9 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                 <div className="mt-8 flex justify-center">
                                     <button 
                                         onClick={() => toggleSection(group.name)}
-                                        className="bg-secondary hover:bg-zinc-200 dark:hover:bg-zinc-700 text-foreground border border-border px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm flex items-center gap-3 transition-all transform hover:scale-105 shadow-lg active:scale-95"
+                                        className="bg-secondary hover:bg-zinc-200 dark:hover:bg-zinc-700 text-foreground border border-border px-8 py-3 rounded-full font-black uppercase tracking-widest text-xs flex items-center gap-2 transition-all transform hover:scale-105 shadow-sm active:scale-95"
                                     >
-                                        Show All {group.name} <span className="bg-foreground text-background text-[10px] px-2 py-0.5 rounded-full font-bold">+{remainingCount}</span> <ChevronDown size={16} />
+                                        Show All {group.name} <span className="bg-foreground text-background text-[10px] px-2 py-0.5 rounded-full font-bold">+{remainingCount}</span> <ChevronDown size={14} />
                                     </button>
                                 </div>
                             )}
@@ -339,7 +389,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
                 })}
             </div>
         ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                 {filteredProducts.slice(0, visibleItemsCount).map(p => (
                     <ProductCard 
                         key={p.item_code} 
