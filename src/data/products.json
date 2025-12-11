@@ -4,7 +4,7 @@
     "item_name": "18INCH FOLDING STOOL",
     "description": "18INCH FOLDING STOOL",
     "stock_uom": "PCS",
-    "standard_rate": 279,
+    "standard_rate": 287,
     "wholesale_rate": 260,
     "item_group": "Household",
     "brand": "Generic"
@@ -24,7 +24,7 @@
     "item_name": "2PCS DINING SET",
     "description": "2PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 53,
+    "standard_rate": 55,
     "wholesale_rate": 49.5,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -34,7 +34,7 @@
     "item_name": "3 PCS SQUARE STORAGE CONTAINER",
     "description": "3 PCS SQUARE STORAGE CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 125,
+    "standard_rate": 128,
     "wholesale_rate": 116.2,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -44,7 +44,7 @@
     "item_name": "3 PCS STORAGE CONTAINER",
     "description": "3 PCS STORAGE CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 140,
+    "standard_rate": 144,
     "wholesale_rate": 130.5,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -54,7 +54,7 @@
     "item_name": "3IN1 DISH RACK",
     "description": "3IN1 DISH RACK",
     "stock_uom": "PCS",
-    "standard_rate": 170,
+    "standard_rate": 174,
     "wholesale_rate": 158.3,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -64,7 +64,7 @@
     "item_name": "3IN1 SOAP DISPENSER",
     "description": "3IN1 SOAP DISPENSER",
     "stock_uom": "PCS",
-    "standard_rate": 120,
+    "standard_rate": 123,
     "wholesale_rate": 111.5,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -74,7 +74,7 @@
     "item_name": "3PCS DINING SET",
     "description": "3PCS DINING SET",
     "stock_uom": "PCS",
-    "standard_rate": 70,
+    "standard_rate": 72,
     "wholesale_rate": 65.3,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -84,7 +84,7 @@
     "item_name": "4 LAYER SHOES RACK",
     "description": "4 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 222,
+    "standard_rate": 227,
     "wholesale_rate": 206.7,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -94,7 +94,7 @@
     "item_name": "4IN 1 SLICER & GRATER",
     "description": "4IN 1 SLICER & GRATER",
     "stock_uom": "PCS",
-    "standard_rate": 71,
+    "standard_rate": 72,
     "wholesale_rate": 65.47,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -104,7 +104,7 @@
     "item_name": "4PCS DINING SET SQURE",
     "description": "4PCS DINING SET SQURE",
     "stock_uom": "PCS",
-    "standard_rate": 101,
+    "standard_rate": 102,
     "wholesale_rate": 93.5,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -114,7 +114,7 @@
     "item_name": "5 LAYER SHOES RANK",
     "description": "5 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 262,
+    "standard_rate": 268,
     "wholesale_rate": 244.44,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -124,7 +124,7 @@
     "item_name": "6 IN 1 SLICER",
     "description": "6 IN 1 SLICER",
     "stock_uom": "PCS",
-    "standard_rate": 75,
+    "standard_rate": 77,
     "wholesale_rate": 70,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -134,7 +134,7 @@
     "item_name": "6 LAYER SHOES RANK",
     "description": "6 LAYER SHOES RANK",
     "stock_uom": "PCS",
-    "standard_rate": 295,
+    "standard_rate": 303,
     "wholesale_rate": 275,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -144,7 +144,7 @@
     "item_name": "650ML PUSH CHOPPER",
     "description": "650ML PUSH CHOPPER",
     "stock_uom": "PCS",
-    "standard_rate": 86,
+    "standard_rate": 88,
     "wholesale_rate": 80,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -154,7 +154,7 @@
     "item_name": "700ML PUSH CHOPPER heavy",
     "description": "700ML PUSH CHOPPER heavy",
     "stock_uom": "PCS",
-    "standard_rate": 119,
+    "standard_rate": 122,
     "wholesale_rate": 110.58,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -164,7 +164,7 @@
     "item_name": "99 KNIFE (PLAIN)",
     "description": "99 KNIFE (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 47,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -174,7 +174,7 @@
     "item_name": "AK47 LIGHTER",
     "description": "AK47 LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 44,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -184,7 +184,7 @@
     "item_name": "ANJAR KNIFE BIG",
     "description": "ANJAR KNIFE BIG",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 128,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -194,7 +194,7 @@
     "item_name": "ANJAR KNIFE REGULAR",
     "description": "ANJAR KNIFE REGULAR",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 102,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -214,7 +214,7 @@
     "item_name": "Apple Cutter S.S. - [Blister Pack]",
     "description": "Apple Cutter S.S. - [Blister Pack]",
     "stock_uom": "PCS",
-    "standard_rate": 56,
+    "standard_rate": 58,
     "wholesale_rate": 52.26,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -224,7 +224,7 @@
     "item_name": "Big B full Lighter",
     "description": "Big B full Lighter",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 56,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -234,7 +234,7 @@
     "item_name": "BIG N.G. LIGHTER",
     "description": "BIG N.G. LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 13,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -244,7 +244,7 @@
     "item_name": "BIG SPATULA & BRUSH",
     "description": "BIG SPATULA & BRUSH",
     "stock_uom": "PCS",
-    "standard_rate": 36,
+    "standard_rate": 37,
     "wholesale_rate": 33.4,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -254,7 +254,7 @@
     "item_name": "Black Lighter (kriva)",
     "description": "Black Lighter (kriva)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -264,7 +264,7 @@
     "item_name": "BLACK PRINT WATER BOTTLE",
     "description": "BLACK PRINT WATER BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 46,
+    "standard_rate": 47,
     "wholesale_rate": 42.09,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -274,7 +274,7 @@
     "item_name": "Bottle 02 Swissw",
     "description": "Bottle 02 Swissw",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 158,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -284,7 +284,7 @@
     "item_name": "Bottle 03 Sparkle (3Pcs Set)",
     "description": "Bottle 03 Sparkle (3Pcs Set)",
     "stock_uom": "BOX",
-    "standard_rate": 154,
+    "standard_rate": 158,
     "wholesale_rate": 143.7,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -294,7 +294,7 @@
     "item_name": "Bottle 1100ml (Box Packing)",
     "description": "Bottle 1100ml (Box Packing)",
     "stock_uom": "BOX",
-    "standard_rate": 117,
+    "standard_rate": 120,
     "wholesale_rate": 108.6,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -304,7 +304,7 @@
     "item_name": "Bottle 3pcs Set (280-800-2000ml)",
     "description": "Bottle 3pcs Set (280-800-2000ml)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 263,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -314,7 +314,7 @@
     "item_name": "Bottle Baby Doll 800ml",
     "description": "Bottle Baby Doll 800ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 110,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -324,7 +324,7 @@
     "item_name": "bottle cobra",
     "description": "bottle cobra",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 34,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -334,7 +334,7 @@
     "item_name": "bottle concave",
     "description": "bottle concave",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 53,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -344,7 +344,7 @@
     "item_name": "Bottle DUBAI 1200ml (Nek)",
     "description": "Bottle DUBAI 1200ml (Nek)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 120,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -354,7 +354,7 @@
     "item_name": "BOTTLE FORSTI",
     "description": "BOTTLE FORSTI",
     "stock_uom": "PCS",
-    "standard_rate": 38,
+    "standard_rate": 39,
     "wholesale_rate": 34.84,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -364,7 +364,7 @@
     "item_name": "bottle glass & bottle",
     "description": "bottle glass & bottle",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 47,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -374,7 +374,7 @@
     "item_name": "Bottle Ground (3pcs Set) [B]",
     "description": "Bottle Ground (3pcs Set) [B]",
     "stock_uom": "BOX",
-    "standard_rate": 173,
+    "standard_rate": 177,
     "wholesale_rate": 161.11,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -384,7 +384,7 @@
     "item_name": "Bottle H2O",
     "description": "Bottle H2O",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 58,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -394,7 +394,7 @@
     "item_name": "Bottle Kohinoor 1200ml",
     "description": "Bottle Kohinoor 1200ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 101,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -404,7 +404,7 @@
     "item_name": "Bottle Line Diamond Cap Bottle 1000ml (3pcs Box)",
     "description": "Bottle Line Diamond Cap Bottle 1000ml (3pcs Box)",
     "stock_uom": "BOX",
-    "standard_rate": 140,
+    "standard_rate": 144,
     "wholesale_rate": 130.62,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -414,7 +414,7 @@
     "item_name": "Bottle Nexon 1200ml (Nek)",
     "description": "Bottle Nexon 1200ml (Nek)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 131,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -424,7 +424,7 @@
     "item_name": "Bottle Nexon 2400ml (Nek)",
     "description": "Bottle Nexon 2400ml (Nek)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 160,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -434,7 +434,7 @@
     "item_name": "Bottle PARIS 1500ml (Nek)",
     "description": "Bottle PARIS 1500ml (Nek)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 168,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -444,7 +444,7 @@
     "item_name": "Bottle PARIS 2200ml",
     "description": "Bottle PARIS 2200ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 196,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -454,7 +454,7 @@
     "item_name": "Bottle S.S. Sipper Cap Multi Utility - 900ML",
     "description": "Bottle S.S. Sipper Cap Multi Utility - 900ML",
     "stock_uom": "PCS",
-    "standard_rate": 151,
+    "standard_rate": 155,
     "wholesale_rate": 140.4,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -464,7 +464,7 @@
     "item_name": "Bottle Slim Campas 700ml",
     "description": "Bottle Slim Campas 700ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 85,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -474,7 +474,7 @@
     "item_name": "Bottle Slim Flip Top 500ml",
     "description": "Bottle Slim Flip Top 500ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 72,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -484,7 +484,7 @@
     "item_name": "BOTTLE SS PREMIUM",
     "description": "BOTTLE SS PREMIUM",
     "stock_uom": "PCS",
-    "standard_rate": 164,
+    "standard_rate": 168,
     "wholesale_rate": 152.39,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -494,7 +494,7 @@
     "item_name": "BOTTLE STAINLESS STEEL",
     "description": "BOTTLE STAINLESS STEEL",
     "stock_uom": "PCS",
-    "standard_rate": 133,
+    "standard_rate": 136,
     "wholesale_rate": 123.37,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -504,7 +504,7 @@
     "item_name": "Bottle TOKYO 1000ml (Nek)",
     "description": "Bottle TOKYO 1000ml (Nek)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 101,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -514,7 +514,7 @@
     "item_name": "BREAD CUTTER REGULAR BLACK",
     "description": "BREAD CUTTER REGULAR BLACK",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 67,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -524,7 +524,7 @@
     "item_name": "Bread Knife Special",
     "description": "Bread Knife Special",
     "stock_uom": "PCS",
-    "standard_rate": 58,
+    "standard_rate": 59,
     "wholesale_rate": 53.7,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -534,7 +534,7 @@
     "item_name": "Cake Knife Plain",
     "description": "Cake Knife Plain",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 59,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -544,7 +544,7 @@
     "item_name": "CAMERA LENS COFFEE MUG",
     "description": "CAMERA LENS COFFEE MUG",
     "stock_uom": "PCS",
-    "standard_rate": 153,
+    "standard_rate": 157,
     "wholesale_rate": 142.59,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -554,7 +554,7 @@
     "item_name": "CANDY BOX",
     "description": "CANDY BOX",
     "stock_uom": "PCS",
-    "standard_rate": 89,
+    "standard_rate": 91,
     "wholesale_rate": 83,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -564,7 +564,7 @@
     "item_name": "CELEBRATION TRAY",
     "description": "CELEBRATION TRAY",
     "stock_uom": "PCS",
-    "standard_rate": 264,
+    "standard_rate": 271,
     "wholesale_rate": 246.5,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -574,7 +574,7 @@
     "item_name": "CELTRON LIGHTER",
     "description": "CELTRON LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 44,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -584,7 +584,7 @@
     "item_name": "Cheese And Vegetable Grater - D034",
     "description": "Cheese And Vegetable Grater - D034",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 23,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -604,7 +604,7 @@
     "item_name": "Chilly Cutter S.S. Heavy 310g",
     "description": "Chilly Cutter S.S. Heavy 310g",
     "stock_uom": "PCS",
-    "standard_rate": 140,
+    "standard_rate": 144,
     "wholesale_rate": 130.62,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -614,7 +614,7 @@
     "item_name": "Chopper Easy 700ml Heavy",
     "description": "Chopper Easy 700ml Heavy",
     "stock_uom": "PCS",
-    "standard_rate": 101,
+    "standard_rate": 104,
     "wholesale_rate": 94.35,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -644,7 +644,7 @@
     "item_name": "CHOPPING BOARD COLOR SMALL",
     "description": "CHOPPING BOARD COLOR SMALL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 69,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -654,7 +654,7 @@
     "item_name": "Chopping Board LARGE Plastic 15mm",
     "description": "Chopping Board LARGE Plastic 15mm",
     "stock_uom": "PCS",
-    "standard_rate": 443,
+    "standard_rate": 455,
     "wholesale_rate": 413.65,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -664,7 +664,7 @@
     "item_name": "Chopping Board S.S. No.2(10×14 Inch 670gm)",
     "description": "Chopping Board S.S. No.2(10×14 Inch 670gm)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 270,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -674,7 +674,7 @@
     "item_name": "Chopping Board S.S. No.3(16.5×11.5×1 Inch 950gm)",
     "description": "Chopping Board S.S. No.3(16.5×11.5×1 Inch 950gm)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 404,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -684,7 +684,7 @@
     "item_name": "Chopping Board WHITE LARGE",
     "description": "Chopping Board WHITE LARGE",
     "stock_uom": "PCS",
-    "standard_rate": 159,
+    "standard_rate": 163,
     "wholesale_rate": 148.04,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -694,7 +694,7 @@
     "item_name": "chopping board white Medium",
     "description": "chopping board white Medium",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 123,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -704,7 +704,7 @@
     "item_name": "chopping board wooden big",
     "description": "chopping board wooden big",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 192,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -714,7 +714,7 @@
     "item_name": "Chopping board wooden mid",
     "description": "Chopping board wooden mid",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 152,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -724,7 +724,7 @@
     "item_name": "CLEAR GLASS",
     "description": "CLEAR GLASS",
     "stock_uom": "PCS",
-    "standard_rate": 100,
+    "standard_rate": 102,
     "wholesale_rate": 92.88,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -734,7 +734,7 @@
     "item_name": "COCONUT OPENER BIG",
     "description": "COCONUT OPENER BIG",
     "stock_uom": "PCS",
-    "standard_rate": 35,
+    "standard_rate": 36,
     "wholesale_rate": 32,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -744,7 +744,7 @@
     "item_name": "COCONUT OPENER MINI",
     "description": "COCONUT OPENER MINI",
     "stock_uom": "PCS",
-    "standard_rate": 33,
+    "standard_rate": 32,
     "wholesale_rate": 30,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -754,7 +754,7 @@
     "item_name": "coffee mug",
     "description": "coffee mug",
     "stock_uom": "Pack",
-    "standard_rate": 72,
+    "standard_rate": 87,
     "wholesale_rate": 66.93,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -764,7 +764,7 @@
     "item_name": "Container Feel Fresh 1200 Ml",
     "description": "Container Feel Fresh 1200 Ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 142,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -774,7 +774,7 @@
     "item_name": "COOL AND COOL BOTTLE",
     "description": "COOL AND COOL BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 117,
+    "standard_rate": 120,
     "wholesale_rate": 108.7,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -784,7 +784,7 @@
     "item_name": "Corn Cutter S.S.",
     "description": "Corn Cutter S.S.",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 44,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -794,7 +794,7 @@
     "item_name": "CRESTA DRY FRUIT BOX",
     "description": "CRESTA DRY FRUIT BOX",
     "stock_uom": "PCS",
-    "standard_rate": 125,
+    "standard_rate": 128,
     "wholesale_rate": 116.5,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -804,7 +804,7 @@
     "item_name": "Crystal Diamond Bottle 06 (3pcs Set)",
     "description": "Crystal Diamond Bottle 06 (3pcs Set)",
     "stock_uom": "PCS",
-    "standard_rate": 156,
+    "standard_rate": 160,
     "wholesale_rate": 145.5,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -814,7 +814,7 @@
     "item_name": "D.C Cute Knife 8",
     "description": "D.C Cute Knife 8",
     "stock_uom": "PCS",
-    "standard_rate": 28,
+    "standard_rate": 29,
     "wholesale_rate": 26.12,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -824,7 +824,7 @@
     "item_name": "D.C Cute Knife 9",
     "description": "D.C Cute Knife 9",
     "stock_uom": "PCS",
-    "standard_rate": 33,
+    "standard_rate": 34,
     "wholesale_rate": 30.5,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -834,7 +834,7 @@
     "item_name": "D.C. 3pcs Knife Set",
     "description": "D.C. 3pcs Knife Set",
     "stock_uom": "PCS",
-    "standard_rate": 73,
+    "standard_rate": 75,
     "wholesale_rate": 68.2,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -844,7 +844,7 @@
     "item_name": "DEER HEAD",
     "description": "DEER HEAD",
     "stock_uom": "PCS",
-    "standard_rate": 33,
+    "standard_rate": 32,
     "wholesale_rate": 30,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -864,7 +864,7 @@
     "item_name": "DIAMOND CONTAINER",
     "description": "DIAMOND CONTAINER",
     "stock_uom": "PCS",
-    "standard_rate": 97,
+    "standard_rate": 99,
     "wholesale_rate": 90,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -874,7 +874,7 @@
     "item_name": "DIL LIGHTER LOOSE",
     "description": "DIL LIGHTER LOOSE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 19,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -884,7 +884,7 @@
     "item_name": "Dish Rack big",
     "description": "Dish Rack big",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 188,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -894,7 +894,7 @@
     "item_name": "Dish Rack Medium",
     "description": "Dish Rack Medium",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 158,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -904,7 +904,7 @@
     "item_name": "Dish Rack Steel Small",
     "description": "Dish Rack Steel Small",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 142,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -914,7 +914,7 @@
     "item_name": "DOOR GUARD (127)",
     "description": "DOOR GUARD (127)",
     "stock_uom": "PCS",
-    "standard_rate": 19,
+    "standard_rate": 20,
     "wholesale_rate": 17.46,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -924,7 +924,7 @@
     "item_name": "DRY FRUIT BOX",
     "description": "DRY FRUIT BOX",
     "stock_uom": "Pack",
-    "standard_rate": 63,
+    "standard_rate": 64,
     "wholesale_rate": 58.5,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -944,7 +944,7 @@
     "item_name": "DRY FRUIT SLICER",
     "description": "DRY FRUIT SLICER",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 55,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -954,7 +954,7 @@
     "item_name": "DUBBLE DECKER LUNCH BOX",
     "description": "DUBBLE DECKER LUNCH BOX",
     "stock_uom": "PCS",
-    "standard_rate": 122,
+    "standard_rate": 125,
     "wholesale_rate": 114,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -964,7 +964,7 @@
     "item_name": "Duster Cleaning Kitchen/ Floor 16*16",
     "description": "Duster Cleaning Kitchen/ Floor 16*16",
     "stock_uom": "PCS",
-    "standard_rate": 55,
+    "standard_rate": 56,
     "wholesale_rate": 50.79,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -974,7 +974,7 @@
     "item_name": "Dustpan Plastic BIG Size (paan) 1 Dozen",
     "description": "Dustpan Plastic BIG Size (paan) 1 Dozen",
     "stock_uom": "DZ",
-    "standard_rate": 190,
+    "standard_rate": 195,
     "wholesale_rate": 177.08,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -984,7 +984,7 @@
     "item_name": "Excellent Peeling Knife",
     "description": "Excellent Peeling Knife",
     "stock_uom": "PCS",
-    "standard_rate": 109,
+    "standard_rate": 112,
     "wholesale_rate": 101.65,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -994,7 +994,7 @@
     "item_name": "Excellent Peeling Peeler",
     "description": "Excellent Peeling Peeler",
     "stock_uom": "DZ",
-    "standard_rate": 109,
+    "standard_rate": 112,
     "wholesale_rate": 101.6,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1004,7 +1004,7 @@
     "item_name": "EXPRESS LIGHTER",
     "description": "EXPRESS LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 41,
+    "standard_rate": 34,
     "wholesale_rate": 37.83,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1014,7 +1014,7 @@
     "item_name": "FIGHTER KNIFE (PLAIN)",
     "description": "FIGHTER KNIFE (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 64,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1024,7 +1024,7 @@
     "item_name": "FIGO LIGHTER",
     "description": "FIGO LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 89,
+    "standard_rate": 91,
     "wholesale_rate": 82.73,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1034,7 +1034,7 @@
     "item_name": "FOLDING STOOL 12INCH",
     "description": "FOLDING STOOL 12INCH",
     "stock_uom": "PCS",
-    "standard_rate": 209,
+    "standard_rate": 216,
     "wholesale_rate": 195,
     "item_group": "Household",
     "brand": "Generic"
@@ -1044,7 +1044,7 @@
     "item_name": "GAS TROLLEY",
     "description": "GAS TROLLEY",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 93,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1054,7 +1054,7 @@
     "item_name": "GAS TROLLY STEEL HEAVY",
     "description": "GAS TROLLY STEEL HEAVY",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 303,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1064,7 +1064,7 @@
     "item_name": "GAS TROLLY STEEL REGULAR",
     "description": "GAS TROLLY STEEL REGULAR",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 228,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1074,7 +1074,7 @@
     "item_name": "Glass Stand Lotus",
     "description": "Glass Stand Lotus",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 155,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -1084,7 +1084,7 @@
     "item_name": "Glass Stand with Glass",
     "description": "Glass Stand with Glass",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 42,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -1094,7 +1094,7 @@
     "item_name": "GUJIYA MAKER",
     "description": "GUJIYA MAKER",
     "stock_uom": "PCS",
-    "standard_rate": 66,
+    "standard_rate": 67,
     "wholesale_rate": 61,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1104,7 +1104,7 @@
     "item_name": "Gym Shaker Bottle 1500ml",
     "description": "Gym Shaker Bottle 1500ml",
     "stock_uom": "PCS",
-    "standard_rate": 89,
+    "standard_rate": 91,
     "wholesale_rate": 82.74,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -1114,7 +1114,7 @@
     "item_name": "Gym Shaker Bottle With Ball 700ml",
     "description": "Gym Shaker Bottle With Ball 700ml",
     "stock_uom": "PCS",
-    "standard_rate": 60,
+    "standard_rate": 61,
     "wholesale_rate": 55.16,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -1124,7 +1124,7 @@
     "item_name": "HAPPY TIME MUG",
     "description": "HAPPY TIME MUG",
     "stock_uom": "PCS",
-    "standard_rate": 125,
+    "standard_rate": 128,
     "wholesale_rate": 116.12,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -1134,7 +1134,7 @@
     "item_name": "HEAVY LIGHTER WITH KNIFE",
     "description": "HEAVY LIGHTER WITH KNIFE",
     "stock_uom": "PCS",
-    "standard_rate": 38,
+    "standard_rate": 39,
     "wholesale_rate": 34.8,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1144,7 +1144,7 @@
     "item_name": "Hot Mat Big Round",
     "description": "Hot Mat Big Round",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 87,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Generic"
@@ -1154,7 +1154,7 @@
     "item_name": "Hot Mat mid Round",
     "description": "Hot Mat mid Round",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 80,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Generic"
@@ -1164,7 +1164,7 @@
     "item_name": "Ice Candy Maker [6pcs Set]",
     "description": "Ice Candy Maker [6pcs Set]",
     "stock_uom": "PCS",
-    "standard_rate": 74,
+    "standard_rate": 75,
     "wholesale_rate": 68.7,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1174,7 +1174,7 @@
     "item_name": "Ice Candy Round",
     "description": "Ice Candy Round",
     "stock_uom": "PCS",
-    "standard_rate": 58,
+    "standard_rate": 59,
     "wholesale_rate": 53.7,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1184,7 +1184,7 @@
     "item_name": "Ice Tray Silicone SQUARE",
     "description": "Ice Tray Silicone SQUARE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 58,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -1194,7 +1194,7 @@
     "item_name": "JUICER ORANGE",
     "description": "JUICER ORANGE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 32,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1204,7 +1204,7 @@
     "item_name": "Juicer S.S. Jali Heavy [Square]",
     "description": "Juicer S.S. Jali Heavy [Square]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 224,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1214,7 +1214,7 @@
     "item_name": "Juicer S.S. Jali Round",
     "description": "Juicer S.S. Jali Round",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 224,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1224,7 +1224,7 @@
     "item_name": "JUICY GLASS",
     "description": "JUICY GLASS",
     "stock_uom": "PCS",
-    "standard_rate": 100,
+    "standard_rate": 102,
     "wholesale_rate": 92.88,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -1234,7 +1234,7 @@
     "item_name": "Jumbo Blender",
     "description": "Jumbo Blender",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 104,
     "wholesale_rate": 0,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -1244,7 +1244,7 @@
     "item_name": "JUMBO KEY STAND",
     "description": "JUMBO KEY STAND",
     "stock_uom": "PCS",
-    "standard_rate": 98,
+    "standard_rate": 101,
     "wholesale_rate": 91.3,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1254,7 +1254,7 @@
     "item_name": "KEY HOUSE",
     "description": "KEY HOUSE",
     "stock_uom": "PCS",
-    "standard_rate": 100,
+    "standard_rate": 102,
     "wholesale_rate": 92.88,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1264,7 +1264,7 @@
     "item_name": "Knife Apple Lazar",
     "description": "Knife Apple Lazar",
     "stock_uom": "PCS",
-    "standard_rate": 33,
+    "standard_rate": 34,
     "wholesale_rate": 30.47,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1274,7 +1274,7 @@
     "item_name": "Knife Apple Plain",
     "description": "Knife Apple Plain",
     "stock_uom": "PCS",
-    "standard_rate": 33,
+    "standard_rate": 34,
     "wholesale_rate": 30.5,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1284,7 +1284,7 @@
     "item_name": "Knife Chef Big",
     "description": "Knife Chef Big",
     "stock_uom": "PCS",
-    "standard_rate": 151,
+    "standard_rate": 155,
     "wholesale_rate": 140.7,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1294,7 +1294,7 @@
     "item_name": "Knife HEAVY 10 Inch",
     "description": "Knife HEAVY 10 Inch",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 91,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1304,7 +1304,7 @@
     "item_name": "Knife HEAVY 12 Inch",
     "description": "Knife HEAVY 12 Inch",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 110,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1314,7 +1314,7 @@
     "item_name": "Knife Wooden Handle (12 pcs)",
     "description": "Knife Wooden Handle (12 pcs)",
     "stock_uom": "DZ",
-    "standard_rate": 55,
+    "standard_rate": 56,
     "wholesale_rate": 50.79,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1324,7 +1324,7 @@
     "item_name": "Knife-21",
     "description": "Knife-21",
     "stock_uom": "DZ",
-    "standard_rate": 173,
+    "standard_rate": 177,
     "wholesale_rate": 161.5,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1334,7 +1334,7 @@
     "item_name": "Knife-786",
     "description": "Knife-786",
     "stock_uom": "DZ",
-    "standard_rate": 108,
+    "standard_rate": 110,
     "wholesale_rate": 100.2,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -1344,7 +1344,7 @@
     "item_name": "Kulfi Maker [Box Pack]",
     "description": "Kulfi Maker [Box Pack]",
     "stock_uom": "PCS",
-    "standard_rate": 64,
+    "standard_rate": 66,
     "wholesale_rate": 59.51,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1354,7 +1354,7 @@
     "item_name": "L Shape Masher",
     "description": "L Shape Masher",
     "stock_uom": "PCS",
-    "standard_rate": 77,
+    "standard_rate": 79,
     "wholesale_rate": 71.11,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1364,7 +1364,7 @@
     "item_name": "LEMON SQUEEZER ALMUNIUM BLACK",
     "description": "LEMON SQUEEZER ALMUNIUM BLACK",
     "stock_uom": "PCS",
-    "standard_rate": 140,
+    "standard_rate": 144,
     "wholesale_rate": 130.6,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1374,7 +1374,7 @@
     "item_name": "LEMON SQUEEZER ALUMINIUM SILVER",
     "description": "LEMON SQUEEZER ALUMINIUM SILVER",
     "stock_uom": "PCS",
-    "standard_rate": 140,
+    "standard_rate": 144,
     "wholesale_rate": 130.62,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1384,7 +1384,7 @@
     "item_name": "Lemon Squeezer Aluminum (W)",
     "description": "Lemon Squeezer Aluminum (W)",
     "stock_uom": "PCS",
-    "standard_rate": 120,
+    "standard_rate": 123,
     "wholesale_rate": 111.75,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1394,7 +1394,7 @@
     "item_name": "Lemon Squeezer Plastic S.S. vatki",
     "description": "Lemon Squeezer Plastic S.S. vatki",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 24,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1404,7 +1404,7 @@
     "item_name": "Lemon Squeezer SS Heavy",
     "description": "Lemon Squeezer SS Heavy",
     "stock_uom": "PCS",
-    "standard_rate": 94,
+    "standard_rate": 96,
     "wholesale_rate": 87.08,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1414,7 +1414,7 @@
     "item_name": "Lighter 12 Aani / 1 Feet plastic grip",
     "description": "Lighter 12 Aani / 1 Feet plastic grip",
     "stock_uom": "PCS",
-    "standard_rate": 56,
+    "standard_rate": 58,
     "wholesale_rate": 52.26,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1424,7 +1424,7 @@
     "item_name": "Lighter Black EAGLE 12mm (Box pack)",
     "description": "Lighter Black EAGLE 12mm (Box pack)",
     "stock_uom": "PCS",
-    "standard_rate": 41,
+    "standard_rate": 40,
     "wholesale_rate": 38.29,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1434,7 +1434,7 @@
     "item_name": "Lighter S.S",
     "description": "Lighter S.S",
     "stock_uom": "PCS",
-    "standard_rate": 38,
+    "standard_rate": 39,
     "wholesale_rate": 34.84,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -1444,7 +1444,7 @@
     "item_name": "Lunch Box 3 Compartments",
     "description": "Lunch Box 3 Compartments",
     "stock_uom": "PCS",
-    "standard_rate": 473,
+    "standard_rate": 486,
     "wholesale_rate": 442,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1454,7 +1454,7 @@
     "item_name": "LUNCH BOX CLASSIc",
     "description": "LUNCH BOX CLASSIc",
     "stock_uom": "PCS",
-    "standard_rate": 73,
+    "standard_rate": 74,
     "wholesale_rate": 68,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1464,7 +1464,7 @@
     "item_name": "Lunch Box Delicious (Polypack)",
     "description": "Lunch Box Delicious (Polypack)",
     "stock_uom": "PCS",
-    "standard_rate": 88,
+    "standard_rate": 90,
     "wholesale_rate": 81.6,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1474,7 +1474,7 @@
     "item_name": "Lunch Box Divine(Plain) (Box Pack)",
     "description": "Lunch Box Divine(Plain) (Box Pack)",
     "stock_uom": "PCS",
-    "standard_rate": 67,
+    "standard_rate": 69,
     "wholesale_rate": 62.4,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1484,7 +1484,7 @@
     "item_name": "LUNCH BOX EASY",
     "description": "LUNCH BOX EASY",
     "stock_uom": "PCS",
-    "standard_rate": 46,
+    "standard_rate": 47,
     "wholesale_rate": 42.09,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1494,7 +1494,7 @@
     "item_name": "Lunch Box Froggy",
     "description": "Lunch Box Froggy",
     "stock_uom": "PCS",
-    "standard_rate": 125,
+    "standard_rate": 128,
     "wholesale_rate": 116.12,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1504,7 +1504,7 @@
     "item_name": "Lunch Box Kids Healthy",
     "description": "Lunch Box Kids Healthy",
     "stock_uom": "PCS",
-    "standard_rate": 108,
+    "standard_rate": 110,
     "wholesale_rate": 100.4,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1514,7 +1514,7 @@
     "item_name": "Lunch Box Kids Printed(Box Pack)",
     "description": "Lunch Box Kids Printed(Box Pack)",
     "stock_uom": "PCS",
-    "standard_rate": 70,
+    "standard_rate": 72,
     "wholesale_rate": 65.3,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1524,7 +1524,7 @@
     "item_name": "LUNCH BOX LOCK & LOCK TRASNPARENT",
     "description": "LUNCH BOX LOCK & LOCK TRASNPARENT",
     "stock_uom": "PCS",
-    "standard_rate": 70,
+    "standard_rate": 72,
     "wholesale_rate": 65.3,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1534,7 +1534,7 @@
     "item_name": "Lunch Box Locket",
     "description": "Lunch Box Locket",
     "stock_uom": "PCS",
-    "standard_rate": 63,
+    "standard_rate": 64,
     "wholesale_rate": 58.4,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1544,7 +1544,7 @@
     "item_name": "Lunch Box Printed With locket(Best)",
     "description": "Lunch Box Printed With locket(Best)",
     "stock_uom": "PCS",
-    "standard_rate": 69,
+    "standard_rate": 71,
     "wholesale_rate": 63.8,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1554,7 +1554,7 @@
     "item_name": "Lunch Box S.S. 2 Compartment (H.V.)",
     "description": "Lunch Box S.S. 2 Compartment (H.V.)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 470,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1564,7 +1564,7 @@
     "item_name": "Lunch Box S.S. Dabi (Royal)",
     "description": "Lunch Box S.S. Dabi (Royal)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 354,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1574,7 +1574,7 @@
     "item_name": "Lunch Box S.S. Flipto  (Prexo)",
     "description": "Lunch Box S.S. Flipto  (Prexo)",
     "stock_uom": "PCS",
-    "standard_rate": 450,
+    "standard_rate": 447,
     "wholesale_rate": 420,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1584,7 +1584,7 @@
     "item_name": "Lunch Box S.S. Plastic Dabi",
     "description": "Lunch Box S.S. Plastic Dabi",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 311,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1594,7 +1594,7 @@
     "item_name": "Lunch Box S.S. Square (big)",
     "description": "Lunch Box S.S. Square (big)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 470,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1604,7 +1604,7 @@
     "item_name": "Lunch Box Square 2 Deck  Printed Locket (Poly Pack)",
     "description": "Lunch Box Square 2 Deck  Printed Locket (Poly Pack)",
     "stock_uom": "PCS",
-    "standard_rate": 81,
+    "standard_rate": 83,
     "wholesale_rate": 75.4,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1614,7 +1614,7 @@
     "item_name": "Lunch Box Steelo S.S.",
     "description": "Lunch Box Steelo S.S.",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 407,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1624,7 +1624,7 @@
     "item_name": "Lunch Box Tengo Big S.S.",
     "description": "Lunch Box Tengo Big S.S.",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 364,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1634,7 +1634,7 @@
     "item_name": "LUNCH BOX TOKYO",
     "description": "LUNCH BOX TOKYO",
     "stock_uom": "PCS",
-    "standard_rate": 120,
+    "standard_rate": 123,
     "wholesale_rate": 111.3,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1644,7 +1644,7 @@
     "item_name": "LUNCHEX Kids Lunch Box",
     "description": "LUNCHEX Kids Lunch Box",
     "stock_uom": "PCS",
-    "standard_rate": 86,
+    "standard_rate": 88,
     "wholesale_rate": 79.83,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -1654,7 +1654,7 @@
     "item_name": "MAGIC MASALA BOX",
     "description": "MAGIC MASALA BOX",
     "stock_uom": "Pack",
-    "standard_rate": 72,
+    "standard_rate": 74,
     "wholesale_rate": 66.94,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1664,7 +1664,7 @@
     "item_name": "MASALA & DRYFRUIT Atlantic",
     "description": "MASALA & DRYFRUIT Atlantic",
     "stock_uom": "PCS",
-    "standard_rate": 91,
+    "standard_rate": 93,
     "wholesale_rate": 84.18,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1674,7 +1674,7 @@
     "item_name": "Masala Box 360 Revolving",
     "description": "Masala Box 360 Revolving",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 128,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1684,7 +1684,7 @@
     "item_name": "Masala Box Color 7 CupWith Spoons (S.P.)",
     "description": "Masala Box Color 7 CupWith Spoons (S.P.)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 74,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -1694,7 +1694,7 @@
     "item_name": "Masala Box King",
     "description": "Masala Box King",
     "stock_uom": "PCS",
-    "standard_rate": 70,
+    "standard_rate": 88,
     "wholesale_rate": 65.31,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1704,7 +1704,7 @@
     "item_name": "MASALA BOX SEQ. FIRST",
     "description": "MASALA BOX SEQ. FIRST",
     "stock_uom": "DZ",
-    "standard_rate": 357,
+    "standard_rate": 367,
     "wholesale_rate": 333.4,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1714,7 +1714,7 @@
     "item_name": "MASALA BOX SEQ. mini",
     "description": "MASALA BOX SEQ. mini",
     "stock_uom": "DZ",
-    "standard_rate": 150,
+    "standard_rate": 153,
     "wholesale_rate": 139.34,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1724,7 +1724,7 @@
     "item_name": "Masala Box SHAGUN",
     "description": "Masala Box SHAGUN",
     "stock_uom": "PCS",
-    "standard_rate": 136,
+    "standard_rate": 139,
     "wholesale_rate": 126.27,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1734,7 +1734,7 @@
     "item_name": "Masala Box Super King",
     "description": "Masala Box Super King",
     "stock_uom": "PCS",
-    "standard_rate": 86,
+    "standard_rate": 88,
     "wholesale_rate": 79.83,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -1744,7 +1744,7 @@
     "item_name": "Masher Polygon (J.K)",
     "description": "Masher Polygon (J.K)",
     "stock_uom": "PCS",
-    "standard_rate": 174,
+    "standard_rate": 179,
     "wholesale_rate": 162.56,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1754,7 +1754,7 @@
     "item_name": "Masher Round Shape S.S. (J.K)",
     "description": "Masher Round Shape S.S. (J.K)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 101,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1764,7 +1764,7 @@
     "item_name": "Masher S.S Handle",
     "description": "Masher S.S Handle",
     "stock_uom": "PCS",
-    "standard_rate": 98,
+    "standard_rate": 101,
     "wholesale_rate": 91.43,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1774,7 +1774,7 @@
     "item_name": "MASHER S.S.",
     "description": "MASHER S.S.",
     "stock_uom": "PCS",
-    "standard_rate": 86,
+    "standard_rate": 101,
     "wholesale_rate": 79.83,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1784,7 +1784,7 @@
     "item_name": "Masher S.S. Ultra HEAVY",
     "description": "Masher S.S. Ultra HEAVY",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 59,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1794,7 +1794,7 @@
     "item_name": "Masher Wooden Handle",
     "description": "Masher Wooden Handle",
     "stock_uom": "PCS",
-    "standard_rate": 69,
+    "standard_rate": 71,
     "wholesale_rate": 63.86,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -1804,7 +1804,7 @@
     "item_name": "MATKA STAND",
     "description": "MATKA STAND",
     "stock_uom": "PCS",
-    "standard_rate": 28,
+    "standard_rate": 29,
     "wholesale_rate": 26.12,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1814,7 +1814,7 @@
     "item_name": "Matka Stand [Pot]",
     "description": "Matka Stand [Pot]",
     "stock_uom": "PCS",
-    "standard_rate": 58,
+    "standard_rate": 59,
     "wholesale_rate": 53.71,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1824,7 +1824,7 @@
     "item_name": "MATKA STAND STEEL PREMIUM",
     "description": "MATKA STAND STEEL PREMIUM",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 239,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1834,7 +1834,7 @@
     "item_name": "Matka Stand Steel Round Big",
     "description": "Matka Stand Steel Round Big",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 104,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1844,7 +1844,7 @@
     "item_name": "Matka Stand Steel Round Small",
     "description": "Matka Stand Steel Round Small",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 94,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1854,7 +1854,7 @@
     "item_name": "MATKA STAND STEEL SQUARE",
     "description": "MATKA STAND STEEL SQUARE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 231,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -1864,7 +1864,7 @@
     "item_name": "MaxFresh Hot Pot Jet 2500ml",
     "description": "Hot Pot Jet",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 646,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1874,7 +1874,7 @@
     "item_name": "MaxFresh Hot Pot Solitaire 20000ml",
     "description": "Hot Pot Solitaire",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 2987,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1884,7 +1884,7 @@
     "item_name": "MaxFresh Hot Pot Solitaire 4000ml",
     "description": "Hot Pot Solitaire",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 646,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1894,7 +1894,7 @@
     "item_name": "MaxFresh Multi Kadai Mini (5-in-1 Set)",
     "description": "Multi Kadai Mini",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 1174,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1904,7 +1904,7 @@
     "item_name": "MaxFresh SS Tea Jar 10L",
     "description": "SS Tea Jar",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 2347,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -1914,7 +1914,7 @@
     "item_name": "MaxFresh Triply Kadai with Glass Lid 24cm",
     "description": "Triply Kadai with Glass Lid",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 1473,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -1924,7 +1924,7 @@
     "item_name": "MaxFresh Vacuum Flask 1000",
     "description": "Vacuum Flask",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 557,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "MaxFresh"
@@ -1934,7 +1934,7 @@
     "item_name": "MaxFresh Water Bottle Stylish 750ml",
     "description": "Water Bottle Stylish",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 709,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "MaxFresh"
@@ -1944,7 +1944,7 @@
     "item_name": "MaxFresh EXTRA DEEP SEE THRU MASALA DABBA no.8",
     "description": "EXTRA DEEP SEE THRU MASALA DABBA",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 1194,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
@@ -1954,7 +1954,7 @@
     "item_name": "MaxFresh HOT POT ROYAL 2000ml",
     "description": "HOT POT ROYAL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 405,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1964,7 +1964,7 @@
     "item_name": "MaxFresh HOT POT ROYAL 3000ml",
     "description": "HOT POT ROYAL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 545,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1974,7 +1974,7 @@
     "item_name": "MaxFresh HOT POT ROYAL 5000ml",
     "description": "HOT POT ROYAL",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 1112,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1984,7 +1984,7 @@
     "item_name": "MaxFresh IDLI COOKER SANDWICH BOTTOM",
     "description": "IDLI COOKER SANDWICH BOTTOM",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 1195,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -1994,7 +1994,7 @@
     "item_name": "MaxFresh S S FEEDING BOTTLE 200ml",
     "description": "S S FEEDING BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 316,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "MaxFresh"
@@ -2004,7 +2004,7 @@
     "item_name": "MaxFresh S S FEEDING BOTTLE 250ml",
     "description": "S S FEEDING BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 321,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "MaxFresh"
@@ -2014,7 +2014,7 @@
     "item_name": "MaxFresh SS KADAI- 24 CM (WITH LID)",
     "description": "SS KADAI- 24 CM (WITH LID)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 1473,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -2024,7 +2024,7 @@
     "item_name": "MaxFresh STEAMER WITH GLASS LID 20cm 2tier",
     "description": "STEAMER WITH GLASS LID",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 797,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -2034,7 +2034,7 @@
     "item_name": "MaxFresh TRIPLY DELUXE KADAI WITH LID (1000 g)",
     "description": "TRIPLY DELUXE KADAI WITH LID",
     "stock_uom": "KG",
-    "standard_rate": 0,
+    "standard_rate": 678,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -2044,7 +2044,7 @@
     "item_name": "MaxFresh TRIPLY TADKAPAN 1.5cup",
     "description": "TRIPLY TADKAPAN",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 407,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -2054,7 +2054,7 @@
     "item_name": "MaxFresh ULTRA SIPPER WATER BOTTLE 600ml",
     "description": "ULTRA SIPPER WATER BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 717,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "MaxFresh"
@@ -2064,7 +2064,7 @@
     "item_name": "MaxFresh WIRE RECTANGLE MASALA DABBA NO6",
     "description": "WIRE RECTANGLE MASALA DABBA",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 777,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
@@ -2074,7 +2074,7 @@
     "item_name": "MaxFresh WIRE ROUND MASALA DABBA NO7",
     "description": "WIRE ROUND MASALA DABBA",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 843,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
@@ -2084,7 +2084,7 @@
     "item_name": "Mini Mobile Stand",
     "description": "Mini Mobile Stand",
     "stock_uom": "PCS",
-    "standard_rate": 1,
+    "standard_rate": 8,
     "wholesale_rate": 0.654,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -2094,7 +2094,7 @@
     "item_name": "Mobile Ok Stand",
     "description": "Mobile Ok Stand",
     "stock_uom": "PCS",
-    "standard_rate": 18,
+    "standard_rate": 19,
     "wholesale_rate": 16.7,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -2104,7 +2104,7 @@
     "item_name": "MORNING COFFEE MUG(181)",
     "description": "MORNING COFFEE MUG(181)",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 50,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2114,7 +2114,7 @@
     "item_name": "Mug Chai Steel Cup [6pcs Set]",
     "description": "Mug Chai Steel Cup [6pcs Set]",
     "stock_uom": "PCS",
-    "standard_rate": 283,
+    "standard_rate": 290,
     "wholesale_rate": 264.16,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2124,7 +2124,7 @@
     "item_name": "MUG VOLVO 1000 ML FIRST",
     "description": "MUG VOLVO 1000 ML FIRST",
     "stock_uom": "DZ",
-    "standard_rate": 137,
+    "standard_rate": 141,
     "wholesale_rate": 127.7,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2134,7 +2134,7 @@
     "item_name": "MUG VOLVO 1000 ML MILKY",
     "description": "MUG VOLVO 1000 ML MILKY",
     "stock_uom": "DZ",
-    "standard_rate": 109,
+    "standard_rate": 112,
     "wholesale_rate": 101.6,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2144,7 +2144,7 @@
     "item_name": "MUG VOLVO 750 ML MILKY",
     "description": "MUG VOLVO 750 ML MILKY",
     "stock_uom": "DZ",
-    "standard_rate": 94,
+    "standard_rate": 96,
     "wholesale_rate": 87.08,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2154,7 +2154,7 @@
     "item_name": "multipurpose dinning set",
     "description": "multipurpose dinning set",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 125,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2164,7 +2164,7 @@
     "item_name": "NENO JUICER 2 IN 1",
     "description": "NENO JUICER 2 IN 1",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 40,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2174,7 +2174,7 @@
     "item_name": "NICER DICER 12 IN 1",
     "description": "NICER DICER 12 IN 1",
     "stock_uom": "PCS",
-    "standard_rate": 327,
+    "standard_rate": 335,
     "wholesale_rate": 305,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2184,7 +2184,7 @@
     "item_name": "Oil Brush Silicone [Length 8Inch(240mm)]",
     "description": "Oil Brush Silicone [Length 8Inch(240mm)]",
     "stock_uom": "PCS",
-    "standard_rate": 19,
+    "standard_rate": 20,
     "wholesale_rate": 17.4,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2194,7 +2194,7 @@
     "item_name": "OIL DISPENSER 1000ML",
     "description": "OIL DISPENSER 1000ML",
     "stock_uom": "PCS",
-    "standard_rate": 58,
+    "standard_rate": 51,
     "wholesale_rate": 53.4,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2204,7 +2204,7 @@
     "item_name": "Oil Dispenser Bottle 500ml",
     "description": "Oil Dispenser Bottle 500ml",
     "stock_uom": "PCS",
-    "standard_rate": 46,
+    "standard_rate": 47,
     "wholesale_rate": 42.09,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -2224,7 +2224,7 @@
     "item_name": "OWL SHAPE PLATE",
     "description": "OWL SHAPE PLATE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 101,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -2234,7 +2234,7 @@
     "item_name": "OWL SHAPE PLATE (6 PIC SET)",
     "description": "OWL SHAPE PLATE (6 PIC SET)",
     "stock_uom": "PCS",
-    "standard_rate": 99,
+    "standard_rate": 101,
     "wholesale_rate": 91.6,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -2244,7 +2244,7 @@
     "item_name": "Peeler Classic B029",
     "description": "Peeler Classic B029",
     "stock_uom": "PCS",
-    "standard_rate": 41,
+    "standard_rate": 42,
     "wholesale_rate": 37.8,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2254,7 +2254,7 @@
     "item_name": "Peeler Colorful",
     "description": "Peeler Colorful",
     "stock_uom": "DZ",
-    "standard_rate": 81,
+    "standard_rate": 83,
     "wholesale_rate": 75.4,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2264,7 +2264,7 @@
     "item_name": "PIPE MASHER",
     "description": "PIPE MASHER",
     "stock_uom": "PCS",
-    "standard_rate": 35,
+    "standard_rate": 36,
     "wholesale_rate": 31.94,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2274,7 +2274,7 @@
     "item_name": "Pizza Cutter Plastic Regular",
     "description": "Pizza Cutter Plastic Regular",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 40,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2284,7 +2284,7 @@
     "item_name": "Plastic lemon squeezer big",
     "description": "Plastic lemon squeezer big",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 23,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2294,7 +2294,7 @@
     "item_name": "Polpat Steel Base With bellan",
     "description": "Polpat Steel Base With bellan",
     "stock_uom": "BOX",
-    "standard_rate": 218,
+    "standard_rate": 224,
     "wholesale_rate": 203.2,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2304,7 +2304,7 @@
     "item_name": "POP COFFEE MUG",
     "description": "POP COFFEE MUG",
     "stock_uom": "PCS",
-    "standard_rate": 84,
+    "standard_rate": 87,
     "wholesale_rate": 78,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2314,7 +2314,7 @@
     "item_name": "POTATO CUTTER",
     "description": "POTATO CUTTER",
     "stock_uom": "PCS",
-    "standard_rate": 161,
+    "standard_rate": 168,
     "wholesale_rate": 150,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2324,7 +2324,7 @@
     "item_name": "Potato Cutter Transparent 2 Blades",
     "description": "Potato Cutter Transparent 2 Blades",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 136,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2334,7 +2334,7 @@
     "item_name": "Power Free Hand Beater - jumbo",
     "description": "Power Free Hand Beater - jumbo",
     "stock_uom": "PCS",
-    "standard_rate": 101,
+    "standard_rate": 104,
     "wholesale_rate": 94.35,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2344,7 +2344,7 @@
     "item_name": "Power Free Hand Beater -Z010",
     "description": "Power Free Hand Beater -Z010",
     "stock_uom": "PCS",
-    "standard_rate": 55,
+    "standard_rate": 56,
     "wholesale_rate": 50.79,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2354,7 +2354,7 @@
     "item_name": "PREMIUM MASALA BOX",
     "description": "PREMIUM MASALA BOX",
     "stock_uom": "PCS",
-    "standard_rate": 112,
+    "standard_rate": 115,
     "wholesale_rate": 104.5,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -2364,7 +2364,7 @@
     "item_name": "PUSH CHOPPER 1000ML",
     "description": "PUSH CHOPPER 1000ML",
     "stock_uom": "PCS",
-    "standard_rate": 148,
+    "standard_rate": 152,
     "wholesale_rate": 137.89,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2374,7 +2374,7 @@
     "item_name": "PUSH CHOPPER 650 ML STEEL KING",
     "description": "PUSH CHOPPER 650 ML STEEL KING",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 93,
     "wholesale_rate": 0,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2384,7 +2384,7 @@
     "item_name": "Push chopper 800ml",
     "description": "Push chopper 800ml",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 128,
     "wholesale_rate": 0,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2394,7 +2394,7 @@
     "item_name": "QUICK CHOPPER 1000ML",
     "description": "QUICK CHOPPER 1000ML",
     "stock_uom": "PCS",
-    "standard_rate": 97,
+    "standard_rate": 99,
     "wholesale_rate": 90,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2404,7 +2404,7 @@
     "item_name": "Quick Chopper 450ml",
     "description": "Quick Chopper 450ml",
     "stock_uom": "PCS",
-    "standard_rate": 97,
+    "standard_rate": 99,
     "wholesale_rate": 89.98,
     "item_group": "Chopper",
     "brand": "Generic"
@@ -2414,7 +2414,7 @@
     "item_name": "REAL PUSH CHOOPER 600ML",
     "description": "REAL PUSH CHOOPER 600ML",
     "stock_uom": "PCS",
-    "standard_rate": 103,
+    "standard_rate": 106,
     "wholesale_rate": 96,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2424,7 +2424,7 @@
     "item_name": "Ring Peeler SS-12 pcs",
     "description": "Ring Peeler SS-12 pcs",
     "stock_uom": "DZ",
-    "standard_rate": 78,
+    "standard_rate": 80,
     "wholesale_rate": 72.58,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2434,7 +2434,7 @@
     "item_name": "Roast stand Big",
     "description": "Roast stand Big",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 125,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -2444,7 +2444,7 @@
     "item_name": "Roast Stand Small",
     "description": "Roast Stand Small",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 114,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -2454,7 +2454,7 @@
     "item_name": "ROTATION TRAY",
     "description": "ROTATION TRAY",
     "stock_uom": "Pack",
-    "standard_rate": 66,
+    "standard_rate": 67,
     "wholesale_rate": 61.11,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -2464,7 +2464,7 @@
     "item_name": "ROUND ALL IN ONE",
     "description": "ROUND ALL IN ONE",
     "stock_uom": "PCS",
-    "standard_rate": 61,
+    "standard_rate": 63,
     "wholesale_rate": 56.6,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2484,7 +2484,7 @@
     "item_name": "Royal ice candy maker",
     "description": "Royal ice candy maker",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 77,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2494,7 +2494,7 @@
     "item_name": "S.S. CLIP NO.1",
     "description": "S.S. CLIP NO.1",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 29,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2504,7 +2504,7 @@
     "item_name": "S.S. CLIP NO.6",
     "description": "S.S. CLIP NO.6",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 45,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2514,7 +2514,7 @@
     "item_name": "S.S. Khalbatta No.02[Weight - 851gm",
     "description": "S.S. Khalbatta No.02[Weight - 851gm",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 236,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2524,7 +2524,7 @@
     "item_name": "S.S. Khalbatta No.03",
     "description": "S.S. Khalbatta No.03",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 310,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2534,7 +2534,7 @@
     "item_name": "S.S. Khalbatta No.04 1311gm",
     "description": "S.S. Khalbatta No.04 1311gm",
     "stock_uom": "PCS",
-    "standard_rate": 328,
+    "standard_rate": 337,
     "wholesale_rate": 306.25,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2544,7 +2544,7 @@
     "item_name": "s.s. slicer 2 in 1",
     "description": "s.s. slicer 2 in 1",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 120,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2554,7 +2554,7 @@
     "item_name": "Serrated Knife",
     "description": "Serrated Knife",
     "stock_uom": "DZ",
-    "standard_rate": 261,
+    "standard_rate": 268,
     "wholesale_rate": 243.8,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2564,7 +2564,7 @@
     "item_name": "SEV SANCHA DELUXE NO.08",
     "description": "SEV SANCHA DELUXE NO.08",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 259,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2574,7 +2574,7 @@
     "item_name": "SEV SANCHA DELUXE NO.09",
     "description": "SEV SANCHA DELUXE NO.09",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 265,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2584,7 +2584,7 @@
     "item_name": "SEV SANCHA DELUXE NO.10",
     "description": "SEV SANCHA DELUXE NO.10",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 271,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2594,7 +2594,7 @@
     "item_name": "Simple Design Bottle 15 [3pcs Set]",
     "description": "Simple Design Bottle 15 [3pcs Set]",
     "stock_uom": "BOX",
-    "standard_rate": 171,
+    "standard_rate": 176,
     "wholesale_rate": 159.6,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -2604,7 +2604,7 @@
     "item_name": "Simpolo Lighgter",
     "description": "Simpolo Lighgter",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 51,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2614,7 +2614,7 @@
     "item_name": "SMALL N.G. LIGHTER",
     "description": "SMALL N.G. LIGHTER",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 11,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
     "brand": "Generic"
@@ -2624,7 +2624,7 @@
     "item_name": "SMALL SPATULA",
     "description": "SMALL SPATULA",
     "stock_uom": "PCS",
-    "standard_rate": 11,
+    "standard_rate": 12,
     "wholesale_rate": 10.2,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2644,7 +2644,7 @@
     "item_name": "SOAP CASE BIG KHATLA",
     "description": "SOAP CASE BIG KHATLA",
     "stock_uom": "DZ",
-    "standard_rate": 150,
+    "standard_rate": 153,
     "wholesale_rate": 139.34,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2654,7 +2654,7 @@
     "item_name": "SOLO KNIFE (PLAIN)",
     "description": "SOLO KNIFE (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 77,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2664,7 +2664,7 @@
     "item_name": "Spray bottle",
     "description": "Spray bottle",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 36,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -2674,7 +2674,7 @@
     "item_name": "Spring Rawai S.S delux",
     "description": "Spring Rawai S.S delux",
     "stock_uom": "PCS",
-    "standard_rate": 50,
+    "standard_rate": 51,
     "wholesale_rate": 46.44,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2684,7 +2684,7 @@
     "item_name": "Spring Rawai S.S SUPRIMO",
     "description": "Spring Rawai S.S SUPRIMO",
     "stock_uom": "PCS",
-    "standard_rate": 35,
+    "standard_rate": 36,
     "wholesale_rate": 31.94,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2694,7 +2694,7 @@
     "item_name": "SQUARE ALL IN ONE",
     "description": "SQUARE ALL IN ONE",
     "stock_uom": "PCS",
-    "standard_rate": 61,
+    "standard_rate": 63,
     "wholesale_rate": 56.7,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2704,7 +2704,7 @@
     "item_name": "SQUARE BOTTLE",
     "description": "SQUARE BOTTLE",
     "stock_uom": "PCS",
-    "standard_rate": 46,
+    "standard_rate": 47,
     "wholesale_rate": 42.09,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -2714,7 +2714,7 @@
     "item_name": "SQUARE MASALA BOX",
     "description": "SQUARE MASALA BOX",
     "stock_uom": "PCS",
-    "standard_rate": 63,
+    "standard_rate": 64,
     "wholesale_rate": 58.2,
     "item_group": "Storage & Boxes",
     "brand": "Generic"
@@ -2724,7 +2724,7 @@
     "item_name": "Square With SS Cap Bottle 01 (3pcs Set)",
     "description": "Square With SS Cap Bottle 01 (3pcs Set)",
     "stock_uom": "BOX",
-    "standard_rate": 154,
+    "standard_rate": 158,
     "wholesale_rate": 143,
     "item_group": "Bottle",
     "brand": "Generic"
@@ -2734,7 +2734,7 @@
     "item_name": "SS JALIROUND JUICER (01)",
     "description": "SS JALIROUND JUICER (01)",
     "stock_uom": "PCS",
-    "standard_rate": 200,
+    "standard_rate": 204,
     "wholesale_rate": 186.24,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2744,7 +2744,7 @@
     "item_name": "SS PEELER",
     "description": "SS PEELER",
     "stock_uom": "DZ",
-    "standard_rate": 115,
+    "standard_rate": 58,
     "wholesale_rate": 107.4,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2754,7 +2754,7 @@
     "item_name": "SS Pipe point colour Knife",
     "description": "SS Pipe point colour Knife",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 122,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2774,7 +2774,7 @@
     "item_name": "SS plain Knife",
     "description": "SS plain Knife",
     "stock_uom": "DZ",
-    "standard_rate": 115,
+    "standard_rate": 34,
     "wholesale_rate": 107.4,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2784,7 +2784,7 @@
     "item_name": "Steel Lemon Squeezer 100g Loose",
     "description": "Steel Lemon Squeezer 100g Loose",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 53,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2794,7 +2794,7 @@
     "item_name": "Steel Lemon Squeezer 160g",
     "description": "Steel Lemon Squeezer 160g",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 96,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2804,7 +2804,7 @@
     "item_name": "Steel Lemon Squeezer 180g",
     "description": "Steel Lemon Squeezer 180g",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 131,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2814,7 +2814,7 @@
     "item_name": "Steel lemon squeezer 270G",
     "description": "Steel lemon squeezer 270G",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 176,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2824,7 +2824,7 @@
     "item_name": "steel Strainner no.3",
     "description": "steel Strainner no.3",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 274,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -2834,7 +2834,7 @@
     "item_name": "Steelo S.S. Lunch Box  (Prexo)",
     "description": "Steelo S.S. Lunch Box  (Prexo)",
     "stock_uom": "Pack",
-    "standard_rate": 430,
+    "standard_rate": 407,
     "wholesale_rate": 401.5,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -2844,7 +2844,7 @@
     "item_name": "SUMO 2 LAYER STEEL LUNCH",
     "description": "SUMO 2 LAYER STEEL LUNCH",
     "stock_uom": "PCS",
-    "standard_rate": 217,
+    "standard_rate": 222,
     "wholesale_rate": 202.3,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -2854,7 +2854,7 @@
     "item_name": "Sumo Peeler",
     "description": "Sumo Peeler",
     "stock_uom": "DZ",
-    "standard_rate": 56,
+    "standard_rate": 58,
     "wholesale_rate": 52.2,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2864,7 +2864,7 @@
     "item_name": "SUPER KNIFE",
     "description": "SUPER KNIFE",
     "stock_uom": "DZ",
-    "standard_rate": 56,
+    "standard_rate": 58,
     "wholesale_rate": 52.26,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -2874,7 +2874,7 @@
     "item_name": "TB Stoneware 1116 Mug",
     "description": "TB Stoneware 1116 Mug",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 100,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2884,7 +2884,7 @@
     "item_name": "TB Stoneware 1116 Sparkle Mug",
     "description": "TB Stoneware 1116 Sparkle Mug",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 100,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2894,7 +2894,7 @@
     "item_name": "TB Stoneware 1147 Mug",
     "description": "TB Stoneware 1147 Mug",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 114,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2904,7 +2904,7 @@
     "item_name": "Tb- Stoneware Chuski Mug TT Matt - 6 Pcs Set",
     "description": "Tb- Stoneware Chuski Mug TT Matt - 6 Pcs Set",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 321,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2914,7 +2914,7 @@
     "item_name": "TB Stoneware Cup & Saucer [Dual Tone]",
     "description": "TB Stoneware Cup & Saucer [Dual Tone]",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 673,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2924,7 +2924,7 @@
     "item_name": "TB Stoneware Handi (2 Pcs Set)",
     "description": "TB Stoneware Handi (2 Pcs Set)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 218,
     "wholesale_rate": 0,
     "item_group": "Crockery",
     "brand": "Tibros"
@@ -2934,7 +2934,7 @@
     "item_name": "Tb-Perfect Beverage (3 Pcs Set)",
     "description": "Tb-Perfect Beverage (3 Pcs Set)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 500,
     "wholesale_rate": 0,
     "item_group": "Crockery",
     "brand": "Tibros"
@@ -2944,7 +2944,7 @@
     "item_name": "Tb-Premium Gold Line Mug Set of 6 Pcs",
     "description": "Tb-Premium Gold Line Mug Set of 6 Pcs",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 476,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2954,7 +2954,7 @@
     "item_name": "TB-Stoneware 1110 Matt Mug",
     "description": "TB-Stoneware 1110 Matt Mug",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 66,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2964,7 +2964,7 @@
     "item_name": "Tb-Stoneware Mug -1148 (S/6)",
     "description": "Tb-Stoneware Mug -1148 (S/6)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 311,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2974,7 +2974,7 @@
     "item_name": "Tb-Vintage Mug (1 PC)-Lava",
     "description": "Tb-Vintage Mug (1 PC)-Lava",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 107,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -2984,7 +2984,7 @@
     "item_name": "TEA MESH STRAINER NO.2",
     "description": "TEA MESH STRAINER NO.2",
     "stock_uom": "PCS",
-    "standard_rate": 55,
+    "standard_rate": 56,
     "wholesale_rate": 50.79,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -2994,7 +2994,7 @@
     "item_name": "Tea Strainer No.3 Plastic (double Net)",
     "description": "Tea Strainer No.3 Plastic (double Net)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 62,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -3004,7 +3004,7 @@
     "item_name": "Tea Strainer NO.3 White (double Net)",
     "description": "Tea Strainer NO.3 White (double Net)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 71,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -3014,7 +3014,7 @@
     "item_name": "Tea Strainer S.S. ULTRA",
     "description": "Tea Strainer S.S. ULTRA",
     "stock_uom": "PCS",
-    "standard_rate": 66,
+    "standard_rate": 67,
     "wholesale_rate": 60.92,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -3024,7 +3024,7 @@
     "item_name": "TEDDY HOUSE",
     "description": "TEDDY HOUSE",
     "stock_uom": "PCS",
-    "standard_rate": 75,
+    "standard_rate": 77,
     "wholesale_rate": 69.9,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3034,7 +3034,7 @@
     "item_name": "TIBROS Aster Prime Series- Dining Set (33 pcs)",
     "description": "TIBROS Aster Prime Series- Dining Set (33 pcs)",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 2231,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3044,7 +3044,7 @@
     "item_name": "TIBROS Aster Series - Dining set (33 pcs)",
     "description": "TIBROS Aster Series - Dining set (33 pcs)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 2159,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3054,7 +3054,7 @@
     "item_name": "Tibros Ceramic Refresh MUG Set of 6 pcs",
     "description": "Tibros Ceramic Refresh MUG Set of 6 pcs",
     "stock_uom": "BOX",
-    "standard_rate": 134,
+    "standard_rate": 166,
     "wholesale_rate": 124.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3064,7 +3064,7 @@
     "item_name": "TIBROS- Cermic MUG TREE COLOR TREE",
     "description": "TIBROS- Cermic MUG TREE COLOR TREE",
     "stock_uom": "BOX",
-    "standard_rate": 273,
+    "standard_rate": 302,
     "wholesale_rate": 254.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3074,7 +3074,7 @@
     "item_name": "TIBROS Ethinc Series - Dining Set (33 pcs)",
     "description": "TIBROS Ethinc Series - Dining Set (33 pcs)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 2414,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3084,7 +3084,7 @@
     "item_name": "TIBROS Ethnic Series- Canvas Tray (M) 31.5*23.5",
     "description": "TIBROS Ethnic Series- Canvas Tray (M) 31.5*23.5",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 150,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3094,7 +3094,7 @@
     "item_name": "TIBROS Ethnic Series- Canvas Tray (S) 25*18",
     "description": "TIBROS Ethnic Series- Canvas Tray (S) 25*18",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 88,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3104,7 +3104,7 @@
     "item_name": "TIBROS Funky series-Canvas (M) 31.5*23.5",
     "description": "TIBROS Funky series-Canvas (M) 31.5*23.5",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 138,
     "wholesale_rate": 0,
     "item_group": "Crockery",
     "brand": "Tibros"
@@ -3114,7 +3114,7 @@
     "item_name": "TIBROS Matt series- Canvas (M) 31.5*23.5",
     "description": "TIBROS Matt series- Canvas (M) 31.5*23.5",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 138,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Tibros"
@@ -3124,7 +3124,7 @@
     "item_name": "TIBROS Matt series- Canvas (S) 25*18",
     "description": "TIBROS Matt series- Canvas (S) 25*18",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 82,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Tibros"
@@ -3134,7 +3134,7 @@
     "item_name": "TIBROS- MUG WITH TRAY",
     "description": "TIBROS- MUG WITH TRAY",
     "stock_uom": "BOX",
-    "standard_rate": 190,
+    "standard_rate": 210,
     "wholesale_rate": 176.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3144,7 +3144,7 @@
     "item_name": "TIBROS Pearl Series-Dining set (31 pcs)",
     "description": "TIBROS Pearl Series-Dining set (31 pcs)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 2967,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3154,7 +3154,7 @@
     "item_name": "TIBROS Smart Series - Dining Set (32 pcs)",
     "description": "TIBROS Smart Series - Dining Set (32 pcs)",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 1449,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3164,7 +3164,7 @@
     "item_name": "TIBROS TB Mug - Studio Series - small 4 pcs set",
     "description": "TIBROS TB Mug - Studio Series - small 4 pcs set",
     "stock_uom": "Pack",
-    "standard_rate": 138,
+    "standard_rate": 142,
     "wholesale_rate": 128.83059,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3174,7 +3174,7 @@
     "item_name": "TIBROS TB Mug - Studio Series - small 6pcs set",
     "description": "TIBROS TB Mug - Studio Series - small 6pcs set",
     "stock_uom": "BOX",
-    "standard_rate": 167,
+    "standard_rate": 185,
     "wholesale_rate": 156,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3184,7 +3184,7 @@
     "item_name": "TIBROS Tb- New Gold Line Mug 6pcs set",
     "description": "TIBROS Tb- New Gold Line Mug 6pcs set",
     "stock_uom": "BOX",
-    "standard_rate": 181,
+    "standard_rate": 225,
     "wholesale_rate": 169,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3194,7 +3194,7 @@
     "item_name": "TIBROS TB Stoneware 1110 Mug - 1 Pcs",
     "description": "TIBROS TB Stoneware 1110 Mug - 1 Pcs",
     "stock_uom": "BOX",
-    "standard_rate": 64,
+    "standard_rate": 71,
     "wholesale_rate": 59.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3204,7 +3204,7 @@
     "item_name": "TIBROS TB Stoneware 1110 Sparkle Mug -1 Pcs",
     "description": "TIBROS TB Stoneware 1110 Sparkle Mug -1 Pcs",
     "stock_uom": "BOX",
-    "standard_rate": 64,
+    "standard_rate": 71,
     "wholesale_rate": 59.8,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3214,7 +3214,7 @@
     "item_name": "TIBROS TB Stoneware 1143 Mug 1pcs",
     "description": "TIBROS TB Stoneware 1143 Mug 1pcs",
     "stock_uom": "BOX",
-    "standard_rate": 76,
+    "standard_rate": 84,
     "wholesale_rate": 70.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3224,7 +3224,7 @@
     "item_name": "TIBROS Tb-Arabica Mug-Black",
     "description": "TIBROS Tb-Arabica Mug-Black",
     "stock_uom": "BOX",
-    "standard_rate": 131,
+    "standard_rate": 163,
     "wholesale_rate": 122.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3234,7 +3234,7 @@
     "item_name": "TIBROS Tb-Splash Series Mug",
     "description": "TIBROS Tb-Splash Series Mug",
     "stock_uom": "BOX",
-    "standard_rate": 126,
+    "standard_rate": 129,
     "wholesale_rate": 117.06471,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3244,7 +3244,7 @@
     "item_name": "TIBROS Urmi Series - Dining Set (37 pcs) 37 Pcs",
     "description": "TIBROS Urmi Series - Dining Set (37 pcs) 37 Pcs",
     "stock_uom": "BOX",
-    "standard_rate": 0,
+    "standard_rate": 2428,
     "wholesale_rate": 0,
     "item_group": "Dining & Serving",
     "brand": "Tibros"
@@ -3254,7 +3254,7 @@
     "item_name": "TIBROS-TB- MUG CONE",
     "description": "TIBROS-TB- MUG CONE",
     "stock_uom": "BOX",
-    "standard_rate": 131,
+    "standard_rate": 145,
     "wholesale_rate": 122.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3264,7 +3264,7 @@
     "item_name": "TIBROS-TB- Procelain 28CL",
     "description": "TIBROS-TB- Procelain 28CL",
     "stock_uom": "Pack",
-    "standard_rate": 117,
+    "standard_rate": 129,
     "wholesale_rate": 108.68,
     "item_group": "Crockery",
     "brand": "Tibros"
@@ -3274,7 +3274,7 @@
     "item_name": "TIBROS-TB- Procelain Mug Java",
     "description": "TIBROS-TB- Procelain Mug Java",
     "stock_uom": "BOX",
-    "standard_rate": 131,
+    "standard_rate": 145,
     "wholesale_rate": 122.2,
     "item_group": "Cups & Mugs",
     "brand": "Tibros"
@@ -3284,7 +3284,7 @@
     "item_name": "Tiffin Box Model HE : 8",
     "description": "Tiffin Box Model HE : 8",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 279,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -3294,7 +3294,7 @@
     "item_name": "Tiffin Box Model HE :11",
     "description": "Tiffin Box Model HE :11",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 224,
     "wholesale_rate": 0,
     "item_group": "Lunch Box",
     "brand": "Generic"
@@ -3304,7 +3304,7 @@
     "item_name": "Tong Kitchen Lock",
     "description": "Tong Kitchen Lock",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 87,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3314,7 +3314,7 @@
     "item_name": "Tong S.S. No.3 (135g)",
     "description": "Tong S.S. No.3 (135g)",
     "stock_uom": "PCS",
-    "standard_rate": 46,
+    "standard_rate": 47,
     "wholesale_rate": 42.09,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3324,7 +3324,7 @@
     "item_name": "UNBREAKABLE GLASS",
     "description": "UNBREAKABLE GLASS",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 102,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "Generic"
@@ -3334,7 +3334,7 @@
     "item_name": "VOLVO KNIFE BOX PACK (PLAIN)",
     "description": "VOLVO KNIFE BOX PACK (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 88,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -3344,7 +3344,7 @@
     "item_name": "WALL MOUNTAIN STAND",
     "description": "WALL MOUNTAIN STAND",
     "stock_uom": "PCS",
-    "standard_rate": 102,
+    "standard_rate": 104,
     "wholesale_rate": 95,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -3354,7 +3354,7 @@
     "item_name": "WASHING MACHINE STAND",
     "description": "WASHING MACHINE STAND",
     "stock_uom": "PCS",
-    "standard_rate": 45,
+    "standard_rate": 42,
     "wholesale_rate": 42,
     "item_group": "Kitchen Organizers",
     "brand": "Generic"
@@ -3364,7 +3364,7 @@
     "item_name": "WELCOME TRAY SET BLACK",
     "description": "WELCOME TRAY SET BLACK",
     "stock_uom": "PCS",
-    "standard_rate": 187,
+    "standard_rate": 196,
     "wholesale_rate": 174,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -3374,7 +3374,7 @@
     "item_name": "WELCOME TRAY SET WHITE",
     "description": "WELCOME TRAY SET WHITE",
     "stock_uom": "PCS",
-    "standard_rate": 175,
+    "standard_rate": 179,
     "wholesale_rate": 163,
     "item_group": "Dining & Serving",
     "brand": "Generic"
@@ -3384,7 +3384,7 @@
     "item_name": "Whisk Full S.S. No.2 ( 10 inch)",
     "description": "Whisk Full S.S. No.2 ( 10 inch)",
     "stock_uom": "PCS",
-    "standard_rate": 42,
+    "standard_rate": 44,
     "wholesale_rate": 39.19,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3394,7 +3394,7 @@
     "item_name": "Whisk Full S.S. No.3 (11 inch)",
     "description": "Whisk Full S.S. No.3 (11 inch)",
     "stock_uom": "PCS",
-    "standard_rate": 47,
+    "standard_rate": 48,
     "wholesale_rate": 43.54,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3404,7 +3404,7 @@
     "item_name": "whisk plastic 8",
     "description": "whisk plastic 8",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 23,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3414,7 +3414,7 @@
     "item_name": "whisk plastic handle 10",
     "description": "whisk plastic handle 10",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 48,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3424,7 +3424,7 @@
     "item_name": "Whisk Plastic Handle No.2",
     "description": "Whisk Plastic Handle No.2",
     "stock_uom": "PCS",
-    "standard_rate": 44,
+    "standard_rate": 45,
     "wholesale_rate": 40.64,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3434,7 +3434,7 @@
     "item_name": "Whisk Steel 9",
     "description": "Whisk Steel 9",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 39,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3444,7 +3444,7 @@
     "item_name": "WHISKER PLASTIC HANDLE HEAVY 9''",
     "description": "WHISKER PLASTIC HANDLE HEAVY 9''",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 45,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3454,7 +3454,7 @@
     "item_name": "Wooden Chopper Knife",
     "description": "Wooden Chopper Knife",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 209,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -3464,7 +3464,7 @@
     "item_name": "WOODEN MASHER",
     "description": "WOODEN MASHER",
     "stock_uom": "PCS",
-    "standard_rate": 36,
+    "standard_rate": 37,
     "wholesale_rate": 33.4,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3474,7 +3474,7 @@
     "item_name": "Wooden MDF Chopping",
     "description": "Wooden MDF Chopping",
     "stock_uom": "PCS",
-    "standard_rate": 132,
+    "standard_rate": 136,
     "wholesale_rate": 123.27,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3484,7 +3484,7 @@
     "item_name": "WOODEN TALWAR",
     "description": "WOODEN TALWAR",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 53,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3494,7 +3494,7 @@
     "item_name": "WOODEN TEMPOR S.S.",
     "description": "WOODEN TEMPOR S.S.",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 69,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3504,7 +3504,7 @@
     "item_name": "X peeler",
     "description": "X peeler",
     "stock_uom": "DZ",
-    "standard_rate": 78,
+    "standard_rate": 80,
     "wholesale_rate": 72.58,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -3514,7 +3514,7 @@
     "item_name": "X- Vegetable Knife",
     "description": "X- Vegetable Knife",
     "stock_uom": "DZ",
-    "standard_rate": 78,
+    "standard_rate": 80,
     "wholesale_rate": 72.58,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -3524,7 +3524,7 @@
     "item_name": "ZEBRA KNIFE (PLAIN)",
     "description": "ZEBRA KNIFE (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 97,
+    "standard_rate": 99,
     "wholesale_rate": 89.98,
     "item_group": "Knife & Cutter",
     "brand": "Generic"
@@ -3534,7 +3534,7 @@
     "item_name": "ZEBRA PILLAR",
     "description": "ZEBRA PILLAR",
     "stock_uom": "PCS",
-    "standard_rate": 0,
+    "standard_rate": 99,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Generic"
@@ -3544,7 +3544,7 @@
     "item_name": "MaxFresh S S FEEDING BOTTLE PLASTIC HANDLE 250ml",
     "description": "S S FEEDING BOTTLE PLASTIC HANDLE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 321,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "MaxFresh"
@@ -3554,7 +3554,7 @@
     "item_name": "MaxFresh S S MASALA DABBA SEE THRU NO.6",
     "description": "S S MASALA DABBA SEE THRU",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 694,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
@@ -3564,7 +3564,7 @@
     "item_name": "MaxFresh S S MASALA DABBA SEE THRU NO.7",
     "description": "S S MASALA DABBA SEE THRU",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 747,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "MaxFresh"
@@ -3574,7 +3574,7 @@
     "item_name": "MaxFresh TRIPLY TOPE WITH LID (1000 g)",
     "description": "TRIPLY TOPE WITH LID",
     "stock_uom": "kg",
-    "standard_rate": 0,
+    "standard_rate": 641,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -3584,7 +3584,7 @@
     "item_name": "MaxFresh TRIPLY TAWA 26cm",
     "description": "TRIPLY TAWA",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 1066,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -3604,7 +3604,7 @@
     "item_name": "MaxFresh S.S. CASSEROLE WITH GLASS LID",
     "description": "S.S. CASSEROLE WITH GLASS LID",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 717,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -3614,7 +3614,7 @@
     "item_name": "MaxFresh TRIPLY HANDI WITH GLASS LID 2LTR",
     "description": "TRIPLY HANDI WITH GLASS LID",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 956,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -3624,7 +3624,7 @@
     "item_name": "MaxFresh TRIPLY HANDI WITH GLASS LID 3 LTR",
     "description": "TRIPLY HANDI WITH GLASS LID",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 1195,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -3634,7 +3634,7 @@
     "item_name": "MaxFresh TRIPLY FRYPAN WITH GLASS LID 24 CM",
     "description": "TRIPLY FRYPAN WITH GLASS LID",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 877,
     "wholesale_rate": 0,
     "item_group": "Cups & Mugs",
     "brand": "MaxFresh"
@@ -3644,7 +3644,7 @@
     "item_name": "MaxFresh TRIPLY TAWA 28 CM",
     "description": "TRIPLY TAWA",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 1036,
     "wholesale_rate": 0,
     "item_group": "Steelware",
     "brand": "MaxFresh"
@@ -3654,7 +3654,7 @@
     "item_name": "ATTA STRAINNER SMALL FIRST",
     "description": "ATTA STRAINNER SMALL FIRST",
     "stock_uom": "DZ",
-    "standard_rate": 0,
+    "standard_rate": 40,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3664,7 +3664,7 @@
     "item_name": "ATTA STRAINNER SMALL SEMI",
     "description": "ATTA STRAINNER SMALL SEMI",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 32,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3674,7 +3674,7 @@
     "item_name": "ATTA STRAINNER BIG FIRST",
     "description": "ATTA STRAINNER BIG FIRST",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 56,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3684,7 +3684,7 @@
     "item_name": "HOOK ATTA BIG FIRST",
     "description": "HOOK ATTA BIG FIRST",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 24,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Other"
@@ -3694,7 +3694,7 @@
     "item_name": "HOOK ATTA BIG COLOUR",
     "description": "HOOK ATTA BIG COLOUR",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 29,
     "wholesale_rate": 0,
     "item_group": "Kitchen Organizers",
     "brand": "Other"
@@ -3704,7 +3704,7 @@
     "item_name": "BLACK CLIP",
     "description": "BLACK CLIP",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 8,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3714,7 +3714,7 @@
     "item_name": "ATTA STRAINNER BIG SECOND",
     "description": "ATTA STRAINNER BIG SECOND",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 48,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3724,7 +3724,7 @@
     "item_name": "SEMI SINGLE CLIP",
     "description": "SEMI SINGLE CLIP",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 7,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3734,7 +3734,7 @@
     "item_name": "CLIP DOUBLE FIRST",
     "description": "CLIP DOUBLE FIRST",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 13,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3744,7 +3744,7 @@
     "item_name": "CLIP DOUBLE SEMI",
     "description": "CLIP DOUBLE SEMI",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 10,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3754,7 +3754,7 @@
     "item_name": "CLIP LONG",
     "description": "CLIP LONG",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 16,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3764,7 +3764,7 @@
     "item_name": "M S puri press no.4",
     "description": "M S puri press",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 239,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3774,7 +3774,7 @@
     "item_name": "M S puri press no.6",
     "description": "M S puri press",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 319,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3784,7 +3784,7 @@
     "item_name": "S.S. Khalbatta no.1 645g",
     "description": "S.S. Khalbatta no.1",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 478,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3794,7 +3794,7 @@
     "item_name": "S.S. Khalbatta no.5 1.34kg",
     "description": "S.S. Khalbatta no.5",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 797,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3804,7 +3804,7 @@
     "item_name": "Puri press Steel",
     "description": "Puri press Steel",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 399,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Other"
@@ -3814,7 +3814,7 @@
     "item_name": "sigma oil brush with pot",
     "description": "oil brush with pot",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 72,
     "wholesale_rate": 0,
     "item_group": "General Kitchenware",
     "brand": "Sigma"
@@ -3824,7 +3824,7 @@
     "item_name": "Sigma Swift peeler",
     "description": "Swift peeler",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 20,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3834,7 +3834,7 @@
     "item_name": "Sigma Abs tomato",
     "description": "Abs tomato",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 24,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Sigma"
@@ -3844,7 +3844,7 @@
     "item_name": "Sigma 5 PIECE TOMATO CARD KNIFE",
     "description": "5 PIECE TOMATO CARD KNIFE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 40,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3854,7 +3854,7 @@
     "item_name": "Sigma HAND BLENDER",
     "description": "HAND BLENDER",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 192,
     "wholesale_rate": 0,
     "item_group": "Chopper",
     "brand": "Sigma"
@@ -3864,7 +3864,7 @@
     "item_name": "Sigma SUMO PEEELR",
     "description": "SUMO PEEELR",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 29,
     "wholesale_rate": 0,
     "item_group": "Plastic Kitchenware",
     "brand": "Sigma"
@@ -3874,7 +3874,7 @@
     "item_name": "Sigma COCONUT OPENER",
     "description": "COCONUT OPENER",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 96,
     "wholesale_rate": 0,
     "item_group": "Plastic Kitchenware",
     "brand": "Sigma"
@@ -3884,7 +3884,7 @@
     "item_name": "Sigma SLEEK 2 PIECES KNIFE SET",
     "description": "SLEEK 2 PIECES KNIFE SET",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 64,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3894,7 +3894,7 @@
     "item_name": "Sigma SILICONE BIG SET",
     "description": "SILICONE BIG SET",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 239,
     "wholesale_rate": 0,
     "item_group": "Plastic Kitchenware",
     "brand": "Sigma"
@@ -3904,7 +3904,7 @@
     "item_name": "Sigma SLEEK 3 PIECES KNIFE SET",
     "description": "SLEEK 3 PIECES KNIFE SET",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 88,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3914,7 +3914,7 @@
     "item_name": "Sigma MG PEELING KNIFE",
     "description": "MG PEELING KNIFE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 24,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3924,7 +3924,7 @@
     "item_name": "Sigma MG PLAIN KNIFE",
     "description": "MG PLAIN KNIFE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 24,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3934,7 +3934,7 @@
     "item_name": "Sigma MG TOMATO KNFIE",
     "description": "MG TOMATO KNFIE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 32,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Sigma"
@@ -3944,7 +3944,7 @@
     "item_name": "Sigma SLEEK PEELER",
     "description": "SLEEK PEELER",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 20,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -3954,7 +3954,7 @@
     "item_name": "Sigma SLEEK PLAIN KNFIE",
     "description": "SLEEK PLAIN KNFIE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 20,
     "wholesale_rate": 0,
     "item_group": "Plastic Kitchenware",
     "brand": "Sigma"
@@ -3964,7 +3964,7 @@
     "item_name": "Sigma SLEEK TOMATO KNFIE",
     "description": "SLEEK TOMATO KNFIE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 29,
     "wholesale_rate": 0,
     "item_group": "Household",
     "brand": "Sigma"
@@ -3974,7 +3974,7 @@
     "item_name": "Sigma UNIVERSAL MASALA BOX",
     "description": "UNIVERSAL MASALA BOX",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 144,
     "wholesale_rate": 0,
     "item_group": "Storage & Boxes",
     "brand": "Sigma"
@@ -3984,7 +3984,7 @@
     "item_name": "Sigma OIL DISPENSER BOTTLE",
     "description": "OIL DISPENSER BOTTLE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 120,
     "wholesale_rate": 0,
     "item_group": "Bottle",
     "brand": "Sigma"
@@ -3994,7 +3994,7 @@
     "item_name": "Sigma 5 Piece peeler card",
     "description": "5 Piece peeler card",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 48,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -4004,7 +4004,7 @@
     "item_name": "Sigma SILICONE BRUSH 8 INCH",
     "description": "SILICONE BRUSH",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 56,
     "wholesale_rate": 0,
     "item_group": "Plastic Kitchenware",
     "brand": "Sigma"
@@ -4014,7 +4014,7 @@
     "item_name": "Sigma MG Knife set",
     "description": "MG Knife set",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 128,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
     "brand": "Sigma"
@@ -4024,7 +4024,7 @@
     "item_name": "Sigma WHISK WIRE 9",
     "description": "WHISK WIRE",
     "stock_uom": "Pack",
-    "standard_rate": 0,
+    "standard_rate": 64,
     "wholesale_rate": 0,
     "item_group": "Plastic Kitchenware",
     "brand": "Sigma"

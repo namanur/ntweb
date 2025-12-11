@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
-import HeroSection from '@/components/HeroSection'; // ✅ Imported HeroSection
+// ✅ FIXED: Added 'PlusCircle' to imports
 import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle } from "lucide-react";
 
 interface CartItem extends Product {
@@ -101,12 +101,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const [formData, setFormData] = useState({ 
     name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" 
   });
-
-  // ✅ LOGIC: Determine if Hero Banner should be shown
-  const showHero = 
-    searchQuery.trim().length === 0 && 
-    selectedCategory === "All" && 
-    selectedBrand === "All";
 
   useEffect(() => {
     const saved = localStorage.getItem("nandan_customer_details");
@@ -267,13 +261,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
   return (
     <div className="w-full" ref={gridTopRef}>
       
-      {/* ✅ HERO SECTION: Only visible when no filters are active */}
-      {showHero && (
-        <div className="mb-8">
-           <HeroSection />
-        </div>
-      )}
-
       {/* FILTER BAR */}
       <div className="sticky top-16 z-30 bg-background border-b border-border shadow-sm py-3 -mx-4 px-4 mb-4">
         {searchQuery.trim().length === 0 ? (
