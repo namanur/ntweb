@@ -1,60 +1,25 @@
-import { Suspense } from "react";
-import { getProducts } from "@/lib/erp";
-import ProductGridClient from "@/components/ProductGridClient";
-import AnnouncementBar from "@/components/AnnouncementBar";
-import Header from "@/components/Header";
-import MustHaveSlider from "@/components/MustHaveSlider";
-import IntroOverlay from "@/components/IntroOverlay"; 
-import HotDeals from "@/components/HotDeals"; // ✅ IMPORT
+import React from 'react';
+import Header from '@/components/Header'; 
+import ProductGridClient from '@/components/ProductGridClient';
+import { getProducts } from '@/lib/erp';
+import Footer from '@/components/Footer';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 0; 
 
-interface HomeProps {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}
-
-export default async function Home(props: HomeProps) {
-  
-  // 2. CHECK SEARCH STATE
-  const searchParams = await props.searchParams;
-  const searchQuery = searchParams?.q?.toString() || "";
-  const hasSearch = searchQuery.length > 0;
-
-  // --- CATALOG MODE ---
+export default async function Home() {
   const products = await getProducts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans relative">
-      
-      {/* ✅ INTRO OVERLAY (Client Component) */}
-      <IntroOverlay />
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* 1. Header is placed permanently here */}
+      <Header />
 
-      {/* Hide Announcement on Search */}
-      {!hasSearch && <AnnouncementBar />}
-      
-      <Suspense fallback={<div className="h-16 bg-background border-b border-border" />}>
-        <Header />
-      </Suspense>
-
-      {/* Hide Hero Slider on Search */}
-      {!hasSearch && <MustHaveSlider />}
-
-      <main id="catalog-section" className="flex-grow w-full max-w-6xl mx-auto px-4 py-4">
-        
-        {/* ✅ NEW: Hot Deals Section (Only show if not searching) */}
-        {!hasSearch && <HotDeals products={products} />}
-
-        {!hasSearch && (
-          <div className="mb-6">
-             <h3 className="text-xl font-bold text-foreground">Explore All Products</h3>
-             <p className="text-muted-foreground text-sm">Find the best deals on wholesale kitchenware.</p>
-          </div>
-        )}
-
-        <Suspense fallback={<div className="text-center py-20 text-muted-foreground">Loading products...</div>}>
-          <ProductGridClient products={products} />
-        </Suspense>
+      <main className="flex-1 w-full max-w-[1400px] mx-auto p-4 sm:p-6 lg:p-8">
+        {/* 2. HeroSection is REMOVED from here. It moves to ProductGridClient */}
+        <ProductGridClient products={products} />
       </main>
+
+      <Footer />
     </div>
   );
 }
