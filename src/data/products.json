@@ -164,13 +164,10 @@
     "item_name": "99 KNIFE (PLAIN)",
     "description": "99 KNIFE (PLAIN)",
     "stock_uom": "DZ",
-    "standard_rate": 45,
+    "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Knife & Cutter",
-    "brand": "Generic",
-    "stock_qty": 45,
-    "threshold": 2,
-    "in_stock": true
+    "brand": "Generic"
   },
   {
     "item_code": "LIGHTER-AK47",
@@ -180,10 +177,7 @@
     "standard_rate": 0,
     "wholesale_rate": 0,
     "item_group": "Gas Accessories",
-    "brand": "Generic",
-    "stock_qty": 0,
-    "threshold": 2,
-    "in_stock": false
+    "brand": "Generic"
   },
   {
     "item_code": "BIG-ANJARKNIFE",
