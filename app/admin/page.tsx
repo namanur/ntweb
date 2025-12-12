@@ -26,7 +26,7 @@ const NavButton = ({ active, onClick, icon, label }: any) => (
 const StatCard = ({ icon: Icon, label, value, subtext, colorClass, onClick }: any) => (
   <div 
     onClick={onClick}
-    className={`p-5 rounded-2xl border bg-zinc-900/40 border-zinc-800 flex flex-col justify-between transition-all duration-200 ${onClick ? 'cursor-pointer hover:border-zinc-600 hover:bg-zinc-900/60' : ''} ${colorClass}`}
+    className={`p-5 rounded-2xl border bg-zinc-900 border-zinc-800 flex flex-col justify-between transition-all duration-200 shadow-sm ${onClick ? 'cursor-pointer hover:border-zinc-600 hover:bg-zinc-800/80' : ''} ${colorClass}`}
   >
       <div className="flex items-center gap-2 mb-2">
           <Icon size={18} className="opacity-80" />
@@ -49,30 +49,23 @@ export default function AdminPage() {
   const [search, setSearch] = useState("");
   const [testStatus, setTestStatus] = useState({ telegram: "Idle", erp: "Idle" });
 
-  // Filters
   const [filterBrand, setFilterBrand] = useState("All");
   const [filterStock, setFilterStock] = useState("All");
   const [filterImage, setFilterImage] = useState("All");
   const [sortConfig, setSortConfig] = useState<{ key: keyof Product; direction: 'asc' | 'desc' } | null>(null);
 
-  // Stats
   const [imageStats, setImageStats] = useState<ImageStats | null>(null);
-
-  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
 
-  // Editing / Uploading
   const [editingItem, setEditingItem] = useState<Product | null>(null);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  // Direct Upload Ref
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [targetItemCode, setTargetItemCode] = useState<string | null>(null);
 
-  // --- INITIAL DATA FETCH ---
   useEffect(() => {
     fetchOrders();
     fetchData(); 
@@ -81,7 +74,6 @@ export default function AdminPage() {
 
   useEffect(() => { setCurrentPage(1); }, [search, filterBrand, filterStock, filterImage]);
 
-  // --- COMPUTED STATS ---
   const stats = useMemo(() => {
     const total = products.length;
     const inStock = products.filter(p => p.in_stock !== false).length;
@@ -91,7 +83,6 @@ export default function AdminPage() {
     return { total, inStock, outOfStock, priceWarning, hotItems };
   }, [products]);
 
-  // --- ACTIONS ---
   const runSystemTest = async (target: 'telegram' | 'erp') => {
       setTestStatus(prev => ({ ...prev, [target]: "Running..." }));
       try {
@@ -137,7 +128,6 @@ export default function AdminPage() {
     setLoading(false);
   };
 
-  // --- UPLOAD LOGIC ---
   const triggerDirectUpload = (itemCode: string) => {
     setTargetItemCode(itemCode);
     fileInputRef.current?.click();
@@ -160,7 +150,6 @@ export default function AdminPage() {
     finally { setUploading(false); setTargetItemCode(null); if (fileInputRef.current) fileInputRef.current.value = ""; }
   };
 
-  // --- EDIT MODAL ---
   const openEditModal = (product: Product) => { 
       setEditingItem(product); 
       setEditForm({ ...product, stock_qty: product.stock_qty ?? 0, threshold: product.threshold ?? 2, in_stock: product.in_stock ?? true, is_hot: product.is_hot || false }); 
@@ -194,7 +183,6 @@ export default function AdminPage() {
     } catch (e) { alert("Error"); } finally { setUploading(false); }
   };
 
-  // --- FILTERING ---
   const uniqueBrands = useMemo(() => ["All", ...Array.from(new Set(products.map(p => p.brand || "Generic"))).sort()], [products]);
 
   const processedProducts = useMemo(() => {
@@ -236,11 +224,9 @@ export default function AdminPage() {
   return (
     <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
       
-      {/* Hidden Upload Input */}
       <input type="file" ref={fileInputRef} className="hidden" accept="image/jpeg, image/png" onChange={handleDirectFileSelect} />
 
       {/* --- SIDEBAR --- */}
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden bg-black/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}>
             <div className="absolute left-0 top-0 h-full w-72 bg-zinc-950 border-r border-zinc-800 p-6 shadow-2xl animate-in slide-in-from-left duration-200" onClick={e => e.stopPropagation()}>
@@ -260,7 +246,6 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-72 flex-col border-r border-zinc-900 bg-zinc-950 p-6">
         <div className="flex items-center gap-3 mb-10 px-2"><Image src="/logo.png" width={36} height={36} alt="Logo" className="invert" /><span className="font-bold text-xl tracking-tight">COMMAND</span></div>
         <nav className="flex-1 space-y-1">
@@ -272,21 +257,20 @@ export default function AdminPage() {
       </aside>
 
       {/* --- MAIN CONTENT --- */}
-      <div className="flex-1 flex flex-col overflow-hidden relative">
+      <div className="flex-1 flex flex-col overflow-hidden relative bg-black">
         
-        {/* HEADER (Sticky & Glassy) */}
-        <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-4 bg-black/60 backdrop-blur-xl border-b border-zinc-900">
+        {/* SOLID HEADER (No Transparency) */}
+        <header className="sticky top-0 z-40 flex items-center justify-between px-6 py-4 bg-zinc-950 border-b border-zinc-900 shadow-md">
           <div className="flex items-center gap-4 flex-1">
             <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-zinc-400 hover:text-white"><Menu size={24} /></button>
             <h1 className="text-xl font-bold capitalize hidden md:block">{activeTab}</h1>
             
-            {/* GLOBAL SEARCH BAR */}
             <div className="relative flex-1 max-w-md mx-4 group">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-white transition-colors" size={16} />
               <input 
                 placeholder={activeTab === 'products' ? "Search products..." : "Search (Product view only)..."}
                 disabled={activeTab !== 'products'}
-                className="w-full pl-10 pr-4 py-2.5 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder:text-zinc-600 focus:bg-zinc-900 focus:border-zinc-700 outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed" 
+                className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder:text-zinc-600 focus:bg-zinc-800 focus:border-zinc-700 outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed" 
                 value={search} 
                 onChange={e => setSearch(e.target.value)} 
               />
@@ -301,7 +285,7 @@ export default function AdminPage() {
              <button 
                 onClick={() => { if(activeTab === 'orders') fetchOrders(); else { fetchData(); fetchImageStats(); } }} 
                 disabled={loading} 
-                className="p-2.5 bg-white text-black rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors"
+                className="p-2.5 bg-white text-black rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors shadow-sm"
                 title="Refresh Data"
               >
                 <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
@@ -309,15 +293,11 @@ export default function AdminPage() {
           </div>
         </header>
 
-        {/* SCROLLABLE CONTENT AREA */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth bg-black">
           
           {activeTab === 'dashboard' && (
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              
-              {/* BENTO GRID STATS */}
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {/* Missing Image - Special Action Card */}
                   <StatCard 
                     icon={ImageIcon} 
                     label="Missing Images" 
@@ -332,9 +312,8 @@ export default function AdminPage() {
                   <StatCard icon={Package} label="Total SKU" value={stats.total} colorClass="text-blue-400 hidden lg:flex" />
               </div>
 
-              {/* SYSTEM HEALTH */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/30">
+                 <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900 shadow-sm">
                     <div className="flex justify-between items-start mb-4">
                         <div>
                            <h3 className="font-bold text-lg">Telegram Bot</h3>
@@ -344,7 +323,7 @@ export default function AdminPage() {
                     </div>
                     <button onClick={() => runSystemTest('telegram')} className="w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-xl text-xs font-bold transition-colors">Test Alert</button>
                  </div>
-                 <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/30">
+                 <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900 shadow-sm">
                     <div className="flex justify-between items-start mb-4">
                         <div>
                            <h3 className="font-bold text-lg">ERPNext Sync</h3>
@@ -361,7 +340,7 @@ export default function AdminPage() {
           {activeTab === 'orders' && (
              <div className="space-y-4 animate-in fade-in duration-300">
                 {orders.length === 0 ? <div className="text-center py-20 text-zinc-600">No orders found.</div> : orders.map(order => (
-                    <div key={order.id} className="group p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-all">
+                    <div key={order.id} className="group p-6 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition-all shadow-sm">
                         <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
                              <div>
                                 <div className="flex items-center gap-3 mb-2">
@@ -393,11 +372,10 @@ export default function AdminPage() {
 
           {activeTab === 'products' && (
              <div className="space-y-4 animate-in fade-in duration-300">
-                {/* TOOLBAR */}
-                <div className="flex flex-wrap gap-3 items-center justify-between bg-zinc-900/30 p-2 rounded-xl border border-zinc-800">
+                <div className="flex flex-wrap gap-3 items-center justify-between bg-zinc-900 p-2 rounded-xl border border-zinc-800 shadow-sm">
                     <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
                          <div className="relative min-w-[140px]">
-                            <select value={filterImage} onChange={e => setFilterImage(e.target.value)} className="w-full appearance-none pl-9 pr-8 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-xs font-medium text-zinc-300 focus:border-zinc-600 outline-none">
+                            <select value={filterImage} onChange={e => setFilterImage(e.target.value)} className="w-full appearance-none pl-9 pr-8 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-xs font-medium text-zinc-300 focus:border-zinc-600 outline-none">
                                 <option value="All">All Images</option>
                                 <option value="Missing Image">Missing Image</option>
                                 <option value="With Image">Has Image</option>
@@ -406,13 +384,13 @@ export default function AdminPage() {
                             <ChevronDown size={12} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500" />
                          </div>
                          <div className="relative min-w-[140px]">
-                            <select value={filterBrand} onChange={e => setFilterBrand(e.target.value)} className="w-full appearance-none pl-9 pr-8 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-xs font-medium text-zinc-300 focus:border-zinc-600 outline-none">
+                            <select value={filterBrand} onChange={e => setFilterBrand(e.target.value)} className="w-full appearance-none pl-9 pr-8 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-xs font-medium text-zinc-300 focus:border-zinc-600 outline-none">
                                 {uniqueBrands.map(b => <option key={b} value={b}>{b}</option>)}
                             </select>
                             <Filter size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
                          </div>
                          <div className="relative min-w-[140px]">
-                            <select value={filterStock} onChange={e => setFilterStock(e.target.value)} className="w-full appearance-none pl-9 pr-8 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-xs font-medium text-zinc-300 focus:border-zinc-600 outline-none">
+                            <select value={filterStock} onChange={e => setFilterStock(e.target.value)} className="w-full appearance-none pl-9 pr-8 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-xs font-medium text-zinc-300 focus:border-zinc-600 outline-none">
                                 <option value="All">All Status</option>
                                 <option value="In Stock">In Stock</option>
                                 <option value="Out of Stock">Out of Stock</option>
@@ -422,11 +400,10 @@ export default function AdminPage() {
                     </div>
                 </div>
 
-                {/* TABLE */}
-                <div className="border border-zinc-800 rounded-xl overflow-hidden bg-zinc-900/20">
+                <div className="border border-zinc-800 rounded-xl overflow-hidden bg-zinc-900 shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
-                            <thead className="bg-zinc-900/80 text-zinc-500 font-bold uppercase text-[10px] tracking-wider border-b border-zinc-800">
+                            <thead className="bg-zinc-950 text-zinc-500 font-bold uppercase text-[10px] tracking-wider border-b border-zinc-800">
                                 <tr>
                                     <th className="p-4 w-16 text-center">Img</th>
                                     <th className="p-4 cursor-pointer hover:text-white" onClick={() => requestSort('item_name')}>Product</th>
@@ -435,9 +412,9 @@ export default function AdminPage() {
                                     <th className="p-4 text-center">Action</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-zinc-800/50">
+                            <tbody className="divide-y divide-zinc-800">
                                 {paginatedData.map(p => (
-                                    <tr key={p.item_code} className="group hover:bg-zinc-900/50 transition-colors">
+                                    <tr key={p.item_code} className="group hover:bg-zinc-800/50 transition-colors">
                                         <td className="p-3 text-center">
                                             <div onClick={(e) => {e.stopPropagation(); triggerDirectUpload(p.item_code)}} className="relative w-10 h-10 mx-auto bg-zinc-950 rounded border border-zinc-800 overflow-hidden cursor-pointer hover:border-zinc-500 group-hover/img:scale-105 transition-all">
                                                 <img src={`/images/${p.item_code}.jpg?v=${(p as any).imageVersion || ''}`} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display='none'; e.currentTarget.parentElement?.classList.add('bg-zinc-900'); e.currentTarget.parentElement?.querySelector('.fallback')?.classList.remove('hidden'); }} />
@@ -450,7 +427,7 @@ export default function AdminPage() {
                                             <div className="text-[10px] font-mono text-zinc-600">{p.item_code}</div>
                                         </td>
                                         <td className="p-3 hidden md:table-cell">
-                                            <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-medium text-zinc-400">{p.brand}</span>
+                                            <span className="px-2 py-1 bg-zinc-950 border border-zinc-800 rounded text-[10px] font-medium text-zinc-400">{p.brand}</span>
                                         </td>
                                         <td className="p-3 text-right font-mono font-bold text-zinc-300">
                                             {p.standard_rate ? `₹${p.standard_rate}` : <span className="text-red-500 text-[10px]">₹0</span>}
@@ -465,7 +442,6 @@ export default function AdminPage() {
                     </div>
                 </div>
 
-                {/* PAGINATION */}
                 {totalPages > 1 && (
                     <div className="flex justify-between items-center p-2 text-xs font-mono text-zinc-500">
                         <button disabled={currentPage===1} onClick={() => setCurrentPage(p=>p-1)} className="hover:text-white disabled:opacity-30">PREV</button>
@@ -479,15 +455,14 @@ export default function AdminPage() {
         </main>
       </div>
 
-      {/* EDIT MODAL */}
       {editingItem && (
          <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/90 backdrop-blur-sm p-0 md:p-4">
              <div className="bg-zinc-950 w-full md:max-w-lg rounded-t-2xl md:rounded-2xl border border-zinc-800 shadow-2xl flex flex-col max-h-[90vh]">
-                 <div className="p-5 border-b border-zinc-800 flex justify-between items-center">
+                 <div className="p-5 border-b border-zinc-800 flex justify-between items-center bg-zinc-900">
                     <h3 className="font-bold text-lg">Edit Product</h3>
                     <button onClick={() => setEditingItem(null)}><X className="text-zinc-500 hover:text-white"/></button>
                  </div>
-                 <div className="p-6 overflow-y-auto space-y-5">
+                 <div className="p-6 overflow-y-auto space-y-5 bg-zinc-950">
                     <div>
                         <label className="text-[10px] font-bold text-zinc-500 uppercase">Item Name</label>
                         <input className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-xl focus:border-zinc-600 outline-none mt-1 font-bold" value={editForm.item_name} onChange={e => setEditForm({...editForm, item_name: e.target.value})} />
@@ -521,7 +496,7 @@ export default function AdminPage() {
                          </div>
                     </div>
                  </div>
-                 <div className="p-5 border-t border-zinc-800 flex justify-end gap-3">
+                 <div className="p-5 border-t border-zinc-800 flex justify-end gap-3 bg-zinc-900">
                      <button onClick={() => setEditingItem(null)} className="px-6 py-3 rounded-xl font-bold text-sm text-zinc-400 hover:text-white">Cancel</button>
                      <button onClick={handleSaveItem} className="px-6 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-zinc-200">Save Changes</button>
                  </div>

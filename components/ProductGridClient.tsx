@@ -5,14 +5,36 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
 import HeroSection from "./HeroSection"; 
-import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle, Search } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle, Search, SlidersHorizontal, Grid } from "lucide-react";
+
+// --- SCROLL HOOK (With Threshold to prevent jitter) ---
+function useScrollDirection() {
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      // Buffer of 10px to prevent rapid shuttering on tiny scrolls
+      const direction = scrollY > lastScrollY ? "down" : "up";
+      if (direction !== scrollDirection && (Math.abs(scrollY - lastScrollY) > 10)) {
+        setScrollDirection(direction);
+      }
+      setLastScrollY(scrollY > 0 ? scrollY : 0);
+    };
+    window.addEventListener("scroll", updateScrollDirection);
+    return () => window.removeEventListener("scroll", updateScrollDirection);
+  }, [scrollDirection, lastScrollY]);
+
+  return scrollDirection;
+}
 
 interface CartItem extends Product {
   qty: number;
 }
 
 const BRANDS = [
-  { name: "Anjali", logo: "/brands/anjali.png" }, // Added Logo Path
+  { name: "Anjali", logo: "/brands/anjali.png" },
   { name: "MaxFresh", logo: "/brands/maxfresh.png" },
   { name: "Tibros", logo: "/brands/tibros.png" },
   { name: "Sigma", logo: "/brands/sigma.png" },
@@ -29,7 +51,7 @@ const sortCategories = (a: string, b: string) => {
   return a.localeCompare(b);
 };
 
-// --- 🧠 FUZZY SEARCH HELPER ---
+// Fuzzy Search Helpers
 const levenshteinDistance = (a: string, b: string) => {
   const matrix = [];
   for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
@@ -39,10 +61,7 @@ const levenshteinDistance = (a: string, b: string) => {
       if (b.charAt(i - 1) == a.charAt(j - 1)) {
         matrix[i][j] = matrix[i - 1][j - 1];
       } else {
-        matrix[i][j] = Math.min(
-          matrix[i - 1][j - 1] + 1,
-          Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1)
-        );
+        matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
       }
     }
   }
@@ -53,13 +72,9 @@ const fuzzyMatch = (text: string, search: string) => {
   if (!text) return false;
   const cleanText = text.toLowerCase().replace(/\s+/g, ' ').trim();
   const cleanSearch = search.toLowerCase().replace(/\s+/g, ' ').trim();
-  
   if (cleanText.includes(cleanSearch)) return true;
-
   const searchTerms = cleanSearch.split(' ');
-  const allTermsPresent = searchTerms.every(term => cleanText.includes(term));
-  if (allTermsPresent) return true;
-
+  if (searchTerms.every(term => cleanText.includes(term))) return true;
   const words = cleanText.split(' ');
   return searchTerms.every(searchTerm => {
     return words.some(word => {
@@ -83,6 +98,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const [selectedCategory, setSelectedCategory] = useState("All");
   
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [loading, setLoading] = useState(false);
@@ -92,66 +108,33 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const [visibleCategoriesCount, setVisibleCategoriesCount] = useState(2);
   const [visibleItemsCount, setVisibleItemsCount] = useState(20); 
   const loaderRef = useRef<HTMLDivElement>(null);
+  const scrollDirection = useScrollDirection(); 
 
+  // ✅ Refs Definition (Fixed ReferenceError)
+  const gridTopRef = useRef<HTMLDivElement>(null);
   const moreDetailsRef = useRef<HTMLDivElement>(null);
-  const gridTopRef = useRef<HTMLDivElement>(null); 
 
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
 
-  const [formData, setFormData] = useState({ 
-    name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" 
-  });
-
-  // Sync URL to state
   useEffect(() => {
     const q = searchParams.get("q");
-    if (q !== null && q !== searchQuery) {
-      setSearchQuery(q);
-    }
+    if (q !== null && q !== searchQuery) setSearchQuery(q);
   }, [searchParams]);
 
-  // Sync state to URL (debounced)
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
-    if (searchQuery) {
-      params.set("q", searchQuery);
-    } else {
-      params.delete("q");
-    }
+    if (searchQuery) params.set("q", searchQuery);
+    else params.delete("q");
     replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [searchQuery]);
 
-  // 🔥 HERO VISIBILITY LOGIC
-  const isHeroVisible = 
-    searchQuery.trim() === "" && 
-    selectedBrand === "All" && 
-    selectedCategory === "All";
+  const isHeroVisible = searchQuery.trim() === "" && selectedBrand === "All" && selectedCategory === "All";
 
   useEffect(() => {
     const saved = localStorage.getItem("nandan_customer_details");
     if (saved) try { setFormData(JSON.parse(saved)); } catch {}
   }, []);
-
-  useEffect(() => {
-    if (showMoreDetails && moreDetailsRef.current) {
-      setTimeout(() => {
-        moreDetailsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 100);
-    }
-  }, [showMoreDetails]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   useEffect(() => {
     setVisibleCategoriesCount(2);
@@ -176,6 +159,10 @@ export default function ProductGridClient({ products = [] }: { products: Product
     return ["All", ...Array.from(new Set(groups)).sort(sortCategories)];
   }, [productsInBrand]);
 
+  // Split categories for UI (Top 6 + Others)
+  const topCategories = availableCategories.slice(1, 7); // Skip "All"
+  const moreCategories = availableCategories.slice(7);
+
   const filteredProducts = useMemo(() => {
     if (searchQuery.trim().length > 0) {
       return products.filter(p => 
@@ -194,31 +181,22 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
   const groupedProducts = useMemo(() => {
     if (selectedCategory !== "All" || searchQuery.trim().length > 0) return null; 
-
     const groups: Record<string, Product[]> = {};
     filteredProducts.forEach(p => {
       const g = p.item_group || "Other";
       if (!groups[g]) groups[g] = [];
       groups[g].push(p);
     });
-
-    return Object.keys(groups).sort(sortCategories).map(key => ({
-      name: key,
-      items: groups[key]
-    }));
+    return Object.keys(groups).sort(sortCategories).map(key => ({ name: key, items: groups[key] }));
   }, [filteredProducts, selectedCategory, searchQuery]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        if (groupedProducts) {
-           setVisibleCategoriesCount(prev => prev + 2);
-        } else {
-           setVisibleItemsCount(prev => prev + 20);
-        }
+        if (groupedProducts) setVisibleCategoriesCount(prev => prev + 2);
+        else setVisibleItemsCount(prev => prev + 20);
       }
     }, { threshold: 0.1 });
-
     if (loaderRef.current) observer.observe(loaderRef.current);
     return () => observer.disconnect();
   }, [groupedProducts]);
@@ -230,10 +208,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
       const exists = prev.find(p => p.item_code === item.item_code);
       const defaultAdd = exists ? 1 : 6;
       const qtyToAdd = customQty || defaultAdd;
-
-      return exists 
-        ? prev.map(p => p.item_code === item.item_code ? { ...p, qty: p.qty + qtyToAdd } : p) 
-        : [...prev, { ...item, qty: qtyToAdd }]; 
+      return exists ? prev.map(p => p.item_code === item.item_code ? { ...p, qty: p.qty + qtyToAdd } : p) : [...prev, { ...item, qty: qtyToAdd }]; 
     });
     setSelectedProduct(null);
   };
@@ -249,16 +224,11 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
-    if (/^\d*$/.test(val) && val.length <= 10) {
-      setFormData({ ...formData, phone: val });
-    }
+    if (/^\d*$/.test(val) && val.length <= 10) setFormData({ ...formData, phone: val });
   };
 
   const toggleSection = (sectionName: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionName]: !prev[sectionName]
-    }));
+    setExpandedSections(prev => ({ ...prev, [sectionName]: !prev[sectionName] }));
   };
 
   const submitOrder = async (e: React.FormEvent) => {
@@ -282,65 +252,90 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const SECTION_LIMIT = 20;
 
   return (
-    <div className="w-full" ref={gridTopRef}>
+    <div className="w-full pb-32" ref={gridTopRef}>
       
-      {/* 🚀 ANIMATED HERO SECTION */}
-      <div 
-        className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${
-          isHeroVisible ? 'max-h-[300px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'
-        }`}
-      >
-        <HeroSection />
-      </div>
+      {/* 🚀 TOP FILTER BAR (Smoother Transition) */}
+      <div className={`sticky top-[64px] z-30 transition-transform duration-700 ease-in-out ${scrollDirection === 'down' ? '-translate-y-[120%]' : 'translate-y-0'}`}>
+         {/* ✅ Solid Background */}
+         <div className="bg-white dark:bg-zinc-950 border-b border-zinc-100 dark:border-zinc-800 shadow-sm py-4 px-4">
+             <div className="flex flex-col gap-4 max-w-6xl mx-auto">
+                 
+                 {/* Only show filters if not searching */}
+                 {searchQuery.trim().length === 0 && (
+                  <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-1">
+                      
+                      {/* Brand Chips (Horizontal) */}
+                      <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                          <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-5 py-2 rounded-full font-bold text-sm border transition-all ${selectedBrand === "All" ? "bg-black text-white border-black dark:bg-white dark:text-black" : "bg-zinc-100 text-zinc-500 border-transparent hover:bg-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"}`}>All Brands</button>
+                          {BRANDS.map((brand) => (
+                          <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm border transition-all ${selectedBrand === brand.name ? `bg-black text-white border-black dark:bg-white dark:text-black` : "bg-zinc-100 text-zinc-500 border-transparent hover:bg-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"}`}>
+                              {brand.name}
+                          </button>))}
+                      </div>
 
-      {/* 🚀 PLUSH FILTER BAR */}
-      <div 
-         id="product-grid-start"
-         className="sticky top-[68px] z-30 bg-background/80 backdrop-blur-md border-b border-border/50 py-4 -mx-4 px-4 mb-6 transition-all"
-      >
-         <div className="flex flex-col gap-4">
-             {/* Search Input */}
-             <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
-                <input 
-                  type="text" 
-                  placeholder="Search products..." 
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-secondary/50 rounded-2xl text-sm font-medium border border-transparent focus:bg-background focus:border-primary/50 focus:outline-none transition-all placeholder:text-muted-foreground/70"
-                />
-                {searchQuery && (
-                  <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-zinc-200 rounded-full">
-                    <X size={14} className="text-muted-foreground" />
-                  </button>
-                )}
+                      {/* Category Chips (Top 6 + Dropdown) */}
+                      <div className="flex gap-2 overflow-x-auto no-scrollbar items-center">
+                          <button onClick={() => setSelectedCategory('All')} className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-bold transition-all border ${selectedCategory === 'All' ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-transparent border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900'}`}>All</button>
+                          
+                          {/* Top Categories */}
+                          {topCategories.map(cat => (
+                              <button key={cat} onClick={() => setSelectedCategory(cat)} className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-medium transition-all border ${selectedCategory === cat ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-transparent border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900'}`}>{cat}</button>
+                          ))}
+
+                          {/* "More" Dropdown for the rest */}
+                          {moreCategories.length > 0 && (
+                             <div className="relative flex-shrink-0">
+                                <select 
+                                  value={moreCategories.includes(selectedCategory) ? selectedCategory : ""}
+                                  onChange={(e) => setSelectedCategory(e.target.value)}
+                                  className={`appearance-none pl-4 pr-8 py-2 rounded-lg text-xs font-bold transition-all border outline-none cursor-pointer ${moreCategories.includes(selectedCategory) ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-transparent border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900'}`}
+                                >
+                                    <option value="" disabled>More...</option>
+                                    {moreCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                                </select>
+                                <ChevronDown size={12} className={`absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none ${moreCategories.includes(selectedCategory) ? 'text-white dark:text-black' : 'text-muted-foreground'}`} />
+                             </div>
+                          )}
+                      </div>
+                  </div>
+                 )}
              </div>
-
-             {/* Filter Chips */}
-             {searchQuery.trim().length === 0 && (
-              <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-1">
-                  <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-                      <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-4 py-2 rounded-xl font-bold text-xs border transition-all ${selectedBrand === "All" ? "bg-foreground text-background border-foreground shadow-md" : "bg-card text-muted-foreground border-border/50 hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}>All Brands</button>
-                      {BRANDS.map((brand) => (
-                      <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs border transition-all ${selectedBrand === brand.name ? `bg-foreground text-background border-foreground shadow-md` : "bg-card text-muted-foreground border-border/50 hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}>
-                          {brand.name}
-                      </button>))}
-                  </div>
-                  <div className="flex gap-2 overflow-x-auto no-scrollbar items-center">
-                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider shrink-0 mr-1">Cat:</span>
-                      <button onClick={() => setSelectedCategory('All')} className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all border ${selectedCategory === 'All' ? 'bg-zinc-800 text-white border-zinc-800 dark:bg-white dark:text-black' : 'bg-transparent border-border text-muted-foreground hover:bg-secondary'}`}>All</button>
-                      {availableCategories.filter(c => c !== 'All').map(cat => (
-                          <button key={cat} onClick={() => setSelectedCategory(cat)} className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all border ${selectedCategory === cat ? 'bg-zinc-800 text-white border-zinc-800 dark:bg-white dark:text-black' : 'bg-transparent border-border text-muted-foreground hover:bg-secondary'}`}>{cat}</button>
-                      ))}
-                  </div>
-              </div>
-             )}
          </div>
       </div>
 
-      {/* --- CONTENT AREA --- */}
-      <div className="min-h-[50vh] pb-20">
-        
+      {/* 🚀 HERO SECTION */}
+      <div className={`transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${isHeroVisible ? 'max-h-[300px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
+        <HeroSection />
+      </div>
+
+      {/* 🚀 FIXED BOTTOM SEARCH BAR (Mobile Thumb Zone) */}
+      {/* ✅ Solid Background, no translucent glass to fix visibility */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 p-3 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.1)] md:hidden">
+          <div className="relative w-full flex gap-3 items-center">
+             <div className="relative flex-1">
+                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+                 <input 
+                    type="text" 
+                    placeholder="Search for items..." 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-11 pr-10 py-3.5 bg-zinc-100 dark:bg-zinc-900 rounded-2xl text-base font-medium border-none focus:ring-2 focus:ring-red-500/50 outline-none transition-all placeholder:text-muted-foreground text-foreground"
+                 />
+                 {searchQuery && <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full text-foreground"><X size={12}/></button>}
+             </div>
+             
+             {/* Cart Button (If items exist) */}
+             {totalItems > 0 && !isCartOpen && (
+                 <button onClick={() => setIsCartOpen(true)} className="bg-black dark:bg-white text-white dark:text-black p-3.5 rounded-2xl shadow-lg relative animate-in zoom-in">
+                    <ShoppingBag size={20} />
+                    <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-black">{totalItems}</span>
+                 </button>
+             )}
+          </div>
+      </div>
+
+      {/* --- PRODUCT GRID --- */}
+      <div className="min-h-[50vh] px-4 md:px-0 mt-4">
         {groupedProducts ? (
             <div className="space-y-12"> 
                 {groupedProducts.slice(0, visibleCategoriesCount).map((group) => {
@@ -351,16 +346,12 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
                     return (
                         <div key={group.name} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            
-                            {/* 🔥 SECTION HEADER 🔥 */}
-                            <div className="flex justify-center mb-8 sticky top-[180px] z-10 pointer-events-none">
-                                <div className="bg-foreground text-background px-6 py-2.5 rounded-full shadow-2xl backdrop-blur-md flex items-center gap-3 border border-white/10">
-                                    <h2 className="text-sm font-black uppercase tracking-widest">{group.name}</h2>
-                                    <span className="w-1 h-1 rounded-full bg-background/50"></span>
-                                    <span className="text-[10px] font-bold text-background/70">{group.items.length}</span>
-                                </div>
+                            <div className="flex items-center gap-4 mb-6">
+                                <h2 className="text-xl font-black uppercase tracking-tight text-foreground">{group.name}</h2>
+                                <div className="h-px bg-zinc-200 dark:bg-zinc-800 flex-1"></div>
+                                <span className="text-xs font-bold text-muted-foreground bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded-md">{group.items.length} Items</span>
                             </div>
-
+                            
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                                 {itemsToShow.map(p => (
                                     <ProductCard 
@@ -372,17 +363,11 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                     />
                                 ))}
                             </div>
-
-                            {/* 🔥 SHOW MORE BUTTON 🔥 */}
+                            
                             {hasMore && !isExpanded && (
-                                <div className="mt-8 flex justify-center">
-                                    <button 
-                                        onClick={() => toggleSection(group.name)}
-                                        className="bg-secondary hover:bg-zinc-200 dark:hover:bg-zinc-700 text-foreground border border-border px-8 py-3 rounded-full font-black uppercase tracking-widest text-xs flex items-center gap-2 transition-all transform hover:scale-105 shadow-sm active:scale-95"
-                                    >
-                                        Show All {group.name} <span className="bg-foreground text-background text-[10px] px-2 py-0.5 rounded-full font-bold">+{remainingCount}</span> <ChevronDown size={14} />
-                                    </button>
-                                </div>
+                                <button onClick={() => toggleSection(group.name)} className="w-full mt-4 py-3 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-foreground font-bold text-xs rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                                    Show {remainingCount} more in {group.name} <ChevronDown size={14} className="inline ml-1"/>
+                                </button>
                             )}
                         </div>
                     );
@@ -407,7 +392,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
               (!groupedProducts && visibleItemsCount < filteredProducts.length)) ? (
                 <div className="flex flex-col items-center gap-2 text-muted-foreground">
                     <Loader2 className="animate-spin" />
-                    <span className="text-xs font-bold uppercase tracking-widest">Loading More...</span>
+                    <span className="text-xs font-bold uppercase tracking-widest">Loading...</span>
                 </div>
             ) : (
                 <div className="text-xs font-bold text-muted-foreground/50 uppercase tracking-widest">End of Catalog</div>
@@ -423,51 +408,34 @@ export default function ProductGridClient({ products = [] }: { products: Product
         )}
       </div>
 
-      {totalItems > 0 && !isCartOpen && (
-        <div className="fixed bottom-6 left-4 right-4 z-50 flex justify-center md:hidden">
-          <button onClick={() => setIsCartOpen(true)} className="bg-foreground text-background w-full max-w-md px-6 py-4 rounded-2xl shadow-2xl font-bold flex items-center justify-between hover:scale-[1.03] transition-transform active:scale-95 border border-border/50 backdrop-blur-md">
-            <div className="flex flex-col text-left leading-none gap-1"><span className="text-[10px] font-bold opacity-70 tracking-widest uppercase">Cart ({totalItems})</span><span className="text-xl">₹{totalPrice.toLocaleString()}</span></div>
-            <div className="flex items-center gap-2 text-sm uppercase tracking-wide bg-background/20 px-3 py-1.5 rounded-full">View <ShoppingBag size={16} /></div>
-          </button>
-        </div>
-      )}
-
+      {/* --- DESKTOP FLOATING CART --- */}
       {!isCartOpen && totalItems > 0 && (
-        <button onClick={() => setIsCartOpen(true)} className="hidden md:flex fixed top-24 left-0 z-40 bg-foreground text-background p-3 rounded-r-xl shadow-xl hover:pl-4 transition-all items-center gap-2 font-bold text-sm">
-            <ShoppingBag size={20} /> <span className="writing-mode-vertical">Cart ({totalItems})</span>
-        </button>
-      )}
-
-      {showScrollTop && (
         <button 
-          onClick={scrollToTop} 
-          className="fixed bottom-24 right-4 z-40 bg-foreground text-background p-3 rounded-full shadow-xl hover:scale-110 transition-all border border-border/50 backdrop-blur-sm md:bottom-8 animate-in fade-in zoom-in"
-          aria-label="Scroll to top"
+          onClick={() => setIsCartOpen(true)} 
+          className="hidden md:flex fixed bottom-8 right-8 z-40 bg-foreground text-background p-4 rounded-full shadow-2xl hover:scale-110 transition-all items-center gap-2"
         >
-          <ArrowUp size={20} strokeWidth={2.5} />
+          <ShoppingBag size={24} />
+          <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-background">{totalItems}</span>
         </button>
       )}
 
+      {/* --- CART DRAWER & PRODUCT MODAL --- */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border/50 flex flex-col max-h-[90vh]">
+          <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border flex flex-col max-h-[90vh]">
             <button onClick={() => setSelectedProduct(null)} className="absolute top-4 right-4 z-10 bg-black/10 dark:bg-white/10 p-2 rounded-full hover:bg-black/20 dark:hover:bg-white/20 transition-colors backdrop-blur-sm"><X size={20} /></button>
-            <div className="p-8 bg-card flex justify-center items-center h-64 shrink-0 border-b border-border/50">
-                 <img src={`/images/${selectedProduct.item_code}.jpg`} alt={selectedProduct.item_name} className="max-h-full max-w-full object-contain mix-blend-multiply dark:mix-blend-normal drop-shadow-xl" onError={(e) => (e.currentTarget.src = "https://placehold.co/600x600/png?text=No+Image")} />
+            <div className="p-8 bg-white flex justify-center items-center h-64 shrink-0 border-b border-zinc-100">
+                 <img src={`/images/${selectedProduct.item_code}.jpg`} alt={selectedProduct.item_name} className="max-h-full max-w-full object-contain mix-blend-multiply" onError={(e) => (e.currentTarget.src = "https://placehold.co/600x600/png?text=No+Image")} />
             </div>
-            <div className="p-6 overflow-y-auto">
+            <div className="p-6 overflow-y-auto bg-card">
                 <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-3">{selectedProduct.brand || "Nandan Traders"}</div>
                 <h2 className="text-xl font-bold text-foreground mb-3 leading-tight">{selectedProduct.item_name}</h2>
                 <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium">{selectedProduct.description}</p>
-                <div className="mb-4 text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-3 rounded-xl border border-green-100 dark:border-green-800">
-                    💡 <strong>Wholesale Deal:</strong> Buy 24 or more to get 2.5% discount!
-                </div>
                 <div className="flex items-center justify-between gap-4 p-4 bg-secondary/30 rounded-2xl mt-auto">
                     <div>
                       <div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
                       <div className="text-3xl font-black text-foreground">
                         ₹{selectedProduct.standard_rate}
-                        {selectedProduct.stock_uom && <span className="text-lg text-muted-foreground font-medium"> / {selectedProduct.stock_uom}</span>}
                       </div>
                     </div>
                     <button 
@@ -493,7 +461,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
                 </div>
                 <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-zinc-50 dark:bg-black/40 h-[60%]">
                     {cart.map(item => (
-                        <div key={item.item_code} className="flex gap-3 p-3 bg-card rounded-2xl border border-border/50 items-start group shadow-sm">
+                        <div key={item.item_code} className="flex gap-3 p-3 bg-card rounded-2xl border border-border items-start group shadow-sm">
                             <div className="flex-1">
                                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
@@ -502,7 +470,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                       ₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}
                                     </span>
                                     <span className="text-xs text-muted-foreground">x {item.qty}</span>
-                                    {item.qty > 24 && <span className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded ml-auto">2.5% OFF</span>}
                                 </div>
                             </div>
                             <div className="flex flex-col items-end gap-2">
