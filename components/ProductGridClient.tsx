@@ -5,9 +5,10 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
 import HeroSection from "./HeroSection"; 
-import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, ArrowUp, PlusCircle, Search, SlidersHorizontal, Grid } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, PlusCircle, Search } from "lucide-react";
+import { Button, Input, Select, SelectItem, Chip } from "@heroui/react";
 
-// --- SCROLL HOOK (With Threshold to prevent jitter) ---
+// --- SCROLL HOOK ---
 function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -15,7 +16,6 @@ function useScrollDirection() {
   useEffect(() => {
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
-      // Buffer of 10px to prevent rapid shuttering on tiny scrolls
       const direction = scrollY > lastScrollY ? "down" : "up";
       if (direction !== scrollDirection && (Math.abs(scrollY - lastScrollY) > 10)) {
         setScrollDirection(direction);
@@ -74,9 +74,8 @@ const fuzzyMatch = (text: string, search: string) => {
   const cleanSearch = search.toLowerCase().replace(/\s+/g, ' ').trim();
   if (cleanText.includes(cleanSearch)) return true;
   const searchTerms = cleanSearch.split(' ');
-  if (searchTerms.every(term => cleanText.includes(term))) return true;
-  const words = cleanText.split(' ');
   return searchTerms.every(searchTerm => {
+    const words = cleanText.split(' ');
     return words.some(word => {
       const allowedErrors = searchTerm.length > 6 ? 2 : searchTerm.length > 3 ? 1 : 0;
       if (Math.abs(word.length - searchTerm.length) > allowedErrors) return false;
@@ -98,7 +97,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const [selectedCategory, setSelectedCategory] = useState("All");
   
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [loading, setLoading] = useState(false);
@@ -110,9 +108,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const loaderRef = useRef<HTMLDivElement>(null);
   const scrollDirection = useScrollDirection(); 
 
-  // ✅ Refs Definition (Fixed ReferenceError)
   const gridTopRef = useRef<HTMLDivElement>(null);
-  const moreDetailsRef = useRef<HTMLDivElement>(null);
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
   const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
@@ -159,9 +155,8 @@ export default function ProductGridClient({ products = [] }: { products: Product
     return ["All", ...Array.from(new Set(groups)).sort(sortCategories)];
   }, [productsInBrand]);
 
-  // Split categories for UI (Top 6 + Others)
-  const topCategories = availableCategories.slice(1, 7); // Skip "All"
-  const moreCategories = availableCategories.slice(7);
+  const topCategories = availableCategories.slice(1, 7);
+  const moreCategories = availableCategories.slice(7).map(c => ({ key: c, label: c }));
 
   const filteredProducts = useMemo(() => {
     if (searchQuery.trim().length > 0) {
@@ -254,46 +249,67 @@ export default function ProductGridClient({ products = [] }: { products: Product
   return (
     <div className="w-full pb-32" ref={gridTopRef}>
       
-      {/* 🚀 TOP FILTER BAR (Smoother Transition) */}
+      {/* 🚀 TOP FILTER BAR */}
       <div className={`sticky top-[64px] z-30 transition-transform duration-700 ease-in-out ${scrollDirection === 'down' ? '-translate-y-[120%]' : 'translate-y-0'}`}>
-         {/* ✅ Solid Background */}
-         <div className="bg-white dark:bg-zinc-950 border-b border-zinc-100 dark:border-zinc-800 shadow-sm py-4 px-4">
+         <div className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800 shadow-sm py-4 px-4">
              <div className="flex flex-col gap-4 max-w-6xl mx-auto">
-                 
-                 {/* Only show filters if not searching */}
+                 {/* Brand Filters */}
                  {searchQuery.trim().length === 0 && (
                   <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-1">
-                      
-                      {/* Brand Chips (Horizontal) */}
                       <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-                          <button onClick={() => setSelectedBrand("All")} className={`flex-shrink-0 px-5 py-2 rounded-full font-bold text-sm border transition-all ${selectedBrand === "All" ? "bg-black text-white border-black dark:bg-white dark:text-black" : "bg-zinc-100 text-zinc-500 border-transparent hover:bg-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"}`}>All Brands</button>
+                          <Button 
+                            size="sm" 
+                            variant={selectedBrand === "All" ? "solid" : "ghost"} 
+                            onPress={() => setSelectedBrand("All")}
+                            className="rounded-full font-bold"
+                          >
+                            All Brands
+                          </Button>
                           {BRANDS.map((brand) => (
-                          <button key={brand.name} onClick={() => setSelectedBrand(brand.name)} className={`flex-shrink-0 flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm border transition-all ${selectedBrand === brand.name ? `bg-black text-white border-black dark:bg-white dark:text-black` : "bg-zinc-100 text-zinc-500 border-transparent hover:bg-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800"}`}>
+                          <Button 
+                            key={brand.name} 
+                            size="sm" 
+                            variant={selectedBrand === brand.name ? "solid" : "ghost"} 
+                            onPress={() => setSelectedBrand(brand.name)}
+                            className="rounded-full font-bold"
+                          >
                               {brand.name}
-                          </button>))}
+                          </Button>))}
                       </div>
 
-                      {/* Category Chips (Top 6 + Dropdown) */}
+                      {/* Category Chips */}
                       <div className="flex gap-2 overflow-x-auto no-scrollbar items-center">
-                          <button onClick={() => setSelectedCategory('All')} className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-bold transition-all border ${selectedCategory === 'All' ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-transparent border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900'}`}>All</button>
+                          <Chip 
+                            color={selectedCategory === 'All' ? "default" : "default"}
+                            onClick={() => setSelectedCategory('All')}
+                            className={`cursor-pointer hover:bg-default-100 transition-colors ${selectedCategory === 'All' ? 'bg-black text-white dark:bg-white dark:text-black' : 'border border-default-200'}`}
+                          >
+                            All
+                          </Chip>
                           
-                          {/* Top Categories */}
                           {topCategories.map(cat => (
-                              <button key={cat} onClick={() => setSelectedCategory(cat)} className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-medium transition-all border ${selectedCategory === cat ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-transparent border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900'}`}>{cat}</button>
+                              <Chip 
+                                key={cat}
+                                onClick={() => setSelectedCategory(cat)}
+                                className={`cursor-pointer hover:bg-default-100 transition-colors ${selectedCategory === cat ? 'bg-black text-white dark:bg-white dark:text-black' : 'border border-default-200'}`}
+                              >
+                                {cat}
+                              </Chip>
                           ))}
 
-                          {/* "More" Dropdown for the rest */}
                           {moreCategories.length > 0 && (
-                             <div className="relative flex-shrink-0">
-                                <select 
-                                  value={moreCategories.includes(selectedCategory) ? selectedCategory : ""}
-                                  onChange={(e) => setSelectedCategory(e.target.value)}
-                                  className={`appearance-none pl-4 pr-8 py-2 rounded-lg text-xs font-bold transition-all border outline-none cursor-pointer ${moreCategories.includes(selectedCategory) ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-transparent border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900'}`}
+                             <div className="relative flex-shrink-0 min-w-[120px]">
+                                <Select 
+                                  aria-label="More Categories"
+                                  placeholder="More..."
+                                  size="sm"
+                                  selectedKeys={moreCategories.find(c => c.key === selectedCategory) ? [selectedCategory] : []}
+                                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedCategory(e.target.value)}
+                                  classNames={{ trigger: "min-h-8 h-8", value: "text-tiny" }}
+                                  items={moreCategories}
                                 >
-                                    <option value="" disabled>More...</option>
-                                    {moreCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-                                </select>
-                                <ChevronDown size={12} className={`absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none ${moreCategories.includes(selectedCategory) ? 'text-white dark:text-black' : 'text-muted-foreground'}`} />
+                                    {(item) => <SelectItem key={item.key}>{item.label}</SelectItem>}
+                                </Select>
                              </div>
                           )}
                       </div>
@@ -308,31 +324,21 @@ export default function ProductGridClient({ products = [] }: { products: Product
         <HeroSection />
       </div>
 
-      {/* 🚀 FIXED BOTTOM SEARCH BAR (Mobile Thumb Zone) */}
-      {/* ✅ Solid Background, no translucent glass to fix visibility */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 p-3 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.1)] md:hidden">
-          <div className="relative w-full flex gap-3 items-center">
-             <div className="relative flex-1">
-                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
-                 <input 
-                    type="text" 
-                    placeholder="Search for items..." 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-11 pr-10 py-3.5 bg-zinc-100 dark:bg-zinc-900 rounded-2xl text-base font-medium border-none focus:ring-2 focus:ring-red-500/50 outline-none transition-all placeholder:text-muted-foreground text-foreground"
-                 />
-                 {searchQuery && <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full text-foreground"><X size={12}/></button>}
-             </div>
-             
-             {/* Cart Button (If items exist) */}
-             {totalItems > 0 && !isCartOpen && (
-                 <button onClick={() => setIsCartOpen(true)} className="bg-black dark:bg-white text-white dark:text-black p-3.5 rounded-2xl shadow-lg relative animate-in zoom-in">
-                    <ShoppingBag size={20} />
-                    <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-black">{totalItems}</span>
-                 </button>
-             )}
-          </div>
-      </div>
+      {/* 🚀 FIXED BOTTOM SEARCH BAR (Mobile) - Visible ONLY when cart is EMPTY */}
+      {totalItems === 0 && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-t border-border p-3 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.1)] md:hidden">
+            <div className="relative w-full flex gap-3 items-center">
+              <Input
+                  classNames={{ base: "flex-1", inputWrapper: "rounded-2xl h-12" }}
+                  placeholder="Search for items..."
+                  value={searchQuery}
+                  onValueChange={setSearchQuery}
+                  startContent={<Search size={18} className="text-default-400" />}
+                  endContent={searchQuery && <X size={16} onClick={() => setSearchQuery("")} className="cursor-pointer" />}
+              />
+            </div>
+        </div>
+      )}
 
       {/* --- PRODUCT GRID --- */}
       <div className="min-h-[50vh] px-4 md:px-0 mt-4">
@@ -349,7 +355,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
                             <div className="flex items-center gap-4 mb-6">
                                 <h2 className="text-xl font-black uppercase tracking-tight text-foreground">{group.name}</h2>
                                 <div className="h-px bg-zinc-200 dark:bg-zinc-800 flex-1"></div>
-                                <span className="text-xs font-bold text-muted-foreground bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded-md">{group.items.length} Items</span>
+                                <Chip size="sm">{group.items.length} Items</Chip>
                             </div>
                             
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -365,9 +371,15 @@ export default function ProductGridClient({ products = [] }: { products: Product
                             </div>
                             
                             {hasMore && !isExpanded && (
-                                <button onClick={() => toggleSection(group.name)} className="w-full mt-4 py-3 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-foreground font-bold text-xs rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                                    Show {remainingCount} more in {group.name} <ChevronDown size={14} className="inline ml-1"/>
-                                </button>
+                                <Button 
+                                  fullWidth 
+                                  variant="flat" 
+                                  onPress={() => toggleSection(group.name)} 
+                                  className="mt-4 font-bold"
+                                  endContent={<ChevronDown size={14} />}
+                                >
+                                    Show {remainingCount} more in {group.name}
+                                </Button>
                             )}
                         </div>
                     );
@@ -403,27 +415,40 @@ export default function ProductGridClient({ products = [] }: { products: Product
           <div className="col-span-full text-center py-20 text-muted-foreground">
              <Filter className="mx-auto mb-2 opacity-50" size={32} />
              <p className="font-medium">No items found.</p>
-             <button onClick={clearSearch} className="text-primary text-sm underline mt-4 font-bold">Show All Products</button>
+             <Button variant="light" color="primary" onPress={clearSearch} className="mt-4 font-bold">Show All Products</Button>
           </div>
         )}
       </div>
 
-      {/* --- DESKTOP FLOATING CART --- */}
-      {!isCartOpen && totalItems > 0 && (
-        <button 
-          onClick={() => setIsCartOpen(true)} 
-          className="hidden md:flex fixed bottom-8 right-8 z-40 bg-foreground text-background p-4 rounded-full shadow-2xl hover:scale-110 transition-all items-center gap-2"
-        >
-          <ShoppingBag size={24} />
-          <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-background">{totalItems}</span>
-        </button>
+      {/* --- NEW FULL WIDTH BOTTOM CART BAR --- */}
+      {/* Replaces search bar when items are in cart. Creates a solid "texture" at bottom. */}
+      {totalItems > 0 && !isCartOpen && (
+         <div className="fixed bottom-0 left-0 right-0 z-[60] bg-background border-t border-border p-3 md:p-4 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] animate-in slide-in-from-bottom-full duration-300">
+            <Button
+              size="lg"
+              className="w-full h-14 md:h-16 text-lg font-bold bg-foreground text-background shadow-lg rounded-2xl"
+              onPress={() => setIsCartOpen(true)}
+            >
+               <div className="flex w-full items-center justify-between px-2">
+                  <div className="flex flex-col items-start leading-tight gap-0.5">
+                     <span className="text-[10px] uppercase opacity-70 font-semibold tracking-wider">{totalItems} ITEMS</span>
+                     <span className="text-xl md:text-2xl">₹{totalPrice.toLocaleString()}</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 bg-background/10 py-2 px-4 rounded-xl">
+                     <span className="text-sm md:text-base tracking-wide">View Cart</span>
+                     <ArrowRight size={20} strokeWidth={2.5} />
+                  </div>
+               </div>
+            </Button>
+         </div>
       )}
 
-      {/* --- CART DRAWER & PRODUCT MODAL --- */}
+      {/* --- PRODUCT MODAL --- */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border flex flex-col max-h-[90vh]">
-            <button onClick={() => setSelectedProduct(null)} className="absolute top-4 right-4 z-10 bg-black/10 dark:bg-white/10 p-2 rounded-full hover:bg-black/20 dark:hover:bg-white/20 transition-colors backdrop-blur-sm"><X size={20} /></button>
+            <Button isIconOnly variant="flat" onPress={() => setSelectedProduct(null)} className="absolute top-4 right-4 z-10 rounded-full"><X size={20} /></Button>
             <div className="p-8 bg-white flex justify-center items-center h-64 shrink-0 border-b border-zinc-100">
                  <img src={`/images/${selectedProduct.item_code}.jpg`} alt={selectedProduct.item_name} className="max-h-full max-w-full object-contain mix-blend-multiply" onError={(e) => (e.currentTarget.src = "https://placehold.co/600x600/png?text=No+Image")} />
             </div>
@@ -431,42 +456,45 @@ export default function ProductGridClient({ products = [] }: { products: Product
                 <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-3">{selectedProduct.brand || "Nandan Traders"}</div>
                 <h2 className="text-xl font-bold text-foreground mb-3 leading-tight">{selectedProduct.item_name}</h2>
                 <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium">{selectedProduct.description}</p>
-                <div className="flex items-center justify-between gap-4 p-4 bg-secondary/30 rounded-2xl mt-auto">
+                <div className="flex items-center justify-between gap-4 p-4 bg-default-100 rounded-2xl mt-auto">
                     <div>
                       <div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
                       <div className="text-3xl font-black text-foreground">
                         ₹{selectedProduct.standard_rate}
                       </div>
                     </div>
-                    <button 
-                        onClick={() => handleAdd(selectedProduct)} 
-                        className="flex-1 bg-foreground text-background py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg"
+                    <Button 
+                        color="primary"
+                        size="lg"
+                        onPress={() => handleAdd(selectedProduct)} 
+                        className="flex-1 font-bold shadow-lg"
+                        startContent={<Plus size={20} />}
                     >
-                        <Plus size={20} /> 
                         {getCartQty(selectedProduct.item_code) > 0 ? "Add +1" : "Add 6 (Min)"}
-                    </button>
+                    </Button>
                 </div>
             </div>
           </div>
         </div>
       )}
 
+      {/* --- CART DRAWER --- */}
       {isCartOpen && (
         <>
             <div className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
             <div className="fixed top-0 left-0 h-full w-full sm:w-[450px] bg-card shadow-2xl z-[61] border-r border-border transform transition-transform duration-300 animate-in slide-in-from-left overflow-hidden flex flex-col">
                 <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none h-[10%] min-h-[70px]">
                     <div><h2 className="text-2xl font-black uppercase tracking-tight text-foreground">Cart</h2><p className="text-xs text-muted-foreground font-medium mt-1">{totalItems} items selected</p></div>
-                    <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-secondary rounded-full transition-colors"><X size={24} className="text-foreground" /></button>
+                    <Button isIconOnly variant="light" onPress={() => setIsCartOpen(false)}><X size={24} /></Button>
                 </div>
-                <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-zinc-50 dark:bg-black/40 h-[60%]">
+                <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-default-50 h-[60%]">
                     {cart.map(item => (
                         <div key={item.item_code} className="flex gap-3 p-3 bg-card rounded-2xl border border-border items-start group shadow-sm">
                             <div className="flex-1">
                                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-muted-foreground border border-border">
+                                    <span className="text-xs font-mono bg-default-100 px-2 py-1 rounded text-muted-foreground border border-border">
                                       ₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}
                                     </span>
                                     <span className="text-xs text-muted-foreground">x {item.qty}</span>
@@ -476,24 +504,28 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                 <span className="font-black text-base">₹{(
                                     (item.qty > 24 ? item.standard_rate * 0.975 : item.standard_rate) * item.qty
                                 ).toLocaleString()}</span>
-                                <div className="flex items-center gap-1 bg-secondary rounded-lg border border-border p-1"><button onClick={() => updateQty(item.item_code, -1)} className="p-1 hover:bg-background rounded-md"><Minus size={14}/></button><span className="w-6 text-center text-xs font-bold">{item.qty}</span><button onClick={() => updateQty(item.item_code, 1)} className="p-1 hover:bg-background rounded-md"><Plus size={14}/></button></div>
+                                <div className="flex items-center gap-1 bg-default-100 rounded-lg border border-border p-1">
+                                  <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, -1)} className="h-6 w-6 min-w-6"><Minus size={14}/></Button>
+                                  <span className="w-6 text-center text-xs font-bold">{item.qty}</span>
+                                  <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, 1)} className="h-6 w-6 min-w-6"><Plus size={14}/></Button>
+                                </div>
                             </div>
                         </div>
                     ))}
-                    {cart.length === 0 && ( <div className="flex flex-col items-center justify-center h-full text-muted-foreground opacity-50"><ShoppingBag size={64} strokeWidth={1} className="mb-4" /><p className="text-lg font-medium">Your cart is empty</p><button onClick={() => setIsCartOpen(false)} className="mt-4 text-sm font-bold text-foreground underline">Start Shopping</button></div>)}
+                    {cart.length === 0 && ( <div className="flex flex-col items-center justify-center h-full text-muted-foreground opacity-50"><ShoppingBag size={64} strokeWidth={1} className="mb-4" /><p className="text-lg font-medium">Your cart is empty</p><Button variant="light" onPress={() => setIsCartOpen(false)} className="mt-4 font-bold underline">Start Shopping</Button></div>)}
                 </div>
                 <div className={`border-t border-border bg-card transition-all duration-300 ease-in-out flex flex-col relative ${showMoreDetails ? 'h-full absolute inset-0 z-50' : 'flex-none h-[30%] min-h-[240px]'}`}>
-                    {showMoreDetails && ( <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none"><h3 className="font-bold text-lg flex items-center gap-2"><div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold">1</div> Order Details</h3><button onClick={() => setShowMoreDetails(false)} className="text-xs font-bold bg-secondary px-3 py-1.5 rounded-full hover:bg-secondary/80 flex items-center gap-1"><ChevronDown size={14}/> Minimize</button></div>)}
+                    {showMoreDetails && ( <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none"><h3 className="font-bold text-lg flex items-center gap-2"><div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div> Order Details</h3><Button size="sm" variant="flat" onPress={() => setShowMoreDetails(false)} startContent={<ChevronDown size={14}/>}>Minimize</Button></div>)}
                     <form onSubmit={submitOrder} className="flex flex-col h-full overflow-hidden">
                         <div className="flex-1 overflow-y-auto p-5 pb-0">
                             {!showMoreDetails && ( <div className="flex justify-between items-end mb-4 pb-4 border-b border-border border-dashed flex-none"><span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Total Pay</span><span className="text-3xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div>)}
                             <div className="space-y-3 pb-4">
-                                <div className="grid grid-cols-2 gap-3"><input required placeholder="Your Name" className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium transition-all" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} /><input required placeholder="Phone (10 digits)" type="tel" className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium transition-all" value={formData.phone} onChange={handlePhoneChange} /></div>
-                                {!showMoreDetails && ( <button type="button" onClick={() => setShowMoreDetails(true)} className="w-full py-3 text-xs font-bold text-muted-foreground hover:text-foreground flex items-center justify-center gap-2 border border-dashed border-border rounded-xl hover:bg-secondary/50 transition-all"><PlusCircle size={14}/> Add Address & GST</button>)}
-                                {showMoreDetails && ( <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4"><div className="flex justify-between items-center py-2 bg-secondary/20 px-3 rounded-lg"><span className="text-xs font-bold text-muted-foreground uppercase">Cart Total</span><span className="text-xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div><div><label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">GST Number (Optional)</label><input placeholder="Ex: 22AAAAA0000A1Z5" className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium" value={formData.gst} onChange={e => setFormData({...formData, gst: e.target.value})} /></div><div><label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block flex justify-between">Address<button type="button" onClick={() => setShowAddressLine2(!showAddressLine2)} className="text-primary hover:underline flex items-center gap-1 text-[10px]"><PlusCircle size={10}/> Add Line 2</button></label><div className="space-y-2"><textarea placeholder="Street, Building, Area..." rows={2} className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium resize-none" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />{showAddressLine2 && ( <input placeholder="Landmark / City / Pincode" className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium animate-in fade-in slide-in-from-top-1" value={formData.addressLine2} onChange={e => setFormData({...formData, addressLine2: e.target.value})} />)}</div></div><div><label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">Order Notes</label><textarea placeholder="Special instructions..." rows={2} className="w-full p-3 bg-secondary/30 rounded-xl border border-border outline-none focus:border-foreground text-sm font-medium resize-none" value={formData.note} onChange={e => setFormData({...formData, note: e.target.value})} /></div></div>)}
+                                <div className="grid grid-cols-2 gap-3"><Input isRequired label="Name" placeholder="Your Name" value={formData.name} onValueChange={(v: string) => setFormData({...formData, name: v})} /><Input isRequired label="Phone" placeholder="10 digits" type="tel" value={formData.phone} onChange={handlePhoneChange} /></div>
+                                {!showMoreDetails && ( <Button variant="dashed" onPress={() => setShowMoreDetails(true)} className="w-full font-bold text-muted-foreground" startContent={<PlusCircle size={14}/>}>Add Address & GST</Button>)}
+                                {showMoreDetails && ( <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4"><div className="flex justify-between items-center py-2 bg-default-100 px-3 rounded-lg"><span className="text-xs font-bold text-muted-foreground uppercase">Cart Total</span><span className="text-xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div><div><Input label="GST Number (Optional)" placeholder="Ex: 22AAAAA0000A1Z5" value={formData.gst} onValueChange={(v: string) => setFormData({...formData, gst: v})} /></div><div><div className="flex justify-between items-center mb-1"><span className="text-xs font-bold text-muted-foreground uppercase">Address</span><span onClick={() => setShowAddressLine2(!showAddressLine2)} className="text-primary text-tiny cursor-pointer hover:underline flex items-center gap-1"><PlusCircle size={10}/> Add Line 2</span></div><div className="space-y-2"><textarea placeholder="Street, Building, Area..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50 transition-all" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />{showAddressLine2 && ( <Input placeholder="Landmark / City / Pincode" value={formData.addressLine2} onValueChange={(v: string) => setFormData({...formData, addressLine2: v})} />)}</div></div><div><label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">Order Notes</label><textarea placeholder="Special instructions..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50" value={formData.note} onChange={e => setFormData({...formData, note: e.target.value})} /></div></div>)}
                             </div>
                         </div>
-                        <div className="p-5 border-t border-border bg-card flex-none pb-8 sm:pb-6"><button type="submit" disabled={loading || cart.length === 0} className="w-full bg-foreground text-background py-4 rounded-xl font-black text-lg shadow-xl hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-between px-6"><span>{loading ? "Processing..." : "Confirm Order"}</span><div className="flex items-center gap-2"><ArrowRight size={20} /></div></button></div>
+                        <div className="p-5 border-t border-border bg-card flex-none pb-8 sm:pb-6"><Button type="submit" color="primary" size="lg" fullWidth isLoading={loading} isDisabled={cart.length === 0} className="font-black text-lg shadow-xl" endContent={<ArrowRight size={20} />}>{loading ? "Processing..." : "Confirm Order"}</Button></div>
                     </form>
                 </div>
             </div>

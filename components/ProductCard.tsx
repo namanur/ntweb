@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Product } from '@/lib/erp';
-import { Plus } from 'lucide-react';
+import { Plus, ShoppingCart, Minus } from 'lucide-react';
+import { Card, CardBody, CardFooter, Image, Button, Input } from "@heroui/react";
 
 interface ProductCardProps {
   product: Product;
@@ -23,100 +24,103 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
 
   const getImageUrl = () => {
     const baseUrl = `/images/${product.item_code}.jpg`;
+    // @ts-ignore
     return product.imageVersion ? `${baseUrl}?v=${product.imageVersion}` : baseUrl;
   };
 
-  const [imgSrc, setImgSrc] = useState(getImageUrl());
-
-  useEffect(() => {
-    setImgSrc(getImageUrl());
-  }, [product]);
-
   const discountPrice = product.standard_rate * 0.975; 
-
-  // ✅ ROBUST BRAND CHECK
-  // 1. Ensure brand exists
-  // 2. Convert to lowercase
-  // 3. Trim whitespace
-  // 4. Check if it equals "generic"
   const cleanBrand = (product.brand || "").toLowerCase().trim();
   const showBrand = cleanBrand.length > 0 && cleanBrand !== "generic";
 
+  const handlePress = () => {
+    if (onClick) onClick();
+  };
+
+  const handleAddToCart = () => {
+    onAdd(product, Number(qty));
+  };
+
   return (
-    <div 
-      onClick={onClick}
-      className={`group flex flex-col bg-card border rounded-3xl cursor-pointer 
-                 transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] 
-                 hover:scale-[1.02] hover:-translate-y-1
-                 shadow-[0_4px_20px_-12px_rgba(0,0,0,0.1)]
-                 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.2)]
-                 ${isInCart ? 'border-primary/50 ring-1 ring-primary/20' : 'border-border/50'}`}
+    <Card 
+      isPressable 
+      onPress={handlePress}
+      className={`w-full border-none shadow-sm hover:shadow-md transition-shadow duration-200 ${isInCart ? 'ring-2 ring-primary' : ''}`}
     >
-      {/* HEADER: ID & Brand */}
-      <div className="flex justify-between items-start p-4 pb-0">
-        <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider truncate max-w-[70%] transition-colors group-hover:text-foreground">
-          {product.item_code}
-        </span>
-        
-        {/* Only render if valid AND not generic */}
+      <CardBody className="p-0 overflow-visible relative">
         {showBrand && (
-          <span className="text-[10px] font-bold border border-border/50 px-2 py-0.5 rounded-full text-foreground/80 shrink-0 bg-background/50 backdrop-blur-md">
-            {product.brand}
-          </span>
+          <div className="absolute top-2 left-2 z-20">
+             <span className="text-[10px] font-bold bg-background/80 backdrop-blur-md px-2 py-1 rounded-full border border-divider shadow-sm">
+                {product.brand}
+             </span>
+          </div>
         )}
-      </div>
-
-      {/* IMAGE */}
-      <div className="w-full aspect-square p-5 flex items-center justify-center bg-transparent">
-        <img 
-          src={imgSrc} 
-          alt={product.item_name}
-          className="max-h-full max-w-full object-contain mix-blend-multiply dark:mix-blend-normal opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
-          onError={() => setImgSrc("https://placehold.co/400x400/png?text=No+Image")}
-        />
-      </div>
-
-      {/* FOOTER */}
-      <div className="p-4 border-t border-border/50 mt-auto bg-secondary/30 rounded-b-3xl group-hover:bg-secondary/50 transition-colors">
-        <h3 className="text-sm font-bold text-foreground leading-snug line-clamp-2 h-10 group-hover:text-primary transition-colors" title={product.item_name}>
-          {product.item_name}
-        </h3>
         
-        <div className="mt-2 text-[10px] font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded w-fit">
-           Buy 24+ @ ₹{discountPrice.toFixed(2)}
+        <div className="absolute top-2 right-2 z-20">
+           <span className="text-[10px] font-mono font-bold text-default-500 bg-background/50 px-1.5 py-0.5 rounded-md">
+             {product.item_code}
+           </span>
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-2">
-          <div className="flex flex-col">
-            <span className="text-[10px] text-muted-foreground uppercase font-semibold">Wholesale</span>
-            <span className="text-base font-black text-foreground tracking-tight flex items-baseline gap-1">
-              ₹{product.standard_rate.toLocaleString()}
-              {product.stock_uom && <span className="text-[10px] font-medium text-muted-foreground">/ {product.stock_uom}</span>}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-1">
-            <input 
-              type="number"
-              min={minQty}
-              value={qty}
-              onClick={(e) => e.stopPropagation()} 
-              onChange={(e) => setQty(Math.max(minQty, parseInt(e.target.value) || minQty))}
-              className={`w-12 h-9 rounded-l-lg border bg-background text-center text-xs font-bold focus:outline-none focus:border-primary transition-colors ${isInCart ? 'border-primary text-primary' : 'border-border'}`}
-            />
-            
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                onAdd(product, qty);
-              }}
-              className="h-9 px-3 flex items-center justify-center rounded-r-lg bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95 transition-all shadow-sm"
-            >
-              <Plus size={16} strokeWidth={3} />
-            </button>
-          </div>
+        <div className="aspect-square p-6 flex items-center justify-center bg-white">
+           <Image
+             src={getImageUrl()}
+             alt={product.item_name}
+             className="object-contain w-full h-full mix-blend-multiply"
+             radius="lg"
+             shadow="none"
+             onError={(e) => (e.currentTarget.src = "https://placehold.co/400x400/png?text=No+Image")}
+           />
         </div>
-      </div>
-    </div>
+      </CardBody>
+
+      <CardFooter className="flex flex-col items-start p-3 bg-default-50/50 backdrop-blur-sm space-y-3">
+        <div className="w-full">
+           <h3 className="text-sm font-semibold leading-tight line-clamp-2 min-h-[2.5em]" title={product.item_name}>
+             {product.item_name}
+           </h3>
+        </div>
+
+        <div className="flex flex-col w-full gap-1">
+           <div className="flex items-baseline gap-1">
+              <span className="text-lg font-bold text-default-900">₹{product.standard_rate.toLocaleString()}</span>
+              {product.stock_uom && <span className="text-tiny text-default-400">/{product.stock_uom}</span>}
+           </div>
+           <div className="text-[10px] font-medium text-success bg-success-50 px-2 py-0.5 rounded w-fit">
+              24+ @ ₹{discountPrice.toFixed(2)}
+           </div>
+        </div>
+
+        <div 
+          className="flex items-center gap-2 w-full mt-1" 
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+        >
+           <Input
+             type="number"
+             min={minQty}
+             value={String(qty)}
+             size="sm"
+             variant="bordered"
+             classNames={{
+               base: "w-16 flex-none",
+               input: "text-center font-bold",
+               inputWrapper: "px-1 h-9 min-h-9 border-default-200"
+             }}
+             onValueChange={(v) => setQty(Math.max(minQty, Number(v) || minQty))}
+           />
+           
+           <Button
+             size="sm"
+             color={isInCart ? "success" : "primary"}
+             variant="solid"
+             className="flex-1 font-bold h-9 min-h-9 shadow-sm"
+             onPress={handleAddToCart}
+             startContent={isInCart ? <Plus size={16} /> : <ShoppingCart size={16} />}
+           >
+             {isInCart ? "Add More" : "Add"}
+           </Button>
+        </div>
+      </CardFooter>
+    </Card>
   );
 }

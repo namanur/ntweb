@@ -1,10 +1,24 @@
 "use client";
 
-import { Search, Menu, X, ShieldCheck, MapPin, Phone, Mail, FileText, Info } from "lucide-react";
+import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText, Info, X } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Input,
+  Button,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
 
 function SearchInput() {
   const searchParams = useSearchParams();
@@ -19,134 +33,135 @@ function SearchInput() {
   };
 
   return (
-    // Hidden on mobile, shown on desktop
-    <div className="hidden md:block flex-1 max-w-md relative mx-4">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
-      <input 
-        type="text"
-        placeholder="Search..."
-        className="w-full pl-9 p-2.5 rounded-xl border border-border bg-secondary/50 text-sm focus:border-foreground focus:bg-background focus:ring-0 outline-none transition-all placeholder:text-muted-foreground font-medium"
-        defaultValue={searchParams.get("q")?.toString()}
-        onChange={(e) => handleSearch(e.target.value)}
-      />
-    </div>
+    <Input
+      classNames={{
+        base: "max-w-full sm:max-w-[20rem] h-10",
+        mainWrapper: "h-full",
+        input: "text-small",
+        inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+      }}
+      placeholder="Type to search..."
+      size="sm"
+      startContent={<Search size={18} />}
+      type="search"
+      defaultValue={searchParams.get("q")?.toString()}
+      onValueChange={handleSearch}
+    />
   );
 }
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
-    // ✅ SOLID BACKGROUND: bg-background/95 ensures it's opaque but lets a tiny bit of color through
-    <header className="sticky top-0 z-[60] bg-background/95 backdrop-blur-md border-b border-border h-16 flex-none transition-all shadow-sm">
-        <div className="w-full h-full flex items-center justify-between px-4">
-          
-          {/* Brand Logo */}
-          <div className="flex items-center gap-3 group cursor-pointer shrink-0" onClick={() => window.location.href='/'}>
-            <div className="relative h-10 w-10 sm:h-12 sm:w-12 group-hover:rotate-12 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
-              <Image 
-                src="/logo.png"
-                alt="Nandan"
-                fill
-                className="object-contain dark:invert filter"
-                priority
-              />
-            </div>
-            <span className="font-black text-lg tracking-widest uppercase text-foreground hidden xs:block">
-              Nandan Trader
-            </span>
-          </div>
-
-          <Suspense fallback={<div className="hidden md:block flex-1" />}>
-            <SearchInput />
-          </Suspense>
-
-          {/* Actions */}
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="hidden sm:block">
-               <ThemeToggle />
-            </div>
-            
-            <button 
-              onClick={() => setIsMenuOpen(true)}
-              className="p-2.5 rounded-xl bg-secondary hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-sm active:scale-95"
-              aria-label="Open Menu"
-            >
-              <Menu size={20} strokeWidth={2.5} />
-            </button>
-          </div>
-        </div>
-
-        {/* --- MENU DRAWER --- */}
-        {isMenuOpen && (
-          <div className="fixed inset-0 z-[100]">
-            <div 
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in"
-              onClick={() => setIsMenuOpen(false)}
+    <Navbar maxWidth="2xl" isBordered className="bg-background/70 backdrop-blur-md">
+      <NavbarContent justify="start">
+        <NavbarBrand className="gap-3 mr-4 cursor-pointer" onClick={() => window.location.href='/'}>
+          <div className="relative h-10 w-10">
+            <Image 
+              src="/logo.png"
+              alt="Nandan"
+              fill
+              className="object-contain dark:invert filter"
+              priority
             />
-            
-            {/* ✅ SOLID DRAWER BACKGROUND */}
-            <div className="absolute top-0 right-0 h-full w-[85vw] sm:w-[350px] bg-background border-l border-border shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
-              
-              <div className="flex justify-between items-center p-5 border-b border-border">
-                <div className="flex items-center gap-3">
-                   <div className="p-2 bg-secondary rounded-lg">
-                      <ThemeToggle />
-                   </div>
-                   <span className="font-bold text-sm">Appearance</span>
-                </div>
-                <button onClick={() => setIsMenuOpen(false)} className="p-2 bg-secondary rounded-full hover:bg-zinc-200 transition-colors">
-                  <X size={20} />
-                </button>
-              </div>
+          </div>
+          <p className="hidden sm:block font-bold text-inherit uppercase tracking-widest">Nandan Trader</p>
+        </NavbarBrand>
+      </NavbarContent>
 
-              <nav className="p-5 space-y-2">
-                <a href="/about" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/30 hover:bg-secondary font-bold text-sm transition-all">
-                  <div className="p-2 bg-background rounded-full shadow-sm"><Info size={18} /></div> About Us
-                </a>
-                <a href="/terms" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/30 hover:bg-secondary font-bold text-sm transition-all">
-                  <div className="p-2 bg-background rounded-full shadow-sm"><FileText size={18} /></div> Terms & Conditions
-                </a>
-                <a href="/privacy" className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/30 hover:bg-secondary font-bold text-sm transition-all">
-                  <div className="p-2 bg-background rounded-full shadow-sm"><ShieldCheck size={18} /></div> Privacy Policy
-                </a>
-              </nav>
+      <NavbarContent as="div" className="items-center" justify="center">
+        <Suspense fallback={<div className="w-[20rem]" />}>
+          <SearchInput />
+        </Suspense>
+      </NavbarContent>
 
-              <div className="mt-auto p-6 bg-secondary/20 border-t border-border">
-                <div className="mb-6">
-                  <h3 className="font-black text-xl text-foreground uppercase tracking-tight mb-1">Nandan Trader</h3>
-                  <p className="text-sm font-medium text-muted-foreground">Proprietor: Ram Nandan Mishra</p>
-                  <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-background border border-border rounded-lg text-xs font-mono font-bold text-foreground shadow-sm">
-                    <ShieldCheck size={12} className="text-green-600" /> GST: 20AIIPM2082N1Z7
-                  </div>
-                </div>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:flex">
+          <ThemeToggle />
+        </NavbarItem>
+        <NavbarItem>
+          <Button isIconOnly variant="light" onPress={onOpen} aria-label="Open Menu">
+            <Menu size={24} />
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
 
-                <div className="space-y-4 text-sm">
-                  <div className="flex items-start gap-3">
-                    <MapPin size={18} className="shrink-0 mt-0.5 text-muted-foreground" />
-                    <span className="leading-snug text-muted-foreground">Khapriyawan, Barkagaon Road,<br/>Hazaribagh, Jharkhand - 825302</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone size={18} className="shrink-0 text-muted-foreground" />
-                    <div className="flex flex-col gap-1">
-                      <a href="https://wa.me/919431394095" className="font-bold text-green-600 hover:underline">WhatsApp: 94313-94095</a>
-                      <a href="tel:6204188728" className="text-foreground hover:underline">Call: 62041-88728</a>
+      {/* Mobile Menu (Simulated Drawer using Modal) */}
+      <Modal 
+        isOpen={isOpen} 
+        onOpenChange={onOpenChange} 
+        placement="center" 
+        backdrop="blur"
+        scrollBehavior="inside"
+        classNames={{
+          wrapper: "flex justify-end",
+          base: "h-[100dvh] w-[85vw] sm:w-[350px] m-0 rounded-none rounded-l-2xl",
+        }}
+        motionProps={{
+          variants: {
+            enter: { x: 0, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+            exit: { x: "100%", opacity: 0, transition: { duration: 0.2, ease: "easeIn" } },
+          }
+        }}
+      >
+        <ModalContent>
+          {(onClose: () => void) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 border-b border-divider p-6">
+                 <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold uppercase">Menu</span>
+                    <div className="sm:hidden"><ThemeToggle /></div>
+                 </div>
+              </ModalHeader>
+              <ModalBody className="gap-2 p-6">
+                <Button 
+                  as="a" href="/about" variant="flat" className="justify-start h-14 text-md font-medium"
+                  startContent={<Info size={20} className="text-default-500" />}
+                >
+                  About Us
+                </Button>
+                <Button 
+                  as="a" href="/terms" variant="flat" className="justify-start h-14 text-md font-medium"
+                  startContent={<FileText size={20} className="text-default-500" />}
+                >
+                  Terms & Conditions
+                </Button>
+                <Button 
+                  as="a" href="/privacy" variant="flat" className="justify-start h-14 text-md font-medium"
+                  startContent={<ShieldCheck size={20} className="text-default-500" />}
+                >
+                  Privacy Policy
+                </Button>
+
+                <div className="mt-auto pt-8">
+                  <div className="p-4 bg-default-100 rounded-medium space-y-4">
+                    <div className="flex items-start gap-3">
+                      <MapPin size={18} className="shrink-0 mt-1 text-default-500" />
+                      <span className="text-small text-default-500">Khapriyawan, Barkagaon Road,<br/>Hazaribagh, Jharkhand - 825302</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Phone size={18} className="shrink-0 text-default-500" />
+                      <div className="flex flex-col">
+                        <a href="https://wa.me/919431394095" className="text-small font-bold text-success-600 hover:underline">WhatsApp: 94313-94095</a>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Mail size={18} className="shrink-0 text-default-500" />
+                      <a href="mailto:nandantrader1963@gmail.com" className="text-small text-default-600 hover:underline">nandantrader1963@gmail.com</a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Mail size={18} className="shrink-0 text-muted-foreground" />
-                    <a href="mailto:nandantrader1963@gmail.com" className="text-foreground hover:underline break-all">nandantrader1963@gmail.com</a>
-                  </div>
                 </div>
-
-                <div className="text-center text-[10px] pt-8 opacity-40 font-medium uppercase tracking-widest">
+              </ModalBody>
+              <ModalFooter>
+                <div className="w-full text-center text-tiny text-default-400 font-bold uppercase tracking-widest">
                   © {new Date().getFullYear()} Nandan Trader
                 </div>
-              </div>
-
-            </div>
-          </div>
-        )}
-    </header>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </Navbar>
   );
 }
