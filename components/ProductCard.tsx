@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Product } from '@/lib/erp';
-import { Plus, ShoppingCart, Minus } from 'lucide-react';
+import { Plus, ShoppingCart } from 'lucide-react';
 import { Card, CardBody, CardFooter, Image, Button, Input } from "@heroui/react";
 
 interface ProductCardProps {
@@ -28,6 +28,13 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
     return product.imageVersion ? `${baseUrl}?v=${product.imageVersion}` : baseUrl;
   };
 
+  // ✅ STATE FOR IMAGE SOURCE
+  const [imgSrc, setImgSrc] = useState(getImageUrl());
+
+  useEffect(() => {
+    setImgSrc(getImageUrl());
+  }, [product]);
+
   const discountPrice = product.standard_rate * 0.975; 
   const cleanBrand = (product.brand || "").toLowerCase().trim();
   const showBrand = cleanBrand.length > 0 && cleanBrand !== "generic";
@@ -42,9 +49,10 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
 
   return (
     <Card 
-      isPressable 
-      onPress={handlePress}
-      className={`w-full border-none shadow-sm hover:shadow-md transition-shadow duration-200 ${isInCart ? 'ring-2 ring-primary' : ''}`}
+      as="div"
+      isPressable={false}
+      onClick={handlePress} 
+      className={`w-full border-none shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer ${isInCart ? 'ring-2 ring-primary' : ''}`}
     >
       <CardBody className="p-0 overflow-visible relative">
         {showBrand && (
@@ -63,12 +71,13 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
 
         <div className="aspect-square p-6 flex items-center justify-center bg-white">
            <Image
-             src={getImageUrl()}
+             src={imgSrc}
              alt={product.item_name}
              className="object-contain w-full h-full mix-blend-multiply"
              radius="lg"
              shadow="none"
-             onError={(e) => (e.currentTarget.src = "https://placehold.co/400x400/png?text=No+Image")}
+             // ✅ FIXED: Using state setter directly, matching the () => void signature
+             onError={() => setImgSrc("https://placehold.co/400x400/png?text=No+Image")}
            />
         </div>
       </CardBody>
