@@ -22,6 +22,11 @@ try {
     console.log("\n🔄 1. Syncing Product Data...");
     run('node scripts/import_csv.js');
 
+    // 👇 STEP 1.5: Sync Prices (The Fix)
+    // This runs the smart pricing logic to update '0' values using data from Item.csv
+    console.log("\n💰 1.5. Syncing Prices...");
+    run('node scripts/sync_prices.js');
+
     // STEP 2: Stage All Changes
     // "git add ." catches new files (images), modified files (code), and deletions.
     console.log("\n📸 2. Staging all changes (Code, Images, Data)...");
@@ -37,11 +42,9 @@ try {
     console.log("\n☁️ 4. Pushing to GitHub...");
     run('git push origin main');
 
-    console.log("\n\x1b[32m%s\x1b[0m", "✅ SUCCESS! Your site is updating.");
-    console.log("   It should be live in ~2 minutes.");
+    console.log("\n\x1b[32m%s\x1b[0m", "✅ Deployment Complete! Your changes are live.");
 
-} catch (error) {
-    console.error("\n\x1b[31m%s\x1b[0m", "❌ Deployment Failed:");
-    console.error(error.message);
+} catch (e) {
+    console.error("\n❌ Deployment Failed:", e.message);
     process.exit(1);
 }
