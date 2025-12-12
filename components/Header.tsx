@@ -36,7 +36,6 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    // ✅ CHANGED: Fully Opaque Background (bg-background) for better visibility
     <header className="sticky top-0 z-50 bg-background border-b border-border h-16 flex-none transition-all shadow-sm">
         <div className="w-full h-full flex items-center justify-between px-3 sm:px-4">
           
@@ -45,14 +44,14 @@ export default function Header() {
             <div className="relative h-10 w-10 sm:h-12 sm:w-12 group-hover:rotate-12 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
               <Image 
                 src="/logo.png"
-                alt="Nandan"
+                alt="Nandan Trader"
                 fill
                 className="object-contain dark:invert filter"
                 priority
               />
             </div>
             <span className="hidden sm:block font-black text-sm tracking-widest uppercase text-foreground">
-              Nandan
+              Nandan Trader
             </span>
           </div>
 
@@ -67,7 +66,6 @@ export default function Header() {
                <ThemeToggle />
             </div>
             
-            {/* ✅ CHANGED: Solid Background for Hamburger Menu */}
             <button 
               onClick={() => setIsMenuOpen(true)}
               className="p-2.5 rounded-xl bg-zinc-100 text-black dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-sm active:scale-95"
