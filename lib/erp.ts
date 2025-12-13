@@ -3,8 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 // --- CONFIGURATION ---
-// Fix: Use the live URL as a fallback so it doesn't try localhost on Vercel
-const ERP_URL = process.env.ERP_NEXT_URL || "https://erp.nandantrader.in";
+const ERP_URL = process.env.ERP_NEXT_URL || "http://127.0.0.1:8080";
 const API_KEY = process.env.ERP_API_KEY;
 const API_SECRET = process.env.ERP_API_SECRET;
 
@@ -31,7 +30,7 @@ export interface Product {
   stock_qty?: number;
   threshold?: number;
   images?: string[]; 
-  is_hot?: boolean; 
+  is_hot?: boolean; // ✅ NEW: Support for Hot/New items
 }
 
 export interface OrderItem {
@@ -76,8 +75,6 @@ export async function getProducts(): Promise<Product[]> {
 // 2. UPDATE PRODUCT
 export async function updateProductLocal(itemCode: string, updates: Partial<Product>) {
     try {
-        if (process.env.NODE_ENV === 'production') return true; // Skip in Vercel
-
         const filePath = path.join(process.cwd(), 'src/data/products.json');
         if (fs.existsSync(filePath)) {
             const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -103,8 +100,7 @@ export async function updateProductLocal(itemCode: string, updates: Partial<Prod
         }
     } catch (error) {
         console.error("Failed to update local JSON", error);
-        // Don't throw error to prevent crash
-        return false;
+        throw new Error("Local Update Failed");
     }
 }
 
@@ -125,12 +121,6 @@ export async function getOrders(): Promise<Order[]> {
 // 4. SAVE ORDER LOCAL
 export async function saveOrderLocal(order: Order) {
   try {
-    // 🛑 VERCEL FIX: Skip writing to file system in production
-    if (process.env.NODE_ENV === 'production') {
-      console.log("⚠️ Production mode: Skipping local file save (Read-Only System).");
-      return true; 
-    }
-
     const filePath = path.join(process.cwd(), 'src/data/orders.json');
     const dir = path.dirname(filePath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -149,18 +139,15 @@ export async function saveOrderLocal(order: Order) {
 
     fs.writeFileSync(filePath, JSON.stringify(orders, null, 2));
     return true;
-  } catch (error: any) {
-    // 🛑 VERCEL FIX: Log error but DO NOT crash
-    console.error("Failed to save order locally (non-fatal):", error.message);
-    return true; 
+  } catch (error) {
+    console.error("Failed to save order locally:", error);
+    throw new Error("Order Save Failed");
   }
 }
 
 // 5. UPDATE ORDER STATUS
 export async function updateOrderStatus(orderId: string, status: Order["status"]) {
   try {
-    if (process.env.NODE_ENV === 'production') return true;
-
     const filePath = path.join(process.cwd(), 'src/data/orders.json');
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -176,7 +163,7 @@ export async function updateOrderStatus(orderId: string, status: Order["status"]
     throw new Error("Orders file not found");
   } catch (error) {
     console.error("Failed to update order status:", error);
-    return false;
+    throw error;
   }
 }
 
@@ -226,6 +213,7 @@ export async function createSalesOrder(items: OrderItem[], customerData: any) {
   try {
     const customerId = await getOrCreateCustomer(customerData.phone, customerData.name);
     
+    // Step 8a: Get Company Address
     let companyAddressName = process.env.ERP_COMPANY_ADDRESS || "";
 
     if (!companyAddressName) {
@@ -249,6 +237,7 @@ export async function createSalesOrder(items: OrderItem[], customerData: any) {
         throw new Error("Configuration Error: 'Company Address' not found. Please set ERP_COMPANY_ADDRESS in .env file.");
     }
 
+    // Future Date (Tomorrow)
     const deliveryDate = new Date();
     deliveryDate.setDate(deliveryDate.getDate() + 1);
     const dateStr = deliveryDate.toISOString().split('T')[0];
@@ -285,8 +274,6 @@ export async function createSalesOrder(items: OrderItem[], customerData: any) {
 // 9. DEDUCT INVENTORY ON ORDER
 export async function deductInventory(items: OrderItem[]) {
     try {
-        if (process.env.NODE_ENV === 'production') return;
-
         const filePath = path.join(process.cwd(), 'src/data/products.json');
         if (!fs.existsSync(filePath)) return;
 
