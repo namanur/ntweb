@@ -35,7 +35,8 @@ export default function LandingPage() {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
-                    <a href="https://catalog.nandantrader.in" className="h-14 px-8 rounded-2xl bg-foreground text-background font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-xl hover:shadow-2xl">
+                    {/* Link to the internal catalog route */}
+                    <a href="/catalog" className="h-14 px-8 rounded-2xl bg-foreground text-background font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-xl hover:shadow-2xl">
                       Enter Catalog <ArrowRight size={20} />
                     </a>
                     <a href="https://wa.me/919431394095" className="h-14 px-8 rounded-2xl border border-border bg-secondary/50 text-foreground font-bold text-lg flex items-center justify-center gap-3 hover:bg-secondary transition-colors">
