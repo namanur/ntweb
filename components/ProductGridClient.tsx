@@ -5,8 +5,11 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
 import HeroSection from "./HeroSection"; 
-import { X, Minus, Plus, ShoppingBag, ArrowRight, Filter, Loader2, ChevronDown, PlusCircle, Search } from "lucide-react";
-import { Button, Input, Select, SelectItem, Chip } from "@heroui/react";
+import { 
+  X, Minus, Plus, ShoppingBag, ArrowRight, Filter, 
+  Loader2, ChevronDown, PlusCircle, Search, SlidersHorizontal, ArrowUpDown, Check
+} from "lucide-react";
+import { Button, Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip, Divider } from "@heroui/react";
 
 // --- SCROLL HOOK ---
 function useScrollDirection() {
@@ -29,29 +32,11 @@ function useScrollDirection() {
   return scrollDirection;
 }
 
-interface CartItem extends Product {
-  qty: number;
-}
-
-const BRANDS = [
-  { name: "Anjali", logo: "/brands/anjali.png" },
-  { name: "MaxFresh", logo: "/brands/maxfresh.png" },
-  { name: "Tibros", logo: "/brands/tibros.png" },
-  { name: "Sigma", logo: "/brands/sigma.png" },
-];
-
+// --- CONFIG ---
+const BRANDS = ["Anjali", "MaxFresh", "Tibros", "Sigma"];
 const CATEGORY_PRIORITY = ["Pressure Cooker", "Bottle", "Lunch Box", "Steelware", "Crockery"];
 
-const sortCategories = (a: string, b: string) => {
-  const idxA = CATEGORY_PRIORITY.indexOf(a);
-  const idxB = CATEGORY_PRIORITY.indexOf(b);
-  if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-  if (idxA !== -1) return -1;
-  if (idxB !== -1) return 1;
-  return a.localeCompare(b);
-};
-
-// Fuzzy Search Helpers
+// Fuzzy Search
 const levenshteinDistance = (a: string, b: string) => {
   const matrix = [];
   for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
@@ -73,10 +58,8 @@ const fuzzyMatch = (text: string, search: string) => {
   const cleanText = text.toLowerCase().replace(/\s+/g, ' ').trim();
   const cleanSearch = search.toLowerCase().replace(/\s+/g, ' ').trim();
   if (cleanText.includes(cleanSearch)) return true;
-  const searchTerms = cleanSearch.split(' ');
-  return searchTerms.every(searchTerm => {
-    const words = cleanText.split(' ');
-    return words.some(word => {
+  return cleanSearch.split(' ').every(searchTerm => {
+    return cleanText.split(' ').some(word => {
       const allowedErrors = searchTerm.length > 6 ? 2 : searchTerm.length > 3 ? 1 : 0;
       if (Math.abs(word.length - searchTerm.length) > allowedErrors) return false;
       return levenshteinDistance(word, searchTerm) <= allowedErrors;
@@ -84,35 +67,45 @@ const fuzzyMatch = (text: string, search: string) => {
   });
 };
 
+interface CartItem extends Product { qty: number; }
+
+type SortOption = 'default' | 'price_asc' | 'price_desc' | 'material' | 'category';
+
 export default function ProductGridClient({ products = [] }: { products: Product[] }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const searchParams = useSearchParams();
   const initialQ = searchParams.get("q") || "";
   const [searchQuery, setSearchQuery] = useState(initialQ); 
-
+  
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  // Filters
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  
+  const [sortOption, setSortOption] = useState<SortOption>('default');
+
+  // UI State
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
   const [loading, setLoading] = useState(false);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [showAddressLine2, setShowAddressLine2] = useState(false);
   
+  // Pagination / Visibility
   const [visibleCategoriesCount, setVisibleCategoriesCount] = useState(2);
   const [visibleItemsCount, setVisibleItemsCount] = useState(20); 
+  
+  // Refs & Hooks
   const loaderRef = useRef<HTMLDivElement>(null);
   const scrollDirection = useScrollDirection(); 
-
-  const gridTopRef = useRef<HTMLDivElement>(null);
+  const { isOpen: isFilterOpen, onOpen: onFilterOpen, onOpenChange: onFilterChange } = useDisclosure();
+  const { isOpen: isSortOpen, onOpen: onSortOpen, onOpenChange: onSortChange } = useDisclosure();
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
   const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
 
+  // --- EFFECTS ---
   useEffect(() => {
     const q = searchParams.get("q");
     if (q !== null && q !== searchQuery) setSearchQuery(q);
@@ -125,76 +118,96 @@ export default function ProductGridClient({ products = [] }: { products: Product
     replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [searchQuery]);
 
-  const isHeroVisible = searchQuery.trim() === "" && selectedBrand === "All" && selectedCategory === "All";
-
   useEffect(() => {
     const saved = localStorage.getItem("nandan_customer_details");
     if (saved) try { setFormData(JSON.parse(saved)); } catch {}
   }, []);
 
-  useEffect(() => {
-    setVisibleCategoriesCount(2);
-    setVisibleItemsCount(20);
-    if (selectedBrand !== "All") setSelectedCategory("All");
-  }, [selectedBrand, searchQuery, selectedCategory]);
-
-  const clearSearch = () => {
-    setSearchQuery("");
-    setSelectedBrand("All");
-    setSelectedCategory("All");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const productsInBrand = useMemo(() => {
-    if (selectedBrand === "All") return products;
-    return products.filter(p => p.brand === selectedBrand);
-  }, [products, selectedBrand]);
+  // --- FILTER & SORT LOGIC ---
+  const isHeroVisible = searchQuery.trim() === "" && selectedBrand === "All" && selectedCategory === "All";
 
   const availableCategories = useMemo(() => {
-    const groups = productsInBrand.map(p => p.item_group || "Other");
-    return ["All", ...Array.from(new Set(groups)).sort(sortCategories)];
-  }, [productsInBrand]);
+    const allCats = products.map(p => p.item_group || "Other");
+    return Array.from(new Set(allCats)).sort();
+  }, [products]);
 
-  const topCategories = availableCategories.slice(1, 7);
-  const moreCategories = availableCategories.slice(7).map(c => ({ key: c, label: c }));
+  const processProducts = useMemo(() => {
+    let result = products;
 
-  const filteredProducts = useMemo(() => {
+    // 1. Filter by Brand
+    if (selectedBrand !== "All") {
+      result = result.filter(p => p.brand === selectedBrand);
+    }
+
+    // 2. Filter by Search OR Category
     if (searchQuery.trim().length > 0) {
-      return products.filter(p => 
+      result = result.filter(p => 
         fuzzyMatch(p.item_name || "", searchQuery) ||
         fuzzyMatch(p.item_code || "", searchQuery) ||
         fuzzyMatch(p.item_group || "", searchQuery)
       );
-    } else {
-      let filtered = productsInBrand;
-      if (selectedCategory !== "All") {
-        filtered = filtered.filter(p => (p.item_group || "Other") === selectedCategory);
-      }
-      return filtered;
+    } else if (selectedCategory !== "All") {
+      result = result.filter(p => (p.item_group || "Other") === selectedCategory);
     }
-  }, [searchQuery, products, productsInBrand, selectedCategory]);
 
+    // 3. Sorting
+    if (sortOption !== 'default') {
+      result = [...result].sort((a, b) => {
+        switch (sortOption) {
+          case 'price_asc': 
+            return a.standard_rate - b.standard_rate;
+          case 'price_desc': 
+            return b.standard_rate - a.standard_rate;
+          case 'material': 
+            // Priority to Steel items
+            const aSteel = (a.item_name + a.description).toLowerCase().includes('steel') ? 1 : 0;
+            const bSteel = (b.item_name + b.description).toLowerCase().includes('steel') ? 1 : 0;
+            return bSteel - aSteel; 
+          case 'category':
+            const idxA = CATEGORY_PRIORITY.indexOf(a.item_group || "");
+            const idxB = CATEGORY_PRIORITY.indexOf(b.item_group || "");
+            const valA = idxA === -1 ? 999 : idxA;
+            const valB = idxB === -1 ? 999 : idxB;
+            return valA - valB;
+          default: return 0;
+        }
+      });
+    }
+
+    return result;
+  }, [products, selectedBrand, selectedCategory, searchQuery, sortOption]);
+
+  // Grouping logic (Only if not searching/sorting specifically breaks groups, but keeping consistent with original intent)
   const groupedProducts = useMemo(() => {
-    if (selectedCategory !== "All" || searchQuery.trim().length > 0) return null; 
+    if (selectedCategory !== "All" || searchQuery.trim().length > 0 || sortOption !== 'default') return null;
+    
     const groups: Record<string, Product[]> = {};
-    filteredProducts.forEach(p => {
+    processProducts.forEach(p => {
       const g = p.item_group || "Other";
       if (!groups[g]) groups[g] = [];
       groups[g].push(p);
     });
-    return Object.keys(groups).sort(sortCategories).map(key => ({ name: key, items: groups[key] }));
-  }, [filteredProducts, selectedCategory, searchQuery]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (groupedProducts) setVisibleCategoriesCount(prev => prev + 2);
-        else setVisibleItemsCount(prev => prev + 20);
-      }
-    }, { threshold: 0.1 });
-    if (loaderRef.current) observer.observe(loaderRef.current);
-    return () => observer.disconnect();
-  }, [groupedProducts]);
+    const sortedGroupKeys = Object.keys(groups).sort((a, b) => {
+      const idxA = CATEGORY_PRIORITY.indexOf(a);
+      const idxB = CATEGORY_PRIORITY.indexOf(b);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return a.localeCompare(b);
+    });
+
+    return sortedGroupKeys.map(key => ({ name: key, items: groups[key] }));
+  }, [processProducts, selectedCategory, searchQuery, sortOption]);
+
+  // --- ACTIONS ---
+  const clearFilters = () => {
+    setSelectedBrand("All");
+    setSelectedCategory("All");
+    setSearchQuery("");
+    setSortOption("default");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const getCartQty = (itemCode: string) => cart.find(i => i.item_code === itemCode)?.qty || 0;
 
@@ -217,15 +230,6 @@ export default function ProductGridClient({ products = [] }: { products: Product
     }).filter(i => i.qty > 0));
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    if (/^\d*$/.test(val) && val.length <= 10) setFormData({ ...formData, phone: val });
-  };
-
-  const toggleSection = (sectionName: string) => {
-    setExpandedSections(prev => ({ ...prev, [sectionName]: !prev[sectionName] }));
-  };
-
   const submitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -238,124 +242,108 @@ export default function ProductGridClient({ products = [] }: { products: Product
     } catch { alert("❌ Connection Error"); } finally { setLoading(false); }
   };
 
+  // --- RENDER HELPERS ---
+  const activeFilterCount = (selectedBrand !== "All" ? 1 : 0) + (selectedCategory !== "All" ? 1 : 0);
   const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
   const totalPrice = cart.reduce((sum, i) => {
       const rate = i.qty > 24 ? i.standard_rate * 0.975 : i.standard_rate;
       return sum + (rate * i.qty);
   }, 0);
 
-  const SECTION_LIMIT = 20;
+  // Lazy Load Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (groupedProducts) setVisibleCategoriesCount(prev => prev + 2);
+        else setVisibleItemsCount(prev => prev + 20);
+      }
+    }, { threshold: 0.1 });
+    if (loaderRef.current) observer.observe(loaderRef.current);
+    return () => observer.disconnect();
+  }, [groupedProducts, processProducts]);
+
 
   return (
-    <div className="w-full pb-32" ref={gridTopRef}>
+    <div className="w-full pb-32">
       
-      {/* 🚀 TOP FILTER BAR */}
-      <div className={`sticky top-[64px] z-30 transition-transform duration-700 ease-in-out ${scrollDirection === 'down' ? '-translate-y-[120%]' : 'translate-y-0'}`}>
-         <div className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800 shadow-sm py-4 px-4">
-             <div className="flex flex-col gap-4 max-w-6xl mx-auto">
-                 {/* Brand Filters */}
-                 {searchQuery.trim().length === 0 && (
-                  <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-1">
-                      <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-                          <Button 
-                            size="sm" 
-                            variant={selectedBrand === "All" ? "solid" : "ghost"} 
-                            onPress={() => setSelectedBrand("All")}
-                            className="rounded-full font-bold"
-                          >
-                            All Brands
-                          </Button>
-                          {BRANDS.map((brand) => (
-                          <Button 
-                            key={brand.name} 
-                            size="sm" 
-                            variant={selectedBrand === brand.name ? "solid" : "ghost"} 
-                            onPress={() => setSelectedBrand(brand.name)}
-                            className="rounded-full font-bold"
-                          >
-                              {brand.name}
-                          </Button>))}
-                      </div>
+      {/* 🚀 ACTION BAR (FILTER + SEARCH + SORT) */}
+      <div 
+        className={`sticky top-[64px] z-30 transition-transform duration-500 ease-in-out bg-background/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 shadow-sm
+        ${scrollDirection === 'down' ? '-translate-y-[120%]' : 'translate-y-0'}`}
+      >
+         <div className="max-w-[1400px] mx-auto px-4 py-2 flex gap-3 items-center h-16">
+            
+            {/* 1. FILTER BUTTON */}
+            <Button 
+              variant="flat" 
+              className={`bg-default-100 font-bold ${activeFilterCount > 0 ? 'text-primary' : 'text-default-600'}`}
+              onPress={onFilterOpen}
+              startContent={<SlidersHorizontal size={18} strokeWidth={2.5} />}
+            >
+              Filters
+              {activeFilterCount > 0 && <span className="bg-primary text-primary-foreground text-[10px] w-5 h-5 flex items-center justify-center rounded-full ml-1">{activeFilterCount}</span>}
+            </Button>
 
-                      {/* Category Chips */}
-                      <div className="flex gap-2 overflow-x-auto no-scrollbar items-center">
-                          <Chip 
-                            color={selectedCategory === 'All' ? "default" : "default"}
-                            onClick={() => setSelectedCategory('All')}
-                            className={`cursor-pointer hover:bg-default-100 transition-colors ${selectedCategory === 'All' ? 'bg-black text-white dark:bg-white dark:text-black' : 'border border-default-200'}`}
-                          >
-                            All
-                          </Chip>
-                          
-                          {topCategories.map(cat => (
-                              <Chip 
-                                key={cat}
-                                onClick={() => setSelectedCategory(cat)}
-                                className={`cursor-pointer hover:bg-default-100 transition-colors ${selectedCategory === cat ? 'bg-black text-white dark:bg-white dark:text-black' : 'border border-default-200'}`}
-                              >
-                                {cat}
-                              </Chip>
-                          ))}
+            {/* 2. SORT BUTTON */}
+            <Button 
+              isIconOnly
+              variant="flat" 
+              className={`bg-default-100 ${sortOption !== 'default' ? 'text-primary' : 'text-default-600'}`}
+              onPress={onSortOpen}
+            >
+              <ArrowUpDown size={18} strokeWidth={2.5} />
+            </Button>
 
-                          {moreCategories.length > 0 && (
-                             <div className="relative flex-shrink-0 min-w-[120px]">
-                                <Select 
-                                  aria-label="More Categories"
-                                  placeholder="More..."
-                                  size="sm"
-                                  selectedKeys={moreCategories.find(c => c.key === selectedCategory) ? [selectedCategory] : []}
-                                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedCategory(e.target.value)}
-                                  classNames={{ trigger: "min-h-8 h-8", value: "text-tiny" }}
-                                  items={moreCategories}
-                                >
-                                    {(item) => <SelectItem key={item.key}>{item.label}</SelectItem>}
-                                </Select>
-                             </div>
-                          )}
-                      </div>
-                  </div>
-                 )}
-             </div>
+            <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-700 mx-1"></div>
+
+            {/* 3. SEARCH INPUT */}
+            <div className="flex-1 relative group">
+               <Input 
+                 classNames={{
+                   base: "w-full",
+                   inputWrapper: "bg-default-100 hover:bg-default-200 transition-colors h-10 rounded-xl pr-2",
+                   input: "text-sm font-medium placeholder:text-default-500",
+                 }}
+                 placeholder="Search products..."
+                 startContent={<Search size={18} className="text-default-400 group-hover:text-default-600 transition-colors" />}
+                 value={searchQuery}
+                 onValueChange={setSearchQuery}
+                 isClearable
+                 onClear={() => setSearchQuery("")}
+               />
+            </div>
+
          </div>
       </div>
 
-      {/* 🚀 HERO SECTION */}
-      <div className={`transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${isHeroVisible ? 'max-h-[300px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
+      {/* 🚀 HERO SECTION (Transitions) */}
+      <div className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${isHeroVisible ? 'max-h-[500px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
         <HeroSection />
       </div>
 
-      {/* 🚀 FIXED BOTTOM SEARCH BAR (Mobile) - Visible ONLY when cart is EMPTY */}
-      {totalItems === 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-t border-border p-3 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.1)] md:hidden">
-            <div className="relative w-full flex gap-3 items-center">
-              <Input
-                  classNames={{ base: "flex-1", inputWrapper: "rounded-2xl h-12" }}
-                  placeholder="Search for items..."
-                  value={searchQuery}
-                  onValueChange={setSearchQuery}
-                  startContent={<Search size={18} className="text-default-400" />}
-                  endContent={searchQuery && <X size={16} onClick={() => setSearchQuery("")} className="cursor-pointer" />}
-              />
-            </div>
-        </div>
-      )}
+      {/* 🚀 MAIN GRID */}
+      <div className="min-h-[50vh] px-4 mt-4">
+        {processProducts.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
+             <Filter size={48} className="opacity-20 mb-4" />
+             <p className="font-medium text-lg">No products match your criteria.</p>
+             <Button variant="light" color="primary" onPress={clearFilters} className="mt-4 font-bold">Clear All Filters</Button>
+          </div>
+        )}
 
-      {/* --- PRODUCT GRID --- */}
-      <div className="min-h-[50vh] px-4 md:px-0 mt-4">
         {groupedProducts ? (
-            <div className="space-y-12"> 
+            <div className="space-y-10"> 
                 {groupedProducts.slice(0, visibleCategoriesCount).map((group) => {
                     const isExpanded = expandedSections[group.name] || false;
-                    const itemsToShow = isExpanded ? group.items : group.items.slice(0, SECTION_LIMIT);
-                    const remainingCount = group.items.length - SECTION_LIMIT;
-                    const hasMore = group.items.length > SECTION_LIMIT;
+                    const itemsToShow = isExpanded ? group.items : group.items.slice(0, 20);
+                    const remaining = group.items.length - 20;
 
                     return (
-                        <div key={group.name} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            <div className="flex items-center gap-4 mb-6">
-                                <h2 className="text-xl font-black uppercase tracking-tight text-foreground">{group.name}</h2>
-                                <div className="h-px bg-zinc-200 dark:bg-zinc-800 flex-1"></div>
-                                <Chip size="sm">{group.items.length} Items</Chip>
+                        <div key={group.name} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                            <div className="flex items-center gap-3 mb-4 sticky top-32 z-10 bg-background/50 backdrop-blur-sm py-2 w-fit pr-4 rounded-r-xl">
+                                <div className="w-1 h-6 bg-primary rounded-full"></div>
+                                <h2 className="text-lg font-black uppercase tracking-tight text-foreground">{group.name}</h2>
+                                <span className="text-xs font-bold text-muted-foreground bg-default-100 px-2 py-0.5 rounded-md">{group.items.length}</span>
                             </div>
                             
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -370,15 +358,14 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                 ))}
                             </div>
                             
-                            {hasMore && !isExpanded && (
+                            {remaining > 0 && !isExpanded && (
                                 <Button 
                                   fullWidth 
                                   variant="flat" 
-                                  onPress={() => toggleSection(group.name)} 
-                                  className="mt-4 font-bold"
-                                  endContent={<ChevronDown size={14} />}
+                                  onPress={() => setExpandedSections(prev => ({...prev, [group.name]: true}))} 
+                                  className="mt-4 font-bold h-12 bg-default-50 text-default-500"
                                 >
-                                    Show {remainingCount} more in {group.name}
+                                    Show {remaining} more {group.name} items <ChevronDown size={16} />
                                 </Button>
                             )}
                         </div>
@@ -387,7 +374,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
             </div>
         ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-                {filteredProducts.slice(0, visibleItemsCount).map(p => (
+                {processProducts.slice(0, visibleItemsCount).map(p => (
                     <ProductCard 
                         key={p.item_code} 
                         product={p} 
@@ -399,31 +386,15 @@ export default function ProductGridClient({ products = [] }: { products: Product
             </div>
         )}
 
-        <div ref={loaderRef} className="w-full py-12 flex justify-center items-center">
-            {((groupedProducts && visibleCategoriesCount < groupedProducts.length) || 
-              (!groupedProducts && visibleItemsCount < filteredProducts.length)) ? (
-                <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                    <Loader2 className="animate-spin" />
-                    <span className="text-xs font-bold uppercase tracking-widest">Loading...</span>
-                </div>
-            ) : (
-                <div className="text-xs font-bold text-muted-foreground/50 uppercase tracking-widest">End of Catalog</div>
-            )}
+        <div ref={loaderRef} className="w-full py-12 flex justify-center opacity-50">
+            {(groupedProducts && visibleCategoriesCount < groupedProducts.length) || (!groupedProducts && visibleItemsCount < processProducts.length) 
+              ? <Loader2 className="animate-spin" /> : null}
         </div>
-
-        {filteredProducts.length === 0 && (
-          <div className="col-span-full text-center py-20 text-muted-foreground">
-             <Filter className="mx-auto mb-2 opacity-50" size={32} />
-             <p className="font-medium">No items found.</p>
-             <Button variant="light" color="primary" onPress={clearSearch} className="mt-4 font-bold">Show All Products</Button>
-          </div>
-        )}
       </div>
 
-      {/* --- NEW FULL WIDTH BOTTOM CART BAR --- */}
-      {/* Replaces search bar when items are in cart. Creates a solid "texture" at bottom. */}
+      {/* --- CART BAR (Bottom) --- */}
       {totalItems > 0 && !isCartOpen && (
-         <div className="fixed bottom-0 left-0 right-0 z-[60] bg-background border-t border-border p-3 md:p-4 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] animate-in slide-in-from-bottom-full duration-300">
+         <div className="fixed bottom-0 left-0 right-0 z-[60] bg-background border-t border-border p-3 md:p-4 shadow-xl animate-in slide-in-from-bottom-full duration-300">
             <Button
               size="lg"
               className="w-full h-14 md:h-16 text-lg font-bold bg-foreground text-background shadow-lg rounded-2xl"
@@ -434,17 +405,134 @@ export default function ProductGridClient({ products = [] }: { products: Product
                      <span className="text-[10px] uppercase opacity-70 font-semibold tracking-wider">{totalItems} ITEMS</span>
                      <span className="text-xl md:text-2xl">₹{totalPrice.toLocaleString()}</span>
                   </div>
-                  
                   <div className="flex items-center gap-3 bg-background/10 py-2 px-4 rounded-xl">
                      <span className="text-sm md:text-base tracking-wide">View Cart</span>
-                     <ArrowRight size={20} strokeWidth={2.5} />
+                     <ArrowRight size={20} />
                   </div>
                </div>
             </Button>
          </div>
       )}
 
-      {/* --- PRODUCT MODAL --- */}
+      {/* --- FILTER MODAL --- */}
+      <Modal 
+        isOpen={isFilterOpen} 
+        onOpenChange={onFilterChange} 
+        scrollBehavior="inside"
+        placement="center"
+        backdrop="blur"
+        classNames={{ base: "max-w-md m-4 rounded-3xl" }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 border-b border-default-100 p-5">
+                <span className="text-xl font-black uppercase tracking-tight">Filter Catalog</span>
+              </ModalHeader>
+              <ModalBody className="p-0">
+                 <div className="flex flex-col">
+                    {/* Brands Section */}
+                    <div className="p-5">
+                        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Brands</h3>
+                        <div className="flex flex-wrap gap-2">
+                            <Chip 
+                                className="cursor-pointer font-bold border-1"
+                                variant={selectedBrand === "All" ? "solid" : "bordered"}
+                                color={selectedBrand === "All" ? "primary" : "default"}
+                                onClick={() => setSelectedBrand("All")}
+                            >
+                                All Brands
+                            </Chip>
+                            {BRANDS.map(b => (
+                                <Chip 
+                                    key={b}
+                                    className="cursor-pointer font-bold border-1"
+                                    variant={selectedBrand === b ? "solid" : "bordered"}
+                                    color={selectedBrand === b ? "primary" : "default"}
+                                    onClick={() => setSelectedBrand(b)}
+                                >
+                                    {b}
+                                </Chip>
+                            ))}
+                        </div>
+                    </div>
+                    
+                    <Divider />
+
+                    {/* Categories Section */}
+                    <div className="p-5">
+                        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Categories</h3>
+                        <div className="flex flex-wrap gap-2 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
+                            <Chip 
+                                className="cursor-pointer font-medium border-1"
+                                variant={selectedCategory === "All" ? "solid" : "bordered"}
+                                onClick={() => setSelectedCategory("All")}
+                            >
+                                All Categories
+                            </Chip>
+                            {availableCategories.map(cat => (
+                                <Chip 
+                                    key={cat}
+                                    className="cursor-pointer font-medium border-1"
+                                    variant={selectedCategory === cat ? "solid" : "bordered"}
+                                    color={selectedCategory === cat ? "secondary" : "default"}
+                                    onClick={() => setSelectedCategory(cat)}
+                                >
+                                    {cat}
+                                </Chip>
+                            ))}
+                        </div>
+                    </div>
+                 </div>
+              </ModalBody>
+              <ModalFooter className="border-t border-default-100 p-4">
+                 <Button variant="light" color="danger" onPress={() => { clearFilters(); onClose(); }}>Reset</Button>
+                 <Button color="primary" className="font-bold flex-1" onPress={onClose}>Show Results</Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
+      {/* --- SORT MODAL --- */}
+      <Modal 
+        isOpen={isSortOpen} 
+        onOpenChange={onSortChange} 
+        placement="bottom"
+        classNames={{ base: "max-w-sm m-4 rounded-3xl" }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="border-b border-default-100 p-5">
+                <span className="text-lg font-black uppercase tracking-tight">Sort By</span>
+              </ModalHeader>
+              <ModalBody className="p-2 gap-1">
+                 {[
+                    { key: 'default', label: 'Default' },
+                    { key: 'price_asc', label: 'Price: Low to High' },
+                    { key: 'price_desc', label: 'Price: High to Low' },
+                    { key: 'material', label: 'Material (Steel First)' },
+                    { key: 'category', label: 'Category Priority' },
+                 ].map((opt) => (
+                    <Button
+                        key={opt.key}
+                        variant={sortOption === opt.key ? "flat" : "light"}
+                        color={sortOption === opt.key ? "primary" : "default"}
+                        className="justify-between h-12 text-medium px-4"
+                        onPress={() => { setSortOption(opt.key as SortOption); onClose(); }}
+                        endContent={sortOption === opt.key && <Check size={18} />}
+                    >
+                        {opt.label}
+                    </Button>
+                 ))}
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
+      {/* --- PRODUCT MODAL (Existing) --- */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border flex flex-col max-h-[90vh]">
@@ -478,7 +566,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </div>
       )}
 
-      {/* --- CART DRAWER --- */}
+      {/* --- CART DRAWER (Existing Logic, No Changes) --- */}
       {isCartOpen && (
         <>
             <div className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
@@ -494,16 +582,12 @@ export default function ProductGridClient({ products = [] }: { products: Product
                                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className="text-xs font-mono bg-default-100 px-2 py-1 rounded text-muted-foreground border border-border">
-                                      ₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}
-                                    </span>
+                                    <span className="text-xs font-mono bg-default-100 px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}</span>
                                     <span className="text-xs text-muted-foreground">x {item.qty}</span>
                                 </div>
                             </div>
                             <div className="flex flex-col items-end gap-2">
-                                <span className="font-black text-base">₹{(
-                                    (item.qty > 24 ? item.standard_rate * 0.975 : item.standard_rate) * item.qty
-                                ).toLocaleString()}</span>
+                                <span className="font-black text-base">₹{((item.qty > 24 ? item.standard_rate * 0.975 : item.standard_rate) * item.qty).toLocaleString()}</span>
                                 <div className="flex items-center gap-1 bg-default-100 rounded-lg border border-border p-1">
                                   <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, -1)} className="h-6 w-6 min-w-6"><Minus size={14}/></Button>
                                   <span className="w-6 text-center text-xs font-bold">{item.qty}</span>
@@ -520,17 +604,8 @@ export default function ProductGridClient({ products = [] }: { products: Product
                         <div className="flex-1 overflow-y-auto p-5 pb-0">
                             {!showMoreDetails && ( <div className="flex justify-between items-end mb-4 pb-4 border-b border-border border-dashed flex-none"><span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Total Pay</span><span className="text-3xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div>)}
                             <div className="space-y-3 pb-4">
-                                <div className="grid grid-cols-2 gap-3"><Input isRequired label="Name" placeholder="Your Name" value={formData.name} onValueChange={(v: string) => setFormData({...formData, name: v})} /><Input isRequired label="Phone" placeholder="10 digits" type="tel" value={formData.phone} onChange={handlePhoneChange} /></div>
-                                {!showMoreDetails && ( 
-                                  <Button 
-                                    variant="bordered"
-                                    onPress={() => setShowMoreDetails(true)} 
-                                    className="w-full font-bold text-muted-foreground border-dashed"
-                                    startContent={<PlusCircle size={14}/>}
-                                  >
-                                    Add Address & GST
-                                  </Button>
-                                )}
+                                <div className="grid grid-cols-2 gap-3"><Input isRequired label="Name" placeholder="Your Name" value={formData.name} onValueChange={(v: string) => setFormData({...formData, name: v})} /><Input isRequired label="Phone" placeholder="10 digits" type="tel" value={formData.phone} onChange={(e) => { const val = e.target.value; if (/^\d*$/.test(val) && val.length <= 10) setFormData({ ...formData, phone: val }); }} /></div>
+                                {!showMoreDetails && ( <Button variant="bordered" onPress={() => setShowMoreDetails(true)} className="w-full font-bold text-muted-foreground border-dashed" startContent={<PlusCircle size={14}/>}>Add Address & GST</Button>)}
                                 {showMoreDetails && ( <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4"><div className="flex justify-between items-center py-2 bg-default-100 px-3 rounded-lg"><span className="text-xs font-bold text-muted-foreground uppercase">Cart Total</span><span className="text-xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div><div><Input label="GST Number (Optional)" placeholder="Ex: 22AAAAA0000A1Z5" value={formData.gst} onValueChange={(v: string) => setFormData({...formData, gst: v})} /></div><div><div className="flex justify-between items-center mb-1"><span className="text-xs font-bold text-muted-foreground uppercase">Address</span><span onClick={() => setShowAddressLine2(!showAddressLine2)} className="text-primary text-tiny cursor-pointer hover:underline flex items-center gap-1"><PlusCircle size={10}/> Add Line 2</span></div><div className="space-y-2"><textarea placeholder="Street, Building, Area..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50 transition-all" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />{showAddressLine2 && ( <Input placeholder="Landmark / City / Pincode" value={formData.addressLine2} onValueChange={(v: string) => setFormData({...formData, addressLine2: v})} />)}</div></div><div><label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">Order Notes</label><textarea placeholder="Special instructions..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50" value={formData.note} onChange={e => setFormData({...formData, note: e.target.value})} /></div></div>)}
                             </div>
                         </div>
