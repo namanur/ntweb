@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText, Info, X } from "lucide-react";
+import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText, Info } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Suspense } from "react";
 import Image from "next/image";
@@ -50,15 +50,16 @@ function SearchInput() {
   );
 }
 
+
 export default function Header() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <Navbar maxWidth="2xl" isBordered className="bg-background/70 backdrop-blur-md">
       <NavbarContent justify="start">
-        <NavbarBrand className="gap-3 mr-4 cursor-pointer" onClick={() => window.location.href='/'}>
+        <NavbarBrand className="gap-3 mr-4 cursor-pointer" onClick={() => window.location.href = '/'}>
           <div className="relative h-10 w-10">
-            <Image 
+            <Image
               src="/logo.png"
               alt="Nandan"
               fill
@@ -88,10 +89,10 @@ export default function Header() {
       </NavbarContent>
 
       {/* Mobile Menu (Simulated Drawer using Modal) */}
-      <Modal 
-        isOpen={isOpen} 
-        onOpenChange={onOpenChange} 
-        placement="center" 
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="center"
         backdrop="blur"
         scrollBehavior="inside"
         classNames={{
@@ -109,25 +110,25 @@ export default function Header() {
           {(onClose: () => void) => (
             <>
               <ModalHeader className="flex flex-col gap-1 border-b border-divider p-6">
-                 <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold uppercase">Menu</span>
-                    <div className="sm:hidden"><ThemeToggle /></div>
-                 </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold uppercase">Menu</span>
+                  <div className="sm:hidden"><ThemeToggle /></div>
+                </div>
               </ModalHeader>
               <ModalBody className="gap-2 p-6">
-                <Button 
+                <Button
                   as="a" href="/about" variant="flat" className="justify-start h-14 text-md font-medium"
                   startContent={<Info size={20} className="text-default-500" />}
                 >
                   About Us
                 </Button>
-                <Button 
+                <Button
                   as="a" href="/terms" variant="flat" className="justify-start h-14 text-md font-medium"
                   startContent={<FileText size={20} className="text-default-500" />}
                 >
                   Terms & Conditions
                 </Button>
-                <Button 
+                <Button
                   as="a" href="/privacy" variant="flat" className="justify-start h-14 text-md font-medium"
                   startContent={<ShieldCheck size={20} className="text-default-500" />}
                 >
@@ -138,7 +139,7 @@ export default function Header() {
                   <div className="p-4 bg-default-100 rounded-medium space-y-4">
                     <div className="flex items-start gap-3">
                       <MapPin size={18} className="shrink-0 mt-1 text-default-500" />
-                      <span className="text-small text-default-500">Khapriyawan, Barkagaon Road,<br/>Hazaribagh, Jharkhand - 825302</span>
+                      <span className="text-small text-default-500">Khapriyawan, Barkagaon Road,<br />Hazaribagh, Jharkhand - 825302</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Phone size={18} className="shrink-0 text-default-500" />
