@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from '@/components/Header'; 
+import Header from '@/components/Header';
 import ProductGridClient from '@/components/ProductGridClient';
 import { getProducts } from '@/lib/erp';
 import Footer from '@/components/Footer';
 
 // Ensure fresh data on every request
-export const revalidate = 0; 
+export const revalidate = 3600;
 
 export default async function Home() {
-  
+
   // 1. Fetch data
   const products = await getProducts();
 

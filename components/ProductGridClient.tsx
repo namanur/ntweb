@@ -5,6 +5,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Product } from "@/lib/erp";
 import ProductCard from "./ProductCard";
 import HeroSection from "./HeroSection";
+import Image from "next/image";
 import {
   X, Minus, Plus, ShoppingBag, ArrowRight, Filter,
   Loader2, ChevronDown, PlusCircle, SlidersHorizontal, ArrowUpDown, Check
@@ -88,6 +89,14 @@ export default function ProductGridClient({ products = [] }: { products: Product
   // UI State
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [modalImage, setModalImage] = useState("");
+
+  useEffect(() => {
+    if (selectedProduct) {
+      setModalImage(`/images/${selectedProduct.item_code}.jpg`);
+    }
+  }, [selectedProduct]);
+
   const [loading, setLoading] = useState(false);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [showAddressLine2, setShowAddressLine2] = useState(false);
@@ -525,8 +534,16 @@ export default function ProductGridClient({ products = [] }: { products: Product
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border flex flex-col max-h-[90vh]">
             <Button isIconOnly variant="flat" onPress={() => setSelectedProduct(null)} className="absolute top-4 right-4 z-10 rounded-full"><X size={20} /></Button>
-            <div className="p-8 bg-white flex justify-center items-center h-64 shrink-0 border-b border-zinc-100">
-              <img src={`/images/${selectedProduct.item_code}.jpg`} alt={selectedProduct.item_name} className="max-h-full max-w-full object-contain mix-blend-multiply" onError={(e) => (e.currentTarget.src = "https://placehold.co/600x600/png?text=No+Image")} />
+            <div className="p-8 bg-white flex justify-center items-center h-64 shrink-0 border-b border-zinc-100 relative">
+              <Image
+                src={modalImage || `/images/${selectedProduct.item_code}.jpg`}
+                alt={selectedProduct.item_name}
+                width={500}
+                height={500}
+                className="max-h-full max-w-full object-contain mix-blend-multiply"
+                priority
+                onError={() => setModalImage("https://placehold.co/600x600/png?text=Coming+Soon")}
+              />
             </div>
             <div className="p-6 overflow-y-auto bg-card">
               <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-3">{selectedProduct.brand || "Nandan Traders"}</div>

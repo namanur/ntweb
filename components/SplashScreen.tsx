@@ -7,21 +7,17 @@ export default function SplashScreen() {
   const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    // Ensure the splash screen stays for at least 1.5 seconds for a smooth welcome
-    const minTime = new Promise((resolve) => setTimeout(resolve, 1500));
-
-    const loadTime = new Promise((resolve) => {
-      if (document.readyState === "complete") {
-        resolve(true);
-      } else {
-        window.addEventListener("load", () => resolve(true));
-      }
-    });
-
-    Promise.all([minTime, loadTime]).then(() => {
+    const handleLoad = () => {
       setIsVisible(false);
       setTimeout(() => setShouldRender(false), 700); // Wait for fade-out to finish
-    });
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
   }, []);
 
   if (!shouldRender) return null;
