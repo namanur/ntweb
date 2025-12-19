@@ -18,19 +18,26 @@ console.log("\x1b[36m%s\x1b[0m", "🚀 Starting One-Click Deployment...");
 
 const args = process.argv.slice(2);
 const isQuick = args.includes('--quick');
-const customMessage = args.filter(arg => arg !== '--quick').join(' ');
+const isErp = args.includes('--erp');
+const customMessage = args.filter(arg => arg !== '--quick' && arg !== '--erp').join(' ');
 
 try {
     if (!isQuick) {
-        // STEP 1: Sync Data from CSV
-        // This ensures that if you updated products.csv, the JSON is regenerated immediately.
-        console.log("\n🔄 1. Syncing Product Data...");
-        run('node scripts/import_csv.js');
+        if (isErp) {
+            // STEP 1 (ERP Mode): Sync from ERP
+            console.log("\n🔄 1. Syncing Product Data from ERP...");
+            run('npx tsx scripts/sync_erp.ts');
+        } else {
+            // STEP 1 (CSV Mode): Sync Data from CSV
+            // This ensures that if you updated products.csv, the JSON is regenerated immediately.
+            console.log("\n🔄 1. Syncing Product Data from CSV...");
+            run('node scripts/import_csv.js');
 
-        // 👇 STEP 1.5: Sync Prices (The Fix)
-        // This runs the smart pricing logic to update '0' values using data from Item.csv
-        console.log("\n💰 1.5. Syncing Prices...");
-        run('node scripts/sync_prices.js');
+            // 👇 STEP 1.5: Sync Prices (The Fix)
+            // This runs the smart pricing logic to update '0' values using data from Item.csv
+            console.log("\n💰 1.5. Syncing Prices...");
+            run('node scripts/sync_prices.js');
+        }
     } else {
         console.log("\n⏩ Skipping Data Sync (--quick mode enabled)");
     }
