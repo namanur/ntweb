@@ -46,6 +46,7 @@ function SearchInput() {
       type="search"
       defaultValue={searchParams.get("q")?.toString()}
       onValueChange={handleSearch}
+      id="search-input"
     />
   );
 }
