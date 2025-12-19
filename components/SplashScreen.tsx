@@ -9,7 +9,7 @@ export default function SplashScreen() {
   useEffect(() => {
     // Ensure the splash screen stays for at least 1.5 seconds for a smooth welcome
     const minTime = new Promise((resolve) => setTimeout(resolve, 1500));
-    
+
     const loadTime = new Promise((resolve) => {
       if (document.readyState === "complete") {
         resolve(true);
@@ -19,7 +19,7 @@ export default function SplashScreen() {
     });
 
     Promise.all([minTime, loadTime]).then(() => {
-      setIsVisible(false); 
+      setIsVisible(false);
       setTimeout(() => setShouldRender(false), 700); // Wait for fade-out to finish
     });
   }, []);
@@ -27,16 +27,15 @@ export default function SplashScreen() {
   if (!shouldRender) return null;
 
   return (
-    <div 
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-700 ease-in-out ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+    <div
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-700 ease-in-out ${isVisible ? "opacity-100" : "opacity-0"
+        }`}
     >
       <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in-95 duration-1000">
         {/* Logo Section */}
         <div className="relative w-24 h-24 md:w-32 md:h-32">
           <Image
-            src="/logo.svg"  // Ensure you have a logo.svg in your public folder
+            src="/logo.png"
             alt="Nandan Trader Logo"
             fill
             className="object-contain dark:invert"

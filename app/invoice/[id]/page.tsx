@@ -4,6 +4,8 @@ import PrintButton from '@/components/PrintButton';
 
 export const dynamic = 'force-dynamic';
 
+import company from '@/data/company.json';
+
 export default async function OrderSheetPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const orders = await getOrders();
@@ -13,19 +15,19 @@ export default async function OrderSheetPage({ params }: { params: Promise<{ id:
 
   return (
     <div className="bg-white min-h-screen text-black p-6 font-mono max-w-2xl mx-auto print:p-0">
-      
+
       {/* Header with Updated Address */}
       <div className="border-b-4 border-black pb-4 mb-6">
-        <h1 className="text-4xl font-black uppercase tracking-tighter">NANDAN TRADERS</h1>
+        <h1 className="text-4xl font-black uppercase tracking-tighter">{company.name.toUpperCase()}</h1>
         <div className="text-sm mt-1 space-y-0.5">
-            <p>Khapriyawan, Barkagaon Road,</p>
-            <p>Hazaribagh, Jharkhand - 825302</p>
-            <p className="font-bold pt-1">GST: 20AIIPM2082N1Z7 | Ph: 94313-94095</p>
+          <p>{company.address_line1},</p>
+          <p>{company.address_line2}</p>
+          <p className="font-bold pt-1">GST: {company.gstin} | Ph: {company.phone}</p>
         </div>
-        
+
         <div className="flex justify-between items-end mt-4 border-t border-dashed border-gray-400 pt-2">
-            <span className="text-lg font-bold">ORDER #{order.id}</span>
-            <span className="text-sm">{new Date(order.date).toLocaleString()}</span>
+          <span className="text-lg font-bold">ORDER #{order.id}</span>
+          <span className="text-sm">{new Date(order.date).toLocaleString()}</span>
         </div>
       </div>
 
@@ -37,9 +39,9 @@ export default async function OrderSheetPage({ params }: { params: Promise<{ id:
         <p className="text-sm font-bold mt-1">Ph: {order.customer.phone}</p>
         {order.customer.gst && <p className="text-sm mt-1">GSTIN: {order.customer.gst}</p>}
         {order.customer.notes && (
-            <div className="mt-3 bg-gray-100 p-2 text-sm italic border-l-4 border-black">
-                " {order.customer.notes} "
-            </div>
+          <div className="mt-3 bg-gray-100 p-2 text-sm italic border-l-4 border-black">
+            " {order.customer.notes} "
+          </div>
         )}
       </div>
 
