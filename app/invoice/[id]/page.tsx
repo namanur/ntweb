@@ -77,7 +77,7 @@ export default async function OrderSheetPage({ params }: { params: Promise<{ id:
 
       {/* Print Button */}
       <div className="fixed bottom-8 right-8 print:hidden">
-        <PrintButton />
+        <PrintButton orderId={order.id} />
       </div>
     </div>
   );

@@ -16,21 +16,21 @@ export async function POST(req: Request) {
     // ✅ VALIDATION: Ensure Minimum Order Quantity of 6
     const invalidItems = cart.filter((item: any) => item.qty < 6);
     if (invalidItems.length > 0) {
-        return NextResponse.json({ error: "Minimum order quantity is 6 per item." }, { status: 400 });
+      return NextResponse.json({ error: "Minimum order quantity is 6 per item." }, { status: 400 });
     }
 
     // ✅ CALCULATION: Apply 2.5% discount if qty > 24
     const items = cart.map((item: any) => {
-        const isBulk = item.qty > 24;
-        const finalRate = isBulk ? item.standard_rate * 0.975 : item.standard_rate;
-        
-        return {
-            item_code: item.item_code,
-            item_name: item.item_name,
-            qty: item.qty,
-            rate: finalRate, // ERP will receive this discounted rate
-            original_rate: item.standard_rate // Optional: for reference if needed
-        };
+      const isBulk = item.qty > 24;
+      const finalRate = isBulk ? item.standard_rate * 0.975 : item.standard_rate;
+
+      return {
+        item_code: item.item_code,
+        item_name: item.item_name,
+        qty: item.qty,
+        rate: finalRate, // ERP will receive this discounted rate
+        original_rate: item.standard_rate // Optional: for reference if needed
+      };
     });
 
     const total = items.reduce((sum: number, item: any) => sum + (item.rate * item.qty), 0);
@@ -54,51 +54,77 @@ export async function POST(req: Request) {
     let syncStatus = "❌ Not Synced (Offline)";
 
     try {
-        console.log("Attempting ERP Sync...");
-        await createSalesOrder(newOrder.items, newOrder.customer);
-        newOrder.erp_synced = true;
-        syncStatus = "✅ Synced to ERP";
+      console.log("Attempting ERP Sync...");
+      await createSalesOrder(newOrder.items, newOrder.customer);
+      newOrder.erp_synced = true;
+      syncStatus = "✅ Synced to ERP";
     } catch (erpError) {
-        console.warn("ERP Sync Failed (Laptop likely offline).");
-        syncStatus = "⚠️ ERP Offline (Saved to Chat)";
+      console.warn("ERP Sync Failed (Laptop likely offline).");
+      syncStatus = "⚠️ ERP Offline (Saved to Chat)";
     }
 
-    const itemsList = newOrder.items
-      .map((i: any) => `• ${i.item_name} (x${i.qty}) - ₹${i.rate.toFixed(2)}`)
-      .join("\n");
+    // 7. Send Telegram Notification
+    try {
+      console.log("Sending Telegram Notification...");
+      const itemsList = newOrder.items
+        .map((i: any) => `• ${i.item_name} (x${i.qty}) - ₹${i.rate.toFixed(2)}`)
+        .join("\n");
 
-    const msg = `🛒 <b>NEW ORDER (${isPublicSite ? 'PUBLIC' : 'LOCAL'})</b>\n` +
-                `🆔 <b>ID:</b> ${newOrder.id}\n` +
-                `👤 <b>Customer:</b> ${newOrder.customer.name}\n` +
-                `📞 <b>Phone:</b> ${newOrder.customer.phone}\n` +
-                `📍 <b>Address:</b> ${newOrder.customer.address}\n\n` +
-                `📦 <b>Items:</b>\n${itemsList}\n\n` +
-                `💰 <b>Total: ₹${newOrder.total.toLocaleString(undefined, {minimumFractionDigits: 2})}</b>\n` +
-                `🔄 <b>Status:</b> ${syncStatus}`;
-                
-    await sendTelegramMessage(msg, 'order'); 
+      const msg = `🛒 <b>NEW ORDER (${isPublicSite ? 'PUBLIC' : 'LOCAL'})</b>\n` +
+        `🆔 <b>ID:</b> ${newOrder.id}\n` +
+        `👤 <b>Customer:</b> ${newOrder.customer.name}\n` +
+        `📞 <b>Phone:</b> ${newOrder.customer.phone}\n` +
+        `📍 <b>Address:</b> ${newOrder.customer.address}\n\n` +
+        `📦 <b>Items:</b>\n${itemsList}\n\n` +
+        `💰 <b>Total: ₹${newOrder.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</b>\n` +
+        `🔄 <b>Status:</b> ${syncStatus}`;
+
+      await sendTelegramMessage(msg, 'order');
+      console.log("Telegram Notification Sent.");
+    } catch (telegramError) {
+      console.error("❌ Telegram Notification Failed:", telegramError);
+      // Don't fail the order just because telegram failed, but log it.
+    }
 
     if (!isPublicSite) {
+      try {
+        console.log("Saving Order Locally...");
         await saveOrderLocal(newOrder);
+        console.log("Order Saved Locally.");
+      } catch (saveError) {
+        console.error("❌ Failed to Save Order Locally:", saveError);
+        throw new Error("Local Save Failed"); // This IS critical for local ops
+      }
+
+      try {
+        console.log("Deducting Inventory...");
         await deductInventory(newOrder.items);
+        console.log("Inventory Deducted.");
+      } catch (inventoryError) {
+        console.error("❌ Failed to Deduct Inventory:", inventoryError);
+        // Non-critical (?)
+      }
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       orderId: newOrder.id,
       message: "Order placed successfully!"
     });
-    
+
   } catch (error: any) {
-    console.error("Order API Error:", error);
-    return NextResponse.json({ error: "Failed to place order" }, { status: 500 });
+    console.error("🔥 CRITICAL ORDER API ERROR:", error);
+    return NextResponse.json({
+      error: "Failed to place order",
+      details: error.message || "Unknown Error"
+    }, { status: 500 });
   }
 }
 
 import { getOrders } from "@/lib/erp";
 export async function GET() {
   if (process.env.NEXT_PUBLIC_APP_MODE === 'public') {
-      return NextResponse.json([]); 
+    return NextResponse.json([]);
   }
   const orders = await getOrders();
   return NextResponse.json(orders);
