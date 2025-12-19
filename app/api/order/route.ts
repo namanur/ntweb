@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { cart, customer } = body;
 
-    const isPublicSite = process.env.NEXT_PUBLIC_APP_MODE === 'public';
+    const isPublicSite = process.env.NEXT_PUBLIC_APP_MODE === 'public' || !!process.env.VERCEL;
 
     if (!cart || cart.length === 0) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
