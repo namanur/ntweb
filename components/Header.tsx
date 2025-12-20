@@ -56,23 +56,39 @@ export default function Header() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <Navbar maxWidth="2xl" isBordered className="bg-background/70 backdrop-blur-md">
+    <Navbar
+      maxWidth="2xl"
+      position="sticky"
+      className="bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-white/10 dark:border-white/5 supports-[backdrop-filter]:bg-white/50"
+    >
       <NavbarContent justify="start">
         <NavbarBrand className="gap-3 mr-4 cursor-pointer" onClick={() => window.location.href = '/'}>
-          <div className="relative h-10 w-10">
+          <div className="relative h-9 w-9 overflow-hidden rounded-lg shadow-sm">
             <Image
               src="/logo.png"
               alt="Nandan"
               fill
-              className="object-contain dark:invert filter"
+              className="object-contain dark:invert"
               priority
             />
           </div>
-          <p className="hidden sm:block font-bold text-inherit uppercase tracking-widest">Nandan Trader</p>
+          <p className="hidden sm:block font-bold text-inherit uppercase tracking-widest text-sm">Nandan Trader</p>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center" justify="center">
+      <NavbarContent as="div" className="items-center gap-6" justify="center">
+        {/* Desktop Nav - simulated for now, can be expanded */}
+        <div className="hidden md:flex gap-1">
+          {['Home', 'Shop', 'About'].map(item => (
+            <button
+              key={item}
+              className="px-4 py-2 text-sm font-medium text-zinc-600 hover:text-black hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 rounded-full transition-all"
+              onClick={() => window.location.href = item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
         <Suspense fallback={<div className="w-[20rem]" />}>
           <SearchInput />
         </Suspense>
@@ -83,13 +99,13 @@ export default function Header() {
           <ThemeToggle />
         </NavbarItem>
         <NavbarItem>
-          <Button isIconOnly variant="light" onPress={onOpen} aria-label="Open Menu">
-            <Menu size={24} />
+          <Button isIconOnly variant="light" onPress={onOpen} aria-label="Open Menu" className="rounded-full">
+            <Menu size={20} />
           </Button>
         </NavbarItem>
       </NavbarContent>
 
-      {/* Mobile Menu (Simulated Drawer using Modal) */}
+      {/* Mobile Menu (Simulated Drawer) */}
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -98,11 +114,12 @@ export default function Header() {
         scrollBehavior="inside"
         classNames={{
           wrapper: "flex justify-end",
-          base: "h-[100dvh] w-[85vw] sm:w-[350px] m-0 rounded-none rounded-l-2xl",
+          base: "h-[100dvh] w-[85vw] sm:w-[350px] m-0 rounded-none rounded-l-3xl bg-white/90 dark:bg-black/90 backdrop-blur-2xl border-l border-white/20",
+          closeButton: "top-6 right-6 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white"
         }}
         motionProps={{
           variants: {
-            enter: { x: 0, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+            enter: { x: 0, opacity: 1, transition: { duration: 0.3, ease: [0.32, 0.72, 0, 1] } },
             exit: { x: "100%", opacity: 0, transition: { duration: 0.2, ease: "easeIn" } },
           }
         }}
@@ -110,53 +127,53 @@ export default function Header() {
         <ModalContent>
           {(onClose: () => void) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 border-b border-divider p-6">
+              <ModalHeader className="flex flex-col gap-1 border-b border-zinc-100 dark:border-zinc-800 p-8">
                 <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold uppercase">Menu</span>
+                  <span className="text-xl font-bold uppercase tracking-tight">Menu</span>
                   <div className="sm:hidden"><ThemeToggle /></div>
                 </div>
               </ModalHeader>
-              <ModalBody className="gap-2 p-6">
+              <ModalBody className="gap-2 p-8">
                 <Button
-                  as="a" href="/about" variant="flat" className="justify-start h-14 text-md font-medium"
-                  startContent={<Info size={20} className="text-default-500" />}
+                  as="a" href="/about" variant="light" className="justify-start h-12 text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl px-4"
+                  startContent={<Info size={20} className="text-zinc-400" />}
                 >
                   About Us
                 </Button>
                 <Button
-                  as="a" href="/terms" variant="flat" className="justify-start h-14 text-md font-medium"
-                  startContent={<FileText size={20} className="text-default-500" />}
+                  as="a" href="/terms" variant="light" className="justify-start h-12 text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl px-4"
+                  startContent={<FileText size={20} className="text-zinc-400" />}
                 >
                   Terms & Conditions
                 </Button>
                 <Button
-                  as="a" href="/privacy" variant="flat" className="justify-start h-14 text-md font-medium"
-                  startContent={<ShieldCheck size={20} className="text-default-500" />}
+                  as="a" href="/privacy" variant="light" className="justify-start h-12 text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl px-4"
+                  startContent={<ShieldCheck size={20} className="text-zinc-400" />}
                 >
                   Privacy Policy
                 </Button>
 
                 <div className="mt-auto pt-8">
-                  <div className="p-4 bg-default-100 rounded-medium space-y-4">
-                    <div className="flex items-start gap-3">
-                      <MapPin size={18} className="shrink-0 mt-1 text-default-500" />
-                      <span className="text-small text-default-500">Khapriyawan, Barkagaon Road,<br />Hazaribagh, Jharkhand - 825302</span>
+                  <div className="p-6 bg-zinc-50 dark:bg-zinc-900 rounded-3xl space-y-5 border border-zinc-100 dark:border-zinc-800">
+                    <div className="flex items-start gap-4">
+                      <MapPin size={18} className="shrink-0 mt-1 text-zinc-400" />
+                      <span className="text-sm text-zinc-500 font-medium">Khapriyawan, Barkagaon Road,<br />Hazaribagh, Jharkhand - 825302</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Phone size={18} className="shrink-0 text-default-500" />
+                    <div className="flex items-center gap-4">
+                      <Phone size={18} className="shrink-0 text-zinc-400" />
                       <div className="flex flex-col">
-                        <a href="https://wa.me/919431394095" className="text-small font-bold text-success-600 hover:underline">WhatsApp: 94313-94095</a>
+                        <a href="https://wa.me/919431394095" className="text-sm font-bold text-green-600 hover:underline">WhatsApp: 94313-94095</a>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Mail size={18} className="shrink-0 text-default-500" />
-                      <a href="mailto:nandantrader1963@gmail.com" className="text-small text-default-600 hover:underline">nandantrader1963@gmail.com</a>
+                    <div className="flex items-center gap-4">
+                      <Mail size={18} className="shrink-0 text-zinc-400" />
+                      <a href="mailto:nandantrader1963@gmail.com" className="text-sm text-zinc-500 hover:text-black transition-colors">nandantrader1963@gmail.com</a>
                     </div>
                   </div>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <div className="w-full text-center text-tiny text-default-400 font-bold uppercase tracking-widest">
+                <div className="w-full text-center text-[10px] text-zinc-400 font-bold uppercase tracking-widest pb-4">
                   © {new Date().getFullYear()} Nandan Trader
                 </div>
               </ModalFooter>

@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="bg-zinc-100 dark:bg-zinc-900 border-t border-border pt-12 pb-8 mt-20 transition-colors">
       <div className="max-w-5xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          
+
           {/* Column 1: Brand & Trust */}
           <div>
             <h2 className="text-2xl font-black text-foreground mb-4 tracking-tight uppercase">
@@ -18,10 +18,10 @@ export default function Footer() {
               <ShieldCheck size={16} />
               <span>GST: 20AIIPM2082N1Z7</span>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-muted-foreground text-xs leading-relaxed max-w-xs">
               Premium quality wholesale goods. Serving Hazaribagh with trust and reliability.
               <br />
-              <span className="font-bold text-foreground mt-2 block">
+              <span className="font-bold text-foreground mt-2 block opacity-80">
                 Proprietor: Ram Nandan Mishra
               </span>
             </p>
@@ -42,7 +42,7 @@ export default function Footer() {
                 <Phone size={18} className="shrink-0" />
                 <div className="flex flex-col">
                   <a href="https://wa.me/919431394095" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground transition font-medium">
-                     94313-94095 <span className="text-[10px] bg-green-100 text-green-800 px-1.5 rounded-sm">WhatsApp</span>
+                    94313-94095 <span className="text-[10px] bg-green-100 text-green-800 px-1.5 rounded-sm">WhatsApp</span>
                   </a>
                   <a href="tel:6204188728" className="hover:text-foreground transition">62041-88728 (Call)</a>
                 </div>

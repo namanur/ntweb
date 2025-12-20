@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
-  
+
   const adminToken = request.cookies.get('admin_token')?.value
   const adminPassword = process.env.ADMIN_PASSWORD
 
@@ -11,9 +11,9 @@ export function middleware(request: NextRequest) {
   // 1. Ensure adminPassword exists (is not undefined/empty)
   // 2. Ensure adminToken exists
   // 3. Ensure they match
-  const isAuthenticated = 
-    adminPassword && 
-    adminToken && 
+  const isAuthenticated =
+    adminPassword &&
+    adminToken &&
     (adminToken === adminPassword);
 
   // Protect Admin Routes

@@ -115,17 +115,15 @@ export default function ProductGridClient({ products = [] }: { products: Product
   const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
 
   // --- EFFECTS ---
+  // Effect to sync URL params to local state
   useEffect(() => {
     const q = searchParams.get("q");
     if (q !== null && q !== searchQuery) setSearchQuery(q);
+    if (q === null && searchQuery !== "") setSearchQuery(""); // Handle clearing
   }, [searchParams]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (searchQuery) params.set("q", searchQuery);
-    else params.delete("q");
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
-  }, [searchQuery]);
+  // Removed redundant effect that pushed state back to URL to avoid race conditions.
+  // The Header component handles pushing to URL.
 
   useEffect(() => {
     const saved = localStorage.getItem("nandan_customer_details");
@@ -300,6 +298,17 @@ export default function ProductGridClient({ products = [] }: { products: Product
               {activeFilterCount > 0 && <span className="bg-primary text-primary-foreground text-[10px] w-5 h-5 flex items-center justify-center rounded-full ml-1">{activeFilterCount}</span>}
             </Button>
 
+            {activeFilterCount > 0 && (
+              <Button
+                variant="flat"
+                color="danger"
+                className="bg-default-100 font-bold text-danger px-3 h-10 min-w-0"
+                onPress={clearFilters}
+              >
+                <X size={18} />
+              </Button>
+            )}
+
             <Button
               isIconOnly
               variant="flat"
@@ -315,7 +324,7 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
       {/* 🚀 HERO SECTION (Transitions) */}
       <div className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${isHeroVisible ? 'max-h-[500px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
-        <HeroSection />
+        <HeroSection onBrandSelect={(brand) => setSelectedBrand(brand)} />
       </div>
 
       {/* 🚀 MAIN GRID */}
@@ -389,23 +398,20 @@ export default function ProductGridClient({ products = [] }: { products: Product
         </div>
       </div>
 
-      {/* --- CART BAR (Bottom) --- */}
+      {/* --- CART BAR (Floating Bubble) --- */}
       {totalItems > 0 && !isCartOpen && (
-        <div className="fixed bottom-0 left-0 right-0 z-[60] bg-background border-t border-border p-3 md:p-4 shadow-xl animate-in slide-in-from-bottom-full duration-300">
+        <div className="fixed bottom-6 right-6 z-[60] animate-in zoom-in slide-in-from-bottom-10 duration-300">
           <Button
             size="lg"
-            className="w-full h-14 md:h-16 text-lg font-bold bg-foreground text-background shadow-lg rounded-2xl"
+            className="h-16 w-auto px-6 shadow-2xl rounded-full bg-black dark:bg-white text-white dark:text-black font-bold flex items-center gap-4 hover:scale-105 transition-transform"
             onPress={() => setIsCartOpen(true)}
           >
-            <div className="flex w-full items-center justify-between px-2">
-              <div className="flex flex-col items-start leading-tight gap-0.5">
-                <span className="text-[10px] uppercase opacity-70 font-semibold tracking-wider">{totalItems} ITEMS</span>
-                <span className="text-xl md:text-2xl">₹{totalPrice.toLocaleString()}</span>
-              </div>
-              <div className="flex items-center gap-3 bg-background/10 py-2 px-4 rounded-xl">
-                <span className="text-sm md:text-base tracking-wide">View Cart</span>
-                <ArrowRight size={20} />
-              </div>
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-[10px] uppercase opacity-80 tracking-wider font-semibold">{totalItems} ITEMS</span>
+              <span className="text-lg">₹{totalPrice.toLocaleString()}</span>
+            </div>
+            <div className="bg-white/20 dark:bg-black/10 p-2 rounded-full">
+              <ShoppingBag size={20} />
             </div>
           </Button>
         </div>

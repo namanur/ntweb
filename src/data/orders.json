@@ -239,5 +239,28 @@
     "status": "Pending",
     "date": "2025-12-19T09:44:14.981Z",
     "erp_synced": true
+  },
+  {
+    "id": "ORD-396677",
+    "customer": {
+      "name": "test",
+      "phone": "7894561230",
+      "address": "",
+      "gst": "N/A",
+      "notes": "None"
+    },
+    "items": [
+      {
+        "item_code": "BOTTLE-BLACKPRINT",
+        "item_name": "BLACK PRINT WATER BOTTLE",
+        "qty": 7,
+        "rate": 47,
+        "original_rate": 47
+      }
+    ],
+    "total": 329,
+    "status": "Pending",
+    "date": "2025-12-20T17:39:56.677Z",
+    "erp_synced": true
   }
 ]

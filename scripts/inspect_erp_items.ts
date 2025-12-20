@@ -20,7 +20,7 @@ async function inspectItems() {
         // Fetch a few items with all fields to inspect structure
         const res = await call.get(`/api/resource/Item?fields=["*"]&limit_page_length=5`);
         console.log(JSON.stringify(res.data.data, null, 2));
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error fetching items:", error.message);
         if (error.response) console.error(error.response.data);
     }
