@@ -269,6 +269,7 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
         setSelectedProduct={setSelectedProduct}
         loaderRef={loaderRef}
         onOpenCart={() => setIsCartOpen(true)}
+        onFilterOpen={onFilterOpen}
       />
 
       {/* --- CART BAR (Floating Bubble) --- */}

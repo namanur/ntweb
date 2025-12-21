@@ -32,8 +32,9 @@ export default function ProductGrid({
     handleAdd,
     setSelectedProduct,
     loaderRef,
-    onOpenCart
-}: ProductGridProps & { onOpenCart?: () => void }) {
+    onOpenCart,
+    onFilterOpen
+}: ProductGridProps & { onOpenCart?: () => void, onFilterOpen?: () => void }) {
     return (
         <div className="min-h-[50vh] px-4 mt-4">
             {processProducts.length === 0 && (
@@ -54,11 +55,14 @@ export default function ProductGrid({
                         return (
                             <div key={group.name} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                                 <div className="flex items-center gap-2 mb-4 sticky top-32 z-10 w-fit">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md shadow-sm transition-all cursor-default">
-                                        <h2 className="text-xs font-medium uppercase tracking-wide text-primary">
-                                            {group.name} <span className="opacity-70 ml-0.5">({group.items.length})</span>
+                                    <div
+                                        onClick={() => onFilterOpen?.()}
+                                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm transition-all cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:border-zinc-300 active:scale-95"
+                                    >
+                                        <h2 className="text-xs font-black uppercase tracking-wide text-black dark:text-white">
+                                            {group.name} <span className="opacity-60 ml-0.5">({group.items.length})</span>
                                         </h2>
-                                        <ChevronDown size={14} className="text-primary opacity-70" />
+                                        <ChevronDown size={14} className="text-black dark:text-white opacity-60" />
                                     </div>
                                 </div>
 
