@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText, Info } from "lucide-react";
+import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Suspense } from "react";
 import Image from "next/image";
@@ -77,18 +77,8 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent as="div" className="items-center gap-6" justify="center">
-        {/* Desktop Nav - simulated for now, can be expanded */}
-        <div className="hidden md:flex gap-1">
-          {['Home', 'Shop', 'About'].map(item => (
-            <button
-              key={item}
-              className="px-4 py-2 text-sm font-medium text-zinc-600 hover:text-black hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800 rounded-full transition-all"
-              onClick={() => window.location.href = item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+        {/* Desktop Nav - Focused on Actions */}
+
         <Suspense fallback={<div className="w-[20rem]" />}>
           <SearchInput />
         </Suspense>
@@ -134,12 +124,7 @@ export default function Header() {
                 </div>
               </ModalHeader>
               <ModalBody className="gap-2 p-8">
-                <Button
-                  as="a" href="/about" variant="light" className="justify-start h-12 text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl px-4"
-                  startContent={<Info size={20} className="text-zinc-400" />}
-                >
-                  About Us
-                </Button>
+
                 <Button
                   as="a" href="/terms" variant="light" className="justify-start h-12 text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl px-4"
                   startContent={<FileText size={20} className="text-zinc-400" />}
