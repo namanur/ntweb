@@ -1,5 +1,6 @@
 import 'dotenv/config';
-import { erp, findCustomerByPhone } from '../lib/erp';
+import { findCustomerByPhone } from '../lib/erp';
+import { fetchDoc } from '../lib/erpnext';
 
 async function main() {
     const phone = "9876543210";
@@ -15,8 +16,8 @@ async function main() {
 
     // Fetch ALL fields for this customer
     try {
-        const res = await erp.get(`/api/resource/Customer/${customer.name}`);
-        const fullData = res.data.data;
+        const fullData = await fetchDoc<any>("Customer", customer.name);
+        if (!fullData) throw new Error("Customer not found (fetch returned null)");
 
         console.log("--- All Keys ---");
         console.log(Object.keys(fullData));

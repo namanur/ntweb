@@ -5,14 +5,16 @@ import path from 'path';
 export async function GET() {
     try {
         const productsPath = path.join(process.cwd(), 'src/data/products.json');
+        // NOTE: This file is a derived snapshot from ERPNext. Do not write to it at runtime.
         const imagesDir = path.join(process.cwd(), 'public/images');
 
         if (!fs.existsSync(productsPath)) {
             return NextResponse.json({ error: "Products file not found" }, { status: 404 });
         }
 
-        const products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
-        
+        const json = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
+        const products = Array.isArray(json) ? json : (json.products || []);
+
         // Get list of existing images (normalized to lowercase)
         const existingImages = new Set<string>();
         if (fs.existsSync(imagesDir)) {

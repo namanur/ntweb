@@ -50,3 +50,36 @@ export async function getSession() {
   if (!session) return null;
   return await decrypt(session);
 }
+
+// --- Customer Auth Functions ---
+
+export async function loginCustomer(customer: any) {
+  // Create the session
+  const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days for customers
+  const session = await encrypt({
+    customerId: customer.name, // ERPNext ID is often the 'name' field
+    customerName: customer.customer_name,
+    phone: customer.mobile_no || customer.phone,
+    role: "customer",
+    expires
+  });
+
+  // Set the cookie
+  (await cookies()).set("customer_session", session, {
+    expires,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+  });
+}
+
+export async function logoutCustomer() {
+  (await cookies()).set("customer_session", "", { expires: new Date(0) });
+}
+
+export async function getCustomerSession() {
+  const session = (await cookies()).get("customer_session")?.value;
+  if (!session) return null;
+  return await decrypt(session);
+}

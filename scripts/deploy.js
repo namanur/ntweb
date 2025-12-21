@@ -23,21 +23,9 @@ const customMessage = args.filter(arg => arg !== '--quick' && arg !== '--erp').j
 
 try {
     if (!isQuick) {
-        if (isErp) {
-            // STEP 1 (ERP Mode): Sync from ERP
-            console.log("\n🔄 1. Syncing Product Data from ERP...");
-            run('npx tsx scripts/sync_erp.ts');
-        } else {
-            // STEP 1 (CSV Mode): Sync Data from CSV
-            // This ensures that if you updated products.csv, the JSON is regenerated immediately.
-            console.log("\n🔄 1. Syncing Product Data from CSV...");
-            run('node scripts/import_csv.js');
-
-            // 👇 STEP 1.5: Sync Prices (The Fix)
-            // This runs the smart pricing logic to update '0' values using data from Item.csv
-            console.log("\n💰 1.5. Syncing Prices...");
-            run('node scripts/sync_prices.js');
-        }
+        // STEP 1: Sync from ERP (Single Source of Truth)
+        console.log("\n🔄 1. Syncing Product Data from ERPNext...");
+        run('npx tsx scripts/sync_from_erp.ts');
     } else {
         console.log("\n⏩ Skipping Data Sync (--quick mode enabled)");
     }

@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { erp } from '../lib/erp';
+import { searchDocs } from '../lib/erpnext';
 
 async function main() {
     const phone = "6204188728";
@@ -8,16 +8,12 @@ async function main() {
     try {
         // Search in Contact doctype
         // Try 'mobile_no' and 'phone' fields
-        const res = await erp.get('/api/resource/Contact', {
-            params: {
-                filters: JSON.stringify([
-                    ["mobile_no", "like", `%${phone}%`]
-                ]),
-                fields: JSON.stringify(["name", "first_name", "last_name", "mobile_no", "is_primary_contact", "links"])
-            }
-        });
-
-        const contacts = res.data.data;
+        // Search in Contact doctype
+        // Try 'mobile_no' and 'phone' fields
+        const contacts = await searchDocs<any>("Contact",
+            [["mobile_no", "like", `%${phone}%`]],
+            ["name", "first_name", "last_name", "mobile_no", "is_primary_contact", "links"]
+        );
         if (contacts.length > 0) {
             console.log("✅ Found Contact matches:");
             console.log(JSON.stringify(contacts, null, 2));

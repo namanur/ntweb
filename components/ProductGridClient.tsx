@@ -72,7 +72,13 @@ interface CartItem extends Product { qty: number; }
 
 type SortOption = 'default' | 'price_asc' | 'price_desc' | 'material' | 'category';
 
-export default function ProductGridClient({ products = [] }: { products: Product[] }) {
+interface Metadata {
+  generated_at: string;
+  source: string;
+  sync_script: string;
+}
+
+export default function ProductGridClient({ products = [], metadata }: { products: Product[], metadata?: Metadata | null }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const searchParams = useSearchParams();
   const initialQ = searchParams.get("q") || "";
@@ -113,6 +119,13 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
   const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
+
+  // --- STALENESS CHECK ---
+  const isStale = useMemo(() => {
+    if (!metadata?.generated_at) return false;
+    const diff = new Date().getTime() - new Date(metadata.generated_at).getTime();
+    return diff > 12 * 60 * 60 * 1000; // 12 Hours
+  }, [metadata]);
 
   // --- EFFECTS ---
   // Effect to sync URL params to local state
@@ -272,6 +285,14 @@ export default function ProductGridClient({ products = [] }: { products: Product
 
   return (
     <div className="w-full pb-32">
+
+      {/* ⚠️ STALENESS WARNING */}
+      {isStale && metadata && (
+        <div className="w-full bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 p-3 text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+          <span>⚠️ Data may be stale.</span>
+          <span className="opacity-70">Last Synced: {new Date(metadata.generated_at).toLocaleString()}</span>
+        </div>
+      )}
 
       {/* 🚀 ACTION BAR (FILTER + SEARCH + SORT) */}
       <div

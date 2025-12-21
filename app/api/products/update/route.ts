@@ -1,11 +1,22 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-import { writeFile } from "fs/promises";
-import { updateProductLocal } from "@/lib/erp"; 
-import { revalidatePath } from "next/cache";
+// import fs from "fs";
+// import path from "path";
+// import { writeFile } from "fs/promises";
+// import { updateProductLocal } from "@/lib/erp"; 
+// import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
+  return NextResponse.json({
+    error: "Product updates are disabled. This application uses a read-only snapshot from ERPNext."
+  }, { status: 403 });
+}
+
+/*
+export async function POST(req: Request) {
+  try {
+    const contentType = req.headers.get("content-type") || "";
+    ...
+
   try {
     const contentType = req.headers.get("content-type") || "";
 
@@ -78,3 +89,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+*/

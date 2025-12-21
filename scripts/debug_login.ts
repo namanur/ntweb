@@ -1,5 +1,6 @@
 import 'dotenv/config';
-import { erp, findCustomerByPhone } from '../lib/erp';
+import { findCustomerByPhone } from '../lib/erp';
+import { searchDocs } from '../lib/erpnext';
 
 async function main() {
     const phone = "6204188728";
@@ -17,15 +18,13 @@ async function main() {
     // 2. Try loose search (wildcard) to see if it exists with prefix/formatting
     console.log("Searching with Wildcard %6204188728% ...");
     try {
-        const res = await erp.get('/api/resource/Customer', {
-            params: {
-                filters: JSON.stringify([["mobile_no", "like", `%${phone}%`]]),
-                fields: JSON.stringify(["name", "customer_name", "mobile_no"])
-            }
-        });
-        if (res.data.data.length > 0) {
+        const matches = await searchDocs<any>("Customer",
+            [["mobile_no", "like", `%${phone}%`]],
+            ["name", "customer_name", "mobile_no"]
+        );
+        if (matches.length > 0) {
             console.log("⚠️ Found similar matches:");
-            console.log(res.data.data);
+            console.log(matches);
         } else {
             console.log("❌ No matches found even with wildcard.");
         }

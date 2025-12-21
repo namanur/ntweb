@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "deploy": "node scripts/deploy.js",
-    "sync": "tsx lib/erp/sync.ts"
+    "sync": "tsx scripts/sync_from_erp.ts"
   },
   "dependencies": {
     "@heroui/react": "^2.8.5",
