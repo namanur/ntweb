@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import ProductGridClient from '@/components/ProductGridClient';
 import { getProducts, getProductsMetadata } from '@/lib/erp';
+import { isDataStale } from '@/lib/staleness';
 import Footer from '@/components/Footer';
 
 // Ensure fresh data on every request
@@ -13,13 +14,16 @@ export default async function Home() {
   const products = await getProducts();
   const metadata = await getProductsMetadata();
 
+  // 2. Client isStale calculation
+  const isStale = isDataStale(metadata?.generated_at);
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
 
       <main className="flex-1 w-full max-w-[1400px] mx-auto p-4 sm:p-6 lg:p-8">
         {/* Hero Section is now integrated inside ProductGridClient */}
-        <ProductGridClient products={products} metadata={metadata} />
+        <ProductGridClient products={products} metadata={metadata} isStale={isStale} />
       </main>
 
       <Footer />

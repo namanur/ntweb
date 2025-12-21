@@ -173,7 +173,7 @@ export default function Header() {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <div className="w-full text-center text-[10px] text-zinc-400 font-bold uppercase tracking-widest pb-4">
+                <div className="w-full text-center text-[11px] text-zinc-400 font-bold uppercase tracking-widest pb-4">
                   © {new Date().getFullYear()} Nandan Trader
                 </div>
               </ModalFooter>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Product } from '@/lib/erp';
+import { calculateBulkRate } from "@/lib/shop-rules";
 import { Plus, ShoppingCart } from 'lucide-react';
 import Image from "next/image";
 
@@ -10,9 +11,10 @@ interface ProductCardProps {
   cartQty?: number;
   onAdd: (item: Product, qty: number) => void;
   onClick?: () => void;
+  onOpenCart?: () => void;
 }
 
-export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: ProductCardProps) {
+export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOpenCart }: ProductCardProps) {
   const isInCart = cartQty > 0;
   const minQty = isInCart ? 1 : 6;
 
@@ -35,7 +37,7 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
     setImgSrc(getImageUrl());
   }, [product]);
 
-  const discountPrice = product.standard_rate * 0.975;
+  const discountPrice = calculateBulkRate(product.standard_rate);
   const cleanBrand = (product.brand || "").toLowerCase().trim();
   const showBrand = cleanBrand.length > 0 && cleanBrand !== "generic";
 
@@ -50,18 +52,23 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
   return (
     <div
       onClick={handlePress}
-      className="group relative bg-card rounded-3xl p-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer"
+      className={`group relative bg-white dark:bg-zinc-900 border rounded-3xl p-4 transition-all duration-300 cursor-pointer
+        ${isInCart
+          ? 'border-primary shadow-[0_0_20px_-5px] shadow-primary/30 dark:border-primary/50 dark:shadow-[0_0_25px_-5px] dark:shadow-primary/40'
+          : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-none hover:-translate-y-1'
+        }
+      `}
     >
       {/* Brand & Code Badges */}
       {(showBrand || product.is_hot) && (
         <div className="absolute top-2 left-2 z-20 flex flex-col gap-1 items-start">
           {product.is_hot && (
-            <span className="text-[10px] font-bold bg-gradient-to-r from-orange-500 to-red-600 text-white px-2 py-1 rounded-full shadow-sm animate-pulse">
+            <span className="text-[11px] font-bold bg-gradient-to-r from-orange-500 to-red-600 text-white px-2 py-1 rounded-full shadow-sm animate-pulse">
               HOT
             </span>
           )}
           {showBrand && (
-            <span className="text-[10px] font-bold bg-background/80 backdrop-blur-md px-2 py-1 rounded-full border border-divider shadow-sm">
+            <span className="text-[11px] font-bold bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md px-2 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm text-zinc-700 dark:text-zinc-300 z-20">
               {product.brand}
             </span>
           )}
@@ -69,7 +76,7 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
       )}
 
       {/* Image Container with subtle zoom */}
-      <div className="relative aspect-square overflow-hidden rounded-2xl bg-zinc-50 dark:bg-zinc-900 mb-4 flex items-center justify-center">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-zinc-100/50 dark:bg-zinc-800/50 mb-4 flex items-center justify-center">
         <Image
           src={imgSrc}
           alt={product.item_name}
@@ -82,7 +89,7 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
         {/* Floating Quick Add Button (Appears on Hover) */}
         <button
           onClick={(e) => { e.stopPropagation(); handleAddToCart(); }}
-          className="absolute bottom-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-black dark:bg-white text-white dark:text-black px-4 py-2 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 z-30 flex items-center gap-2"
+          className="absolute bottom-4 right-4 transition-all duration-300 bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 z-30 flex items-center gap-2 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
           title="Quick Add"
         >
           {isInCart ? (
@@ -108,31 +115,31 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick }: Pr
 
       {/* Clean Typography */}
       <div className="space-y-1">
-        <h3 className="font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 min-h-[2.5em]">
+        <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-snug group-hover:text-primary transition-colors line-clamp-2 min-h-[2.5em]">
           {product.item_name}
         </h3>
-        <p className="text-xs text-zinc-400 font-mono">{product.item_code}</p>
+        <p className="text-[10px] text-zinc-400 font-mono tracking-wider">{product.item_code}</p>
       </div>
 
       {/* Price Area */}
       <div className="mt-3 flex items-center justify-between">
         <div className="flex flex-col">
-          <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">₹{product.standard_rate.toLocaleString()}</span>
+          <span className="text-xl font-black tracking-tight text-zinc-900 dark:text-white">₹{product.standard_rate.toLocaleString()}</span>
           {discountPrice < product.standard_rate && (
-            <div className="flex flex-col leading-none">
-              <span className="text-[10px] text-green-600 dark:text-green-400 font-bold">Bulk: ₹{discountPrice.toFixed(0)}</span>
-              <span className="text-[9px] text-zinc-400 font-medium">For 24+ pcs</span>
+            <div className="flex flex-col leading-none mt-0.5">
+              <span className="text-[10px] text-green-600 dark:text-green-500 font-bold">Bulk: ₹{discountPrice.toFixed(0)}</span>
+              <span className="text-[10px] text-zinc-400 font-medium">For 24+ pcs</span>
             </div>
           )}
         </div>
 
         {isInCart ? (
-          <div className="flex items-center gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1" onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors" role="button" onClick={(e) => { e.stopPropagation(); onOpenCart?.(); }}>
             <div className="text-xs font-bold px-2">{qty} in cart</div>
           </div>
         ) : (
           <div className="flex flex-col items-end">
-            <span className="text-[9px] text-zinc-400 mb-0.5">Min Qty: 6</span>
+            <span className="text-[11px] text-zinc-400 mb-0.5">Min Qty: 6</span>
           </div>
         )}
       </div>

@@ -1,16 +1,18 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { Product } from "@/lib/erp";
+import { Product, ProductMetadata } from "@/lib/erp";
 import ProductCard from "./ProductCard";
 import HeroSection from "./HeroSection";
 import Image from "next/image";
-import {
-  X, Minus, Plus, ShoppingBag, ArrowRight, Filter,
-  Loader2, ChevronDown, PlusCircle, SlidersHorizontal, ArrowUpDown, Check
-} from "lucide-react";
-import { Button, Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip, Divider } from "@heroui/react";
+import { X, Plus, ShoppingBag } from "lucide-react";
+import { Button, useDisclosure } from "@heroui/react";
+import { useCart } from "@/contexts/CartContext";
+import StoreFilters from "./StoreFilters";
+import ProductGrid from "./ProductGrid";
+import CartDrawer from "./CartDrawer";
+import { calculateOrderTotal } from "@/lib/shop-rules";
+import { useStoreFilters } from "@/hooks/useStoreFilters";
 
 // --- SCROLL HOOK ---
 function useScrollDirection() {
@@ -68,31 +70,23 @@ const fuzzyMatch = (text: string, search: string) => {
   });
 };
 
-interface CartItem extends Product { qty: number; }
 
-type SortOption = 'default' | 'price_asc' | 'price_desc' | 'material' | 'category';
 
-interface Metadata {
-  generated_at: string;
-  source: string;
-  sync_script: string;
-}
 
-export default function ProductGridClient({ products = [], metadata }: { products: Product[], metadata?: Metadata | null }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const searchParams = useSearchParams();
-  const initialQ = searchParams.get("q") || "";
-  const [searchQuery, setSearchQuery] = useState(initialQ);
 
-  const pathname = usePathname();
-  const { replace } = useRouter();
+export default function ProductGridClient({ products = [], metadata, isStale = false }: { products: Product[], metadata?: ProductMetadata | null, isStale?: boolean }) {
+  // --- CART CONTEXT ---
+  const { cart, addToCart, getCartQty } = useCart();
 
-  // Filters
-  const [selectedBrand, setSelectedBrand] = useState("All");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [sortOption, setSortOption] = useState<SortOption>('default');
+  // Filters (URL Based)
+  const {
+    searchQuery, setSearchQuery,
+    selectedBrand, setSelectedBrand,
+    selectedCategory, setSelectedCategory,
+    sortOption, setSortOption,
+    clearFilters
+  } = useStoreFilters();
 
-  // UI State
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalImage, setModalImage] = useState("");
@@ -102,10 +96,6 @@ export default function ProductGridClient({ products = [], metadata }: { product
       setModalImage(`/images/${selectedProduct.item_code}.jpg`);
     }
   }, [selectedProduct]);
-
-  const [loading, setLoading] = useState(false);
-  const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [showAddressLine2, setShowAddressLine2] = useState(false);
 
   // Pagination / Visibility
   const [visibleCategoriesCount, setVisibleCategoriesCount] = useState(2);
@@ -118,30 +108,8 @@ export default function ProductGridClient({ products = [], metadata }: { product
   const { isOpen: isSortOpen, onOpen: onSortOpen, onOpenChange: onSortChange } = useDisclosure();
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-  const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
 
-  // --- STALENESS CHECK ---
-  const isStale = useMemo(() => {
-    if (!metadata?.generated_at) return false;
-    const diff = new Date().getTime() - new Date(metadata.generated_at).getTime();
-    return diff > 12 * 60 * 60 * 1000; // 12 Hours
-  }, [metadata]);
 
-  // --- EFFECTS ---
-  // Effect to sync URL params to local state
-  useEffect(() => {
-    const q = searchParams.get("q");
-    if (q !== null && q !== searchQuery) setSearchQuery(q);
-    if (q === null && searchQuery !== "") setSearchQuery(""); // Handle clearing
-  }, [searchParams]);
-
-  // Removed redundant effect that pushed state back to URL to avoid race conditions.
-  // The Header component handles pushing to URL.
-
-  useEffect(() => {
-    const saved = localStorage.getItem("nandan_customer_details");
-    if (saved) try { setFormData(JSON.parse(saved)); } catch { }
-  }, []);
 
   // --- FILTER & SORT LOGIC ---
   const isHeroVisible = searchQuery.trim() === "" && selectedBrand === "All" && selectedCategory === "All";
@@ -221,54 +189,17 @@ export default function ProductGridClient({ products = [], metadata }: { product
   }, [processProducts, selectedCategory, searchQuery, sortOption]);
 
   // --- ACTIONS ---
-  const clearFilters = () => {
-    setSelectedBrand("All");
-    setSelectedCategory("All");
-    setSearchQuery("");
-    setSortOption("default");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
-  const getCartQty = (itemCode: string) => cart.find(i => i.item_code === itemCode)?.qty || 0;
 
   const handleAdd = (item: Product, customQty?: number) => {
-    setCart(prev => {
-      const exists = prev.find(p => p.item_code === item.item_code);
-      const defaultAdd = exists ? 1 : 6;
-      const qtyToAdd = customQty || defaultAdd;
-      return exists ? prev.map(p => p.item_code === item.item_code ? { ...p, qty: p.qty + qtyToAdd } : p) : [...prev, { ...item, qty: qtyToAdd }];
-    });
+    addToCart(item, customQty);
     setSelectedProduct(null);
-  };
-
-  const updateQty = (code: string, delta: number) => {
-    setCart(prev => prev.map(item => {
-      if (item.item_code !== code) return item;
-      const newQty = item.qty + delta;
-      if (newQty < 6) return { ...item, qty: 0 };
-      return { ...item, qty: newQty };
-    }).filter(i => i.qty > 0));
-  };
-
-  const submitOrder = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    const finalData = { ...formData, address: showAddressLine2 ? `${formData.address}, ${formData.addressLine2}` : formData.address };
-    try {
-      localStorage.setItem("nandan_customer_details", JSON.stringify(finalData));
-      const res = await fetch('/api/order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cart, customer: finalData }) });
-      if (res.ok) { alert("✅ Order Placed!"); setCart([]); setIsCartOpen(false); setShowMoreDetails(false); }
-      else { alert("❌ Failed to place order."); }
-    } catch { alert("❌ Connection Error"); } finally { setLoading(false); }
   };
 
   // --- RENDER HELPERS ---
   const activeFilterCount = (selectedBrand !== "All" ? 1 : 0) + (selectedCategory !== "All" ? 1 : 0);
   const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-  const totalPrice = cart.reduce((sum, i) => {
-    const rate = i.qty > 24 ? i.standard_rate * 0.975 : i.standard_rate;
-    return sum + (rate * i.qty);
-  }, 0);
+  const totalPrice = calculateOrderTotal(cart);
 
   // Lazy Load Observer
   useEffect(() => {
@@ -294,141 +225,62 @@ export default function ProductGridClient({ products = [], metadata }: { product
         </div>
       )}
 
-      {/* 🚀 ACTION BAR (FILTER + SEARCH + SORT) */}
-      <div
-        className={`sticky top-[64px] z-30 transition-transform duration-500 ease-in-out bg-background/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 shadow-sm
-        ${scrollDirection === 'down' ? '-translate-y-[120%]' : 'translate-y-0'}`}
-      >
-        <div className="max-w-[1400px] mx-auto px-4 py-2 flex justify-between items-center h-16">
-
-          {/* LEFT: TITLE */}
-          <div className="flex flex-col justify-center">
-            <h2 className="text-xl font-black uppercase tracking-tight text-foreground leading-none">Collection</h2>
-            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{products.length} Items</p>
-          </div>
-
-          {/* RIGHT: ACTIONS */}
-          <div className="flex items-center gap-2">
-            <Button
-              variant="flat"
-              className={`bg-default-100 font-bold ${activeFilterCount > 0 ? 'text-primary' : 'text-default-600'}`}
-              onPress={onFilterOpen}
-              startContent={<SlidersHorizontal size={18} strokeWidth={2.5} />}
-            >
-              Filters
-              {activeFilterCount > 0 && <span className="bg-primary text-primary-foreground text-[10px] w-5 h-5 flex items-center justify-center rounded-full ml-1">{activeFilterCount}</span>}
-            </Button>
-
-            {activeFilterCount > 0 && (
-              <Button
-                variant="flat"
-                color="danger"
-                className="bg-default-100 font-bold text-danger px-3 h-10 min-w-0"
-                onPress={clearFilters}
-              >
-                <X size={18} />
-              </Button>
-            )}
-
-            <Button
-              isIconOnly
-              variant="flat"
-              className={`bg-default-100 ${sortOption !== 'default' ? 'text-primary' : 'text-default-600'}`}
-              onPress={onSortOpen}
-            >
-              <ArrowUpDown size={18} strokeWidth={2.5} />
-            </Button>
-          </div>
-
-        </div>
-      </div>
+      {/* 🚀 ACTION BAR & FILTERS */}
+      <StoreFilters
+        productsCount={products.length}
+        scrollDirection={scrollDirection}
+        activeFilterCount={activeFilterCount}
+        onFilterOpen={onFilterOpen}
+        clearFilters={clearFilters}
+        onSortOpen={onSortOpen}
+        sortOption={sortOption}
+        isFilterOpen={isFilterOpen}
+        onFilterChange={onFilterChange}
+        selectedBrand={selectedBrand}
+        setSelectedBrand={setSelectedBrand}
+        BRANDS={BRANDS}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        availableCategories={availableCategories}
+        isSortOpen={isSortOpen}
+        onSortChange={onSortChange}
+        setSortOption={setSortOption}
+      />
 
       {/* 🚀 HERO SECTION (Transitions) */}
       <div className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden ${isHeroVisible ? 'max-h-[500px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
-        <HeroSection onBrandSelect={(brand) => setSelectedBrand(brand)} />
+        <HeroSection
+          onBrandSelect={(brand) => setSelectedBrand(brand)}
+          selectedBrand={selectedBrand}
+        />
       </div>
 
       {/* 🚀 MAIN GRID */}
-      <div className="min-h-[50vh] px-4 mt-4">
-        {processProducts.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-            <Filter size={48} className="opacity-20 mb-4" />
-            <p className="font-medium text-lg">No products match your criteria.</p>
-            <Button variant="light" color="primary" onPress={clearFilters} className="mt-4 font-bold">Clear All Filters</Button>
-          </div>
-        )}
-
-        {groupedProducts ? (
-          <div className="space-y-10">
-            {groupedProducts.slice(0, visibleCategoriesCount).map((group) => {
-              const isExpanded = expandedSections[group.name] || false;
-              const itemsToShow = isExpanded ? group.items : group.items.slice(0, 20);
-              const remaining = group.items.length - 20;
-
-              return (
-                <div key={group.name} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                  <div className="flex items-center gap-3 mb-4 sticky top-32 z-10 bg-background/50 backdrop-blur-sm py-2 w-fit pr-4 rounded-r-xl">
-                    <div className="w-1 h-6 bg-primary rounded-full"></div>
-                    <h2 className="text-lg font-black uppercase tracking-tight text-foreground">{group.name}</h2>
-                    <span className="text-xs font-bold text-muted-foreground bg-default-100 px-2 py-0.5 rounded-md">{group.items.length}</span>
-                  </div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-                    {itemsToShow.map(p => (
-                      <ProductCard
-                        key={p.item_code}
-                        product={p}
-                        cartQty={getCartQty(p.item_code)}
-                        onAdd={handleAdd}
-                        onClick={() => setSelectedProduct(p)}
-                      />
-                    ))}
-                  </div>
-
-                  {remaining > 0 && !isExpanded && (
-                    <Button
-                      fullWidth
-                      variant="flat"
-                      onPress={() => setExpandedSections(prev => ({ ...prev, [group.name]: true }))}
-                      className="mt-4 font-bold h-12 bg-default-50 text-default-500"
-                    >
-                      Show {remaining} more {group.name} items <ChevronDown size={16} />
-                    </Button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-            {processProducts.slice(0, visibleItemsCount).map(p => (
-              <ProductCard
-                key={p.item_code}
-                product={p}
-                cartQty={getCartQty(p.item_code)}
-                onAdd={handleAdd}
-                onClick={() => setSelectedProduct(p)}
-              />
-            ))}
-          </div>
-        )}
-
-        <div ref={loaderRef} className="w-full py-12 flex justify-center opacity-50">
-          {(groupedProducts && visibleCategoriesCount < groupedProducts.length) || (!groupedProducts && visibleItemsCount < processProducts.length)
-            ? <Loader2 className="animate-spin" /> : null}
-        </div>
-      </div>
+      <ProductGrid
+        processProducts={processProducts}
+        groupedProducts={groupedProducts}
+        visibleCategoriesCount={visibleCategoriesCount}
+        visibleItemsCount={visibleItemsCount}
+        expandedSections={expandedSections}
+        setExpandedSections={setExpandedSections}
+        clearFilters={clearFilters}
+        getCartQty={getCartQty}
+        handleAdd={handleAdd}
+        setSelectedProduct={setSelectedProduct}
+        loaderRef={loaderRef}
+        onOpenCart={() => setIsCartOpen(true)}
+      />
 
       {/* --- CART BAR (Floating Bubble) --- */}
       {totalItems > 0 && !isCartOpen && (
         <div className="fixed bottom-6 right-6 z-[60] animate-in zoom-in slide-in-from-bottom-10 duration-300">
           <Button
             size="lg"
-            className="h-16 w-auto px-6 shadow-2xl rounded-full bg-black dark:bg-white text-white dark:text-black font-bold flex items-center gap-4 hover:scale-105 transition-transform"
+            className="h-16 w-auto px-6 shadow-xl shadow-primary/20 rounded-full bg-primary text-primary-foreground font-bold flex items-center gap-4 hover:scale-105 transition-transform"
             onPress={() => setIsCartOpen(true)}
           >
             <div className="flex flex-col items-start leading-tight">
-              <span className="text-[10px] uppercase opacity-80 tracking-wider font-semibold">{totalItems} ITEMS</span>
+              <span className="text-[11px] uppercase opacity-80 tracking-wider font-semibold">{totalItems} ITEMS</span>
               <span className="text-lg">₹{totalPrice.toLocaleString()}</span>
             </div>
             <div className="bg-white/20 dark:bg-black/10 p-2 rounded-full">
@@ -438,123 +290,6 @@ export default function ProductGridClient({ products = [], metadata }: { product
         </div>
       )}
 
-      {/* --- FILTER MODAL --- */}
-      <Modal
-        isOpen={isFilterOpen}
-        onOpenChange={onFilterChange}
-        scrollBehavior="inside"
-        placement="center"
-        backdrop="blur"
-        classNames={{ base: "max-w-md m-4 rounded-3xl" }}
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 border-b border-default-100 p-5">
-                <span className="text-xl font-black uppercase tracking-tight">Filter Catalog</span>
-              </ModalHeader>
-              <ModalBody className="p-0">
-                <div className="flex flex-col">
-                  {/* Brands Section */}
-                  <div className="p-5">
-                    <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Brands</h3>
-                    <div className="flex flex-wrap gap-2">
-                      <Chip
-                        className="cursor-pointer font-bold border-1"
-                        variant={selectedBrand === "All" ? "solid" : "bordered"}
-                        color={selectedBrand === "All" ? "primary" : "default"}
-                        onClick={() => setSelectedBrand("All")}
-                      >
-                        All Brands
-                      </Chip>
-                      {BRANDS.map(b => (
-                        <Chip
-                          key={b}
-                          className="cursor-pointer font-bold border-1"
-                          variant={selectedBrand === b ? "solid" : "bordered"}
-                          color={selectedBrand === b ? "primary" : "default"}
-                          onClick={() => setSelectedBrand(b)}
-                        >
-                          {b}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Divider />
-
-                  {/* Categories Section */}
-                  <div className="p-5">
-                    <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Categories</h3>
-                    <div className="flex flex-wrap gap-2 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
-                      <Chip
-                        className="cursor-pointer font-medium border-1"
-                        variant={selectedCategory === "All" ? "solid" : "bordered"}
-                        onClick={() => setSelectedCategory("All")}
-                      >
-                        All Categories
-                      </Chip>
-                      {availableCategories.map(cat => (
-                        <Chip
-                          key={cat}
-                          className="cursor-pointer font-medium border-1"
-                          variant={selectedCategory === cat ? "solid" : "bordered"}
-                          color={selectedCategory === cat ? "secondary" : "default"}
-                          onClick={() => setSelectedCategory(cat)}
-                        >
-                          {cat}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </ModalBody>
-              <ModalFooter className="border-t border-default-100 p-4">
-                <Button variant="light" color="danger" onPress={() => { clearFilters(); onClose(); }}>Reset</Button>
-                <Button color="primary" className="font-bold flex-1" onPress={onClose}>Show Results</Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
-      {/* --- SORT MODAL --- */}
-      <Modal
-        isOpen={isSortOpen}
-        onOpenChange={onSortChange}
-        placement="bottom"
-        classNames={{ base: "max-w-sm m-4 rounded-3xl" }}
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="border-b border-default-100 p-5">
-                <span className="text-lg font-black uppercase tracking-tight">Sort By</span>
-              </ModalHeader>
-              <ModalBody className="p-2 gap-1">
-                {[
-                  { key: 'default', label: 'Default' },
-                  { key: 'price_asc', label: 'Price: Low to High' },
-                  { key: 'price_desc', label: 'Price: High to Low' },
-                  { key: 'material', label: 'Material (Steel First)' },
-                  { key: 'category', label: 'Category Priority' },
-                ].map((opt) => (
-                  <Button
-                    key={opt.key}
-                    variant={sortOption === opt.key ? "flat" : "light"}
-                    color={sortOption === opt.key ? "primary" : "default"}
-                    className="justify-between h-12 text-medium px-4"
-                    onPress={() => { setSortOption(opt.key as SortOption); onClose(); }}
-                    endContent={sortOption === opt.key && <Check size={18} />}
-                  >
-                    {opt.label}
-                  </Button>
-                ))}
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
 
       {/* --- PRODUCT MODAL (Existing) --- */}
       {selectedProduct && (
@@ -578,7 +313,7 @@ export default function ProductGridClient({ products = [], metadata }: { product
               <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium">{selectedProduct.description}</p>
               <div className="flex items-center justify-between gap-4 p-4 bg-default-100 rounded-2xl mt-auto">
                 <div>
-                  <div className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
+                  <div className="text-[11px] uppercase text-muted-foreground font-bold tracking-wider">Price</div>
                   <div className="text-3xl font-black text-foreground">
                     ₹{selectedProduct.standard_rate}
                   </div>
@@ -598,55 +333,11 @@ export default function ProductGridClient({ products = [], metadata }: { product
         </div>
       )}
 
-      {/* --- CART DRAWER (Existing Logic, No Changes) --- */}
-      {isCartOpen && (
-        <>
-          <div className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" onClick={() => setIsCartOpen(false)} />
-          <div className="fixed top-0 left-0 h-full w-full sm:w-[450px] bg-card shadow-2xl z-[61] border-r border-border transform transition-transform duration-300 animate-in slide-in-from-left overflow-hidden flex flex-col">
-            <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none h-[10%] min-h-[70px]">
-              <div><h2 className="text-2xl font-black uppercase tracking-tight text-foreground">Cart</h2><p className="text-xs text-muted-foreground font-medium mt-1">{totalItems} items selected</p></div>
-              <Button isIconOnly variant="light" onPress={() => setIsCartOpen(false)}><X size={24} /></Button>
-            </div>
-            <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-default-50 h-[60%]">
-              {cart.map(item => (
-                <div key={item.item_code} className="flex gap-3 p-3 bg-card rounded-2xl border border-border items-start group shadow-sm">
-                  <div className="flex-1">
-                    <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
-                    <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span className="text-xs font-mono bg-default-100 px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}</span>
-                      <span className="text-xs text-muted-foreground">x {item.qty}</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-end gap-2">
-                    <span className="font-black text-base">₹{((item.qty > 24 ? item.standard_rate * 0.975 : item.standard_rate) * item.qty).toLocaleString()}</span>
-                    <div className="flex items-center gap-1 bg-default-100 rounded-lg border border-border p-1">
-                      <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, -1)} className="h-6 w-6 min-w-6"><Minus size={14} /></Button>
-                      <span className="w-6 text-center text-xs font-bold">{item.qty}</span>
-                      <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, 1)} className="h-6 w-6 min-w-6"><Plus size={14} /></Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {cart.length === 0 && (<div className="flex flex-col items-center justify-center h-full text-muted-foreground opacity-50"><ShoppingBag size={64} strokeWidth={1} className="mb-4" /><p className="text-lg font-medium">Your cart is empty</p><Button variant="light" onPress={() => setIsCartOpen(false)} className="mt-4 font-bold underline">Start Shopping</Button></div>)}
-            </div>
-            <div className={`border-t border-border bg-card transition-all duration-300 ease-in-out flex flex-col relative ${showMoreDetails ? 'h-full absolute inset-0 z-50' : 'flex-none h-[30%] min-h-[240px]'}`}>
-              {showMoreDetails && (<div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none"><h3 className="font-bold text-lg flex items-center gap-2"><div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div> Order Details</h3><Button size="sm" variant="flat" onPress={() => setShowMoreDetails(false)} startContent={<ChevronDown size={14} />}>Minimize</Button></div>)}
-              <form onSubmit={submitOrder} className="flex flex-col h-full overflow-hidden">
-                <div className="flex-1 overflow-y-auto p-5 pb-0">
-                  {!showMoreDetails && (<div className="flex justify-between items-end mb-4 pb-4 border-b border-border border-dashed flex-none"><span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Total Pay</span><span className="text-3xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div>)}
-                  <div className="space-y-3 pb-4">
-                    <div className="grid grid-cols-2 gap-3"><Input isRequired label="Name" placeholder="Your Name" value={formData.name} onValueChange={(v: string) => setFormData({ ...formData, name: v })} /><Input isRequired label="Phone" placeholder="10 digits" type="tel" value={formData.phone} onChange={(e) => { const val = e.target.value; if (/^\d*$/.test(val) && val.length <= 10) setFormData({ ...formData, phone: val }); }} /></div>
-                    {!showMoreDetails && (<Button variant="bordered" onPress={() => setShowMoreDetails(true)} className="w-full font-bold text-muted-foreground border-dashed" startContent={<PlusCircle size={14} />}>Add Address & GST</Button>)}
-                    {showMoreDetails && (<div className="space-y-4 animate-in fade-in slide-in-from-bottom-4"><div className="flex justify-between items-center py-2 bg-default-100 px-3 rounded-lg"><span className="text-xs font-bold text-muted-foreground uppercase">Cart Total</span><span className="text-xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span></div><div><Input label="GST Number (Optional)" placeholder="Ex: 22AAAAA0000A1Z5" value={formData.gst} onValueChange={(v: string) => setFormData({ ...formData, gst: v })} /></div><div><div className="flex justify-between items-center mb-1"><span className="text-xs font-bold text-muted-foreground uppercase">Address</span><span onClick={() => setShowAddressLine2(!showAddressLine2)} className="text-primary text-tiny cursor-pointer hover:underline flex items-center gap-1"><PlusCircle size={10} /> Add Line 2</span></div><div className="space-y-2"><textarea placeholder="Street, Building, Area..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50 transition-all" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} />{showAddressLine2 && (<Input placeholder="Landmark / City / Pincode" value={formData.addressLine2} onValueChange={(v: string) => setFormData({ ...formData, addressLine2: v })} />)}</div></div><div><label className="text-[10px] font-bold text-muted-foreground uppercase mb-1 block">Order Notes</label><textarea placeholder="Special instructions..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50" value={formData.note} onChange={e => setFormData({ ...formData, note: e.target.value })} /></div></div>)}
-                  </div>
-                </div>
-                <div className="p-5 border-t border-border bg-card flex-none pb-8 sm:pb-6"><Button type="submit" color="primary" size="lg" fullWidth isLoading={loading} isDisabled={cart.length === 0} className="font-black text-lg shadow-xl" endContent={<ArrowRight size={20} />}>{loading ? "Processing..." : "Confirm Order"}</Button></div>
-              </form>
-            </div>
-          </div>
-        </>
-      )}
+      {/* --- CART DRAWER --- */}
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </div>
   );
 }

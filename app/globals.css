@@ -28,63 +28,74 @@
 
 :root {
   /* LIGHT MODE - Premium Zinc */
-  --background: #fafafa; /* Zinc-50 */
-  --foreground: #18181b; /* Zinc-900 */
-  
+  --background: #fafafa;
+  /* Zinc-50 */
+  --foreground: #18181b;
+  /* Zinc-900 */
+
   --card: #ffffff;
   --card-foreground: #18181b;
-  
+
   --popover: #ffffff;
   --popover-foreground: #18181b;
-  
-  --primary: #18181b;
+
+  --primary: #1e40af;
+  /* Navy Blue */
   --primary-foreground: #ffffff;
-  
-  --secondary: #f4f4f5; /* Zinc-100 */
+
+  --secondary: #f4f4f5;
+  /* Zinc-100 */
   --secondary-foreground: #18181b;
-  
+
   --muted: #f4f4f5;
-  --muted-foreground: #71717a; /* Zinc-500 */
-  
+  --muted-foreground: #71717a;
+  /* Zinc-500 */
+
   --accent: #f4f4f5;
   --accent-foreground: #18181b;
-  
+
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: #e4e4e7; /* Zinc-200 */
+  --border: #e4e4e7;
+  /* Zinc-200 */
   --input: #e4e4e7;
   --ring: #18181b;
-  
-  --radius: 1rem; /* More rounded */
+
+  --radius: 1rem;
+  /* More rounded */
 }
 
 .dark {
   /* DARK MODE - Deep Zinc */
-  --background: #09090b; /* Zinc-950 */
+  --background: #09090b;
+  /* Zinc-950 */
   --foreground: #fafafa;
-  
-  --card: #09090b; 
+
+  --card: #09090b;
   --card-foreground: #fafafa;
-  
+
   --popover: #09090b;
   --popover-foreground: #fafafa;
-  
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
-  
-  --secondary: #27272a; /* Zinc-800 */
+
+  --primary: #60a5fa;
+  /* Navy Blue (Light) */
+  --primary-foreground: #000000;
+
+  --secondary: #27272a;
+  /* Zinc-800 */
   --secondary-foreground: #fafafa;
-  
+
   --muted: #27272a;
-  --muted-foreground: #a1a1aa; /* Zinc-400 */
-  
+  --muted-foreground: #a1a1aa;
+  /* Zinc-400 */
+
   --accent: #27272a;
   --accent-foreground: #fafafa;
-  
+
   --destructive: #7f1d1d;
   --destructive-foreground: #fafafa;
-  
+
   --border: #27272a;
   --input: #27272a;
   --ring: #d4d4d8;
@@ -94,10 +105,17 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground antialiased selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply tracking-tight;
   }
 }
@@ -105,9 +123,10 @@
 /* Hero Gradient Utility */
 .hero-gradient {
   background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0.05) 0%, transparent 50%);
 }
+
 .dark .hero-gradient {
   background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
-              radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
 }

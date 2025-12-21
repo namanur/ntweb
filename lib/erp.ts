@@ -51,6 +51,12 @@ export interface Order {
   erp_synced?: boolean;
 }
 
+export interface ProductMetadata {
+  generated_at: string;
+  source: string;
+  sync_script: string;
+}
+
 // --- FUNCTIONS ---
 
 // 1. GET PRODUCTS
@@ -69,7 +75,7 @@ export async function getProducts(): Promise<Product[]> {
   return [];
 }
 
-export async function getProductsMetadata() {
+export async function getProductsMetadata(): Promise<ProductMetadata | null> {
   try {
     const filePath = path.join(process.cwd(), 'src/data/products.json');
     if (fs.existsSync(filePath)) {
@@ -133,7 +139,13 @@ export async function getOrders(): Promise<Order[]> {
 }
 
 // 4. SAVE ORDER LOCAL
+// 4. SAVE ORDER LOCAL
 export async function saveOrderLocal(order: Order) {
+  // NOTE: Runtime file writes disabled. Persistence layer TODO.
+  console.log("Skipping local save: orders.json is read-only in this environment.");
+  // return true to mock success
+  return true;
+  /*
   try {
     const filePath = path.join(process.cwd(), 'src/data/orders.json');
     const dir = path.dirname(filePath);
@@ -157,10 +169,15 @@ export async function saveOrderLocal(order: Order) {
     console.error("Failed to save order locally:", error);
     throw new Error("Order Save Failed");
   }
+  */
 }
 
 // 5. UPDATE ORDER STATUS
+// 5. UPDATE ORDER STATUS
 export async function updateOrderStatus(orderId: string, status: Order["status"]) {
+  console.log("Skipping local status update: Runtime writes disabled.");
+  return true;
+  /*
   try {
     const filePath = path.join(process.cwd(), 'src/data/orders.json');
     if (fs.existsSync(filePath)) {
@@ -179,6 +196,7 @@ export async function updateOrderStatus(orderId: string, status: Order["status"]
     console.error("Failed to update order status:", error);
     throw error;
   }
+  */
 }
 
 // 6. TEST ERP CONNECTION

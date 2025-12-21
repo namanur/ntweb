@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { saveOrderLocal, Order, createSalesOrder, deductInventory } from "@/lib/erp";
 import { sendTelegramMessage } from "@/lib/telegram";
 
+import { validateCart, getEffectiveRate, calculateOrderTotal, CartItem } from "@/lib/shop-rules";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -9,31 +11,25 @@ export async function POST(req: Request) {
 
     const isPublicSite = process.env.NEXT_PUBLIC_APP_MODE === 'public' || !!process.env.VERCEL;
 
-    if (!cart || cart.length === 0) {
-      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
+    // ✅ VALIDATION: Use shared validation rules
+    const validationErrors = validateCart(cart);
+    if (validationErrors.length > 0) {
+      return NextResponse.json({ error: validationErrors[0] }, { status: 400 });
     }
 
-    // ✅ VALIDATION: Ensure Minimum Order Quantity of 6
-    const invalidItems = cart.filter((item: any) => item.qty < 6);
-    if (invalidItems.length > 0) {
-      return NextResponse.json({ error: "Minimum order quantity is 6 per item." }, { status: 400 });
-    }
-
-    // ✅ CALCULATION: Apply 2.5% discount if qty > 24
-    const items = cart.map((item: any) => {
-      const isBulk = item.qty > 24;
-      const finalRate = isBulk ? item.standard_rate * 0.975 : item.standard_rate;
-
+    // ✅ CALCULATION: Use shared pricing rules
+    const items = cart.map((item: CartItem) => {
+      const rate = getEffectiveRate(item.qty, item.standard_rate);
       return {
         item_code: item.item_code,
-        item_name: item.item_name,
+        item_name: item.item_name || item.item_code, // Fallback if name missing
         qty: item.qty,
-        rate: finalRate, // ERP will receive this discounted rate
-        original_rate: item.standard_rate // Optional: for reference if needed
+        rate: rate,
+        original_rate: item.standard_rate
       };
     });
 
-    const total = items.reduce((sum: number, item: any) => sum + (item.rate * item.qty), 0);
+    const total = calculateOrderTotal(items as CartItem[]);
 
     const newOrder: Order = {
       id: "ORD-" + Date.now().toString().slice(-6),
