@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "syncTimestamp": "2025-12-20T16:27:02.089Z",
+    "syncTimestamp": "2025-12-22T06:44:24.302Z",
     "itemCount": 510,
     "version": "1.0"
   },
@@ -2378,7 +2378,9 @@
       "standard_rate": 287,
       "wholesale_rate": 0,
       "stock_uom": "Pcs",
-      "images": [],
+      "images": [
+        "/images/items/STOOL-18INCHFOLD.webp"
+      ],
       "in_stock": true
     },
     {
