@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@heroui/react";
 import { useCart } from "@/contexts/CartContext";
@@ -15,6 +15,15 @@ interface CartDrawerProps {
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     const { cart, updateQty } = useCart();
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; }
+    }, [isOpen]);
+
     // Calculate total items for display
     const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
 
@@ -22,8 +31,8 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
     return (
         <>
-            <div className="fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity" onClick={onClose} />
-            <div className="fixed top-0 left-0 h-full w-full sm:w-[450px] bg-card shadow-2xl z-[61] border-r border-border transform transition-transform duration-300 animate-in slide-in-from-left overflow-hidden flex flex-col">
+            <div className="fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm transition-opacity" onClick={onClose} />
+            <div className="fixed top-0 left-0 h-full w-full sm:w-[450px] glass-panel z-[101] border-r-0 transform transition-transform duration-300 animate-in slide-in-from-left overflow-hidden flex flex-col">
                 {/* Header */}
                 <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none h-[10%] min-h-[70px]">
                     <div>

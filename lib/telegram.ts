@@ -5,7 +5,7 @@ const ALERT_BOT_TOKEN = process.env.TELEGRAM_ALERT_BOT_TOKEN;
 const ORDER_CHAT_ID = process.env.TELEGRAM_ORDER_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
 const DELIVERY_CHAT_ID = process.env.TELEGRAM_DELIVERY_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
 
-export async function sendTelegramMessage(text: string, type: 'order' | 'alert' = 'order') {
+async function sendTelegramMessage(text: string, type: 'order' | 'alert' = 'order') {
   // 1. Pick the correct token & chat ID
   const isAlert = type === 'alert';
   const token = isAlert ? ALERT_BOT_TOKEN : ORDER_BOT_TOKEN;
@@ -29,7 +29,7 @@ export async function sendTelegramMessage(text: string, type: 'order' | 'alert' 
       body: JSON.stringify({
         chat_id: chatId,
         text: text,
-        parse_mode: 'HTML'
+        parse_mode: 'HTML' // Changed to HTML for consistent <b> formatting
       })
     });
 
@@ -42,3 +42,41 @@ export async function sendTelegramMessage(text: string, type: 'order' | 'alert' 
     console.error("Telegram Send Failed:", error);
   }
 }
+
+export const TelegramService = {
+  // Keep raw access if needed
+  send: sendTelegramMessage,
+
+  async notifySyncStart(count: number, syncId: string) {
+    return sendTelegramMessage(
+      `🔄 *Sync Started*\n` +
+      `ID: \`${syncId.slice(0, 8)}\`\n` +
+      `Items: ${count}\n` +
+      `Time: ${new Date().toLocaleTimeString()}`,
+      'alert'
+    );
+  },
+
+  async notifySyncSuccess(syncId: string, count: number) {
+    return sendTelegramMessage(
+      `✅ *Sync Success*\n` +
+      `ID: \`${syncId.slice(0, 8)}\`\n` +
+      `Items: ${count}\n` +
+      `Time: ${new Date().toLocaleTimeString()}`,
+      'alert'
+    );
+  },
+
+  async notifySyncFail(syncId: string, error: string) {
+    return sendTelegramMessage(
+      `❌ *Sync Failed*\n` +
+      `ID: \`${syncId.slice(0, 8)}\`\n` +
+      `Error: \`${error}\`\n` +
+      `Time: ${new Date().toLocaleTimeString()}`,
+      'alert'
+    );
+  }
+};
+
+// Fallback for existing imports
+export { sendTelegramMessage };

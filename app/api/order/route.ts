@@ -41,7 +41,7 @@ export async function POST(req: Request) {
         notes: customer.note || "None"
       },
       items: items,
-      total: total,
+      total: isNaN(total) ? 0 : total,
       status: "Pending",
       date: new Date().toISOString(),
       erp_synced: false
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
         `📞 <b>Phone:</b> ${newOrder.customer.phone}\n` +
         `📍 <b>Address:</b> ${newOrder.customer.address}\n\n` +
         `📦 <b>Items:</b>\n${itemsList}\n\n` +
-        `💰 <b>Total: ₹${newOrder.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</b>\n` +
+        `💰 <b>Total: ₹${(isNaN(newOrder.total) ? 0 : newOrder.total).toLocaleString(undefined, { minimumFractionDigits: 2 })}</b>\n` +
         `🔄 <b>Status:</b> ${syncStatus}`;
 
       await sendTelegramMessage(msg, 'order');
@@ -110,9 +110,15 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error("🔥 CRITICAL ORDER API ERROR:", error);
+
+    // Distinguish between known logic errors and system crashes
+    const message = error.message === "Local Save Failed"
+      ? "We received your request but couldn't save the order locally. Please try again."
+      : "Our server encountered a temporary issue. Please try again in a moment.";
+
     return NextResponse.json({
-      error: "Failed to place order",
-      details: error.message || "Unknown Error"
+      error: "Order Submission Failed",
+      details: message
     }, { status: 500 });
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText } from "lucide-react";
+import { Search, Menu, ShieldCheck, MapPin, Phone, Mail, FileText, ShoppingBag, Clock } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Suspense } from "react";
 import Image from "next/image";
@@ -51,7 +51,6 @@ function SearchInput() {
   );
 }
 
-
 export default function Header() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -59,7 +58,7 @@ export default function Header() {
     <Navbar
       maxWidth="2xl"
       position="sticky"
-      className="bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-white/10 dark:border-white/5 supports-[backdrop-filter]:bg-white/50"
+      className="bg-background/80 backdrop-blur-md border-b border-white/10 dark:border-zinc-800 z-[40]"
     >
       <NavbarContent justify="start">
         <NavbarBrand className="gap-3 mr-4 cursor-pointer" onClick={() => window.location.href = '/'}>
@@ -85,6 +84,7 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent justify="end">
+
         <NavbarItem className="hidden sm:flex">
           <ThemeToggle />
         </NavbarItem>
@@ -105,7 +105,7 @@ export default function Header() {
         classNames={{
           wrapper: "flex justify-end",
           base: "h-[100dvh] w-[85vw] sm:w-[350px] m-0 rounded-none rounded-l-3xl bg-white/90 dark:bg-black/90 backdrop-blur-2xl border-l border-white/20",
-          closeButton: "top-6 right-6 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+          closeButton: "top-6 right-6 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white z-50"
         }}
         motionProps={{
           variants: {
@@ -120,10 +120,12 @@ export default function Header() {
               <ModalHeader className="flex flex-col gap-1 border-b border-zinc-100 dark:border-zinc-800 p-8">
                 <div className="flex items-center justify-between">
                   <span className="text-xl font-bold uppercase tracking-tight">Menu</span>
-                  <div className="sm:hidden"><ThemeToggle /></div>
+                  <div className="sm:hidden mr-10"><ThemeToggle /></div>
                 </div>
               </ModalHeader>
               <ModalBody className="gap-2 p-8">
+
+
 
                 <Button
                   as="a" href="/terms" variant="light" className="justify-start h-12 text-base font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl px-4"

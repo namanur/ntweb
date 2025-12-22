@@ -94,7 +94,11 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
   useEffect(() => {
     if (selectedProduct) {
       setModalImage(`/images/${selectedProduct.item_code}.jpg`);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
     }
+    return () => { document.body.style.overflow = "unset"; };
   }, [selectedProduct]);
 
   // Pagination / Visibility
@@ -274,7 +278,7 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
 
       {/* --- CART BAR (Floating Bubble) --- */}
       {totalItems > 0 && !isCartOpen && (
-        <div className="fixed bottom-6 right-6 z-[60] animate-in zoom-in slide-in-from-bottom-10 duration-300">
+        <div className="fixed bottom-6 right-6 z-50 animate-in zoom-in slide-in-from-bottom-10 duration-300">
           <Button
             size="lg"
             className="h-16 w-auto px-6 shadow-xl shadow-primary/20 rounded-full bg-primary text-primary-foreground font-bold flex items-center gap-4 hover:scale-105 transition-transform"
@@ -294,7 +298,7 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
 
       {/* --- PRODUCT MODAL (Existing) --- */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
+        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200 border border-border flex flex-col max-h-[90vh]">
             <Button isIconOnly variant="flat" onPress={() => setSelectedProduct(null)} className="absolute top-4 right-4 z-10 rounded-full"><X size={20} /></Button>
             <div className="p-8 bg-white flex justify-center items-center h-64 shrink-0 border-b border-zinc-100 relative">

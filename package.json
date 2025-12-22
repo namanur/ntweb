@@ -13,6 +13,8 @@
   "dependencies": {
     "@heroui/react": "^2.8.5",
     "@radix-ui/react-slot": "^1.2.4",
+    "ag-grid-community": "^35.0.0",
+    "ag-grid-react": "^35.0.0",
     "axios": "^1.13.2",
     "cheerio": "^1.1.2",
     "class-variance-authority": "^0.7.1",

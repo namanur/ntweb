@@ -130,3 +130,12 @@
   background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
     radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
 }
+
+/* Consistent Glassmorphism */
+.glass-panel {
+  @apply bg-background/80 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.dark .glass-panel {
+  @apply bg-zinc-950/80 border-zinc-800/50;
+}

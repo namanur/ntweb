@@ -12,31 +12,56 @@ export default function DashboardPage() {
     const router = useRouter()
 
     useEffect(() => {
-        fetch('/api/customer/dashboard')
+        // 1. Get Phone from LocalStorage
+        const saved = localStorage.getItem("nandan_customer_details");
+        let phone = "";
+
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                if (parsed.phone) phone = parsed.phone;
+            } catch (e) {
+                console.error("Failed to parse local customer details");
+            }
+        }
+
+        if (!phone) {
+            // No local identity -> Redirect to Shop
+            router.push('/');
+            return;
+        }
+
+        // 2. Fetch Data using Phone
+        fetch(`/api/customer/dashboard?phone=${phone}`)
             .then(res => {
                 if (res.status === 401) {
-                    router.push('/login')
-                    throw new Error("Unauthorized")
+                    router.push('/');
+                    throw new Error("Unauthorized");
+                }
+                if (!res.ok) {
+                    throw new Error("Failed to fetch dashboard data");
                 }
                 return res.json()
             })
             .then(data => {
-                setData(data)
+                // Defensive: Ensure defaults
+                setData({
+                    outstanding: data.outstanding || 0,
+                    stats: data.stats || { totalOrders: 0, activeOrders: 0 },
+                    orders: data.orders || []
+                })
                 setLoading(false)
             })
             .catch(err => {
                 console.error(err)
-                // If unauthorized, redirect is handled
+                // Set safe empty defaults if error
+                setData({ outstanding: 0, stats: { totalOrders: 0, activeOrders: 0 }, orders: [] });
+                setLoading(false);
             })
     }, [router])
 
-    const handleLogout = async () => {
-        // Since logoutAction is server-only redirect, we might need a client-side way or just call an API
-        // For now, let's use a simple fetch to a logout API if we had one, 
-        // OR trigger the server action via a form (simple hack)
-        // Better: Create /api/auth/logout
-        await fetch('/api/auth/logout', { method: 'POST' }); // We need to create this!
-        router.push('/login');
+    const handleBack = () => {
+        router.push('/');
     }
 
     if (loading) {
@@ -58,13 +83,25 @@ export default function DashboardPage() {
                             <Image src="/logo.png" alt="Logo" width={30} height={30} className="invert brightness-0" />
                         </div>
                         <div>
-                            <h1 className="text-xl font-bold uppercase tracking-widest">My Dashboard</h1>
-                            <p className="text-zinc-500 text-sm">Welcome back!</p>
+                            <h1 className="text-xl font-bold uppercase tracking-widest">Device History</h1>
+                            <p className="text-zinc-500 text-sm">Recent orders from this device</p>
                         </div>
                     </div>
-                    <button onClick={handleLogout} className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-red-400">
-                        <LogOut size={20} />
+                    <button onClick={handleBack} className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white">
+                        <ArrowRight size={20} className="rotate-180" />
                     </button>
+                </div>
+
+                {/* Disclaimer Banner */}
+                <div className="mb-8 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl flex gap-3 text-yellow-500">
+                    <LogOut className="shrink-0" size={24} />
+                    <div className="space-y-1">
+                        <p className="font-bold text-sm">Only showing orders placed from this browser.</p>
+                        <p className="text-xs text-yellow-500/80 leading-relaxed">
+                            For a complete history or to check status, please check your WhatsApp messages or contact us directly.
+                            Clearing your browser cache will remove this list.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Stats Grid */}
@@ -110,21 +147,21 @@ export default function DashboardPage() {
                     ) : (
                         <div className="divide-y divide-zinc-800">
                             {data.orders.map((order: any) => (
-                                <div key={order.name} className="p-4 flex items-center justify-between hover:bg-zinc-800/50 transition-colors cursor-pointer group">
+                                <div key={order.id} className="p-4 flex items-center justify-between hover:bg-zinc-800/50 transition-colors cursor-pointer group">
                                     <div>
                                         <div className="flex items-center gap-2">
-                                            <span className="font-bold text-white">{order.name}</span>
+                                            <span className="font-bold text-white">{order.id}</span>
                                             <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${order.status === 'Completed' ? 'bg-green-900/30 text-green-400' :
-                                                    order.status === 'Cancelled' ? 'bg-red-900/30 text-red-400' :
-                                                        'bg-yellow-900/30 text-yellow-400'
+                                                order.status === 'Cancelled' ? 'bg-red-900/30 text-red-400' :
+                                                    'bg-yellow-900/30 text-yellow-400'
                                                 }`}>
                                                 {order.status}
                                             </span>
                                         </div>
-                                        <p className="text-zinc-500 text-xs mt-1">{new Date(order.transaction_date).toLocaleDateString()}</p>
+                                        <p className="text-zinc-500 text-xs mt-1">{new Date(order.date).toLocaleDateString()}</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="font-bold text-white">₹{order.grand_total.toLocaleString()}</p>
+                                        <p className="font-bold text-white">₹{(order.total || 0).toLocaleString()}</p>
                                         <p className="text-[10px] text-zinc-500 uppercase flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                             View <ArrowRight size={10} />
                                         </p>

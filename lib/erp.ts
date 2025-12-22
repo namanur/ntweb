@@ -52,9 +52,9 @@ export interface Order {
 }
 
 export interface ProductMetadata {
-  generated_at: string;
-  source: string;
-  sync_script: string;
+  syncTimestamp: string;
+  itemCount: number;
+  version: string;
 }
 
 // --- FUNCTIONS ---
@@ -62,7 +62,7 @@ export interface ProductMetadata {
 // 1. GET PRODUCTS
 export async function getProducts(): Promise<Product[]> {
   try {
-    const filePath = path.join(process.cwd(), 'src/data/products.json');
+    const filePath = path.join(process.cwd(), 'public/catalog.json');
     // NOTE: This file is a derived snapshot from ERPNext. Do not write to it at runtime.
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -77,7 +77,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductsMetadata(): Promise<ProductMetadata | null> {
   try {
-    const filePath = path.join(process.cwd(), 'src/data/products.json');
+    const filePath = path.join(process.cwd(), 'public/catalog.json');
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const data = JSON.parse(fileContent);

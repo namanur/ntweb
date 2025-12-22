@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2025-12-22T14:06:52.957Z",
+    "generated_at": "2025-12-21T22:52:53.066Z",
     "source": "ERPNext",
     "sync_script": "sync_from_erp.ts"
   },
@@ -1171,7 +1171,7 @@
       "wholesale_rate": 0,
       "item_group": "Dining & Serving",
       "brand": "Generic",
-      "image": null,
+      "image": "/files/SET-2PCSDINING.jpg",
       "is_hot": false,
       "source": "ERPNext"
     },
@@ -1691,7 +1691,7 @@
       "wholesale_rate": 0,
       "item_group": "Knife & Cutter",
       "brand": "Generic",
-      "image": null,
+      "image": "/files/CUTTER-2IN1VEG.jpg",
       "is_hot": false,
       "source": "ERPNext"
     },
@@ -5629,19 +5629,6 @@
       "standard_rate": 0,
       "wholesale_rate": 0,
       "item_group": "Kitchen Organizers",
-      "brand": "Generic",
-      "image": null,
-      "is_hot": false,
-      "source": "ERPNext"
-    },
-    {
-      "item_code": "RCK000021",
-      "item_name": "18Inch Folding Stool",
-      "description": "18Inch Folding Stool",
-      "stock_uom": "Pcs",
-      "standard_rate": 0,
-      "wholesale_rate": 0,
-      "item_group": "Household",
       "brand": "Generic",
       "image": null,
       "is_hot": false,

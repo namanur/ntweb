@@ -2,15 +2,25 @@ import { NextResponse } from "next/server";
 import { getCustomerSession } from "@/lib/auth";
 import { getCustomerOrders, getCustomerOutstanding } from "@/lib/erp";
 
-export async function GET() {
+export async function GET(req: Request) { // Fixed: added req argument
     try {
-        // 1. Check Session
-        const session = await getCustomerSession();
-        if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
+        const { searchParams } = new URL(req.url);
+        const phone = searchParams.get("phone");
 
-        const { customerId } = session;
+        let customerId = "";
+
+        // 1. Check Identity (Phone OR Session)
+        if (phone && /^\d{10}$/.test(phone)) {
+            // "Memory-based" Identity
+            customerId = phone;
+        } else {
+            // Strict Session Identity
+            const session = await getCustomerSession();
+            if (!session) {
+                return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            }
+            customerId = session.customerId;
+        }
 
         // 2. Fetch Data in Parallel
         const [orders, outstanding] = await Promise.all([

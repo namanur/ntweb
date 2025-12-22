@@ -1,5 +1,10 @@
-
 import axios, { AxiosInstance, AxiosError } from 'axios';
+/**
+ * ERPNext API Contract
+ * FROZEN: 2025-12-22
+ * DO NOT MODIFY WITHOUT PLATFORM TEAM APPROVAL
+ */
+import { z } from "zod";
 import 'dotenv/config';
 
 // --- CONFIGURATION ---

@@ -1,12 +1,13 @@
 "use client";
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Product, Order } from '@/lib/erp';
+import { PricingConsole } from "@/components/pricing-console/PricingConsole";
 import Image from 'next/image';
 import {
   LayoutDashboard, Package, ShoppingCart, Server, Database, LogOut, Save, X, Edit3,
   CheckCircle2, AlertTriangle, RefreshCw, Search, Upload, Layers, Play, FileText, ArrowUpDown,
   ChevronDown, AlertCircle, Flame, Clock, Truck, ChevronLeft, ChevronRight, Image as ImageIcon, Menu, Filter,
-  MoreVertical, Command, Bell, Settings, Zap
+  MoreVertical, Command, Bell, Settings, Zap, DollarSign
 } from 'lucide-react';
 import { logoutAction } from '@/app/login/actions';
 import { Button, Input, Chip, Tooltip, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@heroui/react";
@@ -76,12 +77,7 @@ export default function AdminPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
 
-  const [editingItem, setEditingItem] = useState<Product | null>(null);
-  const [editForm, setEditForm] = useState<Partial<Product>>({});
-  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-  const [uploading, setUploading] = useState(false);
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [targetItemCode, setTargetItemCode] = useState<string | null>(null);
 
   useEffect(() => {
@@ -126,11 +122,21 @@ export default function AdminPage() {
     } catch (e) { setTestStatus(prev => ({ ...prev, [target]: "❌ Error" })); }
   };
 
+  const [metadata, setMetadata] = useState<any>(null);
+
   const fetchData = async () => {
     setLoading(true);
     try {
       const res = await fetch('/api/seed');
-      if (res.ok) setProducts(await res.json());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          setProducts(data.products || []);
+          setMetadata(data.metadata || null);
+        }
+      }
     } catch (e) { }
     setLoading(false);
   };
@@ -158,61 +164,6 @@ export default function AdminPage() {
       else alert("Failed");
     } catch (e: any) { alert("Error: " + e.message); }
     setLoading(false);
-  };
-
-  const triggerDirectUpload = (itemCode: string) => {
-    setTargetItemCode(itemCode);
-    fileInputRef.current?.click();
-  };
-
-  const handleDirectFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files || files.length === 0 || !targetItemCode) return;
-    setUploading(true);
-    const formData = new FormData();
-    formData.append("item_code", targetItemCode);
-    formData.append("file", files[0]);
-    try {
-      const res = await fetch("/api/products/update", { method: "POST", body: formData });
-      if (res.ok) {
-        setProducts(prev => prev.map(p => p.item_code === targetItemCode ? { ...p, imageVersion: Date.now() } as Product : p));
-        fetchImageStats();
-      } else alert("Upload Failed");
-    } catch (e) { alert("Error"); }
-    finally { setUploading(false); setTargetItemCode(null); if (fileInputRef.current) fileInputRef.current.value = ""; }
-  };
-
-  const openEditModal = (product: Product) => {
-    setEditingItem(product);
-    setEditForm({ ...product, stock_qty: product.stock_qty ?? 0, threshold: product.threshold ?? 2, in_stock: product.in_stock ?? true, is_hot: product.is_hot || false });
-    setSelectedFiles(null);
-  };
-
-  const handleSaveItem = async () => {
-    if (!editingItem) return;
-    try {
-      const res = await fetch('/api/products/update', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ item_code: editingItem.item_code, ...editForm }) });
-      if (res.ok) {
-        setProducts(prev => prev.map(p => p.item_code === editingItem.item_code ? { ...p, ...editForm } as Product : p));
-        setEditingItem(null);
-      } else alert("Failed");
-    } catch (e) { alert("Error"); }
-  };
-
-  const handleImageUpload = async () => {
-    if (!selectedFiles || !editingItem?.item_code) return;
-    setUploading(true);
-    const formData = new FormData();
-    formData.append("item_code", editingItem.item_code);
-    Array.from(selectedFiles).forEach(f => formData.append("file", f));
-    try {
-      const res = await fetch("/api/products/update", { method: "POST", body: formData });
-      if (res.ok) {
-        setProducts(prev => prev.map(p => p.item_code === editingItem.item_code ? { ...p, imageVersion: Date.now() } as Product : p));
-        fetchImageStats();
-        setSelectedFiles(null);
-      } else alert("Failed");
-    } catch (e) { alert("Error"); } finally { setUploading(false); }
   };
 
   const uniqueBrands = useMemo(() => ["All", ...Array.from(new Set(products.map(p => p.brand || "Generic"))).sort()], [products]);
@@ -255,7 +206,6 @@ export default function AdminPage() {
 
   return (
     <div className="flex h-screen bg-black text-white font-sans overflow-hidden">
-      <input type="file" ref={fileInputRef} className="hidden" accept="image/jpeg, image/png" onChange={handleDirectFileSelect} />
 
       {/* --- LEFT SIDEBAR (Navigation) --- */}
       <aside className={`fixed md:relative z-50 h-full w-72 bg-zinc-950 border-r border-zinc-900 flex flex-col transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
@@ -274,6 +224,7 @@ export default function AdminPage() {
           <SidebarItem active={activeTab === 'dashboard'} onClick={() => setActiveTab("dashboard")} icon={LayoutDashboard} label="Overview" />
           <SidebarItem active={activeTab === 'orders'} onClick={() => setActiveTab("orders")} icon={ShoppingCart} label="Orders" count={orders.filter(o => o.status === 'Pending').length} />
           <SidebarItem active={activeTab === 'products'} onClick={() => setActiveTab("products")} icon={Package} label="Inventory" count={products.length} />
+          <SidebarItem active={activeTab === 'pricing'} onClick={() => setActiveTab("pricing")} icon={DollarSign} label="Pricing Console" />
 
           {/* <div className="text-[10px] font-bold text-zinc-500 uppercase px-4 mb-2 mt-8 tracking-wider">System</div>
           <SidebarItem onClick={() => {}} icon={Settings} label="Settings" /> */}
@@ -287,7 +238,7 @@ export default function AdminPage() {
       {/* --- CENTER MAIN CONTENT --- */}
       <div className="flex-1 flex flex-col min-w-0 bg-black">
         {/* Header */}
-        <header className="flex-none h-16 border-b border-zinc-900 flex items-center justify-between px-6 bg-zinc-950/50 backdrop-blur-md sticky top-0 z-30">
+        <header className="flex-none h-16 border-b border-zinc-900 flex items-center justify-between px-6 glass-panel sticky top-0 z-30">
           <div className="flex items-center gap-4 flex-1">
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 -ml-2 text-zinc-400"><Menu size={20} /></button>
             <div className="relative max-w-md w-full group hidden md:block">
@@ -302,10 +253,16 @@ export default function AdminPage() {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-950/30 border border-green-900/50">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-[10px] font-bold text-green-400 uppercase tracking-wide">Online</span>
+            <div className="flex flex-col items-end">
+              <div className="flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
+                <div className={`w-1.5 h-1.5 rounded-full ${metadata ? 'bg-blue-500' : 'bg-zinc-500'}`}></div>
+                <span className="text-xs font-medium text-zinc-400">
+                  {metadata?.syncTimestamp ? new Date(metadata.syncTimestamp).toLocaleString() : "Local Snapshot"}
+                </span>
+              </div>
+              <span className="text-[10px] text-zinc-600 mt-1 uppercase tracking-wider font-bold">Source: ERPNext</span>
             </div>
+
             <button onClick={() => setRightPanelOpen(!rightPanelOpen)} className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-900 hidden md:block">
               <LayoutDashboard size={20} />
             </button>
@@ -418,10 +375,9 @@ export default function AdminPage() {
                         {paginatedData.map(p => (
                           <tr key={p.item_code} className="group hover:bg-zinc-800/30 transition-colors">
                             <td className="p-3 text-center">
-                              <div onClick={(e) => { e.stopPropagation(); triggerDirectUpload(p.item_code) }} className="relative w-10 h-10 mx-auto bg-zinc-950 rounded-lg border border-zinc-800 overflow-hidden cursor-pointer hover:border-zinc-500 group-hover/img:scale-105 transition-all">
-                                <img src={`/images/${p.item_code}.jpg?v=${(p as any).imageVersion || ''}`} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement?.classList.add('bg-zinc-900'); e.currentTarget.parentElement?.querySelector('.fallback')?.classList.remove('hidden'); }} />
-                                <div className="fallback hidden absolute inset-0 flex items-center justify-center text-zinc-700"><Upload size={14} /></div>
-                                {uploading && targetItemCode === p.item_code && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><RefreshCw size={14} className="animate-spin text-white" /></div>}
+                              <div className="relative w-10 h-10 mx-auto bg-zinc-950 rounded-lg border border-zinc-800 overflow-hidden">
+                                <img src={`/images/items/${p.item_code}.jpg`} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement?.classList.add('bg-zinc-900'); e.currentTarget.parentElement?.querySelector('.fallback')?.classList.remove('hidden'); }} />
+                                <div className="fallback hidden absolute inset-0 flex items-center justify-center text-zinc-700"><Package size={14} /></div>
                               </div>
                             </td>
                             <td className="p-3">
@@ -435,7 +391,9 @@ export default function AdminPage() {
                               {p.standard_rate ? `₹${p.standard_rate}` : <span className="text-red-500 text-[10px]">₹0</span>}
                             </td>
                             <td className="p-3 text-center">
-                              <button onClick={() => openEditModal(p)} className="p-2 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-white transition-colors"><Edit3 size={16} /></button>
+                              <Tooltip content="Managed in ERP">
+                                <div className="p-2 inline-block rounded-lg text-zinc-600 cursor-not-allowed"><Server size={16} /></div>
+                              </Tooltip>
                             </td>
                           </tr>
                         ))}
@@ -451,21 +409,36 @@ export default function AdminPage() {
                   </div>
                 )}
               </div>
+
+            )}
+
+            {activeTab === 'pricing' && (
+              <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 h-[calc(100vh-140px)]">
+                <div className="mb-4">
+                  <h2 className="text-3xl font-black tracking-tighter">Pricing Console</h2>
+                  <p className="text-zinc-500 text-sm">Manage item prices, margins, and stock.</p>
+                </div>
+                <div className="h-full bg-zinc-950/30 rounded-2xl border border-zinc-800/50 overflow-hidden">
+                  <PricingConsole />
+                </div>
+              </div>
             )}
           </div>
         </main>
-      </div>
+      </div >
 
       {/* FLOATING TOGGLE BUTTON (When Panel Closed) */}
-      {!rightPanelOpen && (
-        <button
-          onClick={() => setRightPanelOpen(true)}
-          className="fixed right-0 top-1/2 -translate-y-1/2 z-50 p-2 pl-3 bg-zinc-900/90 backdrop-blur-md text-zinc-400 hover:text-white rounded-l-xl border-y border-l border-zinc-800 shadow-2xl transition-all hover:pl-4 group"
-          title="Open System Actions"
-        >
-          <ChevronLeft size={20} className="group-hover:scale-110 transition-transform" />
-        </button>
-      )}
+      {
+        !rightPanelOpen && (
+          <button
+            onClick={() => setRightPanelOpen(true)}
+            className="fixed right-0 top-1/2 -translate-y-1/2 z-50 p-2 pl-3 bg-zinc-900/90 backdrop-blur-md text-zinc-400 hover:text-white rounded-l-xl border-y border-l border-zinc-800 shadow-2xl transition-all hover:pl-4 group"
+            title="Open System Actions"
+          >
+            <ChevronLeft size={20} className="group-hover:scale-110 transition-transform" />
+          </button>
+        )
+      }
 
       {/* --- RIGHT ACTION PANEL (Bots & Quick Actions) --- */}
       <aside className={`fixed md:relative z-40 h-full w-80 bg-zinc-950 border-l border-zinc-900 flex flex-col transition-all duration-300 ease-in-out ${rightPanelOpen ? 'translate-x-0' : 'translate-x-full md:mr-[-20rem]'}`}>
@@ -495,6 +468,9 @@ export default function AdminPage() {
             <Button onClick={() => runSystemTest('erp')} isLoading={testStatus.erp === 'Running...'} fullWidth color="warning" variant="flat" className="font-bold text-orange-400 bg-orange-950/30">
               Sync Products
             </Button>
+            <div className="mt-2 text-[10px] text-zinc-600 text-center">
+              Re-fetches all items from ERPNext
+            </div>
           </div>
 
           {/* Telegram Bot */}
@@ -528,55 +504,6 @@ export default function AdminPage() {
         </div>
       </aside>
 
-      {/* --- EDIT MODAL (Copied Logic) --- */}
-      {editingItem && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-          <div className="bg-zinc-950 w-full md:max-w-lg rounded-2xl border border-zinc-800 shadow-2xl flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200">
-            <div className="p-5 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
-              <h3 className="font-bold text-lg">Edit Product</h3>
-              <button onClick={() => setEditingItem(null)}><X className="text-zinc-500 hover:text-white" /></button>
-            </div>
-            <div className="p-6 overflow-y-auto space-y-5">
-              <div>
-                <label className="text-[10px] font-bold text-zinc-500 uppercase">Item Name</label>
-                <input className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-xl focus:border-zinc-600 outline-none mt-1 font-bold" value={editForm.item_name} onChange={e => setEditForm({ ...editForm, item_name: e.target.value })} />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] font-bold text-zinc-500 uppercase">Price</label>
-                  <input type="number" className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-xl focus:border-zinc-600 outline-none mt-1 font-mono" value={editForm.standard_rate} onChange={e => setEditForm({ ...editForm, standard_rate: parseFloat(e.target.value) })} />
-                </div>
-                <div>
-                  <label className="text-[10px] font-bold text-zinc-500 uppercase">Stock Qty</label>
-                  <input type="number" className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-xl focus:border-zinc-600 outline-none mt-1 font-mono" value={editForm.stock_qty} onChange={e => setEditForm({ ...editForm, stock_qty: parseFloat(e.target.value) })} />
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <button onClick={() => setEditForm({ ...editForm, in_stock: !editForm.in_stock })} className={`flex-1 p-3 rounded-xl border font-bold text-xs transition-colors ${editForm.in_stock ? 'bg-green-900/20 border-green-900 text-green-400' : 'bg-red-900/20 border-red-900 text-red-400'}`}>{editForm.in_stock ? "IN STOCK" : "OUT OF STOCK"}</button>
-                <button onClick={() => setEditForm({ ...editForm, is_hot: !editForm.is_hot })} className={`flex-1 p-3 rounded-xl border font-bold text-xs transition-colors ${editForm.is_hot ? 'bg-orange-900/20 border-orange-900 text-orange-400' : 'bg-zinc-900 border-zinc-800 text-zinc-500'}`}>{editForm.is_hot ? "🔥 HOT ITEM" : "REGULAR ITEM"}</button>
-              </div>
-              <div className="p-4 bg-zinc-900/50 rounded-xl border border-zinc-800 flex items-center gap-4">
-                <div className="w-16 h-16 bg-black rounded-lg border border-zinc-800 overflow-hidden flex-none">
-                  <img src={`/images/${editForm.item_code}.jpg`} className="w-full h-full object-contain" />
-                </div>
-                <div className="flex-1">
-                  <label className="block text-xs font-bold text-zinc-500 mb-2">Update Photo</label>
-                  <div className="flex gap-2">
-                    <label className="cursor-pointer bg-zinc-800 text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 hover:bg-zinc-700">
-                      <Layers size={14} /> Choose File <input type="file" className="hidden" onChange={e => setSelectedFiles(e.target.files)} />
-                    </label>
-                    {selectedFiles && <button onClick={handleImageUpload} disabled={uploading} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-bold">{uploading ? "..." : "Upload"}</button>}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="p-5 border-t border-zinc-800 flex justify-end gap-3 bg-zinc-900/50">
-              <button onClick={() => setEditingItem(null)} className="px-6 py-3 rounded-xl font-bold text-sm text-zinc-400 hover:text-white">Cancel</button>
-              <button onClick={handleSaveItem} className="px-6 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-zinc-200">Save Changes</button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+    </div >
   );
 }

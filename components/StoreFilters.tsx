@@ -51,7 +51,7 @@ export default function StoreFilters({
         <>
             {/* 🚀 ACTION BAR (FILTER + SEARCH + SORT) */}
             <div
-                className={`sticky top-[64px] z-30 transition-transform duration-500 ease-in-out bg-background/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 shadow-sm
+                className={`sticky top-[64px] z-35 transition-transform duration-500 ease-in-out bg-background/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 shadow-sm
         ${scrollDirection === 'down' ? '-translate-y-[120%]' : 'translate-y-0'}`}
             >
                 <div className="max-w-[1400px] mx-auto px-4 py-2 flex justify-between items-center h-16">
