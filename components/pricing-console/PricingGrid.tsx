@@ -5,20 +5,11 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import clsx from "clsx";
 
-import { ColDef, ModuleRegistry, ValueFormatterParams, CellValueChangedEvent } from "ag-grid-community";
-import { ClientSideRowModelModule, RowSelectionModule, ValidationModule, NumberEditorModule, TextEditorModule, TextFilterModule, NumberFilterModule } from "ag-grid-community";
+import { ColDef, ValueFormatterParams, CellValueChangedEvent } from "ag-grid-community";
 import { ConsoleRow } from "@/types/pricing-console";
 import { ValidationBadge } from "./ValidationBadge";
 
-ModuleRegistry.registerModules([
-    ClientSideRowModelModule,
-    RowSelectionModule,
-    ValidationModule,
-    NumberEditorModule,
-    TextEditorModule,
-    TextFilterModule,
-    NumberFilterModule
-]);
+// Note: AG Grid modules are registered globally in lib/agGridModules.ts
 
 type PricingGridProps = {
     rows?: ConsoleRow[];
@@ -43,45 +34,65 @@ export function PricingGrid({ rows = [], onCellChange, readOnly = false, onReset
 
     const colDefs = useMemo<ColDef<ConsoleRow>[]>(
         () => [
-            { field: "item_code", headerName: "Item Code", pinned: "left", width: 120 },
-            { field: "item_name", headerName: "Name", flex: 2, minWidth: 200 },
+            {
+                field: "item_code",
+                headerName: "Item Code",
+                pinned: "left",
+                width: 140,
+                minWidth: 120,
+                headerClass: "text-left",
+                cellClass: "text-left",
+            },
+            {
+                field: "item_name",
+                headerName: "Name",
+                flex: 2,
+                minWidth: 220,
+                headerClass: "text-left",
+                cellClass: "text-left",
+            },
             {
                 field: "cost_price",
                 headerName: "Cost Price",
                 type: "numericColumn",
+                width: 120,
+                minWidth: 100,
+                headerClass: "text-right",
+                cellClass: "text-right",
                 valueFormatter: (p: ValueFormatterParams) =>
                     p.value ? `₹${p.value.toFixed(2)}` : "-",
                 editable: !readOnly,
                 cellEditor: "agNumberCellEditor",
-                cellClass: (params) => clsx(
-                    "bg-white border-2 border-transparent",
-                    !readOnly && "focus-within:border-blue-500",
-                    readOnly && "bg-gray-50 text-gray-500"
-                ),
             },
             {
                 field: "stock_quantity",
                 headerName: "Stock",
                 type: "numericColumn",
+                width: 100,
+                minWidth: 80,
+                headerClass: "text-right",
+                cellClass: "text-right",
                 editable: !readOnly,
                 cellEditor: "agNumberCellEditor",
-                cellClass: (params) => clsx(
-                    "bg-white border-2 border-transparent",
-                    !readOnly && "focus-within:border-blue-500",
-                    readOnly && "bg-gray-50 text-gray-500"
-                ),
             },
             {
                 field: "gst_rate",
                 headerName: "GST",
+                width: 90,
+                minWidth: 70,
+                headerClass: "text-center",
+                cellClass: "text-center",
                 valueFormatter: (p: ValueFormatterParams) =>
                     p.value ? `${(p.value * 100).toFixed(0)}%` : "-",
-                width: 80,
             },
             {
                 field: "derived_pricing.base_selling_price",
                 headerName: "BSP",
                 type: "numericColumn",
+                width: 120,
+                minWidth: 100,
+                headerClass: "text-right",
+                cellClass: "text-right",
                 valueFormatter: (p: ValueFormatterParams) =>
                     p.value ? `₹${p.value.toFixed(2)}` : "-",
             },
@@ -89,6 +100,10 @@ export function PricingGrid({ rows = [], onCellChange, readOnly = false, onReset
                 field: "derived_pricing.effective_margin_percent",
                 headerName: "Margin %",
                 type: "numericColumn",
+                width: 110,
+                minWidth: 90,
+                headerClass: "text-right",
+                cellClass: "text-right",
                 valueFormatter: (p: ValueFormatterParams) =>
                     p.value ? `${(p.value * 100).toFixed(1)}%` : "-",
                 cellStyle: (params) => {
@@ -102,16 +117,22 @@ export function PricingGrid({ rows = [], onCellChange, readOnly = false, onReset
             {
                 field: "validation_result",
                 headerName: "Status",
+                flex: 1,
+                minWidth: 140,
+                headerClass: "text-left",
+                cellClass: "text-left",
                 cellRenderer: (params: any) => {
                     if (!params.value) return null;
                     return <ValidationBadge status={params.value.status} message={params.value.messages?.[0]} />;
                 },
-                flex: 1,
             },
             {
                 headerName: "Action",
-                width: 80,
+                width: 90,
+                minWidth: 80,
                 pinned: "right",
+                headerClass: "text-center",
+                cellClass: "text-center",
                 cellRenderer: (params: any) => {
                     const data = params.data as ConsoleRow;
                     if (!data.is_modified || readOnly) return null;

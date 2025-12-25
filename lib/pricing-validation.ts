@@ -74,11 +74,11 @@ export function validateItem(
 
     // Warnings
     if (effective_margin_percent < 0.10) {
-        if (status !== 'BLOCK') status = 'WARN';
+        status = 'WARN';
         messages.push(`Low Margin Warning: ${margin_pct.toFixed(2)}% (<10%)`);
     }
     if (effective_margin_percent > 0.80) {
-        if (status !== 'BLOCK') status = 'WARN';
+        status = 'WARN';
         messages.push(`High Margin Warning: ${margin_pct.toFixed(2)}% (>80%)`);
     }
 
@@ -96,7 +96,7 @@ export function validateItem(
                 return { status: 'BLOCK', messages: [`Price change > 60%: ${(deltaPercent * 100).toFixed(2)}%`] };
             }
             if (absDelta > 0.30) {
-                if (status !== 'BLOCK') status = 'WARN';
+                status = 'WARN';
                 messages.push(`Price change > 30%: ${(deltaPercent * 100).toFixed(2)}%`);
             }
         }

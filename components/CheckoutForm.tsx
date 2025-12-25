@@ -67,24 +67,24 @@ export default function CheckoutForm({ onSuccess }: CheckoutFormProps) {
     // --- SUCCESS VIEW ---
     if (orderSuccess) {
         return (
-            <div className="h-full absolute inset-0 z-[100] bg-card p-6 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-300">
-                <div className="w-24 h-24 bg-green-500/10 dark:bg-green-500/20 rounded-full flex items-center justify-center mb-6 text-green-600 dark:text-green-500 animate-in zoom-in duration-500 delay-100">
+            <div className="h-full absolute inset-0 z-[100] bg-white p-6 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-300">
+                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600 animate-in zoom-in duration-500 delay-100">
                     <CheckCircle size={48} strokeWidth={3} />
                 </div>
 
-                <h2 className="text-3xl font-black uppercase tracking-tight mb-3 text-foreground">Order Received!</h2>
-                <p className="text-muted-foreground font-medium mb-8 max-w-[280px] leading-relaxed">
+                <h2 className="text-3xl font-black uppercase tracking-tight mb-3 text-black">Order Received!</h2>
+                <p className="text-zinc-800 font-bold mb-8 max-w-[280px] leading-relaxed">
                     Thank you, {formData.name}.<br />We will contact you shortly to confirm the details.
                 </p>
 
-                <div className="bg-default-100/50 dark:bg-default-50/10 rounded-2xl p-6 w-full max-w-sm mb-8 border border-border/50 backdrop-blur-sm">
+                <div className="bg-zinc-50 rounded-2xl p-6 w-full max-w-sm mb-8 border border-zinc-200">
                     <div className="flex justify-between items-center mb-3">
-                        <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Order ID</span>
-                        <span className="font-mono font-bold text-foreground bg-background px-2 py-1 rounded border border-border">{orderId}</span>
+                        <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Order ID</span>
+                        <span className="font-mono font-bold text-black bg-white px-2 py-1 rounded border border-zinc-200">{orderId}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                        <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Placed On</span>
-                        <span className="text-xs font-bold text-foreground">{orderDate}</span>
+                        <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Placed On</span>
+                        <span className="text-xs font-bold text-black">{orderDate}</span>
                     </div>
                 </div>
 

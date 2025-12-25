@@ -1,37 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nandan Traders Frontend (NTWeb)
 
-## Getting Started
+**NTWeb** is the Next.js-based e-commerce storefront and admin console for Nandan Traders. It serves as a high-performance, static-first catalog that syncs authoritative data from **ERPNext** and provides a modern shopping experience for B2B customers, along with internal tools for pricing and order management.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Key Features
+
+### 🛍️ Digital Storefront
+-   **Static Catalog**: High-speed browsing with data mirrored from ERPNext.
+-   **Smart Filtering**: Fuzzy search, category filters, and brand detection.
+-   **Responsive Design**: Mobile-optimized UI built with Tailwind CSS and HeroUI.
+-   **Cart & Checkout**: Local cart management with direct ERP order injection.
+
+### 💼 Pricing Console (Internal)
+-   **AG Grid Integration**: efficient bulk pricing management.
+-   **Guardrails**: Safety checks for margin, GST rates, and price deltas.
+-   **ERP Sync**: Read-only visualization of ERP item snapshots.
+
+### 🛡️ Admin & Ops
+-   **Order Management**: View and track customer orders.
+-   **Telegram Integration**: Real-time notifications for new orders and delivery updates.
+-   **Sync System**: One-way authoritative sync from ERPNext to local JSON/Images.
+
+---
+
+## 🛠️ Tech Stack
+
+-   **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+-   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/), [HeroUI](https://www.heroui.com/)
+-   **Data Grid**: [AG Grid Community](https://www.ag-grid.com/)
+-   **State/Utils**: generic `useState` / `useEffect` patterns, `framer-motion` for animations.
+-   **Backend**: Next.js API Routes (Serverless Functions).
+-   **Integration**: Custom ERPNext fetcher (Axios), Telegram Bot API.
+
+---
+
+## 📂 Project Structure
+
+```
+├── app/                  # Next.js App Router
+│   ├── api/              # Backend API routes (Order, Auth, Admin)
+│   ├── login/            # Authentication pages
+│   ├── pricing-console/  # Internal Pricing Console tool
+│   └── page.tsx          # Storefront Homepage
+├── components/           # React UI Components
+│   ├── pricing-console/  # Console-specific components
+│   └── ...               # Shared storefront components (ProductCard, Header)
+├── lib/                  # Core Libraries & Utilities
+│   ├── erp/              # ERP Sync & Normalization Logic (Read-Only)
+│   ├── erp.ts            # Frontend Data Access Layer (Stubs/Types)
+│   └── telegram.ts       # Notification Service
+├── scripts/              # Automation & Maintenance Scripts
+│   ├── deploy.js         # One-click deployment & git push
+│   └── sync_from_erp.ts  # Master script to fetch data from ERPNext
+├── public/               # Static Assets
+│   ├── catalog.json      # Generated Product Database
+│   └── images/items/     # Synced Product Images
+└── .env.local            # Environment Secrets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚡ Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
+-   **Node.js**: v18.17.0 or higher
+-   **ERPNext**: Access to a running ERPNext instance (v14/v15).
 
-## Learn More
+### 1. Installation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git clone <repository_url>
+cd ntweb
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Install dependencies
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Environment Variables
+Create a `.env.local` file in the root directory:
 
-## Deploy on Vercel
+```env
+# --- ERPNext Connection ---
+ERP_NEXT_URL="https://your-erp-instance.com"
+ERP_API_KEY="your_api_key"
+ERP_API_SECRET="your_api_secret"
+ERP_COMPANY_ADDRESS="Your Company Address Name"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# --- Authentication & Security ---
+ADMIN_PASSWORD="your_admin_console_password"
+SESSION_SECRET="complex_random_string_for_jose_jwt"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# ntweb
+# --- Telegram Notifications ---
+TELEGRAM_BOT_TOKEN="your_bot_token"
+TELEGRAM_CHAT_ID="your_orders_chat_id"
+TELEGRAM_ALERTS_CHAT_ID="your_alerts_chat_id"
+
+# --- Sync Configuration ---
+SYNC_IMAGE_QUALITY="80"
+SYNC_IMAGE_MAX_WIDTH="1200"
+SYNC_GIT_AUTO_PUSH="false" # Set to true in production context
+```
+
+### 3. Running Locally
+
+**Development Server:**
+```bash
+npm run dev
+# Opens http://localhost:3000
+```
+
+**Sync Data from ERP (Manual):**
+This pulls items/images from ERPNext and updates `public/catalog.json`.
+```bash
+npm run sync
+```
+
+**Production Build:**
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 🚢 Deployment
+
+The project includes a helper script for streamlined deployment (Sync -> Commit -> Push).
+
+```bash
+# Full Deployment (Syncs Data + Pushes Code)
+npm run deploy
+
+# Javascript-only Deployment (Skips Data Sync)
+npm run deploy -- --quick
+```
+
+---
+
+## 🔮 Roadmap / Future Improvements
+
+-   **Pricing Write-Back**: Implement secure API to write approved pricing changes back to ERPNext (currently Read-Only).
+-   **Customer Portal**: Expanded history and invoice download for logged-in B2B customers.
+-   **Advanced Search**: Move from fuzzy matching to a dedicated search index (e.g., Fuse.js or Meilisearch) for larger catalogs.

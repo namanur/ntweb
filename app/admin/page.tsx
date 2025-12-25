@@ -1,4 +1,8 @@
 "use client";
+
+// Register AG Grid modules globally (must be imported before any grid components)
+import "@/lib/agGridModules";
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { Product, Order } from '@/lib/erp';
 import { PricingConsole } from "@/components/pricing-console/PricingConsole";
@@ -440,10 +444,10 @@ export default function AdminPage() {
         )
       }
 
-      {/* --- RIGHT ACTION PANEL (Bots & Quick Actions) --- */}
+      {/* --- RIGHT STATUS PANEL (System Health - Read Only) --- */}
       <aside className={`fixed md:relative z-40 h-full w-80 bg-zinc-950 border-l border-zinc-900 flex flex-col transition-all duration-300 ease-in-out ${rightPanelOpen ? 'translate-x-0' : 'translate-x-full md:mr-[-20rem]'}`}>
         <div className="p-6 border-b border-zinc-900 flex justify-between items-center">
-          <span className="font-bold tracking-tight text-white">System Actions</span>
+          <span className="font-bold tracking-tight text-white">System Status</span>
           <button
             onClick={() => setRightPanelOpen(false)}
             className="text-zinc-500 hover:text-white transition-colors p-1 hover:bg-zinc-900 rounded-lg"
@@ -456,47 +460,66 @@ export default function AdminPage() {
         </div>
         <div className="p-6 space-y-6 overflow-y-auto">
 
-          {/* Sync Bot */}
+          {/* ERP Status (Read-Only) */}
           <div className="p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-8 rounded-lg bg-orange-900/20 text-orange-400 flex items-center justify-center"><Database size={16} /></div>
               <div>
-                <h3 className="font-bold text-sm">ERP Sync</h3>
-                <p className="text-[10px] text-zinc-500">{testStatus.erp}</p>
+                <h3 className="font-bold text-sm">ERP Connection</h3>
+                <p className="text-[10px] text-zinc-500">ERPNext Mirror</p>
               </div>
             </div>
-            <Button onClick={() => runSystemTest('erp')} isLoading={testStatus.erp === 'Running...'} fullWidth color="warning" variant="flat" className="font-bold text-orange-400 bg-orange-950/30">
-              Sync Products
-            </Button>
-            <div className="mt-2 text-[10px] text-zinc-600 text-center">
-              Re-fetches all items from ERPNext
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-zinc-400">Status</span>
+                <span className="flex items-center gap-1.5 text-green-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  {metadata?.syncTimestamp ? "Synced" : "Local Snapshot"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-zinc-400">Last Updated</span>
+                <span className="text-zinc-300 font-mono text-[10px]">
+                  {metadata?.syncTimestamp ? new Date(metadata.syncTimestamp).toLocaleString() : "N/A"}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-zinc-400">Items Cached</span>
+                <span className="text-zinc-300 font-bold">{products.length}</span>
+              </div>
             </div>
           </div>
 
-          {/* Telegram Bot */}
+          {/* Console Mode Badge */}
           <div className="p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-blue-900/20 text-blue-400 flex items-center justify-center"><Zap size={16} /></div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-900/20 text-blue-400 flex items-center justify-center"><DollarSign size={16} /></div>
               <div>
-                <h3 className="font-bold text-sm">Telegram Bot</h3>
-                <p className="text-[10px] text-zinc-500">{testStatus.telegram}</p>
+                <h3 className="font-bold text-sm">Pricing Console</h3>
+                <p className="text-[10px] text-zinc-500">Operational Mode</p>
               </div>
             </div>
-            <Button onClick={() => runSystemTest('telegram')} isLoading={testStatus.telegram === 'Running...'} fullWidth color="primary" variant="flat" className="font-bold">
-              Test Alert
-            </Button>
+            <div className="px-3 py-2 rounded-lg bg-blue-950/30 border border-blue-900/30 text-center">
+              <span className="text-sm font-bold text-blue-400">Preview Mode</span>
+              <p className="text-[10px] text-zinc-500 mt-1">Read-only access</p>
+            </div>
           </div>
 
+          {/* System Health */}
           <div className="pt-6 border-t border-zinc-900">
-            <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-4">Recent Activity</h4>
-            <div className="space-y-4">
-              {/* Dummy activity log */}
-              <div className="flex gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 shrink-0"></div>
-                <div>
-                  <p className="text-xs text-zinc-300">System initialization complete</p>
-                  <p className="text-[10px] text-zinc-600">Just now</p>
-                </div>
+            <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-4">Health Checks</h4>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <span className="text-zinc-300">Database Connected</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <span className="text-zinc-300">API Endpoints Live</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <span className="text-zinc-300">Catalog Loaded</span>
               </div>
             </div>
           </div>

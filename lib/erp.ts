@@ -52,9 +52,10 @@ export interface Order {
 }
 
 export interface ProductMetadata {
-  syncTimestamp: string;
-  itemCount: number;
-  version: string;
+  generated_at: string;
+  itemCount?: number;
+  version?: string;
+  source?: string;
 }
 
 // --- FUNCTIONS ---
@@ -93,31 +94,8 @@ export async function getProductsMetadata(): Promise<ProductMetadata | null> {
 export async function updateProductLocal(itemCode: string, updates: Partial<Product>) {
   try {
     throw new Error("Runtime updates to products.json are disabled. This file is a derived snapshot from ERPNext.");
-    /*
-    const filePath = path.join(process.cwd(), 'src/data/products.json');
-    if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const products: Product[] = JSON.parse(fileContent);
-
-      const updatedProducts = products.map(p => {
-        if (p.item_code === itemCode) {
-          const updated = { ...p, ...updates };
-          if (updates.stock_qty !== undefined) updated.stock_qty = Number(updates.stock_qty);
-          if (updates.threshold !== undefined) updated.threshold = Number(updates.threshold);
-
-          if (updated.stock_qty !== undefined && updated.stock_qty <= 0) {
-            updated.in_stock = false;
-          }
-
-          return updated;
-        }
-        return p;
-      });
-
-      fs.writeFileSync(filePath, JSON.stringify(updatedProducts, null, 2));
-      return true;
-    }
-    */
+    throw new Error("Runtime updates to products.json are disabled. This file is a derived snapshot from ERPNext.");
+    // Intentionally stubbed — local mutations are disabled by design
   } catch (error) {
     console.error("Failed to update local JSON", error);
     throw new Error("Local Update Failed: Runtime writes disabled");
@@ -143,60 +121,17 @@ export async function getOrders(): Promise<Order[]> {
 export async function saveOrderLocal(order: Order) {
   // NOTE: Runtime file writes disabled. Persistence layer TODO.
   console.log("Skipping local save: orders.json is read-only in this environment.");
+  // Intentionally stubbed — local mutations are disabled by design
   // return true to mock success
   return true;
-  /*
-  try {
-    const filePath = path.join(process.cwd(), 'src/data/orders.json');
-    const dir = path.dirname(filePath);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-
-    let orders: Order[] = [];
-    if (fs.existsSync(filePath)) {
-      orders = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    }
-
-    const existingIndex = orders.findIndex(o => o.id === order.id);
-    if (existingIndex >= 0) {
-      orders[existingIndex] = order;
-    } else {
-      orders.push(order);
-    }
-
-    fs.writeFileSync(filePath, JSON.stringify(orders, null, 2));
-    return true;
-  } catch (error) {
-    console.error("Failed to save order locally:", error);
-    throw new Error("Order Save Failed");
-  }
-  */
 }
 
 // 5. UPDATE ORDER STATUS
 // 5. UPDATE ORDER STATUS
 export async function updateOrderStatus(orderId: string, status: Order["status"]) {
   console.log("Skipping local status update: Runtime writes disabled.");
+  // Intentionally stubbed — local mutations are disabled by design
   return true;
-  /*
-  try {
-    const filePath = path.join(process.cwd(), 'src/data/orders.json');
-    if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const orders: Order[] = JSON.parse(fileContent);
-
-      const updatedOrders = orders.map(o =>
-        o.id === orderId ? { ...o, status } : o
-      );
-
-      fs.writeFileSync(filePath, JSON.stringify(updatedOrders, null, 2));
-      return true;
-    }
-    throw new Error("Orders file not found");
-  } catch (error) {
-    console.error("Failed to update order status:", error);
-    throw error;
-  }
-  */
 }
 
 // 6. TEST ERP CONNECTION
@@ -300,34 +235,8 @@ export async function deductInventory(items: OrderItem[]) {
   // NOTE: Inventory deduction disabled for local snapshot.
   // This file is a derived snapshot from ERPNext. Do not write to it at runtime.
   console.log("Skipping local inventory deduction: products.json is read-only.");
+  // Intentionally stubbed — local mutations are disabled by design
   return;
-  /*
-  try {
-    const filePath = path.join(process.cwd(), 'src/data/products.json');
-    if (!fs.existsSync(filePath)) return;
-
-    let products: Product[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-
-    const itemMap = new Map(items.map(item => [item.item_code, item.qty]));
-
-    products = products.map(p => {
-      const deductionQty = itemMap.get(p.item_code);
-      if (deductionQty !== undefined && p.stock_qty !== undefined) {
-        const newQty = Math.max(0, p.stock_qty - deductionQty);
-        p.stock_qty = newQty;
-
-        if (newQty <= 0) {
-          p.in_stock = false;
-        }
-      }
-      return p;
-    });
-
-    fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
-  } catch (error) {
-    console.error("Failed to deduct inventory:", error);
-  }
-  */
 }
 
 // 10. SYNC COMPANY DETAILS

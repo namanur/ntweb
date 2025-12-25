@@ -6,6 +6,7 @@ import { PricingGrid } from "./PricingGrid";
 import { IntentLockModal } from "./IntentLockModal";
 import { SyncTimelinePanel, SyncHistoryEntry } from "./SyncTimelinePanel";
 import { GuardrailsWrapper } from "./Guardrails";
+import { IssuesDrawer, Issue } from "./IssuesDrawer";
 import {
     pricingConsoleReducer,
     initialPricingConsoleState,
@@ -44,6 +45,9 @@ export function PricingConsole() {
     // History
     const [syncHistory, setSyncHistory] = useState<SyncHistoryEntry[]>([]);
     const [isHistoryPanelOpen, setIsHistoryPanelOpen] = useState(false);
+
+    // Issues
+    const [isIssuesDrawerOpen, setIsIssuesDrawerOpen] = useState(false);
 
     // Guardrails & Activation
     const [isActivated, setIsActivated] = useState(false); // In reality, check LocalStorage/DB
@@ -100,6 +104,40 @@ export function PricingConsole() {
             return true;
         });
     }, [rows, activeFilter]);
+
+    // --- Compute Issues ---
+    const issues = useMemo<Issue[]>(() => {
+        const computed: Issue[] = [];
+
+        // Validation issues from grid rows
+        rows.forEach((row) => {
+            if (row.validation_result.status === "BLOCK") {
+                computed.push({
+                    id: `validation-block-${row.item_code}`,
+                    type: "VALIDATION",
+                    severity: "BLOCK",
+                    title: "Validation Failed",
+                    itemCode: row.item_code,
+                    message: row.validation_result.messages[0] || "Item has blocking validation errors",
+                    location: "Pricing Console Grid",
+                    resolution: "Review the item's derived pricing and correct the source values",
+                });
+            } else if (row.validation_result.status === "WARN") {
+                computed.push({
+                    id: `validation-warn-${row.item_code}`,
+                    type: "VALIDATION",
+                    severity: "WARN",
+                    title: "Validation Warning",
+                    itemCode: row.item_code,
+                    message: row.validation_result.messages[0] || "Item has validation warnings",
+                    location: "Pricing Console Grid",
+                    resolution: "Review and verify the values are acceptable",
+                });
+            }
+        });
+
+        return computed;
+    }, [rows]);
 
 
     // --- Handlers ---
@@ -262,6 +300,26 @@ export function PricingConsole() {
                     onClose={() => setIsHistoryPanelOpen(false)}
                     history={syncHistory}
                 />
+
+                <IssuesDrawer
+                    isOpen={isIssuesDrawerOpen}
+                    onClose={() => setIsIssuesDrawerOpen(false)}
+                    issues={issues}
+                />
+
+                {/* Bottom-left Issues Indicator */}
+                {issues.length > 0 && (
+                    <button
+                        onClick={() => setIsIssuesDrawerOpen(true)}
+                        className="fixed bottom-6 left-6 z-40 flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition-all hover:scale-105 font-medium text-sm"
+                        title="Click to inspect issues"
+                    >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>{issues.length} {issues.length === 1 ? "Issue" : "Issues"}</span>
+                    </button>
+                )}
 
                 {/* Activation Modal */}
                 {isActivationModalOpen && (

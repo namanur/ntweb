@@ -139,3 +139,39 @@
 .dark .glass-panel {
   @apply bg-zinc-950/80 border-zinc-800/50;
 }
+
+/* =====================================================
+   AG GRID VISUAL CONSISTENCY
+   ===================================================== */
+
+/* Enable vertical and horizontal grid lines for spreadsheet-like appearance */
+.ag-theme-quartz .ag-cell {
+  border-right: 1px solid var(--ag-border-color, #e5e7eb);
+}
+
+.ag-theme-quartz .ag-header-cell {
+  border-right: 1px solid var(--ag-border-color, #d1d5db);
+}
+
+.ag-theme-quartz .ag-row {
+  border-bottom: 1px solid var(--ag-border-color, #e5e7eb);
+}
+
+/* Ensure proper alignment classes work */
+.ag-theme-quartz .ag-header-cell.text-left,
+.ag-theme-quartz .ag-cell.text-left {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.ag-theme-quartz .ag-header-cell.text-right,
+.ag-theme-quartz .ag-cell.text-right {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.ag-theme-quartz .ag-header-cell.text-center,
+.ag-theme-quartz .ag-cell.text-center {
+  text-align: center;
+  justify-content: center;
+}
