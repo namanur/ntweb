@@ -330,7 +330,7 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
                   className="flex-1 font-bold shadow-lg"
                   startContent={<Plus size={20} />}
                 >
-                  {getCartQty(selectedProduct.item_code) > 0 ? "Add +1" : "Add 6 (Min)"}
+                  {getCartQty(selectedProduct.item_code) > 0 ? "Add +1" : "Add 2 (Min)"}
                 </Button>
               </div>
             </div>

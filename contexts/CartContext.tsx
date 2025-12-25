@@ -48,7 +48,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const addToCart = (item: Product, qtyToAdd?: number) => {
         setCart(prev => {
             const exists = prev.find(p => p.item_code === item.item_code);
-            const addAmount = qtyToAdd !== undefined ? qtyToAdd : (exists ? 1 : 6);
+            const addAmount = qtyToAdd !== undefined ? qtyToAdd : (exists ? 1 : 2);
 
             if (exists) {
                 return prev.map(p =>
@@ -63,7 +63,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setCart(prev => prev.map(item => {
             if (item.item_code !== code) return item;
             const newQty = item.qty + delta;
-            if (newQty < 6) return { ...item, qty: 0 }; // Remove if below 6
+            if (newQty < 2) return { ...item, qty: 0 }; // Remove if below 2
             return { ...item, qty: newQty };
         }).filter(i => i.qty > 0));
     };

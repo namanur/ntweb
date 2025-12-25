@@ -16,12 +16,12 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOpenCart }: ProductCardProps) {
   const isInCart = cartQty > 0;
-  const minQty = isInCart ? 1 : 6;
+  const minQty = isInCart ? 1 : 2;
 
   const [qty, setQty] = useState(minQty);
 
   useEffect(() => {
-    setQty(isInCart ? 1 : 6);
+    setQty(isInCart ? 1 : 2);
   }, [isInCart]);
 
   const getImageUrl = () => {
@@ -98,7 +98,7 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
             </>
           ) : (
             <>
-              <ShoppingCart size={16} /> <span className="text-xs font-bold">Add 6</span>
+              <ShoppingCart size={16} /> <span className="text-xs font-bold">Add 2</span>
             </>
           )}
         </button>
@@ -139,7 +139,7 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
           </div>
         ) : (
           <div className="flex flex-col items-end">
-            <span className="text-[11px] text-zinc-400 mb-0.5">Min Qty: 6</span>
+            <span className="text-[11px] text-zinc-400 mb-0.5">Min Qty: 2</span>
           </div>
         )}
       </div>
