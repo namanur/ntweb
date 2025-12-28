@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log("DEBUG: Script started");
+
 /**
  * Main ERPNext sync script
  * Orchestrates the entire sync process from ERPNext to static catalog
@@ -229,10 +229,7 @@ function printStats(stats: SyncStats) {
 }
 
 // Run sync if called directly
-console.log("DEBUG: Checking entry point...", import.meta.url, process.argv[1]);
-// Weak check for now to ensure it runs
-if (true || import.meta.url === `file://${process.argv[1]}`) {
-    console.log("DEBUG: Calling sync()...");
+if (import.meta.url === `file://${process.argv[1]}`) {
     sync().catch(() => process.exit(1));
 }
 
