@@ -6,6 +6,7 @@ import "@/lib/agGridModules";
 import React, { useState, useEffect, useMemo } from 'react';
 import { Product, Order } from '@/lib/erp';
 import { PricingConsole } from "@/components/pricing-console/PricingConsole";
+import { BuyingConsole } from "@/components/admin/BuyingConsole";
 import Image from 'next/image';
 import {
   LayoutDashboard, Package, ShoppingCart, Server, Database, LogOut, Save, X, Edit3,
@@ -228,7 +229,8 @@ export default function AdminPage() {
           <SidebarItem active={activeTab === 'dashboard'} onClick={() => setActiveTab("dashboard")} icon={LayoutDashboard} label="Overview" />
           <SidebarItem active={activeTab === 'orders'} onClick={() => setActiveTab("orders")} icon={ShoppingCart} label="Orders" count={orders.filter(o => o.status === 'Pending').length} />
           <SidebarItem active={activeTab === 'products'} onClick={() => setActiveTab("products")} icon={Package} label="Inventory" count={products.length} />
-          <SidebarItem active={activeTab === 'pricing'} onClick={() => setActiveTab("pricing")} icon={DollarSign} label="Pricing Console" />
+          <SidebarItem active={activeTab === 'pricing'} onClick={() => setActiveTab("pricing")} icon={DollarSign} label="Pricing (Selling)" />
+          <SidebarItem active={activeTab === 'buying'} onClick={() => setActiveTab("buying")} icon={Layers} label="Buying (Admin)" />
 
           {/* <div className="text-[10px] font-bold text-zinc-500 uppercase px-4 mb-2 mt-8 tracking-wider">System</div>
           <SidebarItem onClick={() => {}} icon={Settings} label="Settings" /> */}
@@ -427,7 +429,16 @@ export default function AdminPage() {
                 </div>
               </div>
             )}
+
+            {activeTab === 'buying' && (
+              <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 h-[calc(100vh-140px)]">
+                <div className="h-full">
+                  <BuyingConsole />
+                </div>
+              </div>
+            )}
           </div>
+
         </main>
       </div >
 

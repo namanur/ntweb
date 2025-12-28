@@ -159,6 +159,7 @@ export function PricingGrid({ rows = [], onCellChange, readOnly = false, onReset
             style={{ height: "100%", minHeight: "500px" }}
         >
             <AgGridReact
+                theme="legacy"
                 rowData={rows}
                 columnDefs={colDefs}
                 defaultColDef={{

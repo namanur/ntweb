@@ -25,6 +25,18 @@ export interface ERPAttachment {
     is_private: number;
 }
 
+// Buying Console Item
+export interface BuyingItem {
+    item_code: string;
+    item_name: string;
+    item_group: string;
+    brand: string;
+    current_buying_price: number;
+    current_stock_qty: number;
+    current_stock_value: number;
+    last_updated: string;
+}
+
 // Normalized product format for catalog
 export interface NormalizedProduct {
     item_code: string;
