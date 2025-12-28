@@ -25,7 +25,7 @@ try {
     if (!isQuick) {
         // STEP 1: Sync from ERP (Single Source of Truth)
         console.log("\n🔄 1. Syncing Product Data from ERPNext...");
-        run('npx tsx scripts/sync_from_erp.ts');
+        run('npm run sync');
     } else {
         console.log("\n⏩ Skipping Data Sync (--quick mode enabled)");
     }

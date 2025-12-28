@@ -32,7 +32,8 @@ export class ERPFetcher {
         console.log('📥 Fetching items from ERPNext...');
 
         try {
-            const response = await this.retryRequest(async () => {
+            // 1. Fetch Items
+            const itemsResponse = await this.retryRequest(async () => {
                 return await this.client.get('/api/resource/Item', {
                     params: {
                         fields: JSON.stringify([
@@ -49,14 +50,50 @@ export class ERPFetcher {
                             'is_stock_item'
                         ]),
                         filters: JSON.stringify([['disabled', '=', 0]]),
-                        limit_page_length: 5000, // Fetch up to 5000 items
+                        limit_page_length: 5000,
                     },
                 });
             });
+            const items: ERPItem[] = itemsResponse.data.data;
 
-            const items: ERPItem[] = response.data.data;
-            console.log(`✅ Fetched ${items.length} items from ERPNext`);
-            return items;
+            // 2. Fetch Prices (Item Price)
+            const TARGET_PRICE_LIST = "Standard Selling";
+
+            console.log(`📥 Fetching prices (Price List: ${TARGET_PRICE_LIST})...`);
+
+            const pricesResponse = await this.retryRequest(async () => {
+                return await this.client.get('/api/resource/Item Price', {
+                    params: {
+                        fields: JSON.stringify(['item_code', 'price_list_rate', 'price_list', 'valid_from']),
+                        filters: JSON.stringify([
+                            ['price_list', '=', TARGET_PRICE_LIST],
+                            ['selling', '=', 1]
+                        ]),
+                        limit_page_length: 5000
+                    }
+                });
+            });
+
+            const prices: any[] = pricesResponse.data.data || [];
+
+            // 3. Map Prices to Items
+            const priceMap = new Map<string, number>();
+            prices.forEach(p => {
+                priceMap.set(p.item_code, p.price_list_rate);
+            });
+
+            // 4. Merge
+            const enrichedItems = items.map(item => {
+                const realPrice = priceMap.get(item.item_code);
+                if (realPrice !== undefined) {
+                    return { ...item, standard_rate: realPrice };
+                }
+                return item; // Fallback to Item.standard_rate
+            });
+
+            console.log(`✅ Fetched ${enrichedItems.length} items from ERPNext (Prices merged)`);
+            return enrichedItems;
+
         } catch (error: any) {
             console.error('❌ Failed to fetch items from ERPNext:', error.message);
             throw new Error(`ERPNext fetch failed: ${error.message}`);
@@ -124,6 +161,83 @@ export class ERPFetcher {
                 return this.retryRequest(requestFn, retries - 1);
             }
             throw error;
+        }
+    }
+
+    /**
+     * Update Item Prices in ERPNext
+     * Expects changes in format: { item_code: string, new_price: number }
+     */
+    async updatePrices(changes: any[]): Promise<any> {
+        const results = { success: 0, failed: 0, errors: [] as string[] };
+
+        console.log(`📤 Pushing ${changes.length} price updates to ERPNext...`);
+
+        // Process sequentially to avoid rate limits, or use Promise.all for speed if server permits
+        for (const change of changes) {
+            try {
+                const priceList = "Standard Selling";
+
+                // 1. Search for existing price
+                const searchRes = await this.client.get('/api/resource/Item Price', {
+                    params: {
+                        filters: JSON.stringify([
+                            ['item_code', '=', change.item_code],
+                            ['price_list', '=', priceList]
+                        ]),
+                        fields: JSON.stringify(['name', 'price_list_rate'])
+                    }
+                });
+
+                const existing = searchRes.data.data[0];
+
+                if (existing) {
+                    // 2. Update existing record
+                    await this.client.put(`/api/resource/Item Price/${existing.name}`, {
+                        price_list_rate: change.new_price
+                    });
+                } else {
+                    // 3. Create new record if it doesn't exist
+                    await this.client.post('/api/resource/Item Price', {
+                        item_code: change.item_code,
+                        price_list: priceList,
+                        price_list_rate: change.new_price
+                    });
+                }
+
+                results.success++;
+            } catch (error: any) {
+                console.error(`❌ Failed to update ${change.item_code}:`, error.message);
+                results.failed++;
+                results.errors.push(`${change.item_code}: ${error.message}`);
+            }
+        }
+
+        return results;
+    }
+
+    /**
+     * Fetch raw item prices
+     */
+    async fetchItemPrices(priceList: string = "Standard Selling"): Promise<Record<string, number>> {
+        try {
+            const response = await this.client.get('/api/resource/Item Price', {
+                params: {
+                    fields: JSON.stringify(['item_code', 'price_list_rate']),
+                    filters: JSON.stringify([['price_list', '=', priceList]]),
+                    limit_page_length: 5000
+                }
+            });
+
+            const priceMap: Record<string, number> = {};
+            response.data.data.forEach((p: any) => {
+                priceMap[p.item_code] = p.price_list_rate;
+            });
+
+            return priceMap;
+        } catch (error: any) {
+            console.error("Failed to fetch prices:", error.message);
+            return {};
         }
     }
 
