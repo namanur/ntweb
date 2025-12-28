@@ -1,3 +1,6 @@
+# ntweb
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/namanur/ntweb?utm_source=oss&utm_medium=github&utm_campaign=namanur%2Fntweb&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 # Nandan Traders Frontend (NTWeb)
 
 **NTWeb** is the Next.js-based e-commerce storefront and admin console for Nandan Traders. It serves as a high-performance, static-first catalog that syncs authoritative data from **ERPNext** and provides a modern shopping experience for B2B customers, along with internal tools for pricing and order management.
