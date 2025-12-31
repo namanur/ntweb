@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "syncTimestamp": "2025-12-28T14:27:08.180Z",
+    "syncTimestamp": "2025-12-29T17:13:23.841Z",
     "itemCount": 549,
     "version": "1.0"
   },
@@ -680,7 +680,7 @@
     {
       "item_code": "BOTP000024",
       "item_name": "Oil Dispenser Bottle 1000 ml",
-      "description": "Large plastic oil dispenser",
+      "description": "<div><p>Oil Dispenser which is a great product for dispensing oil that too really safely and in a durable way. The dispenser is made of food grade materials and thus, is completely safe to use. The dispenser is made in a way that it is durable, tough and sturdy. It is unbreakable and is of superior quality. Pouring oil is altogether an easy task now with this Easy Flow Steel Oil Dispenser.</p></div>",
       "item_group": "Bottle",
       "brand": "Generic",
       "standard_rate": 0,
@@ -2594,9 +2594,7 @@
       "standard_rate": 287,
       "wholesale_rate": 0,
       "stock_uom": "Pcs",
-      "images": [
-        "/images/items/STOOL-18INCHFOLD.webp"
-      ],
+      "images": [],
       "in_stock": true
     },
     {

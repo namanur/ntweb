@@ -4,7 +4,7 @@ import path from 'path';
 
 export async function GET() {
   try {
-    const filePath = path.join(process.cwd(), 'public/catalog.json');
+    const filePath = path.join(process.cwd(), 'data/catalog.json');
     // NOTE: This file is a derived snapshot from ERPNext. Do not write to it at runtime.
 
     if (!fs.existsSync(filePath)) {

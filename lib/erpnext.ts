@@ -233,11 +233,79 @@ export async function checkConnection(): Promise<boolean> {
     }
 }
 
+/**
+ * Upload a file to ERPNext.
+ */
+export async function uploadFile(
+    fileBuffer: Buffer,
+    filename: string,
+    doctype: string,
+    docname: string,
+    isPrivate: boolean = false
+): Promise<any> {
+    const op = `uploadFile(${filename})`;
+    try {
+        // ERPNext expects multipart/form-data
+        // We construct it manually or use axios (which handles it if passed FormData, 
+        // but here we are in Node environment, so we might need 'form-data' package or just construct payload).
+        // Since we cannot add dependencies easily, and 'form-data' might not be present...
+        // Actually, we can use standard fetch with FormData in Node 18+ (Next.js environment).
+
+        const formData = new FormData();
+        const blob = new Blob([fileBuffer]);
+        formData.append('file', blob, filename);
+        formData.append('is_private', isPrivate ? '1' : '0');
+        formData.append('doctype', doctype);
+        formData.append('docname', docname);
+        formData.append('folder', 'Home');
+
+        // We use the custom client but axios needs adaptation for FormData in Node if not using 'form-data' pkg.
+        // However, standard global fetch is safer for FormData in Next.js App Router context.
+        // But we want to reuse the auth headers from our 'client'.
+
+        // Let's rely on axios + FormData if we can, or falls back to fetch.
+        // Given 'axios' is installed, it handles FormData if we pass a stream or Buffer?
+        // In Node, axios needs 'form-data' package for multipart. 
+        // Let's check package.json for 'form-data'. It is not there.
+        // Next.js polyfills FormData. So we can use fetch.
+
+        const headers: any = {
+            'Authorization': `token ${API_KEY}:${API_SECRET}`,
+            // 'Content-Type': 'multipart/form-data' // Fetch sets this automatically with boundary
+        };
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        try {
+            const response = await fetch(`${ERP_URL}/api/method/upload_file`, {
+                method: 'POST',
+                headers: headers,
+                body: formData as any, // TypeScript mismatch with Node fetch types sometimes
+                signal: controller.signal,
+            });
+
+            if (!response.ok) {
+                const txt = await response.text();
+                throw new Error(`Upload failed: ${response.status} ${txt}`);
+            }
+
+            return await response.json();
+        } finally {
+            clearTimeout(timeoutId);
+        }
+
+    } catch (error: any) {
+        handleERPError(error, op, { filename, doctype, docname });
+    }
+}
+
 export default {
     fetchDoc,
     searchDocs,
     fetchAllDocs,
     createDoc,
+    uploadFile, // Export new method
     callMethod,
     checkConnection,
     ERPError,

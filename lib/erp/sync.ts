@@ -9,7 +9,7 @@ import 'dotenv/config';
 import { execSync } from 'child_process';
 import path from 'path';
 import { ERPFetcher } from './fetcher';
-import { ImageProcessor } from './image-processor';
+// import { ImageProcessor } from './image-processor'; // Deprecated
 import { normalizeItems } from './normalizer';
 import { buildCatalog, validateCatalog } from './catalog-builder';
 import { SyncConfig, SyncStats } from './types';
@@ -22,7 +22,7 @@ const config: SyncConfig = {
     imageQuality: parseInt(process.env.SYNC_IMAGE_QUALITY || '80'),
     imageMaxWidth: parseInt(process.env.SYNC_IMAGE_MAX_WIDTH || '1200'),
     gitAutoPush: process.env.SYNC_GIT_AUTO_PUSH !== 'false',
-    outputPath: path.join(process.cwd(), 'public/catalog.json'),
+    outputPath: path.join(process.cwd(), 'data/catalog.json'),
     imagesPath: path.join(process.cwd(), 'public/images/items'),
 };
 
@@ -77,46 +77,70 @@ async function sync() {
         console.log('');
 
         // Step 3: Process images for each item
-        console.log('🖼️  Step 3: Processing images...');
-        const imageProcessor = new ImageProcessor(
-            fetcher,
-            config.imagesPath,
-            config.imageQuality,
-            config.imageMaxWidth
-        );
+        // Step 3: Process images for each item
+        console.log('🖼️  Step 3: Processing images... (Bulk Auto-Attach Mode)');
 
-        const imageMap = new Map<string, string[]>();
-        let processedCount = 0;
+        const fs = await import('fs');
+        const path = await import('path');
+        const optimizedDir = path.join(process.cwd(), 'public/images/yarp/optimized');
 
-        for (const item of erpItems) {
-            try {
-                // Fetch attachments for this item
-                const attachments = await fetcher.fetchItemAttachments(item.item_code);
-                stats.totalImages += attachments.length;
-
-                // Process images
-                const imageUrls = await imageProcessor.processItemImages(item.item_code, attachments);
-                stats.successfulImages += imageUrls.length;
-                stats.failedImages += attachments.length - imageUrls.length;
-
-                if (imageUrls.length > 0) {
-                    imageMap.set(item.item_code, imageUrls);
-                }
-
-                processedCount++;
-
-                // Progress indicator
-                if (processedCount % 50 === 0) {
-                    console.log(`   Processed ${processedCount}/${erpItems.length} items...`);
-                }
-            } catch (error: any) {
-                console.error(`   ❌ Failed to process images for ${item.item_code}:`, error.message);
-                stats.failedItems++;
+        let existingFilesMap: Map<string, string> = new Map(); // lowercase -> actual filename
+        if (fs.existsSync(optimizedDir)) {
+            for (const f of fs.readdirSync(optimizedDir)) {
+                existingFilesMap.set(f.toLowerCase(), f);
             }
         }
 
-        console.log(`   ✅ Processed ${processedCount} items`);
-        console.log('');
+        const itemsToAttach = erpItems.filter(item => {
+            const expectedFile = `${item.item_code}.webp`.toLowerCase();
+            const hasLocalFile = existingFilesMap.has(expectedFile);
+            const hasRemoteRef = item.image && item.image.length > 0;
+            // We attach if Local File Exists AND Remote is Empty
+            // This is the "Sync" action: pushing local reality to ERPNext
+            return hasLocalFile && !hasRemoteRef;
+        });
+
+        console.log(`   Found ${itemsToAttach.length} items needing image attachment.`);
+
+        if (itemsToAttach.length > 0) {
+            const { uploadFile } = await import('@/lib/erpnext');
+            // Simple concurrency control
+            const BATCH_SIZE = 5;
+            let processed = 0;
+            let errors = 0;
+
+            for (let i = 0; i < itemsToAttach.length; i += BATCH_SIZE) {
+                const batch = itemsToAttach.slice(i, i + BATCH_SIZE);
+                await Promise.all(batch.map(async (item) => {
+                    try {
+                        const expectedKey = `${item.item_code}.webp`.toLowerCase();
+                        const actualFilename = existingFilesMap.get(expectedKey);
+                        if (!actualFilename) return;
+
+                        const filePath = path.join(optimizedDir, actualFilename);
+                        if (!fs.existsSync(filePath)) return;
+
+                        const fileBuffer = fs.readFileSync(filePath);
+                        await uploadFile(fileBuffer, actualFilename, 'Item', item.item_code, false);
+                        processed++;
+                        // Optional: print progress?
+                    } catch (e) {
+                        console.error(`   Failed to attach for ${item.item_code}`, e);
+                        errors++;
+                    }
+                }));
+                // Small delay to be nice to ERPNext?
+                if (i + BATCH_SIZE < itemsToAttach.length) await new Promise(r => setTimeout(r, 200));
+            }
+            console.log(`   Attached ${processed} images. ${errors} failures.`);
+
+            // Update Stats
+            stats.totalImages = itemsToAttach.length;
+            stats.successfulImages = processed;
+            stats.failedImages = errors;
+        }
+
+        const imageMap = new Map<string, string[]>(); // Empty map, as images are handled separately
 
         // Step 4: Normalize items
         console.log('🔄 Step 4: Normalizing product data...');
@@ -141,9 +165,11 @@ async function sync() {
         console.log('');
 
         // Step 7: Cleanup old images
-        console.log('🗑️  Step 7: Cleaning up old images...');
+        console.log('🗑️  Step 7: Cleaning up old images... SKIPPED');
+        /*
         const itemCodes = new Set(products.map(p => p.item_code));
         await imageProcessor.cleanupOldImages(itemCodes);
+        */
         console.log('');
 
         // Step 8: Git commit and push
@@ -192,7 +218,7 @@ function gitCommitAndPush() {
 
     try {
         // Stage changes
-        execSync('git add public/catalog.json public/images/items/', { stdio: 'inherit' });
+        execSync('git add data/catalog.json', { stdio: 'inherit' });
 
         // Commit
         try {
