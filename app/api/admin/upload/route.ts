@@ -56,9 +56,16 @@ export async function POST(req: NextRequest) {
                 return;
             }
 
-            // Security: Sanitize filename (basename only)
+            if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir, { recursive: true });
+            }
+
+            // Security: Sanitize filename.
+            // 1. Basename only (prevents traversal)
+            // 2. Allowed chars (alphanumeric, dot, dash, underscore)
+            // 3. Prevent hidden files (dots prefix)
             const safeFilename = path.basename(filename).replace(/[^a-zA-Z0-9.\-_]/g, '');
-            if (!safeFilename || safeFilename.startsWith('.')) {
+            if (!safeFilename || safeFilename.startsWith('.') || safeFilename.includes('..')) {
                 sendError('Invalid filename');
                 stream.resume();
                 return;
@@ -72,18 +79,38 @@ export async function POST(req: NextRequest) {
             let isValidated = false;
 
             const filePromise = new Promise<void>((fileResolve, fileReject) => {
+                const cleanup = () => {
+                    writeStream.destroy();
+                    // Clean up partial file if rejection happened
+                    if (fs.existsSync(savePath) && errorSent) {
+                        fs.unlink(savePath, () => { });
+                    }
+                };
+
+                // If global error already occurred, bail immediately
+                if (errorSent) {
+                    stream.resume();
+                    fileReject(new Error('Previous error detected'));
+                    return;
+                }
+
                 stream.on('data', async (chunk) => {
-                    if (errorSent) return;
+                    if (errorSent) {
+                        stream.resume();
+                        return;
+                    }
 
                     // Validate Magic Bytes on first chunk
                     if (!isValidated) {
                         stream.pause(); // Prevent more data while validating
                         const { isValid, mime } = await validateImageSignature(chunk);
                         if (!isValid) {
-                            sendError(`Security Error: File masquerading content type. Please upload a valid image (JPEG, PNG, WEBP).`);
+                            const params = `Security Error: Invalid content type.`;
+                            sendError(params);
+                            cleanup();
+                            // Important: Rejecting here ensures Promise.all fails fast-ish or at least settles
+                            fileReject(new Error(params));
                             stream.resume();
-                            writeStream.destroy();
-                            fs.unlink(savePath, () => { });
                             return;
                         }
                         isValidated = true;
@@ -92,10 +119,11 @@ export async function POST(req: NextRequest) {
 
                     bytesRead += chunk.length;
                     if (bytesRead > maxSize) {
-                        sendError(`File ${name} exceeds limit of ${maxSize / 1024}KB`);
-                        stream.resume(); // Drain
-                        writeStream.destroy();
-                        fs.unlink(savePath, () => { }); // Cleanup partial
+                        const params = `File ${name} exceeds limit`;
+                        sendError(params);
+                        cleanup();
+                        fileReject(new Error(params));
+                        stream.resume();
                     } else {
                         writeStream.write(chunk);
                     }
@@ -103,16 +131,29 @@ export async function POST(req: NextRequest) {
 
                 stream.on('end', () => {
                     writeStream.end();
-                    if (!errorSent) fileResolve();
+                    if (!errorSent) {
+                        fileResolve();
+                    } else {
+                        fileReject(new Error('Request failed during upload'));
+                    }
                 });
 
                 stream.on('error', (err) => {
                     console.error('Stream error', err);
                     if (!errorSent) {
                         sendError('Stream failure');
-                        writeStream.destroy();
-                        fs.unlink(savePath, () => { });
                     }
+                    cleanup();
+                    fileReject(err);
+                });
+
+                writeStream.on('error', (err) => {
+                    console.error('Write stream error', err);
+                    if (!errorSent) {
+                        sendError('Write failure');
+                    }
+                    cleanup();
+                    fileReject(err);
                 });
             });
 

@@ -6,7 +6,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // 1. Define protected paths
-  const protectedPaths = ['/admin', '/api/admin'];
+  const protectedPaths = ['/admin', '/api/admin', '/api/products/update'];
   const isProtected = protectedPaths.some((path) =>
     pathname.startsWith(path)
   );

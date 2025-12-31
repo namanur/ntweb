@@ -8,6 +8,7 @@
 import 'dotenv/config';
 import { execSync } from 'child_process';
 import path from 'path';
+import fs from 'fs';
 import { ERPFetcher } from './fetcher';
 // import { ImageProcessor } from './image-processor'; // Deprecated
 import { normalizeItems } from './normalizer';
@@ -80,8 +81,6 @@ async function sync() {
         // Step 3: Process images for each item
         console.log('🖼️  Step 3: Processing images... (Bulk Auto-Attach Mode)');
 
-        const fs = await import('fs');
-        const path = await import('path');
         const optimizedDir = path.join(process.cwd(), 'public/images/yarp/optimized');
 
         let existingFilesMap: Map<string, string> = new Map(); // lowercase -> actual filename

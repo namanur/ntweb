@@ -83,7 +83,7 @@ function handleERPError(error: any, operation: string, context: any): never {
 
         if (status === 401 || status === 403) {
             finalError = new ERPAuthError(operation, { status, url, ...context });
-        } else if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+        } else if (error.code === 'ECONNABORTED' || error.message?.includes('timeout') || error.name === 'AbortError') {
             finalError = new ERPTimeoutError(operation, { url, ...context });
         } else if (status && status >= 500) {
             finalError = new ERPUnknownError(`Server Error ${status}`, operation, { status, url, ...context });
@@ -252,7 +252,7 @@ export async function uploadFile(
         // Actually, we can use standard fetch with FormData in Node 18+ (Next.js environment).
 
         const formData = new FormData();
-        const blob = new Blob([fileBuffer]);
+        const blob = new Blob([fileBuffer as any]);
         formData.append('file', blob, filename);
         formData.append('is_private', isPrivate ? '1' : '0');
         formData.append('doctype', doctype);
