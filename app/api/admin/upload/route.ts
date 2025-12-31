@@ -77,6 +77,7 @@ export async function POST(req: NextRequest) {
 
                     // Validate Magic Bytes on first chunk
                     if (!isValidated) {
+                        stream.pause(); // Prevent more data while validating
                         const { isValid, mime } = await validateImageSignature(chunk);
                         if (!isValid) {
                             sendError(`Security Error: File masquerading content type. Please upload a valid image (JPEG, PNG, WEBP).`);
@@ -86,6 +87,7 @@ export async function POST(req: NextRequest) {
                             return;
                         }
                         isValidated = true;
+                        stream.resume(); // Continue after validation passes
                     }
 
                     bytesRead += chunk.length;

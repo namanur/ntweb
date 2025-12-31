@@ -84,14 +84,16 @@ async function sync() {
         const path = await import('path');
         const optimizedDir = path.join(process.cwd(), 'public/images/yarp/optimized');
 
-        let existingFiles: Set<string> = new Set();
+        let existingFilesMap: Map<string, string> = new Map(); // lowercase -> actual filename
         if (fs.existsSync(optimizedDir)) {
-            existingFiles = new Set(fs.readdirSync(optimizedDir).map(f => f.toLowerCase()));
+            for (const f of fs.readdirSync(optimizedDir)) {
+                existingFilesMap.set(f.toLowerCase(), f);
+            }
         }
 
         const itemsToAttach = erpItems.filter(item => {
             const expectedFile = `${item.item_code}.webp`.toLowerCase();
-            const hasLocalFile = existingFiles.has(expectedFile);
+            const hasLocalFile = existingFilesMap.has(expectedFile);
             const hasRemoteRef = item.image && item.image.length > 0;
             // We attach if Local File Exists AND Remote is Empty
             // This is the "Sync" action: pushing local reality to ERPNext
@@ -111,18 +113,15 @@ async function sync() {
                 const batch = itemsToAttach.slice(i, i + BATCH_SIZE);
                 await Promise.all(batch.map(async (item) => {
                     try {
-                        const filename = `${item.item_code}.webp`; // standard name
-                        // We need case-insensitive lookup to find actual file on disk if needed, 
-                        // but we expect standard names.
-                        // Let's rely on standard naming or find exact match in set?
-                        // fs.readdirSync gave us exact names. Let's find the exact name from the dir used in Set.
-                        // Optimization: just try standard first.
+                        const expectedKey = `${item.item_code}.webp`.toLowerCase();
+                        const actualFilename = existingFilesMap.get(expectedKey);
+                        if (!actualFilename) return;
 
-                        const filePath = path.join(optimizedDir, filename);
-                        if (!fs.existsSync(filePath)) return; // Should likely not happen if Set check passed, unless case mismatch
+                        const filePath = path.join(optimizedDir, actualFilename);
+                        if (!fs.existsSync(filePath)) return;
 
                         const fileBuffer = fs.readFileSync(filePath);
-                        await uploadFile(fileBuffer, filename, 'Item', item.item_code, false);
+                        await uploadFile(fileBuffer, actualFilename, 'Item', item.item_code, false);
                         processed++;
                         // Optional: print progress?
                     } catch (e) {
@@ -134,6 +133,11 @@ async function sync() {
                 if (i + BATCH_SIZE < itemsToAttach.length) await new Promise(r => setTimeout(r, 200));
             }
             console.log(`   Attached ${processed} images. ${errors} failures.`);
+
+            // Update Stats
+            stats.totalImages = itemsToAttach.length;
+            stats.successfulImages = processed;
+            stats.failedImages = errors;
         }
 
         const imageMap = new Map<string, string[]>(); // Empty map, as images are handled separately
@@ -214,7 +218,7 @@ function gitCommitAndPush() {
 
     try {
         // Stage changes
-        execSync('git add data/catalog.json public/images/items/', { stdio: 'inherit' });
+        execSync('git add data/catalog.json', { stdio: 'inherit' });
 
         // Commit
         try {

@@ -270,22 +270,30 @@ export async function uploadFile(
         // Next.js polyfills FormData. So we can use fetch.
 
         const headers: any = {
-            'Authorization': client.defaults.headers['Authorization'],
+            'Authorization': `token ${API_KEY}:${API_SECRET}`,
             // 'Content-Type': 'multipart/form-data' // Fetch sets this automatically with boundary
         };
 
-        const response = await fetch(`${ERP_URL}/api/method/upload_file`, {
-            method: 'POST',
-            headers: headers,
-            body: formData as any // TypeScript mismatch with Node fetch types sometimes
-        });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-        if (!response.ok) {
-            const txt = await response.text();
-            throw new Error(`Upload failed: ${response.status} ${txt}`);
+        try {
+            const response = await fetch(`${ERP_URL}/api/method/upload_file`, {
+                method: 'POST',
+                headers: headers,
+                body: formData as any, // TypeScript mismatch with Node fetch types sometimes
+                signal: controller.signal,
+            });
+
+            if (!response.ok) {
+                const txt = await response.text();
+                throw new Error(`Upload failed: ${response.status} ${txt}`);
+            }
+
+            return await response.json();
+        } finally {
+            clearTimeout(timeoutId);
         }
-
-        return await response.json();
 
     } catch (error: any) {
         handleERPError(error, op, { filename, doctype, docname });

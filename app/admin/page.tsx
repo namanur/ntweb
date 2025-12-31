@@ -255,6 +255,7 @@ export default function AdminPage() {
             <div className="relative max-w-md w-full group hidden md:block">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-white transition-colors" />
               <input
+                id="global-search-input"
                 placeholder="Search products, orders..."
                 className="w-full bg-zinc-900/50 border border-zinc-900 rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:bg-zinc-900 focus:border-zinc-700 transition-all placeholder:text-zinc-600"
                 value={search}
@@ -262,7 +263,18 @@ export default function AdminPage() {
               />
             </div>
             {/* Mobile Search Icon */}
-            <button className="md:hidden text-zinc-400"><Search size={20} /></button>
+            <button
+              className="md:hidden text-zinc-400"
+              onClick={() => {
+                const input = document.getElementById('global-search-input');
+                if (input) {
+                  input.focus();
+                  input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }}
+            >
+              <Search size={20} />
+            </button>
           </div>
 
           <div className="flex items-center gap-4">

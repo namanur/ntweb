@@ -1,32 +1,33 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { decrypt } from '@/lib/auth';
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  const adminToken = request.cookies.get('admin_token')?.value
-  const adminPassword = process.env.ADMIN_PASSWORD
+  // 1. Define protected paths
+  const protectedPaths = ['/admin', '/api/admin'];
+  const isProtected = protectedPaths.some((path) =>
+    pathname.startsWith(path)
+  );
 
-  // 🔒 SECURITY FIX: 
-  // 1. Ensure adminPassword exists (is not undefined/empty)
-  // 2. Ensure adminToken exists
-  // 3. Ensure they match
-  const isAuthenticated =
-    adminPassword &&
-    adminToken &&
-    (adminToken === adminPassword);
-
-  // Protect Admin Routes
-  if (pathname.startsWith('/admin')) {
-    if (!isAuthenticated) {
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
+  // 2. Allow public access to everything else
+  if (!isProtected) {
+    return NextResponse.next();
   }
 
-  // Protect API Routes
-  if (pathname.startsWith('/api/admin') || pathname.startsWith('/api/products/update')) {
-    if (!isAuthenticated) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  // 3. Verify Session using JWT
+  // In middleware (proxy), we use request.cookies, not cookies() from next/headers
+  const cookie = request.cookies.get("admin_session")?.value;
+  const session = cookie ? await decrypt(cookie) : null;
+
+  if (!session) {
+    // 4. Handle Unauthorized
+    if (pathname.startsWith('/api/')) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    } else {
+      const loginUrl = new URL('/login', request.url);
+      return NextResponse.redirect(loginUrl);
     }
   }
 

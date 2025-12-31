@@ -7,6 +7,7 @@ interface ImageOptimizationResult {
     original: File;
     optimized: Blob;
     previewUrl: string;
+    cleanup?: () => void;
 }
 
 const MAX_WIDTH = 1200;
@@ -59,6 +60,7 @@ export async function processImage(file: File): Promise<ImageOptimizationResult>
                             original: file,
                             optimized: blob,
                             previewUrl,
+                            cleanup: () => URL.revokeObjectURL(previewUrl), // Cleanup function
                         });
                     },
                     'image/webp',

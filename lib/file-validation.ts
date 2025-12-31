@@ -9,7 +9,7 @@ export async function validateImageSignature(buffer: Buffer): Promise<{ isValid:
         return { isValid: false };
     }
 
-    const hex = buffer.toString('hex', 0, 8).toUpperCase();
+    const hex = buffer.toString('hex', 0, 12).toUpperCase();
 
     // JPEG: FF D8 FF
     if (hex.startsWith('FFD8FF')) {
@@ -24,7 +24,7 @@ export async function validateImageSignature(buffer: Buffer): Promise<{ isValid:
     // WebP: RIFF .... WEBP
     // Bytes 0-3: 52 49 46 46 (RIFF)
     // Bytes 8-11: 57 45 42 50 (WEBP)
-    if (hex.startsWith('52494646') && hex.slice(16, 24) === '57454250') {
+    if (hex.startsWith('52494646') && buffer.length >= 12 && hex.slice(16, 24) === '57454250') {
         return { isValid: true, mime: 'image/webp' };
     }
 
