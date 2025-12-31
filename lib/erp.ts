@@ -26,6 +26,7 @@ export interface Product {
   threshold?: number;
   images?: string[];
   is_hot?: boolean; // ✅ NEW: Support for Hot/New items
+  is_active?: boolean;
 }
 
 export interface OrderItem {

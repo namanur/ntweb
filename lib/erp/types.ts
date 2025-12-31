@@ -52,6 +52,7 @@ export interface NormalizedProduct {
     stock_qty?: number;
     threshold?: number;
     is_hot?: boolean;
+    is_active?: boolean;
 }
 
 // Sync configuration
@@ -82,7 +83,10 @@ export interface SyncResult {
 export interface SyncStats {
     totalItems: number;
     successfulItems: number;
+    updatedItems: number;
+    newlyAddedItems: number;
     failedItems: number;
+    inactiveItems: number; // Items not in ERP, marked inactive
     totalImages: number;
     successfulImages: number;
     failedImages: number;

@@ -24,6 +24,7 @@ export function normalizeItem(erpItem: ERPItem, imageUrls: string[] = []): Norma
         stock_uom: erpItem.stock_uom || 'PCS',
         images: imageUrls,
         in_stock: true, // Default to true, can be updated based on stock levels
+        is_active: true,
     };
 }
 

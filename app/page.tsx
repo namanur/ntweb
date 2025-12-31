@@ -11,7 +11,8 @@ export const revalidate = 3600;
 export default async function Home() {
 
   // 1. Fetch data
-  const products = await getProducts();
+  const rawProducts = await getProducts();
+  const products = rawProducts.filter(p => p.is_active !== false);
   const metadata = await getProductsMetadata();
 
   // 2. Client isStale calculation

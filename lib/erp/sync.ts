@@ -41,7 +41,10 @@ async function sync() {
     const stats: SyncStats = {
         totalItems: 0,
         successfulItems: 0,
+        updatedItems: 0,
+        newlyAddedItems: 0,
         failedItems: 0,
+        inactiveItems: 0,
         totalImages: 0,
         successfulImages: 0,
         failedImages: 0,
@@ -72,7 +75,10 @@ async function sync() {
 
         if (erpItems.length === 0) {
             console.warn('⚠️  No items found in ERPNext');
-            console.warn('⚠️  No items found in ERPNext');
+
+            // SECURITY GUARD: Abort if 0 items to prevent accidental wipe-out logic
+            // (Even though we don't delete, marking 100% inactive is also bad)
+            console.error('⛔ Critical Safety: ERP returned 0 items. Aborting sync.');
             return stats;
         }
         console.log('');
@@ -141,17 +147,79 @@ async function sync() {
 
         const imageMap = new Map<string, string[]>(); // Empty map, as images are handled separately
 
-        // Step 4: Normalize items
-        console.log('🔄 Step 4: Normalizing product data...');
-        const products = normalizeItems(erpItems, imageMap);
-        stats.successfulItems = products.length;
+
+        // Step 4: Normalize and Merge with Existing Catalog
+        console.log('🔄 Step 4: Normalizing and Merging product data...');
+
+        const newProducts = normalizeItems(erpItems, imageMap);
+
+        let finalProducts = newProducts;
+        let inactiveCount = 0;
+
+        // READ EXISTING CATALOG
+        if (fs.existsSync(config.outputPath)) {
+            try {
+                const existingContent = fs.readFileSync(config.outputPath, 'utf-8');
+                const existingJson = JSON.parse(existingContent);
+                const existingProducts = Array.isArray(existingJson) ? existingJson : (existingJson.products || []);
+
+                if (Array.isArray(existingProducts) && existingProducts.length > 0) {
+                    console.log(`   Running Merge Strategy against ${existingProducts.length} existing local items.`);
+
+                    // Create maps
+                    const newProductMap = new Map(newProducts.map(p => [p.item_code, p]));
+                    const existingProductSet = new Set(existingProducts.map(p => p.item_code));
+
+                    // 1. Calculate New vs Updated
+                    newProducts.forEach(p => {
+                        if (existingProductSet.has(p.item_code)) {
+                            stats.updatedItems++;
+                        } else {
+                            stats.newlyAddedItems++;
+                        }
+                    });
+
+                    // 2. Start with valid NEW products (Authoritative Update)
+                    finalProducts = [...newProducts];
+
+                    // 3. Identify Missing Items (Local items NOT in ERP)
+                    const missingItems = existingProducts.filter(p => !newProductMap.has(p.item_code));
+
+                    if (missingItems.length > 0) {
+                        console.log(`   Found ${missingItems.length} items missing from ERP. Marking as Inactive.`);
+
+                        missingItems.forEach(p => {
+                            // Mark as inactive instead of deleting
+                            p.is_active = false;
+                            finalProducts.push(p);
+                            inactiveCount++;
+                        });
+                    }
+                } else {
+                    stats.newlyAddedItems = newProducts.length;
+                }
+            } catch (e: any) {
+                console.warn("   ⚠️  Failed to read existing catalog for merge. Proceeding with fresh ERP data only.", e.message);
+                stats.newlyAddedItems = newProducts.length;
+            }
+        } else {
+            stats.newlyAddedItems = newProducts.length;
+        }
+
+        stats.successfulItems = newProducts.length; // Items successfully fetched/normalized from ERP
+        stats.inactiveItems = inactiveCount;
         stats.failedItems = stats.totalItems - stats.successfulItems;
-        console.log(`   ✅ Normalized ${products.length} products`);
+
+        console.log(`   ✅ Normalized ${newProducts.length} active products from ERP`);
+        console.log(`      - Updated:     ${stats.updatedItems}`);
+        console.log(`      - Newly Added: ${stats.newlyAddedItems}`);
+        console.log(`   zzz Marked ${inactiveCount} missing items as Inactive`);
+        console.log(`   Total Catalog Size: ${finalProducts.length}`);
         console.log('');
 
         // Step 5: Build catalog
         console.log('📦 Step 5: Building catalog...');
-        await buildCatalog(products, config.outputPath);
+        await buildCatalog(finalProducts, config.outputPath);
         console.log('');
 
         // Step 6: Validate catalog
@@ -243,8 +311,11 @@ function printStats(stats: SyncStats) {
 
     console.log('📊 Sync Statistics:');
     console.log('   ─────────────────────────────────');
-    console.log(`   Total Items:       ${stats.totalItems}`);
-    console.log(`   Successful:        ${stats.successfulItems}`);
+    console.log(`   Total Items (ERP): ${stats.totalItems}`);
+    console.log(`   Successful (ERP):  ${stats.successfulItems}`);
+    console.log(`      - Updated:      ${stats.updatedItems}`);
+    console.log(`      - New:          ${stats.newlyAddedItems}`);
+    console.log(`   Marked Inactive:   ${stats.inactiveItems}`);
     console.log(`   Failed:            ${stats.failedItems}`);
     console.log(`   Total Images:      ${stats.totalImages}`);
     console.log(`   Images Processed:  ${stats.successfulImages}`);
