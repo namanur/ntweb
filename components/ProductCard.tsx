@@ -25,7 +25,8 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
   }, [isInCart]);
 
   const getImageUrl = () => {
-    const baseUrl = `/images/${product.item_code}.jpg`;
+    // Phase 6: Use optimized WebP images
+    const baseUrl = `/images/yarp/optimized/${product.item_code}.webp`;
     // @ts-ignore
     return product.imageVersion ? `${baseUrl}?v=${product.imageVersion}` : baseUrl;
   };

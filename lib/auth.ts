@@ -3,8 +3,12 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-const secretKey = process.env.JWT_SECRET || "default_secret_dont_use_in_prod";
-const key = new TextEncoder().encode(secretKey);
+const secretKey = process.env.JWT_SECRET;
+if (!secretKey && process.env.NODE_ENV === 'production') {
+  throw new Error('FATAL: JWT_SECRET authentication key is missing in production environment.');
+}
+const finalKey = secretKey || "default_secret_dont_use_in_prod";
+const key = new TextEncoder().encode(finalKey);
 
 export async function encrypt(payload: any) {
   return await new SignJWT(payload)

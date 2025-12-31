@@ -4,12 +4,11 @@ import path from 'path';
 
 export async function GET() {
     try {
-        const productsPath = path.join(process.cwd(), 'src/data/products.json');
-        // NOTE: This file is a derived snapshot from ERPNext. Do not write to it at runtime.
-        const imagesDir = path.join(process.cwd(), 'public/images');
+        const productsPath = path.join(process.cwd(), 'public/catalog.json');
+        const imagesDir = path.join(process.cwd(), 'public/images/yarp/optimized');
 
         if (!fs.existsSync(productsPath)) {
-            return NextResponse.json({ error: "Products file not found" }, { status: 404 });
+            return NextResponse.json({ error: "Catalog file not found" }, { status: 404 });
         }
 
         const json = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
@@ -26,8 +25,11 @@ export async function GET() {
         const missingItemCodes: string[] = [];
 
         products.forEach((p: any) => {
-            const expectedFilename = `${p.item_code}.jpg`.toLowerCase();
+            // Check for WebP in new structure (fallback logic can be added if needed, but strict for now)
+            const expectedFilename = `${p.item_code}.webp`.toLowerCase();
             if (!existingImages.has(expectedFilename)) {
+                // Also check for legacy JPG in root if needed? 
+                // For now, STRICT MODE: only count new optimized images
                 missingCount++;
                 missingItemCodes.push(p.item_code);
             }
