@@ -13,7 +13,7 @@ async function testHeaders() {
 async function testRateLimitAndUniqueness() {
     console.log('\n--- Testing Persistent Rate Limit ---');
     // Use a random phone to avoid hitting previous daily limits
-    const phone = `91${Math.floor(1000000000 + Math.random() * 9000000000)}`;
+    const phone = `+91${Math.floor(1000000000 + Math.random() * 9000000000)}`;
     console.log(`Using Test Phone: ${phone}`);
 
     for (let i = 1; i <= 5; i++) {
@@ -41,13 +41,36 @@ async function testRateLimitAndUniqueness() {
 
 async function testValidation() {
     console.log('\n--- Testing Input Validation ---');
+    // 1. Strict Phone (Should fail)
     const res1 = await fetch(BASE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'request', phone: '123' })
     });
-    if (res1.status === 400) console.log('✅ Catch Bad Phone: 400');
-    else console.error(`❌ Bad Phone Status: ${res1.status}`);
+    console.log(`Bad Phone: ${res1.status === 400 ? '✅ 400' : '❌ ' + res1.status}`);
+
+    // 2. Trimmed Phone (Should pass now)
+    const res2 = await fetch(BASE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'request', phone: ' +919999999999 ' }) // leading spaces
+    });
+    // Note: It might return 404 (User not found) or 200/429. But NOT 400 if validation passes.
+    if (res2.status === 400) console.error(`❌ Trimmed Phone Failed: ${res2.status}`);
+    else console.log(`✅ Trimmed Phone Passed Validation (Status: ${res2.status})`);
+}
+
+async function testContentType() {
+    console.log('\n--- Testing Content-Type Enforcement ---');
+    // Send text/plain
+    const res = await fetch(BASE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: 'invalid body'
+    });
+
+    if (res.status === 415) console.log('✅ Content-Type Rejected: 415');
+    else console.error(`❌ Content-Type Failed: ${res.status}`);
 }
 
 /* 
@@ -60,6 +83,7 @@ async function main() {
     try {
         await testHeaders();
         await testValidation();
+        await testContentType();
         await testRateLimitAndUniqueness();
     } catch (e) {
         console.error("Test Error:", e);

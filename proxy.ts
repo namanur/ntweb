@@ -16,7 +16,10 @@ export async function proxy(request: NextRequest) {
   if (['POST', 'PUT', 'PATCH'].includes(request.method)) {
     const contentType = request.headers.get('content-type');
     if (contentType && !contentType.includes('application/json') && !contentType.includes('multipart/form-data')) {
-      // Log or handle mismatch
+      return NextResponse.json(
+        { error: 'Unsupported Media Type', message: 'Content-Type must be application/json or multipart/form-data' },
+        { status: 415 }
+      );
     }
   }
 
