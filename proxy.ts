@@ -15,11 +15,23 @@ export async function proxy(request: NextRequest) {
   // --- STRICT CONTENT-TYPE (Global) ---
   if (['POST', 'PUT', 'PATCH'].includes(request.method)) {
     const contentType = request.headers.get('content-type');
-    if (contentType && !contentType.includes('application/json') && !contentType.includes('multipart/form-data')) {
-      return NextResponse.json(
+    // Parse base media type (ignore charset/boundary)
+    const mediaType = contentType?.split(';')[0].trim().toLowerCase();
+
+    // Strict allowed list
+    if (!mediaType || (mediaType !== 'application/json' && mediaType !== 'multipart/form-data')) {
+      const errorResponse = NextResponse.json(
         { error: 'Unsupported Media Type', message: 'Content-Type must be application/json or multipart/form-data' },
         { status: 415 }
       );
+
+      // Apply Security Headers to Error Response
+      errorResponse.headers.set('X-Frame-Options', 'DENY');
+      errorResponse.headers.set('X-Content-Type-Options', 'nosniff');
+      errorResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+      errorResponse.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+
+      return errorResponse;
     }
   }
 
