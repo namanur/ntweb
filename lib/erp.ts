@@ -64,8 +64,8 @@ export interface ProductMetadata {
 // 1. GET PRODUCTS
 export async function getProducts(): Promise<Product[]> {
   try {
-    const filePath = path.join(process.cwd(), 'public/catalog.json');
-    // NOTE: This file is a derived snapshot from ERPNext. Do not write to it at runtime.
+    const filePath = path.join(process.cwd(), 'data/catalog.json');
+    // SINGLE SOURCE OF TRUTH: Derived snapshot from ERPNext.
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const data = JSON.parse(fileContent);
@@ -79,7 +79,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductsMetadata(): Promise<ProductMetadata | null> {
   try {
-    const filePath = path.join(process.cwd(), 'public/catalog.json');
+    const filePath = path.join(process.cwd(), 'data/catalog.json');
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const data = JSON.parse(fileContent);
@@ -91,22 +91,12 @@ export async function getProductsMetadata(): Promise<ProductMetadata | null> {
   return null;
 }
 
-// 2. UPDATE PRODUCT
-export async function updateProductLocal(itemCode: string, updates: Partial<Product>) {
-  try {
-    throw new Error("Runtime updates to products.json are disabled. This file is a derived snapshot from ERPNext.");
-    throw new Error("Runtime updates to products.json are disabled. This file is a derived snapshot from ERPNext.");
-    // Intentionally stubbed — local mutations are disabled by design
-  } catch (error) {
-    console.error("Failed to update local JSON", error);
-    throw new Error("Local Update Failed: Runtime writes disabled");
-  }
-}
+// ...
 
 // 3. GET ORDERS
 export async function getOrders(): Promise<Order[]> {
   try {
-    const filePath = path.join(process.cwd(), 'src/data/orders.json');
+    const filePath = path.join(process.cwd(), 'data/orders.json');
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       return JSON.parse(fileContent).reverse();
@@ -288,7 +278,7 @@ export async function syncCompanyDetails() {
       phone: addressData.phone || ""
     };
 
-    const filePath = path.join(process.cwd(), 'src/data/company.json');
+    const filePath = path.join(process.cwd(), 'data/company.json');
     fs.writeFileSync(filePath, JSON.stringify(dataToSave, null, 2));
     console.log("✅ Company details synced.");
     return true;
