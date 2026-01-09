@@ -1,37 +1,25 @@
+import { fileTypeFromBuffer } from 'file-type';
+
+const ALLOWED_MIMES = ['image/jpeg', 'image/png', 'image/webp'];
 
 /**
- * Simple magic number validation for common image formats.
- * Prevents file masquerading (e.g. .sh file renamed to .jpg)
+ * Validates the file content by sniffing magic bytes.
+ * @param buffer First chunk of the file (needs to be large enough, e.g. 4100 bytes)
  */
+export async function validateImageSignature(chunk: Buffer) {
+    // We only need the first few bytes, but file-type prefers a bit more context.
+    // The chunk from busboy is usually 64kb, which is plenty.
 
-export async function validateImageSignature(buffer: Buffer): Promise<{ isValid: boolean; mime?: string }> {
-    if (!buffer || buffer.length < 4) {
-        return { isValid: false };
+    // Note: file-type might return undefined for very small chunks or unknown types
+    const type = await fileTypeFromBuffer(chunk);
+
+    if (!type) {
+        return { isValid: false, mime: null };
     }
 
-    const hex = buffer.toString('hex', 0, 12).toUpperCase();
-
-    // JPEG: FF D8 FF
-    if (hex.startsWith('FFD8FF')) {
-        return { isValid: true, mime: 'image/jpeg' };
+    if (!ALLOWED_MIMES.includes(type.mime)) {
+        return { isValid: false, mime: type.mime };
     }
 
-    // PNG: 89 50 4E 47
-    if (hex.startsWith('89504E47')) {
-        return { isValid: true, mime: 'image/png' };
-    }
-
-    // WebP: RIFF .... WEBP
-    // Bytes 0-3: 52 49 46 46 (RIFF)
-    // Bytes 8-11: 57 45 42 50 (WEBP)
-    if (hex.startsWith('52494646') && buffer.length >= 12 && hex.slice(16, 24) === '57454250') {
-        return { isValid: true, mime: 'image/webp' };
-    }
-
-    // GIF: 47 49 46 38 (GIF8)
-    if (hex.startsWith('47494638')) {
-        return { isValid: true, mime: 'image/gif' };
-    }
-
-    return { isValid: false };
+    return { isValid: true, mime: type.mime };
 }

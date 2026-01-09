@@ -4,7 +4,7 @@ import PrintButton from '@/components/PrintButton';
 
 export const dynamic = 'force-dynamic';
 
-import company from '@/src/data/company.json';
+import company from '@/data/company.json';
 
 export default async function OrderSheetPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
