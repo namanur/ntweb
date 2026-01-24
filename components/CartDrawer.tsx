@@ -1,81 +1,133 @@
-"use client";
+'use client';
 
-import React, { useEffect } from "react";
-import { X, Minus, Plus, ShoppingBag } from "lucide-react";
-import { Button } from "@heroui/react";
-import { useCart } from "@/contexts/CartContext";
-import CheckoutForm from "./CheckoutForm";
-import { calculateItemTotal } from "@/lib/shop-rules";
+import React, { useState } from 'react';
+import { useCart } from '@/contexts/CartContext';
+import { X, Trash2, Plus, Minus, ArrowRight, ShoppingBag } from 'lucide-react';
+import { Button, Modal, ModalContent, useDisclosure } from '@heroui/react';
+import { calculateOrderTotal } from '@/lib/shop-rules';
+import { toast } from 'sonner';
+import CheckoutForm from './CheckoutForm';
 
-interface CartDrawerProps {
-    isOpen: boolean;
-    onClose: () => void;
-}
-
-export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
-    const { cart, updateQty } = useCart();
-
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => { document.body.style.overflow = 'unset'; }
-    }, [isOpen]);
-
-    // Calculate total items for display
-    const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-
-    if (!isOpen) return null;
+export default function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+    const { cart, removeFromCart, updateQty } = useCart();
+    const totalPrice = calculateOrderTotal(cart);
+    const { isOpen: isCheckoutOpen, onOpen: onCheckoutOpen, onOpenChange: onCheckoutChange } = useDisclosure();
 
     return (
         <>
-            <div className="fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm transition-opacity" onClick={onClose} />
-            <div className="fixed top-0 left-0 h-full w-full sm:w-[450px] glass-panel z-[101] border-r-0 transform transition-transform duration-300 animate-in slide-in-from-left overflow-hidden flex flex-col">
+            {/* --- CART DRAWER OVERLAY --- */}
+            <div
+                className={`fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                onClick={onClose}
+            />
+
+            {/* --- CART DRAWER PANEL --- */}
+            <div className={`fixed top-0 right-0 z-[101] h-full w-full max-w-md bg-white dark:bg-zinc-950 shadow-2xl transform transition-transform duration-300 ease-out border-l border-zinc-200 dark:border-zinc-800 flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+
                 {/* Header */}
-                <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none h-[10%] min-h-[70px]">
-                    <div>
-                        <h2 className="text-2xl font-black uppercase tracking-tight text-foreground">Cart</h2>
-                        <p className="text-xs text-muted-foreground font-medium mt-1">{totalItems} items selected</p>
+                <div className="p-6 border-b border-zinc-100 dark:border-zinc-900 flex justify-between items-center bg-zinc-50/50 dark:bg-zinc-900/50">
+                    <div className="flex items-center gap-2 text-lg font-bold">
+                        <ShoppingBag size={20} />
+                        Your Cart <span className="text-zinc-400 font-normal text-sm">({cart.length})</span>
                     </div>
-                    <Button isIconOnly variant="light" onPress={onClose}><X size={24} /></Button>
+                    <button onClick={onClose} className="p-2 hover:bg-zinc-200 dark:hover:bg-zinc-800 rounded-full transition"><X size={20} /></button>
                 </div>
 
-                {/* Items List */}
-                <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-default-50 h-[60%]">
-                    {cart.map(item => (
-                        <div key={item.item_code} className="flex gap-3 p-3 bg-card rounded-2xl border border-border items-start group shadow-sm">
-                            <div className="flex-1">
-                                <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
-                                <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
-                                <div className="flex items-center gap-2 mt-2">
-                                    <span className="text-xs font-mono bg-default-100 px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}</span>
-                                    <span className="text-xs text-muted-foreground">x {item.qty}</span>
-                                </div>
-                            </div>
-                            <div className="flex flex-col items-end gap-2">
-                                <span className="font-black text-base">₹{calculateItemTotal(item).toLocaleString()}</span>
-                                <div className="flex items-center gap-1 bg-default-100 rounded-lg border border-border p-1">
-                                    <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, -1)} className="h-9 w-9 min-w-9"><Minus size={14} /></Button>
-                                    <span className="w-8 text-center text-xs font-bold">{item.qty}</span>
-                                    <Button isIconOnly size="sm" variant="light" onPress={() => updateQty(item.item_code, 1)} className="h-9 w-9 min-w-9"><Plus size={14} /></Button>
-                                </div>
-                            </div>
+                {/* Cart Items */}
+                <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                    {cart.length === 0 ? (
+                        <div className="h-full flex flex-col items-center justify-center text-zinc-400 space-y-4">
+                            <ShoppingBag size={48} className="opacity-20" />
+                            <p>Your cart is empty.</p>
+                            <Button onPress={onClose} variant="flat">Start Browsing</Button>
                         </div>
-                    ))}
-                    {cart.length === 0 && (
-                        <div className="flex flex-col items-center justify-center h-full text-muted-foreground opacity-50">
-                            <ShoppingBag size={64} strokeWidth={1} className="mb-4" />
-                            <p className="text-lg font-medium">Your cart is empty</p>
-                            <Button variant="light" onPress={onClose} className="mt-4 font-bold underline">Start Shopping</Button>
-                        </div>
+                    ) : (
+                        cart.map((item) => (
+                            <div key={item.item_code} className="flex gap-4 animate-in fade-in slide-in-from-right-4 duration-300">
+                                {/* Image Placeholder */}
+                                <div className="w-20 h-20 bg-zinc-100 dark:bg-zinc-900 rounded-xl flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                    <span className="text-[10px] text-zinc-400 text-center px-1 truncate max-w-full">{item.item_code}</span>
+                                </div>
+
+                                <div className="flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <h4 className="font-bold text-sm line-clamp-2">{item.item_name}</h4>
+                                        <p className="text-xs text-zinc-500 mt-1">{item.brand}</p>
+                                    </div>
+                                    <div className="flex justify-between items-end mt-2">
+                                        <div className="flex items-center gap-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg p-1">
+                                            <button
+                                                onClick={() => updateQty(item.item_code, item.qty - 1)}
+                                                className="w-6 h-6 flex items-center justify-center hover:bg-white dark:hover:bg-zinc-800 rounded-md transition shadow-sm disabled:opacity-50"
+                                                disabled={item.qty <= 1}
+                                            >
+                                                <Minus size={12} />
+                                            </button>
+                                            <span className="text-sm font-semibold w-4 text-center">{item.qty}</span>
+                                            <button
+                                                onClick={() => updateQty(item.item_code, item.qty + 1)}
+                                                className="w-6 h-6 flex items-center justify-center hover:bg-white dark:hover:bg-zinc-800 rounded-md transition shadow-sm"
+                                            >
+                                                <Plus size={12} />
+                                            </button>
+                                        </div>
+                                        <div className="text-right">
+                                            <span className="font-bold">₹{(item.standard_rate * item.qty).toLocaleString()}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => removeFromCart(item.item_code)}
+                                    className="text-zinc-400 hover:text-red-500 self-start p-1"
+                                >
+                                    <Trash2 size={16} />
+                                </button>
+                            </div>
+                        ))
                     )}
                 </div>
 
-                {/* Checkout Form */}
-                <CheckoutForm onSuccess={onClose} />
+                {/* Footer */}
+                {cart.length > 0 && (
+                    <div className="p-6 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-900/50 space-y-4">
+                        <div className="flex justify-between items-center text-lg font-bold">
+                            <span>Total</span>
+                            <span>₹{totalPrice.toLocaleString()}</span>
+                        </div>
+                        <Button
+                            size="lg"
+                            className="w-full font-bold bg-black text-white dark:bg-white dark:text-black shadow-lg"
+                            onPress={onCheckoutOpen}
+                            endContent={<ArrowRight size={18} />}
+                        >
+                            Proceed to Checkout
+                        </Button>
+                    </div>
+                )}
             </div>
+
+            {/* --- CHECKOUT DETAILS MODAL --- */}
+            <Modal
+                isOpen={isCheckoutOpen}
+                onOpenChange={onCheckoutChange}
+                placement="center"
+                backdrop="blur"
+                size="2xl"
+                scrollBehavior="inside"
+                classNames={{
+                    base: "bg-transparent shadow-none",
+                    wrapper: "z-[200]"
+                }}
+            >
+                <ModalContent className="p-0 overflow-hidden rounded-2xl border border-white/10 bg-zinc-950">
+                    {(onCloseModal: () => void) => (
+                        <CheckoutForm onSuccess={() => {
+                            onCloseModal();
+                            onClose();
+                        }} />
+                    )}
+                </ModalContent>
+            </Modal>
         </>
     );
 }

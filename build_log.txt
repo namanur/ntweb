@@ -1,0 +1,8 @@
+.next/types/validator.ts(25,44): error TS2344: Type 'Route' does not satisfy the constraint '"/"'.
+  Type 'LayoutRoutes' is not assignable to type '"/"'.
+    Type '"/admin"' is not assignable to type '"/"'.
+.next/types/validator.ts(25,75): error TS2344: Type 'Route' does not satisfy the constraint '"/"'.
+  Type 'LayoutRoutes' is not assignable to type '"/"'.
+    Type '"/admin"' is not assignable to type '"/"'.
+lib/security/otp.ts(1,8): error TS1192: Module '"/home/naman/Desktop/Nandan Traders/lib/db"' has no default export.
+lib/security/rate-limit.ts(2,8): error TS1192: Module '"/home/naman/Desktop/Nandan Traders/lib/db"' has no default export.

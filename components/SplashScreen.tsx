@@ -1,57 +1,47 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 export default function SplashScreen() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [shouldRender, setShouldRender] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const handleLoad = () => {
-      setIsVisible(false);
-      setTimeout(() => setShouldRender(false), 700); // Wait for fade-out to finish
-    };
+    setMounted(true);
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 2000); // Show splash for 2s minimum
 
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
-  if (!shouldRender) return null;
+  if (!visible) return null;
 
   return (
-    <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-700 ease-in-out ${isVisible ? "opacity-100" : "opacity-0"
-        }`}
-    >
-      <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in-95 duration-1000">
-        {/* Logo Section */}
-        <div className="relative w-24 h-24 md:w-32 md:h-32">
-          <Image
-            src="/logo.png"
-            alt="Nandan Trader Logo"
-            fill
-            className="object-contain dark:invert"
-            priority
-          />
-        </div>
+    <div className={`fixed inset-0 z-[9999] bg-zinc-950 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
 
-        {/* Welcome Text */}
-        <div className="text-center space-y-2">
-          <p className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-widest">
-            Welcome to
-          </p>
-          <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-foreground">
-            Nandan Trader
-          </h1>
-        </div>
+      {/* Monochrome SVG Background */}
+      <div
+        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: `url('/background.svg')`,
+          backgroundSize: '40px 40px',
+          backgroundPosition: 'center'
+        }}
+      />
 
-        {/* Loading Indicator (Optional Subtle Bar) */}
-        <div className="w-24 h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden mt-4">
-          <div className="h-full bg-primary animate-[shimmer_1.5s_infinite] w-1/2 rounded-full" />
+      <div className="relative z-10 flex flex-col items-center">
+        <div className="w-24 h-24 mb-6 relative grayscale contrast-125">
+          <div className="w-full h-full border-4 border-white rounded-full flex items-center justify-center bg-black">
+            <span className="text-4xl font-black text-white">N</span>
+          </div>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <h1 className="text-3xl font-black text-white tracking-[0.2em] uppercase">Nandan</h1>
+          <div className="mt-4 w-32 h-[1px] bg-zinc-800 overflow-hidden relative">
+            <div className="absolute inset-0 bg-white animate-[shimmer_1.5s_infinite]" />
+          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { PlusCircle, ArrowRight, ChevronDown, CheckCircle, AlertCircle } from "lucide-react";
+'use client';
+
+import React, { useState } from "react";
+import { ArrowRight, CheckCircle, Smartphone, User, ShoppingBag, Loader2 } from "lucide-react";
 import { Button, Input } from "@heroui/react";
 import { useCart } from "@/contexts/CartContext";
 import { calculateOrderTotal } from "@/lib/shop-rules";
+import { toast } from "sonner";
 
 interface CheckoutFormProps {
     onSuccess: () => void;
@@ -11,54 +14,54 @@ interface CheckoutFormProps {
 export default function CheckoutForm({ onSuccess }: CheckoutFormProps) {
     const { cart, clearCart } = useCart();
     const [loading, setLoading] = useState(false);
-    const [showMoreDetails, setShowMoreDetails] = useState(false);
-    const [showAddressLine2, setShowAddressLine2] = useState(false);
-    const [formData, setFormData] = useState({ name: "", phone: "", gst: "", address: "", addressLine2: "", note: "" });
+
+    // Simple Form State (No complex address yet, as per Phase 1)
+    const [formData, setFormData] = useState({ name: "", mobile: "" });
 
     // Success State
     const [orderSuccess, setOrderSuccess] = useState(false);
-    const [orderId, setOrderId] = useState("");
-    const [orderDate, setOrderDate] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
+    const [orderNumber, setOrderNumber] = useState("");
 
-    // Calculate Total Price (Logic from ProductGridClient)
     const totalPrice = calculateOrderTotal(cart);
-
-    useEffect(() => {
-        const saved = localStorage.getItem("nandan_customer_details");
-        if (saved) try { setFormData(JSON.parse(saved)); } catch { }
-    }, []);
 
     const submitOrder = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
-        setErrorMsg("");
 
-        const finalData = { ...formData, address: showAddressLine2 ? `${formData.address}, ${formData.addressLine2}` : formData.address };
+        if (!formData.name || !formData.mobile) {
+            toast.error("Name and Mobile are required");
+            return;
+        }
+
+        if (formData.mobile.length !== 10) {
+            toast.error("Please enter a valid 10-digit mobile number");
+            return;
+        }
+
+        setLoading(true);
 
         try {
-            localStorage.setItem("nandan_customer_details", JSON.stringify(finalData));
             const res = await fetch('/api/order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cart, customer: finalData })
+                body: JSON.stringify({
+                    cart,
+                    customer: formData
+                })
             });
 
             const data = await res.json();
 
             if (res.ok && data.success) {
                 // Success Flow
-                setOrderId(data.orderId);
-                setOrderDate(new Date().toLocaleString());
+                setOrderNumber(data.orderId);
                 setOrderSuccess(true);
                 clearCart();
+                toast.success("Order Placed Successfully!");
             } else {
-                // Use specific details if available, otherwise the generic error
-                const message = data.details || data.error || "Failed to place order. Please try again.";
-                setErrorMsg(message);
+                toast.error(data.message || "Failed to place order");
             }
         } catch (err) {
-            setErrorMsg("We couldn't reach the server. Please check your internet connection and try again.");
+            toast.error("Connection failed. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -67,119 +70,105 @@ export default function CheckoutForm({ onSuccess }: CheckoutFormProps) {
     // --- SUCCESS VIEW ---
     if (orderSuccess) {
         return (
-            <div className="h-full absolute inset-0 z-[100] bg-white p-6 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-300">
-                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600 animate-in zoom-in duration-500 delay-100">
+            <div className="h-full absolute inset-0 z-[100] bg-zinc-950/90 backdrop-blur-xl p-6 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-500">
+                <div className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mb-6 text-green-500 shadow-[0_0_30px_rgba(34,197,94,0.3)]">
                     <CheckCircle size={48} strokeWidth={3} />
                 </div>
 
-                <h2 className="text-3xl font-black uppercase tracking-tight mb-3 text-black">Order Received!</h2>
-                <p className="text-zinc-800 font-bold mb-8 max-w-[280px] leading-relaxed">
-                    Thank you, {formData.name}.<br />We will contact you shortly to confirm the details.
+                <h2 className="text-3xl font-black uppercase tracking-tight mb-2 text-white">Order Received!</h2>
+                <p className="text-zinc-400 font-medium mb-8">
+                    Ref: <span className="text-white font-mono font-bold bg-white/10 px-2 py-1 rounded ml-1">{orderNumber}</span>
                 </p>
 
-                <div className="bg-zinc-50 rounded-2xl p-6 w-full max-w-sm mb-8 border border-zinc-200">
-                    <div className="flex justify-between items-center mb-3">
-                        <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Order ID</span>
-                        <span className="font-mono font-bold text-black bg-white px-2 py-1 rounded border border-zinc-200">{orderId}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Placed On</span>
-                        <span className="text-xs font-bold text-black">{orderDate}</span>
-                    </div>
+                <div className="bg-zinc-900/50 p-6 rounded-2xl border border-white/10 w-full max-w-sm mb-8 space-y-4">
+                    <p className="text-sm text-zinc-300">
+                        Thank you, <span className="font-bold text-white">{formData.name}</span>.
+                    </p>
+                    <p className="text-xs text-zinc-500">
+                        We have received your order request. Our team will verify stock and contact you at <span className="font-mono text-zinc-400">{formData.mobile}</span> shortly.
+                    </p>
                 </div>
 
                 <Button
                     size="lg"
-                    color="primary"
-                    className="font-black w-full max-w-sm shadow-xl hover:scale-105 transition-transform"
+                    className="font-bold w-full max-w-sm bg-white text-black hover:bg-zinc-200"
                     onPress={onSuccess}
                 >
-                    Done
+                    Continue Shopping
                 </Button>
             </div>
         )
     }
 
     return (
-        <div className={`border-t border-border bg-card transition-all duration-300 ease-in-out flex flex-col relative ${showMoreDetails ? 'h-full absolute inset-0 z-50' : 'flex-none h-[30%] min-h-[240px]'}`}>
+        <form onSubmit={submitOrder} className="flex flex-col h-full bg-zinc-950/50 backdrop-blur-md">
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-zinc-900/30">
+                <h3 className="font-bold text-lg flex items-center gap-2 text-white">
+                    <ShoppingBag size={20} className="text-blue-500" />
+                    Place Order Request
+                </h3>
+            </div>
 
-            {/* Header when expanded */}
-            {showMoreDetails && (
-                <div className="p-5 border-b border-border flex justify-between items-center bg-card flex-none">
-                    <h3 className="font-bold text-lg flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div>
-                        Order Details
-                    </h3>
-                    <Button size="sm" variant="flat" onPress={() => setShowMoreDetails(false)} startContent={<ChevronDown size={14} />}>Minimize</Button>
+            <div className="flex-1 p-6 space-y-6 overflow-y-auto">
+                {/* Total Summary */}
+                <div className="flex justify-between items-end pb-4 border-b border-white/10 border-dashed">
+                    <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Est. Amount</span>
+                    <span className="text-3xl font-black text-white tracking-tight">₹{totalPrice.toLocaleString()}</span>
                 </div>
-            )}
 
-            <form onSubmit={submitOrder} className="flex flex-col h-full overflow-hidden">
-                <div className="flex-1 overflow-y-auto p-5 pb-0 scrollbar-hide">
+                <div className="space-y-4">
+                    <Input
+                        isRequired
+                        label="Your Name"
+                        placeholder="Full Name"
+                        value={formData.name}
+                        onValueChange={(v) => setFormData({ ...formData, name: v })}
+                        startContent={<User size={16} className="text-zinc-500" />}
+                        classNames={{
+                            inputWrapper: "bg-zinc-900/50 border border-white/10 hover:border-white/20 group-data-[focus=true]:border-blue-500",
+                            label: "text-zinc-400",
+                            input: "text-white"
+                        }}
+                    />
+                    <Input
+                        isRequired
+                        label="Mobile Number"
+                        placeholder="10 digit number"
+                        type="tel"
+                        value={formData.mobile}
+                        onChange={(e) => {
+                            const val = e.target.value;
+                            if (/^\d*$/.test(val) && val.length <= 10) setFormData({ ...formData, mobile: val });
+                        }}
+                        startContent={<Smartphone size={16} className="text-zinc-500" />}
+                        classNames={{
+                            inputWrapper: "bg-zinc-900/50 border border-white/10 hover:border-white/20 group-data-[focus=true]:border-blue-500",
+                            label: "text-zinc-400",
+                            input: "text-white"
+                        }}
+                    />
 
-                    {/* Compact View Total */}
-                    {!showMoreDetails && (
-                        <div className="flex justify-between items-end mb-4 pb-4 border-b border-border border-dashed flex-none">
-                            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Total Pay</span>
-                            <span className="text-3xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span>
-                        </div>
-                    )}
-
-                    {/* Error Message */}
-                    {errorMsg && (
-                        <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-center gap-3 text-red-600 dark:text-red-400">
-                            <AlertCircle size={18} className="shrink-0" />
-                            <p className="text-xs font-bold">{errorMsg}</p>
-                        </div>
-                    )}
-
-                    <div className="space-y-3 pb-4">
-                        <div className="grid grid-cols-2 gap-3">
-                            <Input isRequired label="Name" placeholder="Your Name" value={formData.name} onValueChange={(v: string) => setFormData({ ...formData, name: v })} classNames={{ inputWrapper: "bg-default-100" }} />
-                            <Input isRequired label="Phone" placeholder="10 digits" type="tel" value={formData.phone} onChange={(e) => { const val = e.target.value; if (/^\d*$/.test(val) && val.length <= 10) setFormData({ ...formData, phone: val }); }} classNames={{ inputWrapper: "bg-default-100" }} />
-                        </div>
-
-                        {!showMoreDetails && (
-                            <Button variant="bordered" onPress={() => setShowMoreDetails(true)} className="w-full font-bold text-muted-foreground border-dashed" startContent={<PlusCircle size={14} />}>Add Address & GST</Button>
-                        )}
-
-                        {showMoreDetails && (
-                            <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4">
-                                <div className="flex justify-between items-center py-2 bg-default-100 px-3 rounded-lg">
-                                    <span className="text-xs font-bold text-muted-foreground uppercase">Cart Total</span>
-                                    <span className="text-xl font-black text-foreground">₹{totalPrice.toLocaleString()}</span>
-                                </div>
-
-                                <div>
-                                    <Input label="GST Number (Optional)" placeholder="Ex: 22AAAAA0000A1Z5" value={formData.gst} onValueChange={(v: string) => setFormData({ ...formData, gst: v })} classNames={{ inputWrapper: "bg-default-100" }} />
-                                </div>
-
-                                <div>
-                                    <div className="flex justify-between items-center mb-1">
-                                        <span className="text-xs font-bold text-muted-foreground uppercase">Address</span>
-                                        <span onClick={() => setShowAddressLine2(!showAddressLine2)} className="text-primary text-tiny cursor-pointer hover:underline flex items-center gap-1"><PlusCircle size={10} /> Add Line 2</span>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <textarea placeholder="Street, Building, Area..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50 transition-all" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} />
-                                        {showAddressLine2 && (<Input placeholder="Landmark / City / Pincode" value={formData.addressLine2} onValueChange={(v: string) => setFormData({ ...formData, addressLine2: v })} classNames={{ inputWrapper: "bg-default-100" }} />)}
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label className="text-[11px] font-bold text-muted-foreground uppercase mb-1 block">Order Notes</label>
-                                    <textarea placeholder="Special instructions..." rows={2} className="w-full p-3 bg-default-100 rounded-xl outline-none text-sm font-medium resize-none focus:ring-2 ring-primary/50" value={formData.note} onChange={e => setFormData({ ...formData, note: e.target.value })} />
-                                </div>
-                            </div>
-                        )}
+                    <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                        <p className="text-xs text-blue-300 leading-relaxed">
+                            <strong>Note:</strong> This is an order request. Payment and final confirmation will be done after stock verification.
+                        </p>
                     </div>
                 </div>
+            </div>
 
-                <div className="p-5 border-t border-border bg-card flex-none pb-8 sm:pb-6">
-                    <Button type="submit" color="primary" size="lg" fullWidth isLoading={loading} isDisabled={cart.length === 0} className="font-black text-lg shadow-xl" endContent={!loading && <ArrowRight size={20} />}>
-                        {loading ? "Processing..." : "Confirm Order"}
-                    </Button>
-                </div>
-            </form>
-        </div>
+            <div className="p-6 border-t border-white/10 bg-black/20">
+                <Button
+                    type="submit"
+                    size="lg"
+                    fullWidth
+                    isLoading={loading}
+                    isDisabled={cart.length === 0}
+                    className="font-black text-lg shadow-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-none"
+                    endContent={!loading && <ArrowRight size={20} />}
+                >
+                    {loading ? "Submitting..." : "Submit Request"}
+                </Button>
+            </div>
+        </form>
     );
 }

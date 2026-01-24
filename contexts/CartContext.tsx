@@ -10,11 +10,11 @@ export interface CartItem extends Product {
 interface CartContextType {
     cart: CartItem[];
     addToCart: (item: Product, qtyToAdd?: number) => void;
-    updateQty: (code: string, delta: number) => void;
+    updateQty: (code: string, delta: number) => void; // delta can be absolute qty if handled carefully, but implementation uses delta
+    removeFromCart: (code: string) => void;
     clearCart: () => void;
     getCartQty: (itemCode: string) => number;
 }
-
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -59,13 +59,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
         });
     };
 
-    const updateQty = (code: string, delta: number) => {
+    const updateQty = (code: string, newQty: number) => {
         setCart(prev => prev.map(item => {
             if (item.item_code !== code) return item;
-            const newQty = item.qty + delta;
-            if (newQty < 2) return { ...item, qty: 0 }; // Remove if below 2
             return { ...item, qty: newQty };
         }).filter(i => i.qty > 0));
+    };
+
+    const removeFromCart = (code: string) => {
+        setCart(prev => prev.filter(item => item.item_code !== code));
     };
 
     const clearCart = () => {
@@ -77,7 +79,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateQty, clearCart, getCartQty }}>
+        <CartContext.Provider value={{ cart, addToCart, updateQty, removeFromCart, clearCart, getCartQty }}>
             {children}
         </CartContext.Provider>
     );
