@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * Renders the Settings page UI including a page header, subtitle, and an "Account Settings" card with a placeholder message.
+ *
+ * @returns The JSX element for the Settings page.
+ */
 export default function SettingsPage() {
     return (
         <div className="p-8 space-y-8">

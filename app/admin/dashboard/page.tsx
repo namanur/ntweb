@@ -16,6 +16,15 @@ export interface OrderRow {
     created_at: string;
 }
 
+/**
+ * Render the admin "Command Center" dashboard showing order statistics and a recent orders table.
+ *
+ * The component fetches all orders (ordered by creation time) and displays aggregate counts
+ * for pending and approved orders, plus a horizontally scrollable table of recent orders with
+ * customer info, item counts (parsed from `items_json`), totals, status badges, and review links.
+ *
+ * @returns A JSX element containing the admin dashboard UI.
+ */
 export default async function AdminDashboard() {
     const orders = await query<OrderRow>('SELECT * FROM orders ORDER BY created_at DESC');
 

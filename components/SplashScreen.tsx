@@ -3,6 +3,11 @@
 import { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 
+/**
+ * Render a full-viewport splash overlay with a brand mark that remains visible for at least 2 seconds before hiding.
+ *
+ * @returns A React element for the splash screen while visible, or `null` after it is hidden.
+ */
 export default function SplashScreen() {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);

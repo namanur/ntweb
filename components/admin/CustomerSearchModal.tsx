@@ -12,6 +12,16 @@ interface CustomerSearchModalProps {
     onSelect: (customer: any) => void;
 }
 
+/**
+ * Render a modal UI that lets the user search ERP customers and select one to link.
+ *
+ * The component validates that the search query has at least 3 characters, shows toast feedback for short queries, empty results, and errors, displays matching customers, and calls `onSelect` with the chosen customer object.
+ *
+ * @param isOpen - Whether the modal is visible
+ * @param onClose - Callback invoked when the modal is dismissed
+ * @param onSelect - Callback invoked with the selected customer object when a result is clicked
+ * @returns The modal React element
+ */
 export default function CustomerSearchModal({ isOpen, onClose, onSelect }: CustomerSearchModalProps) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([]);

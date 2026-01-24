@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * Renders the Customers page with a header and an informational placeholder panel.
+ *
+ * @returns The JSX element for the Customers page containing a title, subtitle, and a centered dashed-info panel.
+ */
 export default function CustomersPage() {
     return (
         <div className="p-8 space-y-8">

@@ -3,6 +3,15 @@ const path = require('path');
 const mysql = require('mysql2/promise');
 require('dotenv').config({ path: '.env.local' });
 
+/**
+ * Run database migrations by applying predefined SQL files to the configured MariaDB instance.
+ *
+ * Connects to the database using environment variables, attempts to apply the SQL files
+ * 'data/phase4_schemes.sql' and 'data/phase6_tasks.sql' (skipping any that are missing),
+ * logs and continues when a table already exists (error code `ER_TABLE_EXISTS_ERROR`),
+ * logs other per-file errors, closes the connection on completion, and exits the process
+ * with code 1 on a fatal connection error.
+ */
 async function run() {
     console.log("🚀 Starting Database Migration...");
     console.log(`🔌 Connecting to ${process.env.MARIADB_HOST}:${process.env.MARIADB_PORT} as ${process.env.MARIADB_USER}`);

@@ -22,6 +22,13 @@ interface Order {
     erp_customer_id?: string | null;
 }
 
+/**
+ * Render the admin order detail page with order items, ERP stock status, customer mapping, and action controls.
+ *
+ * Displays order header and status, a table of items with ERP stock (including a refresh action), customer details with ERP customer linking via a modal, and action buttons for approving or rejecting the order.
+ *
+ * @returns A React element rendering the order detail UI, including the item list, live ERP stock indicators, customer linkage controls, and action buttons.
+ */
 export default function OrderDetail() {
     const params = useParams();
     const router = useRouter();

@@ -8,6 +8,14 @@ interface ERPItemStock {
     projected_qty: number;
 }
 
+/**
+ * Retrieve current ERPNext bin quantities for a set of item codes.
+ *
+ * Fetches each item's `actual_qty` from the ERPNext "Bin" resource and returns a map of item code to its quantity. If an item has no Bin record, it will be included with value `0`. If ERPNext credentials are missing or a fatal error occurs, an empty object is returned. Individual fetch failures are logged and may leave that item absent from the result.
+ *
+ * @param itemCodes - Array of ERP item codes to check
+ * @returns A record mapping each successfully fetched item code to its `actual_qty`
+ */
 export async function checkLiveStock(itemCodes: string[]): Promise<Record<string, number>> {
     if (itemCodes.length === 0) return {};
 

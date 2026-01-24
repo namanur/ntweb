@@ -8,6 +8,12 @@ interface ERPCustomer {
     territory: string;
 }
 
+/**
+ * Search ERP customers by name using a case-insensitive "like" match.
+ *
+ * @param query - The search term used to match `customer_name`; must be at least 3 characters to perform a request.
+ * @returns An array of `ERPCustomer` objects whose `customer_name` matches the query. Returns an empty array for queries shorter than 3 characters, when ERP connection credentials are missing, if the ERP API responds with a non-OK status, or on errors.
+ */
 export async function searchERPCustomers(query: string): Promise<ERPCustomer[]> {
     if (!query || query.length < 3) return [];
 

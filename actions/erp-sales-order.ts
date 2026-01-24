@@ -7,6 +7,16 @@ interface SalesOrderItem {
     delivery_date: string;
 }
 
+/**
+ * Create a Sales Order in the ERPNext instance for a web order.
+ *
+ * Reads ERP configuration from environment variables, posts a Sales Order payload to the ERP API, and returns the outcome.
+ *
+ * @param erpCustomerId - ERP customer identifier to assign to the Sales Order
+ * @param items - Line items to include on the Sales Order
+ * @param webOrderNumber - Web order number to attach as the purchase order reference (`po_no`)
+ * @returns An object with `success` indicating the operation result; on success `id` contains the created ERP Sales Order name, on failure `message` contains an error reason (e.g., "ERP Config Missing", "ERP Sync Failed", or "Network Error")
+ */
 export async function createERPSalesOrder(
     erpCustomerId: string,
     items: SalesOrderItem[],

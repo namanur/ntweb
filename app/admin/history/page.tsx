@@ -4,6 +4,11 @@ import React from 'react';
 import { Card, CardBody, Input } from "@heroui/react";
 import { Search, History } from 'lucide-react';
 
+/**
+ * Renders the Archives page UI with a header, a search input, and a placeholder card.
+ *
+ * @returns A JSX element containing the page layout: title "Archives", a search input with a leading icon, and a centered placeholder card indicating no archives are found.
+ */
 export default function HistoryPage() {
     return (
         <div className="p-8 space-y-8 min-h-screen bg-zinc-950 text-white" style={{ backgroundImage: "url('/background.svg')", backgroundSize: '40px 40px' }}>

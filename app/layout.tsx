@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Defines the application's root HTML layout, composing global providers, an initial splash screen, a premium animated background, and the main content wrapper.
+ *
+ * @param children - The page or route content to render inside the layout
+ * @returns The complete HTML document for the app root containing providers, the splash screen, decorative background layers, and the rendered children
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

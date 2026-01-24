@@ -11,6 +11,14 @@ interface CheckoutFormProps {
     onSuccess: () => void;
 }
 
+/**
+ * Checkout form component that submits the current cart and customer details to create an order and presents a confirmation view on success.
+ *
+ * Displays validation, success, and error toast notifications; clears the cart when an order is successfully placed and shows an order reference with customer details. After success, the user can continue shopping via the provided callback.
+ *
+ * @param onSuccess - Callback invoked when the user chooses to continue shopping after a successful order
+ * @returns The checkout form React element
+ */
 export default function CheckoutForm({ onSuccess }: CheckoutFormProps) {
     const { cart, clearCart } = useCart();
     const [loading, setLoading] = useState(false);

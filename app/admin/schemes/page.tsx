@@ -4,6 +4,13 @@ import React from 'react';
 import { Button, Card, CardBody, CardHeader } from "@heroui/react";
 import { Plus } from 'lucide-react';
 
+/**
+ * Render the Schemes management page UI for the admin area.
+ *
+ * Renders a static layout containing the "Scheme Engine" header, a "New Scheme" button with a Plus icon, and a responsive grid that displays a placeholder card ("No Active Schemes") when no schemes are present.
+ *
+ * @returns A JSX element representing the Schemes page layout
+ */
 export default function SchemesPage() {
     return (
         <div className="p-8 space-y-8 min-h-screen bg-zinc-950 text-white" style={{ backgroundImage: "url('/background.svg')", backgroundSize: '40px 40px' }}>

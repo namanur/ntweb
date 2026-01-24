@@ -15,7 +15,11 @@ export interface QueuedOrder {
 const ORDER_PREFIX = 'pending_order:';
 
 /**
- * Queue an order to Vercel KV when MariaDB is unavailable
+ * Store a queued order in Vercel KV for later processing.
+ *
+ * The order is persisted in KV and set to expire after seven days.
+ *
+ * @param order - The queued order to store; its `id` is used to identify the KV entry
  */
 export async function queueOrder(order: QueuedOrder): Promise<void> {
     const key = `${ORDER_PREFIX}${order.id}`;
@@ -24,7 +28,9 @@ export async function queueOrder(order: QueuedOrder): Promise<void> {
 }
 
 /**
- * Get all pending orders from the queue
+ * Retrieve all queued pending orders stored in Vercel KV.
+ *
+ * @returns An array of `QueuedOrder` objects for each stored pending order; an empty array if none are found.
  */
 export async function getPendingOrders(): Promise<QueuedOrder[]> {
     const keys = await kv.keys(`${ORDER_PREFIX}*`);
@@ -40,7 +46,9 @@ export async function getPendingOrders(): Promise<QueuedOrder[]> {
 }
 
 /**
- * Remove an order from the queue after successful sync
+ * Remove a pending order from the KV queue by its order id.
+ *
+ * @param orderId - The queued order's `id` used to construct the KV key to delete
  */
 export async function removePendingOrder(orderId: string): Promise<void> {
     const key = `${ORDER_PREFIX}${orderId}`;
@@ -49,7 +57,9 @@ export async function removePendingOrder(orderId: string): Promise<void> {
 }
 
 /**
- * Check if Vercel KV is available
+ * Determine whether Vercel KV is reachable.
+ *
+ * @returns `true` if KV responds to a ping, `false` otherwise.
  */
 export async function isKVAvailable(): Promise<boolean> {
     try {

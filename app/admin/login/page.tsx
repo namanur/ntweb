@@ -6,6 +6,13 @@ import { Button, Input, Card, CardBody, CardHeader } from "@heroui/react";
 import { Lock } from 'lucide-react';
 import { toast } from 'sonner';
 
+/**
+ * Renders an admin login UI with a password input and submit button and handles the authentication flow.
+ *
+ * The component manages local password and loading state, posts the entered password to /api/admin/login, displays success or error toasts, and navigates to /admin/dashboard on successful authentication.
+ *
+ * @returns The JSX for the admin login form and its interactive behavior.
+ */
 export default function AdminLogin() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);

@@ -3,8 +3,17 @@ import { execute } from '@/lib/db';
 import { getPendingOrders, removePendingOrder } from '@/lib/order-queue';
 
 /**
- * Cron Job: Sync Queued Orders to MariaDB
- * Runs every 30 minutes via Vercel Cron
+ * Syncs queued orders from the pending queue into the MariaDB `orders` table.
+ *
+ * Attempts to insert each pending order as a new `Pending` order, removes successfully synced orders from the pending queue, and returns a summary of synced and failed counts.
+ *
+ * Authentication: if `process.env.CRON_SECRET` is defined, the request must include an `Authorization` header matching `Bearer ${process.env.CRON_SECRET}`; if no secret is defined, the handler skips authentication.
+ *
+ * @returns A JSON object with one of the following shapes:
+ * - `{ synced: number, failed: number, message: string }` when the job completes (counts of successfully synced and failed orders and a summary message).
+ * - `{ synced: 0, message: 'No pending orders' }` when there are no pending orders.
+ * - `{ error: 'Unauthorized' }` with HTTP 401 when authentication fails.
+ * - `{ error: 'Sync failed', details: string }` with HTTP 500 for unexpected errors.
  */
 export async function GET(req: Request) {
     // Verify cron secret (optional but recommended)

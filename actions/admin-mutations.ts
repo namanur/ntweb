@@ -4,6 +4,13 @@ import { execute } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { createERPSalesOrder } from './erp-sales-order';
 
+/**
+ * Associates an order with an ERP customer and revalidates the admin order page.
+ *
+ * @param orderId - The local order identifier to update.
+ * @param erpCustomerId - The ERP system customer identifier to link to the order.
+ * @returns An object with `success: true` if the update and revalidation succeeded, `success: false` otherwise.
+ */
 export async function updateOrderCustomer(orderId: string, erpCustomerId: string) {
     try {
         await execute(
@@ -18,6 +25,16 @@ export async function updateOrderCustomer(orderId: string, erpCustomerId: string
     }
 }
 
+/**
+ * Perform an admin decision to approve or reject a specific order.
+ *
+ * When `action` is "reject", marks the order as "Rejected" and revalidates the admin order page.
+ * When `action` is "approve", validates ERP linkage, creates a sales order in the ERP, updates the local order to "Approved" with the ERP sales order id, and revalidates the order and dashboard pages.
+ *
+ * @param orderId - The id of the order to operate on
+ * @param action - "approve" to sync and approve the order, "reject" to mark it rejected
+ * @returns `{ success: true }` on success. On failure returns `{ success: false, message: <reason> }` where `message` may be one of: `"DB Error"`, `"Order not found"`, `"Link ERP Customer first"`, an ERP sync error message, or `"Internal Error"`.
+ */
 export async function performAdminAction(orderId: string, action: 'approve' | 'reject') {
     console.log(`Action: ${action} on Order ${orderId}`);
 

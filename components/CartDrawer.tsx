@@ -8,6 +8,13 @@ import { calculateOrderTotal } from '@/lib/shop-rules';
 import { toast } from 'sonner';
 import CheckoutForm from './CheckoutForm';
 
+/**
+ * Render the cart drawer overlay and slide-in panel showing cart items, totals, and a checkout modal.
+ *
+ * @param isOpen - When `true`, the overlay is visible and the drawer panel is translated into view.
+ * @param onClose - Callback invoked to close the cart drawer (e.g., when overlay, close button, or start-browsing button is clicked).
+ * @returns A JSX element containing the overlay, the slide-in cart panel with item list and footer, and a checkout modal.
+ */
 export default function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const { cart, removeFromCart, updateQty } = useCart();
     const totalPrice = calculateOrderTotal(cart);

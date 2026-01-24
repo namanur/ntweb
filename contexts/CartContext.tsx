@@ -17,6 +17,14 @@ interface CartContextType {
 }
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+/**
+ * Provides cart state and manipulation functions to descendant components via React context.
+ *
+ * Persists cart state to localStorage under the key "nandan_cart" and restores it on mount.
+ *
+ * @param children - React nodes to be rendered inside the provider
+ * @returns A CartContext provider element that wraps `children`
+ */
 export function CartProvider({ children }: { children: ReactNode }) {
     const [cart, setCart] = useState<CartItem[]>([]);
     const [isInitialized, setIsInitialized] = useState(false);

@@ -5,6 +5,16 @@ import { OrderRow } from '../dashboard/page';
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * Render the admin Orders page that displays all orders in a styled, sortable layout.
+ *
+ * Fetches all orders ordered by creation time (newest first) and renders a responsive table
+ * showing each order's reference, customer name and mobile, item count, total amount,
+ * status (with a color-coded badge), and a link to view details. Shows a centered empty
+ * state message when no orders exist.
+ *
+ * @returns A JSX element representing the Orders admin page UI.
+ */
 export default async function OrdersPage() {
     const orders = await query<OrderRow>('SELECT * FROM orders ORDER BY created_at DESC');
 

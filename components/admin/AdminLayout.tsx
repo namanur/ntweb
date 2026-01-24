@@ -5,6 +5,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Users, ShoppingBag, Settings, LogOut, Package } from 'lucide-react';
 
+/**
+ * Render the admin interface layout: a fixed sidebar with navigation and main content, or a centered login wrapper when the route is /admin/login.
+ *
+ * @param children - Content to render inside the layout: displayed in the centered login container for /admin/login, otherwise rendered in the main content area.
+ * @returns A React element containing the admin layout (sidebar with navigation and logout button, and main content area) or the centered login container when pathname is '/admin/login'.
+ */
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
 

@@ -4,6 +4,13 @@ import React from 'react';
 import { Button, Card, CardBody } from "@heroui/react";
 import { Plus, CheckSquare } from 'lucide-react';
 
+/**
+ * Renders the Tasks page UI: a header with a "New Task" action and a responsive grid containing a placeholder card.
+ *
+ * The layout is static and displays a centered placeholder indicating there are no pending tasks.
+ *
+ * @returns The JSX element for the Tasks page
+ */
 export default function TasksPage() {
     return (
         <div className="p-8 space-y-8 min-h-screen bg-zinc-950 text-white" style={{ backgroundImage: "url('/background.svg')", backgroundSize: '40px 40px' }}>
