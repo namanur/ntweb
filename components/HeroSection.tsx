@@ -28,9 +28,9 @@ export default function HeroSection({
                 key={brand.name}
                 onClick={() => onBrandSelect?.(brand.name)}
                 className={`
-                  group cursor-pointer rounded-xl p-4 flex flex-col items-center justify-center transition-all active:scale-95 border
+                  group cursor-pointer rounded-xl p-4 flex flex-col items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] active:scale-95 border
                   ${isActive
-                    ? 'bg-primary/5 border-primary ring-1 ring-primary'
+                    ? 'bg-primary/10 border-primary ring-1 ring-primary'
                     : 'bg-zinc-50/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600'
                   }
                 `}
@@ -41,13 +41,13 @@ export default function HeroSection({
                     alt={brand.name}
                     width={100}
                     height={32}
-                    className={`object-contain max-h-full transition-opacity ${isActive ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'}`}
+                    className={`object-contain max-h-full transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'}`}
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling?.classList.remove('hidden');
                     }}
                   />
-                  <div className={`hidden text-sm font-black uppercase tracking-tighter transition-opacity ${isActive ? 'text-primary' : 'text-zinc-900 dark:text-white opacity-80 group-hover:opacity-100'}`}>
+                  <div className={`hidden text-sm font-semibold tracking-tight transition-opacity ${isActive ? 'text-primary' : 'text-zinc-900 dark:text-white opacity-80 group-hover:opacity-100'}`}>
                     {brand.name}
                   </div>
                 </div>
