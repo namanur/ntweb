@@ -32,13 +32,20 @@ export default function OrderDetail() {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleCustomerSelect = async (customer: any) => {
+        if (!order) {
+            toast.error("No order selected");
+            onClose();
+            return;
+        }
+
         try {
             // Optimistic update
+            const orderId = order.id;
             setOrder(prev => prev ? ({ ...prev, erp_customer_id: customer.name }) : null);
             onClose();
 
             // Server Update (Phase 3 Requirement)
-            const res = await updateOrderCustomer(order!.id, customer.name);
+            const res = await updateOrderCustomer(orderId, customer.name);
             if (res.success) toast.success("Linked to " + customer.customer_name);
             else toast.error("Link failed");
         } catch (e) {
@@ -221,7 +228,24 @@ export default function OrderDetail() {
                                 className="w-full bg-green-600 text-white font-bold"
                                 size="lg"
                                 startContent={<Check size={20} />}
-                                isDisabled={order.status !== 'Pending'}
+                                isDisabled={order.status !== 'Pending' || loading}
+                                isLoading={loading}
+                                onPress={async () => {
+                                    setLoading(true);
+                                    try {
+                                        const res = await performAdminAction(order.id, 'approve');
+                                        if (res.success) {
+                                            toast.success("Order Approved");
+                                            fetchOrder(order.id);
+                                        } else {
+                                            toast.error(res.message || "Approval Failed");
+                                        }
+                                    } catch (e) {
+                                        toast.error("Action failed");
+                                    } finally {
+                                        setLoading(false);
+                                    }
+                                }}
                             >
                                 Approve & Create Order
                             </Button>
@@ -229,7 +253,24 @@ export default function OrderDetail() {
                                 className="w-full bg-red-900/20 text-red-500 border border-red-900/50 font-bold"
                                 size="lg"
                                 startContent={<X size={20} />}
-                                isDisabled={order.status !== 'Pending'}
+                                isDisabled={order.status !== 'Pending' || loading}
+                                isLoading={loading}
+                                onPress={async () => {
+                                    setLoading(true);
+                                    try {
+                                        const res = await performAdminAction(order.id, 'reject');
+                                        if (res.success) {
+                                            toast.success("Order Rejected");
+                                            fetchOrder(order.id);
+                                        } else {
+                                            toast.error(res.message || "Rejection Failed");
+                                        }
+                                    } catch (e) {
+                                        toast.error("Action failed");
+                                    } finally {
+                                        setLoading(false);
+                                    }
+                                }}
                             >
                                 Reject Order
                             </Button>

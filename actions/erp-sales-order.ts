@@ -34,7 +34,7 @@ export async function createERPSalesOrder(
             rate: i.rate,
             delivery_date: i.delivery_date
         })),
-        company: "Nandan Traders" // Or from env
+        company: process.env.COMPANY_NAME || "Nandan Traders"
     };
 
     try {

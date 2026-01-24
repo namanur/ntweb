@@ -2,6 +2,7 @@ import { query } from '@/lib/db';
 import { Card, CardBody, CardHeader } from "@heroui/react";
 import Link from 'next/link';
 import { OrderRow } from '../dashboard/page';
+import { safeParseItems } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -48,7 +49,7 @@ export default async function OrdersPage() {
                                                 <div className="text-xs text-zinc-600">{order.customer_mobile_input}</div>
                                             </td>
                                             <td className="px-6 py-4 text-zinc-400">
-                                                {JSON.parse(order.items_json).length} items
+                                                {safeParseItems(order.items_json).length} items
                                             </td>
                                             <td className="px-6 py-4 font-mono text-white">₹{order.total_amount}</td>
                                             <td className="px-6 py-4">

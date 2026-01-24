@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS orders (
     total_amount DECIMAL(10, 2) DEFAULT 0.00,
     
     -- Workflow Status
-    status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+    status ENUM('Pending', 'Approved', 'Rejected', 'Packed', 'Out for Delivery', 'Delivered') DEFAULT 'Pending',
     
     -- ERP Integration (Phase 3/5)
     erp_customer_id VARCHAR(255) DEFAULT NULL,

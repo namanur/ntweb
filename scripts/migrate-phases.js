@@ -38,6 +38,7 @@ async function run() {
                     console.log(`ℹ️  ${file}: Table already exists.`);
                 } else {
                     console.error(`❌ Failed ${file}:`, e.message);
+                    process.exit(1);
                 }
             }
         }

@@ -10,7 +10,7 @@ export interface CartItem extends Product {
 interface CartContextType {
     cart: CartItem[];
     addToCart: (item: Product, qtyToAdd?: number) => void;
-    updateQty: (code: string, delta: number) => void; // delta can be absolute qty if handled carefully, but implementation uses delta
+    updateQty: (code: string, newQty: number) => void;
     removeFromCart: (code: string) => void;
     clearCart: () => void;
     getCartQty: (itemCode: string) => number;

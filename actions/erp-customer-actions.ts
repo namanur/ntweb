@@ -21,8 +21,10 @@ export async function searchERPCustomers(query: string): Promise<ERPCustomer[]> 
         // Search by name or mobile
         // Using 'Customer' doctype
         // filters=[["customer_name", "like", "%query%"]]
-        const encodedQuery = encodeURIComponent(`%${query}%`);
-        const url = `${erpUrl}/api/resource/Customer?filters=[["customer_name","like","${encodedQuery}"]]&fields=["name","customer_name","mobile_no","customer_group","territory"]&limit_page_length=10`;
+        // filters=[["customer_name", "like", "%query%"]]
+        const filters = JSON.stringify([["customer_name", "like", `%${query}%`]]);
+        const encodedFilters = encodeURIComponent(filters);
+        const url = `${erpUrl}/api/resource/Customer?filters=${encodedFilters}&fields=["name","customer_name","mobile_no","customer_group","territory"]&limit_page_length=10`;
 
         const res = await fetch(url, {
             headers: { 'Authorization': `token ${apiKey}:${apiSecret}` },

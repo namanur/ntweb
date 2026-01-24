@@ -3,13 +3,22 @@ import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
     try {
-        const { password } = await req.json();
+        const body = await req.json();
+        const { password } = body;
 
-        if (password === process.env.ADMIN_PASSWORD) {
+        const adminPassword = process.env.ADMIN_PASSWORD;
+
+        if (!adminPassword || typeof password !== 'string') {
+            return NextResponse.json({ success: false, message: "Invalid Request" }, { status: 401 });
+        }
+
+        if (password === adminPassword) {
             // Set simple cookie
             (await cookies()).set('admin_session', 'true', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                path: '/admin',
                 maxAge: 60 * 60 * 24 // 1 day
             });
 

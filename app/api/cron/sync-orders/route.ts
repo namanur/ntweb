@@ -7,13 +7,14 @@ import { getPendingOrders, removePendingOrder } from '@/lib/order-queue';
  * Runs every 30 minutes via Vercel Cron
  */
 export async function GET(req: Request) {
-    // Verify cron secret (optional but recommended)
+    // Verify cron secret
     const authHeader = req.headers.get('authorization');
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-        // Allow if no CRON_SECRET is set (for testing)
-        if (process.env.CRON_SECRET) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
+    if (!process.env.CRON_SECRET && process.env.NODE_ENV !== 'development') {
+        return NextResponse.json({ error: 'Unauthorized: No Secret Configured' }, { status: 401 });
+    }
+
+    if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     console.log('🔄 Starting order sync job...');
@@ -30,14 +31,24 @@ export async function GET(req: Request) {
 
         let syncedCount = 0;
         let failedCount = 0;
+        // ... (rest of logic same)
 
         for (const order of pendingOrders) {
             try {
+                // Idempotent Insert using ON DUPLICATE KEY UPDATE
                 await execute(
                     `INSERT INTO orders (
                         id, order_number, customer_name_input, customer_mobile_input, 
                         items_json, total_amount, status, created_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, 'Pending', ?)`,
+                    ) VALUES (?, ?, ?, ?, ?, ?, 'Pending', ?)
+                    ON DUPLICATE KEY UPDATE
+                        customer_name_input = VALUES(customer_name_input),
+                        customer_mobile_input = VALUES(customer_mobile_input),
+                        items_json = VALUES(items_json),
+                        total_amount = VALUES(total_amount),
+                        status = VALUES(status), -- Careful overwriting status if changed locally
+                        created_at = VALUES(created_at)
+                    `,
                     [
                         order.id,
                         order.orderNumber,

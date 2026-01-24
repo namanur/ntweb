@@ -64,7 +64,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </nav>
 
                 <div className="p-4 border-t border-zinc-800">
-                    <button className="flex items-center gap-3 w-full px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-lg text-sm font-medium transition-colors">
+                    <button
+                        onClick={async () => {
+                            // Clear admin session cookie
+                            document.cookie = 'admin_session=; Path=/admin; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                            // Redirect to login
+                            window.location.href = '/admin/login';
+                        }}
+                        className="flex items-center gap-3 w-full px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-lg text-sm font-medium transition-colors"
+                    >
                         <LogOut size={18} />
                         Logout
                     </button>

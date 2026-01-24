@@ -22,4 +22,4 @@ CREATE TABLE IF NOT EXISTS schemes (
 );
 
 -- Index for active schemes
-INDEX idx_active_schemes (is_active, valid_from, valid_to);
+CREATE INDEX idx_active_schemes ON schemes (is_active, valid_from, valid_to);
