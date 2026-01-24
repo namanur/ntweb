@@ -1,6 +1,11 @@
 // hooks/useScrollDirection.ts
 import { useState, useEffect } from 'react';
 
+/**
+ * Hook to track scroll direction (up/down).
+ * Used for hiding/showing sticky headers.
+ * @returns "up" or "down" based on recent scroll activity.
+ */
 export function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = useState("up");
 

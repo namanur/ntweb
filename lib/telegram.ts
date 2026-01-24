@@ -5,6 +5,11 @@ const ALERT_BOT_TOKEN = process.env.TELEGRAM_ALERT_BOT_TOKEN;
 const ORDER_CHAT_ID = process.env.TELEGRAM_ORDER_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
 const DELIVERY_CHAT_ID = process.env.TELEGRAM_DELIVERY_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
 
+/**
+ * Sends a message via Telegram Bot API.
+ * @param text - The message content to send.
+ * @param type - The type of notification ('order' or 'alert').
+ */
 async function sendTelegramMessage(text: string, type: 'order' | 'alert' = 'order') {
   // 1. Pick the correct token & chat ID
   const isAlert = type === 'alert';
@@ -43,10 +48,18 @@ async function sendTelegramMessage(text: string, type: 'order' | 'alert' = 'orde
   }
 }
 
+/**
+ * Service for handling Telegram notifications (Orders, Alerts, Sync Status).
+ */
 export const TelegramService = {
   // Keep raw access if needed
   send: sendTelegramMessage,
 
+  /**
+   * Notify that a sync operation has started.
+   * @param count - Estimated number of items to sync.
+   * @param syncId - Unique identifier for this sync job.
+   */
   async notifySyncStart(count: number, syncId: string) {
     return sendTelegramMessage(
       `🔄 *Sync Started*\n` +
@@ -57,6 +70,11 @@ export const TelegramService = {
     );
   },
 
+  /**
+   * Notify that a sync operation completed successfully.
+   * @param syncId - Unique identifier for the sync job.
+   * @param count - Number of items processed.
+   */
   async notifySyncSuccess(syncId: string, count: number) {
     return sendTelegramMessage(
       `✅ *Sync Success*\n` +
@@ -67,6 +85,11 @@ export const TelegramService = {
     );
   },
 
+  /**
+   * Notify that a sync operation failed.
+   * @param syncId - Unique identifier for the sync job.
+   * @param error - Error message or stack trace.
+   */
   async notifySyncFail(syncId: string, error: string) {
     return sendTelegramMessage(
       `❌ *Sync Failed*\n` +

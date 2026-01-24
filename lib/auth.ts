@@ -10,6 +10,11 @@ if (!secretKey && process.env.NODE_ENV === 'production') {
 const finalKey = secretKey || "default_secret_dont_use_in_prod";
 const key = new TextEncoder().encode(finalKey);
 
+/**
+ * Encrypts a payload into a JWT.
+ * @param payload - Data to encrypt.
+ * @returns JSON Web Token string.
+ */
 export async function encrypt(payload: any) {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
@@ -18,6 +23,11 @@ export async function encrypt(payload: any) {
     .sign(key);
 }
 
+/**
+ * Decrypts a JWT into its original payload.
+ * @param input - The JWT string to decrypt.
+ * @returns The decoded payload or null if verification fails.
+ */
 export async function decrypt(input: string): Promise<any> {
   try {
     const { payload } = await jwtVerify(input, key, {
@@ -29,6 +39,10 @@ export async function decrypt(input: string): Promise<any> {
   }
 }
 
+/**
+ * Log in as an admin.
+ * Creates a session cookie with admin role.
+ */
 export async function login() {
   // Create the session
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
@@ -44,11 +58,19 @@ export async function login() {
   });
 }
 
+/**
+ * Log out the current admin.
+ * Invalidates the admin session cookie.
+ */
 export async function logout() {
   // Destroy the session
   (await cookies()).set("admin_session", "", { expires: new Date(0) });
 }
 
+/**
+ * Retrieve the current admin session.
+ * @returns The decrypted session payload or null if not authenticated.
+ */
 export async function getSession() {
   const session = (await cookies()).get("admin_session")?.value;
   if (!session) return null;
@@ -57,6 +79,11 @@ export async function getSession() {
 
 // --- Customer Auth Functions ---
 
+/**
+ * Log in a customer.
+ * Creates a session cookie with customer details throughout the app.
+ * @param customer - The customer object from ERP.
+ */
 export async function loginCustomer(customer: any) {
   // Create the session
   const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days for customers
@@ -78,10 +105,18 @@ export async function loginCustomer(customer: any) {
   });
 }
 
+/**
+ * Log out the current customer.
+ * Invalidates the customer session cookie.
+ */
 export async function logoutCustomer() {
   (await cookies()).set("customer_session", "", { expires: new Date(0) });
 }
 
+/**
+ * Retrieve the current customer session.
+ * @returns The decrypted customer session payload or null.
+ */
 export async function getCustomerSession() {
   const session = (await cookies()).get("customer_session")?.value;
   if (!session) return null;

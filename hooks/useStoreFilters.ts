@@ -3,8 +3,15 @@
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
+/**
+ * Available sorting options for the product grid.
+ */
 export type SortOption = "default" | "price_asc" | "price_desc" | "material" | "category";
 
+/**
+ * Hook to manage URL-based filters for the store (search, brand, category, sort).
+ * Updates the URL search params without reloading the page.
+ */
 export function useStoreFilters() {
     const searchParams = useSearchParams();
     const pathname = usePathname();
