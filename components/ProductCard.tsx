@@ -55,8 +55,8 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
       onClick={handlePress}
       className={`group relative bg-white dark:bg-zinc-900 border rounded-3xl p-4 transition-all duration-300 cursor-pointer
         ${isInCart
-          ? 'border-primary shadow-[0_0_20px_-5px] shadow-primary/30 dark:border-primary/50 dark:shadow-[0_0_25px_-5px] dark:shadow-primary/40'
-          : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-none hover:-translate-y-1'
+          ? 'border-primary shadow-md ring-1 ring-primary dark:border-primary/50'
+          : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md dark:hover:shadow-none hover:-translate-y-1'
         }
       `}
     >
@@ -64,12 +64,12 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
       {(showBrand || product.is_hot) && (
         <div className="absolute top-2 left-2 z-20 flex flex-col gap-1 items-start">
           {product.is_hot && (
-            <span className="text-[11px] font-bold bg-gradient-to-r from-orange-500 to-red-600 text-white px-2 py-1 rounded-full shadow-sm animate-pulse">
+            <span className="text-[10px] font-bold bg-red-600 text-white px-2 py-0.5 rounded-full shadow-sm">
               HOT
             </span>
           )}
           {showBrand && (
-            <span className="text-[11px] font-bold bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md px-2 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm text-zinc-700 dark:text-zinc-300 z-20">
+            <span className="text-[10px] font-semibold bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm text-zinc-700 dark:text-zinc-300 z-20">
               {product.brand}
             </span>
           )}
@@ -83,14 +83,14 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
           alt={product.item_name}
           width={400}
           height={400}
-          className="object-contain w-full h-full mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-110 p-4"
+          className="object-contain w-full h-full mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-105 p-4"
           onError={() => setImgSrc("https://placehold.co/400x400/png?text=Coming+Soon")}
         />
 
         {/* Floating Quick Add Button (Appears on Hover) */}
         <button
           onClick={(e) => { e.stopPropagation(); handleAddToCart(); }}
-          className="absolute bottom-4 right-4 transition-all duration-300 bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 z-30 flex items-center gap-2 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+          className="absolute bottom-4 right-4 transition-all duration-300 bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-md hover:brightness-110 active:scale-95 z-30 flex items-center gap-2 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
           title="Quick Add"
         >
           {isInCart ? (

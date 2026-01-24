@@ -281,7 +281,7 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
         <div className="fixed bottom-6 right-6 z-50 animate-in zoom-in slide-in-from-bottom-10 duration-300">
           <Button
             size="lg"
-            className="h-16 w-auto px-6 shadow-xl shadow-primary/20 rounded-full bg-primary text-primary-foreground font-bold flex items-center gap-4 hover:scale-105 transition-transform"
+            className="h-16 w-auto px-6 shadow-lg rounded-full bg-primary text-primary-foreground font-bold flex items-center gap-4 hover:brightness-110 active:scale-95 transition-all"
             onPress={() => setIsCartOpen(true)}
           >
             <div className="flex flex-col items-start leading-tight">
@@ -327,7 +327,7 @@ export default function ProductGridClient({ products = [], metadata, isStale = f
                   color="primary"
                   size="lg"
                   onPress={() => handleAdd(selectedProduct)}
-                  className="flex-1 font-bold shadow-lg"
+                  className="flex-1 font-bold shadow-md"
                   startContent={<Plus size={20} />}
                 >
                   {getCartQty(selectedProduct.item_code) > 0 ? "Add +1" : "Add 2 (Min)"}

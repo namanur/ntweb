@@ -77,7 +77,7 @@ git clone <repository_url>
 cd ntweb
 
 # Install dependencies
-npm install
+bun install
 ```
 
 ### 2. Environment Variables
@@ -109,20 +109,20 @@ SYNC_GIT_AUTO_PUSH="false" # Set to true in production context
 
 **Development Server:**
 ```bash
-npm run dev
+bun run dev
 # Opens http://localhost:3000
 ```
 
 **Sync Data from ERP (Manual):**
 This pulls items/images from ERPNext and updates `public/catalog.json`.
 ```bash
-npm run sync
+bun run sync
 ```
 
 **Production Build:**
 ```bash
-npm run build
-npm start
+bun run build
+bun start
 ```
 
 ---
@@ -133,10 +133,10 @@ The project includes a helper script for streamlined deployment (Sync -> Commit 
 
 ```bash
 # Full Deployment (Syncs Data + Pushes Code)
-npm run deploy
+bun run deploy
 
 # Javascript-only Deployment (Skips Data Sync)
-npm run deploy -- --quick
+bun run deploy -- --quick
 ```
 
 ---
