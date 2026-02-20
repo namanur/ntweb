@@ -119,7 +119,6 @@ export default function ProductCard({ product, cartQty = 0, onAdd, onClick, onOp
         <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-snug group-hover:text-primary transition-colors line-clamp-2 min-h-[2.5em]">
           {product.item_name}
         </h3>
-        <p className="text-[10px] text-zinc-400 font-mono tracking-wider">{product.item_code}</p>
       </div>
 
       {/* Price Area */}

@@ -125,10 +125,7 @@ export function ImageConsole({ stats, refreshStats, products }: ImageConsoleProp
                                             }`}
                                     >
                                         <div className="flex justify-between items-start mb-1">
-                                            <span className={`font-mono text-[10px] font-bold ${isActive ? 'text-blue-400' : 'text-zinc-500'}`}>
-                                                {p.item_code}
-                                            </span>
-                                            {isActive && <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />}
+                                            {isActive && <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse ml-auto" />}
                                         </div>
                                         <div className={`text-xs font-bold line-clamp-2 ${isActive ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-200'}`}>
                                             {p.item_name}

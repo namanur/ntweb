@@ -47,7 +47,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     {cart.map(item => (
                         <div key={item.item_code} className="flex gap-3 p-3 bg-card rounded-2xl border border-border items-start group shadow-sm">
                             <div className="flex-1">
-                                <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1 truncate">{item.item_code}</div>
                                 <h4 className="font-bold text-sm text-foreground leading-snug line-clamp-2">{item.item_name}</h4>
                                 <div className="flex items-center gap-2 mt-2">
                                     <span className="text-xs font-mono bg-default-100 px-2 py-1 rounded text-muted-foreground border border-border">₹{item.standard_rate} {item.stock_uom ? `/ ${item.stock_uom}` : ''}</span>

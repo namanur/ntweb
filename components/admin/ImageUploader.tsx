@@ -95,7 +95,7 @@ export function ImageUploader({ onUploadComplete, targetProduct }: ImageUploader
                     <h4 className="text-2xl font-bold text-white mb-2">Drop Image Here</h4>
                     <p className="text-zinc-500 text-sm max-w-sm">
                         Instantly attaches to <br />
-                        <span className="text-blue-400 font-mono font-bold text-base mt-1 inline-block bg-blue-900/10 px-2 py-0.5 rounded border border-blue-900/30">{targetProduct?.item_code}</span>
+                        <span className="text-blue-400 font-bold text-base mt-1 inline-block bg-blue-900/10 px-2 py-0.5 rounded border border-blue-900/30">{targetProduct?.item_name}</span>
                     </p>
                 </div>
             )}
