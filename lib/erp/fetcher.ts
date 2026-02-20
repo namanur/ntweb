@@ -47,6 +47,7 @@ export class ERPFetcher {
                             'brand',
                             'image',
                             'disabled',
+                            'has_variants',
                             'is_stock_item'
                         ]),
                         filters: JSON.stringify([['disabled', '=', 0]]),

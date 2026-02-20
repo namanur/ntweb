@@ -11,11 +11,12 @@
     "sync": "tsx lib/erp/sync.ts"
   },
   "dependencies": {
+    "@ag-grid-community/styles": "^32.3.9",
     "@heroui/react": "^2.8.5",
     "@radix-ui/react-slot": "^1.2.4",
     "@types/busboy": "^1.5.4",
-    "ag-grid-community": "^35.0.0",
-    "ag-grid-react": "^35.0.0",
+    "ag-grid-community": "^35.1.0",
+    "ag-grid-react": "^35.1.0",
     "axios": "^1.13.2",
     "better-sqlite3": "^12.5.0",
     "busboy": "^1.6.0",

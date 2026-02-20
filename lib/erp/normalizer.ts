@@ -97,6 +97,11 @@ export function normalizeItems(
 
     for (const item of erpItems) {
         try {
+            // Filter out Template Items (those that have variants)
+            if (item.has_variants === 1) {
+                continue;
+            }
+
             const imageUrls = imageMap.get(item.item_code) || [];
             const product = normalizeItem(item, imageUrls);
 

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "syncTimestamp": "2026-02-20T21:26:26.402Z",
+    "syncTimestamp": "2026-02-20T22:15:20.606Z",
     "itemCount": 320,
     "version": "1.0"
   },
@@ -185,7 +185,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "BT-GSB-PL-1500ML",
@@ -354,7 +354,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "BT-NXN-PL-1200ML",
@@ -393,7 +393,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "BT-OD-MX-1000ML",
@@ -445,7 +445,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "BT-PRS-PL-1500ML",
@@ -562,7 +562,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "SC-PC-MX-1100ML",
@@ -601,7 +601,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "SC-QC-MX-1000ML",
@@ -679,7 +679,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "CW-FP24-TP-24CM",
@@ -796,7 +796,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "HANDI",
@@ -809,7 +809,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "CW-HD-TP-2000ML",
@@ -874,7 +874,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "1143",
@@ -887,7 +887,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "1147",
@@ -900,7 +900,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "ARABICA",
@@ -913,7 +913,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "JAVA",
@@ -926,7 +926,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "CP-1110-CE",
@@ -1225,7 +1225,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "CP-HM-CE",
@@ -1394,7 +1394,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "STL000008",
@@ -1433,7 +1433,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "KTN000015",
@@ -1706,7 +1706,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-RHPS-SS-BIG",
@@ -1914,7 +1914,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "LG-NGL-MX-BIG",
@@ -1953,7 +1953,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-FS-PL-12INCH",
@@ -1992,7 +1992,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "KTN00154",
@@ -2083,7 +2083,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "ST-DR-SS-BIG",
@@ -2161,7 +2161,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "SR-SR-PL-4LAYER",
@@ -2317,7 +2317,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "KP-AK-SS-BIG",
@@ -3240,7 +3240,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "Pressure Cooker-Hard Anodised-Contura-Induction-3 L-Inner Lid-Ignis",
@@ -3461,7 +3461,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "ST-FF-MX-1200ML",
@@ -3591,7 +3591,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "SOLITARE HOTPOT",
@@ -3604,7 +3604,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "ST-DC-PL",
@@ -3708,7 +3708,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "ST-SB3P-PL-ROUND",
@@ -3760,7 +3760,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "CHOPPING BOARD COLOUR",
@@ -3773,7 +3773,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-CBC-PL-LARGE",
@@ -3851,7 +3851,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-CB-PL-15MM-WHI",
@@ -3916,7 +3916,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-CO-MX-BIG",
@@ -3955,7 +3955,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-JSSJ-MX-ROUND",
@@ -3994,7 +3994,7 @@
       "stock_uom": "Nos",
       "images": [],
       "in_stock": true,
-      "is_active": true
+      "is_active": false
     },
     {
       "item_code": "TA-LS-AL-BLA",

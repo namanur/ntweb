@@ -14,6 +14,7 @@ export interface ERPItem {
     brand?: string;
     image?: string;
     disabled: number;
+    has_variants?: number;
     is_stock_item?: number;
 }
 
